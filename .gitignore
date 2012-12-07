@@ -1,17 +1,3 @@
-*
-.*
-
-!.gitignore
-!.git-completion.sh
-!.gitconfig
-!.emacs.d
-!.profile
-!.bashrc
-!.zhrc
-!.histfile
-!.skk
-!.screenrc
-
 *.elc
 *.bak
 *.old
