@@ -1,17 +1,20 @@
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
 bindkey -e
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
+
+# history
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=10000
+setopt hist_ignore_all_dups
+setopt hist_reduce_blanks
+setopt share_history
+
+# completion
 zstyle :compinstall filename '/home/mikagami/.zshrc'
 
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
 
-
+# colors
 autoload colors
 colors
 
@@ -20,19 +23,26 @@ autoload bashcompinit
 bashcompinit
 source ~/.git-completion.sh
 
+
+# prompt
 setopt prompt_subst
 
 color0=$'\e[0m'
 color1=$'\e[38;5;46m'
 color2=$'\e[38;5;2m'
-PROMPT='${color1}[ %n@%m | %D{%Y-%m-%d %H:%M:%S} | Retv: %? ]
-[ ${color2}%~ ]$(__git_ps1 " (%s)")
-%#${color0} '
+PROMPT=$'%{${color1}%}[ %n@%m | %D{%Y-%m-%d %H:%M:%S} | Retv: %? ]
+[ %{${color2}%}%~ ]$(__git_ps1 " (%s)")
+%#%{${color0}%} '
 
 
-#PS1="${color1}[%n@%m$(__git_ps1 " (%s)")]\# "
-
+# alias
 alias ls='ls -h --color=auto'
 alias ll='ls -l'
 alias la='ls -A'
 alias lla='ls -lA'
+
+
+# env
+export EDITOR=emacsclient
+export VISUAL=emacsclient
+
