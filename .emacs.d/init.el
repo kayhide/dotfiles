@@ -19,8 +19,6 @@
 (define-key lisp-interaction-mode-map (kbd "C-.") 'completion-at-point)
 
 
-(server-start)
-
 (require 'wdired)
 (define-key dired-mode-map (kbd "r") 'wdired-change-to-wdired-mode)
 
@@ -58,15 +56,6 @@
 (setq eldoc-idle-delay 0.2)
 (setq eldoc-minor-mode-string "")
 
-(require 'anything-startup)
-(global-set-key (kbd "C-x b") 'anything-for-files)
-;; (setq anything-c-filelist-file-name "/tmp/all.filelist")
-;; (setq anything-grep-candidates-fast-directory-regexp "^/tmp")
-
-(require 'anything-c-moccur)
-(setq moccur-split-word t)
-(define-key isearch-mode-map (kbd "C-o") 'anything-c-moccur-from-isearch)
-
 (require 'redo+)
 (global-set-key (kbd "C-M-/") 'redo)
 (setq undo-no-redo t)
@@ -85,6 +74,27 @@
 
 (require 'ido)
 (ido-mode t)
+
+
+;; ------------------------------------------------------------------------
+;; @ anything
+
+(require 'anything-startup)
+(global-set-key (kbd "C-x b") 'anything-for-files)
+;; (setq anything-c-filelist-file-name "/tmp/all.filelist")
+;; (setq anything-grep-candidates-fast-directory-regexp "^/tmp")
+(define-key anything-map (kbd "C-M-n") 'anything-next-source)
+(define-key anything-map (kbd "C-M-p") 'anything-previous-source)
+
+(require 'anything-c-moccur)
+(setq moccur-split-word t)
+(define-key isearch-mode-map (kbd "C-o") 'anything-c-moccur-from-isearch)
+
+;; ------------------------------------------------------------------------
+;; @ ruby
+
+(add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
 
 ;; ------------------------------------------------------------------------
 ;; @ rinari
@@ -290,4 +300,10 @@
      (when (not (frame-parameter nil 'fullscreen)) 'fullboth))))
 (global-set-key [f11] 'toggle-fullscreen)
 
+
+;; ------------------------------------------------------------------------
+;; @ server
+(require 'server)
+(unless (server-running-p)
+  (server-start))
 
