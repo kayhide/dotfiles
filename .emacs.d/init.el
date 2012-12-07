@@ -14,8 +14,12 @@
 (global-set-key (kbd "<prior>") 'scroll-other-window-down)
 (global-set-key (kbd "S-<next>") (lambda () (interactive) (scroll-other-window 1)))
 (global-set-key (kbd "S-<prior>") (lambda () (interactive) (scroll-other-window -1)))
+(global-set-key (kbd "C-\\") nil)
 (define-key emacs-lisp-mode-map (kbd "C-.") 'completion-at-point)
 (define-key lisp-interaction-mode-map (kbd "C-.") 'completion-at-point)
+
+
+(server-start)
 
 (require 'wdired)
 (define-key dired-mode-map (kbd "r") 'wdired-change-to-wdired-mode)
@@ -79,29 +83,54 @@
 (require 'migemo)
 (setq migemo-command "/usr/bin/ruby")
 
+(require 'ido)
+(ido-mode t)
 
-(setq initial-frame-alist
-      (append  '((width . 240)
- 		 (height . 80)
-		 (alpha . 90)
-		 (fullscreen . fullboth))
-	       initial-frame-alist))
-(setq default-frame-alist initial-frame-alist)
+;; ------------------------------------------------------------------------
+;; @ rinari
 
-(setq split-width-threshold 100)
+(add-to-list 'load-path "~/.emacs.d/elisp/rinari")
+(require 'rinari)
+(setq rinari-tags-file-name "TAGS")
 
-(defun fullscreen ()
-  (interactive)
-  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-			 '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
-(defun toggle-fullscreen ()
-  "Toggle full screen on X11"
-  (interactive)
-  (when (eq window-system 'x)
-    (set-frame-parameter
-     nil 'fullscreen
-     (when (not (frame-parameter nil 'fullscreen)) 'fullboth))))
-(global-set-key [f11] 'toggle-fullscreen)
+;; ------------------------------------------------------------------------
+;; @ igrep
+
+(require 'igrep)
+   ;; (autoload 'igrep "igrep"
+   ;;    "*Run `grep` PROGRAM to match REGEX in FILES..." t)
+   ;; (autoload 'igrep-find "igrep"
+   ;;    "*Run `grep` via `find`..." t)
+   ;; (autoload 'igrep-visited-files "igrep"
+   ;;    "*Run `grep` ... on all visited files." t)
+   ;; (autoload 'dired-do-igrep "igrep"
+   ;;    "*Run `grep` on the marked (or next prefix ARG) files." t)
+   ;; (autoload 'dired-do-igrep-find "igrep"
+   ;;    "*Run `grep` via `find` on the marked (or next prefix ARG) directories." t)
+   ;; (autoload 'Buffer-menu-igrep "igrep"
+   ;;   "*Run `grep` on the files visited in buffers marked with '>'." t)
+   ;; (autoload 'igrep-insinuate "igrep"
+   ;;   "Define `grep' aliases for the corresponding `igrep' commands." t)
+
+   ;; (autoload 'grep "igrep"
+   ;;    "*Run `grep` PROGRAM to match REGEX in FILES..." t)
+   ;; (autoload 'egrep "igrep"
+   ;;    "*Run `egrep`..." t)
+   ;; (autoload 'fgrep "igrep"
+   ;;    "*Run `fgrep`..." t)
+   ;; (autoload 'agrep "igrep"
+   ;;    "*Run `agrep`..." t)
+   ;; (autoload 'grep-find "igrep"
+   ;;    "*Run `grep` via `find`..." t)
+   ;; (autoload 'egrep-find "igrep"
+   ;;    "*Run `egrep` via `find`..." t)
+   ;; (autoload 'fgrep-find "igrep"
+   ;;    "*Run `fgrep` via `find`..." t)
+   ;; (autoload 'agrep-find "igrep"
+   ;;    "*Run `agrep` via `find`..." t)
+
+(igrep-define lgrep (igrep-use-zgrep nil) (igrep-regex-option "-n -Ou8"))
+(igrep-find-define lgrep (igrep-use-zgrep nil) (igrep-regex-option "-n -Ou8"))
 
 
 ;; ------------------------------------------------------------------------
@@ -234,4 +263,31 @@
    (require 'color-theme)
    (color-theme-initialize)
    (color-theme-simple-1)
+
+
+;; ------------------------------------------------------------------------
+;; @ ui
+(setq initial-frame-alist
+      (append  '((width . 240)
+ 		 (height . 80)
+		 (alpha . 90)
+		 (fullscreen . fullboth))
+	       initial-frame-alist))
+(setq default-frame-alist initial-frame-alist)
+
+(setq split-width-threshold 100)
+
+(defun fullscreen ()
+  (interactive)
+  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+			 '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
+(defun toggle-fullscreen ()
+  "Toggle full screen on X11"
+  (interactive)
+  (when (eq window-system 'x)
+    (set-frame-parameter
+     nil 'fullscreen
+     (when (not (frame-parameter nil 'fullscreen)) 'fullboth))))
+(global-set-key [f11] 'toggle-fullscreen)
+
 

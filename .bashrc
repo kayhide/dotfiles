@@ -98,3 +98,25 @@ fi
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
+
+
+
+# prompt
+BASH_PROMPT_OK="\e[1m\e[38;5;46m"
+BASH_PROMPT_NG="\e[1m\e[38;5;129m"
+ 
+function custom_prompt_command {
+    typeset _Retv=$?
+    typeset _PromptColor=""
+    if [[ ${_Retv} -eq 0 ]] ; then
+        _PromptColor=$BASH_PROMPT_OK
+    else 
+        _PromptColor=$BASH_PROMPT_NG
+    fi
+  export PS1="\[${_PromptColor}\]
+[ \u@\H | $(/bin/date '+%Y-%m-%d %H:%M:%S') | Retv: \$? ]
+[ \w ]
+# \[\e[0m\]"
+}
+
+PROMPT_COMMAND="custom_prompt_command"

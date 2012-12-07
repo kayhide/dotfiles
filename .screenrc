@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+
+startup_message off
+
 escape ^Xx
 
 bind ',' prev

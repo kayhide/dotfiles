@@ -1,0 +1,8 @@
+[user]
+	name = Hideaki KAWAI
+	email = kawaihide@gmail.com
+[color]
+	ui = auto
+[core]
+	pager = less
+	editor = emacsclient -t
