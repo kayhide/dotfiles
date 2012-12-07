@@ -2,7 +2,7 @@
 
 startup_message off
 
-escape ^Xx
+escape ^Zz
 
 bind ',' prev
 bind '.' next
