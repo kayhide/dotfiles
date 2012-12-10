@@ -4,5 +4,5 @@
 [color]
 	ui = auto
 [core]
-	pager = less
+	pager = lv -c
 	editor = emacsclient -t
