@@ -41,6 +41,7 @@ alias ll='ls -l'
 alias la='ls -A'
 alias lla='ls -lA'
 
+alias r='rails'
 
 # env
 export EDITOR=emacsclient
