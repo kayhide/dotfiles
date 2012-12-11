@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+git submodule update --init --recursive
 ln -sf $(pwd)/.* ~/
 rm ~/.git(@)
 rm ~/.gitignore(@)
