@@ -43,6 +43,12 @@ alias lla='ls -lA'
 
 alias r='rails'
 
+alias g='git'
+alias gstatus='git status'
+alias gdiff='git diff'
+alias glog='git log'
+alias glgraph='git log --graph --all --decorate --oneline -n 20'
+
 # env
 export EDITOR=emacsclient
 export VISUAL=emacsclient
