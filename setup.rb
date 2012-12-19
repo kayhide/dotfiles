@@ -12,7 +12,7 @@ end.sort.each do |f|
 end
 
 
-exclusive_putterns = %w(rinari/util/inf-ruby rinari/util/test/ert)
+exclusive_putterns = %w(elisp)
 ptn = /#{exclusive_putterns.join('|')}/
 el_files = Dir[".emacs.d/**/*.el"].reject do |f|
   f =~ ptn
