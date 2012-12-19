@@ -95,6 +95,7 @@
 
 (add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Guardfile$" . ruby-mode))
 
 ;; ------------------------------------------------------------------------
 ;; @ rinari
@@ -102,6 +103,14 @@
 (add-to-list 'load-path "~/.emacs.d/elisp/rinari")
 (require 'rinari)
 (setq rinari-tags-file-name "TAGS")
+
+;; ------------------------------------------------------------------------
+;; @ pov
+
+(add-to-list 'load-path "~/.emacs.d/elisp/pov-mode")
+(autoload 'pov-mode "pov-mode" "PoVray scene file mode" t)
+(add-to-list 'auto-mode-alist '("\\.pov\\'" . pov-mode))
+(add-to-list 'auto-mode-alist '("\\.inc\\'" . pov-mode))
 
 ;; ------------------------------------------------------------------------
 ;; @ igrep
