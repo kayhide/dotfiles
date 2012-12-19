@@ -1,3 +1,6 @@
 [submodule ".emacs.d/elisp/rinari"]
 	path = .emacs.d/elisp/rinari
 	url = git://github.com/eschulte/rinari.git
+[submodule ".emacs.d/elisp/pov-mode"]
+	path = .emacs.d/elisp/pov-mode
+	url = git://gitorious.org/pov-mode/pov-mode.git
