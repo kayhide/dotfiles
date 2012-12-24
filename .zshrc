@@ -4,9 +4,13 @@ bindkey -e
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
-setopt hist_ignore_all_dups
+setopt extended_history
+setopt hist_ignore_dups
 setopt hist_reduce_blanks
 setopt share_history
+
+setopt auto_pushd
+setopt pushd_ignore_dups
 
 # completion
 zstyle :compinstall filename '/home/mikagami/.zshrc'
