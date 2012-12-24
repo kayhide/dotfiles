@@ -2,7 +2,7 @@
 	name = Hideaki KAWAI
 	email = kawaihide@gmail.com
 [color]
-	ui = auto
+	ui = always
 [core]
 	pager = lv -c
 	editor = emacsclient -t
