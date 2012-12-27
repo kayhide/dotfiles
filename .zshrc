@@ -51,7 +51,7 @@ alias g='git'
 alias gstatus='git status | lv -c'
 alias gdiff='git diff'
 alias glog='git log'
-alias glgraph='git log --graph --all --decorate --oneline -n 20'
+alias glgraph='git log --graph --all --decorate --oneline'
 
 # env
 export EDITOR='emacsclient -t'
