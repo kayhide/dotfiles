@@ -18,6 +18,7 @@
 (define-key emacs-lisp-mode-map (kbd "C-.") 'completion-at-point)
 (define-key lisp-interaction-mode-map (kbd "C-.") 'completion-at-point)
 
+(add-to-list 'load-path "~/.emacs.d/elisp/")
 
 (require 'wdired)
 (define-key dired-mode-map (kbd "r") 'wdired-change-to-wdired-mode)
@@ -77,6 +78,11 @@
 
 
 ;; ------------------------------------------------------------------------
+;; @ deneb-mode
+(require 'deneb-mode)
+
+
+;; ------------------------------------------------------------------------
 ;; @ anything
 
 (require 'anything-startup)
@@ -111,6 +117,16 @@
 (autoload 'pov-mode "pov-mode" "PoVray scene file mode" t)
 (add-to-list 'auto-mode-alist '("\\.pov\\'" . pov-mode))
 (add-to-list 'auto-mode-alist '("\\.inc\\'" . pov-mode))
+
+;; ------------------------------------------------------------------------
+;; @ cc
+
+;; (add-to-list 'load-path "~/.emacs.d/elisp/cc-mode")
+;; (require 'cc-mode)
+
+;; ------------------------------------------------------------------------
+;; @ csharp-mode
+;; (require 'csharp-mode)
 
 ;; ------------------------------------------------------------------------
 ;; @ igrep
