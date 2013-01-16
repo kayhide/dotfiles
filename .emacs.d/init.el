@@ -20,8 +20,47 @@
 
 (add-to-list 'load-path "~/.emacs.d/elisp/")
 
+;; ------------------------------------------------------------------------
+;; @ color-theme
+(require 'color-theme)
+(color-theme-initialize)
+(color-theme-simple-1)
+
+;; ------------------------------------------------------------------------
+;; @ frame
+
+(setq initial-frame-alist
+      (append  '((width . 240)
+ 		 (height . 80)
+		 (alpha . 90)
+		 (fullscreen . fullboth))
+	       initial-frame-alist))
+(setq default-frame-alist initial-frame-alist)
+
+(setq split-width-threshold 100)
+
+(defun fullscreen ()
+  (interactive)
+  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+			 '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
+(defun toggle-fullscreen ()
+  "Toggle full screen on X11"
+  (interactive)
+  (when (eq window-system 'x)
+    (set-frame-parameter
+     nil 'fullscreen
+     (when (not (frame-parameter nil 'fullscreen)) 'fullboth))))
+(global-set-key [f11] 'toggle-fullscreen)
+
+
+;; ------------------------------------------------------------------------
+;; @ wdired
 (require 'wdired)
 (define-key dired-mode-map (kbd "r") 'wdired-change-to-wdired-mode)
+
+
+;; ------------------------------------------------------------------------
+;; @ installed
 
 (add-to-list 'load-path "~/.emacs.d/auto-install/")
 (require 'auto-install)
@@ -78,11 +117,6 @@
 
 
 ;; ------------------------------------------------------------------------
-;; @ deneb-mode
-(require 'deneb-mode)
-
-
-;; ------------------------------------------------------------------------
 ;; @ anything
 
 (require 'anything-startup)
@@ -98,7 +132,7 @@
 
 ;; ------------------------------------------------------------------------
 ;; @ ruby
-
+(require 'ruby-mode)
 (add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Guardfile$" . ruby-mode))
@@ -109,6 +143,11 @@
 (add-to-list 'load-path "~/.emacs.d/elisp/rinari")
 (require 'rinari)
 (setq rinari-tags-file-name "TAGS")
+
+(eval-after-load 'rinari
+  '(let ((map ruby-mode-map))
+     (define-key map (kbd "C-x C-e") nil)
+     map))
 
 ;; ------------------------------------------------------------------------
 ;; @ pov
@@ -122,11 +161,11 @@
 ;; @ cc
 
 ;; (add-to-list 'load-path "~/.emacs.d/elisp/cc-mode")
-;; (require 'cc-mode)
+(require 'cc-mode)
 
 ;; ------------------------------------------------------------------------
 ;; @ csharp-mode
-;; (require 'csharp-mode)
+(require 'csharp-mode)
 
 ;; ------------------------------------------------------------------------
 ;; @ igrep
@@ -293,38 +332,6 @@
    ;; 非アクティブウィンドウの背景色を設定
    ;; (set-face-background 'hiwin-face "gray80")
 
-;; ------------------------------------------------------------------------
-;; @ color-theme
-   (require 'color-theme)
-   (color-theme-initialize)
-   (color-theme-simple-1)
-
-
-;; ------------------------------------------------------------------------
-;; @ ui
-(setq initial-frame-alist
-      (append  '((width . 240)
- 		 (height . 80)
-		 (alpha . 90)
-		 (fullscreen . fullboth))
-	       initial-frame-alist))
-(setq default-frame-alist initial-frame-alist)
-
-(setq split-width-threshold 100)
-
-(defun fullscreen ()
-  (interactive)
-  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-			 '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
-(defun toggle-fullscreen ()
-  "Toggle full screen on X11"
-  (interactive)
-  (when (eq window-system 'x)
-    (set-frame-parameter
-     nil 'fullscreen
-     (when (not (frame-parameter nil 'fullscreen)) 'fullboth))))
-(global-set-key [f11] 'toggle-fullscreen)
-
 
 ;; ------------------------------------------------------------------------
 ;; @ server
@@ -332,3 +339,7 @@
 (unless (server-running-p)
   (server-start))
 
+
+;; ------------------------------------------------------------------------
+;; @ deneb-mode
+(require 'deneb-mode)
