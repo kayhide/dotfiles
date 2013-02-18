@@ -1,19 +1,24 @@
 $>.sync = true
 
-task :default => [:submodule, :symbolic_link, :elisp]
+task :default => [:submodule, :symlink, :elisp]
   
 task :submodule do
   puts "updating git submodules."
   puts `git submodule update --init --recursive`
 end
 
-task :symbolic_link do
+task :symlink do
   exclusive_files = %w(. .. .git .gitignore .gitmodules)
   Dir["#{Dir.pwd}/.*"].reject do |f|
     exclusive_files.include? File.basename(f)
   end.sort.each do |f|
-    puts "making symbolic link: #{f}"
-    puts `ln -sf #{f} ~/`
+    if RUBY_PLATFORM =~ /cygwin/ && File.directory?(f)
+      puts "copying dir: #{f}"
+      puts FileUtils.cp_r f, '../'
+    else
+      puts "making symbolic link: #{f}"
+      puts `ln -sf #{f} ~/`
+    end
   end
 end
 

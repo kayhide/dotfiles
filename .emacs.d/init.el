@@ -1,5 +1,9 @@
 ;; -*- coding: utf-8 -*-
 
+(add-to-list 'load-path "~/.emacs.d/elisp/")
+(cond ((string-match "mingw" system-configuration)
+       (load-library "init-cygwin.el")))
+
 (show-paren-mode 1)
 (tool-bar-mode -1)
 (find-function-setup-keys)
@@ -18,7 +22,6 @@
 (define-key emacs-lisp-mode-map (kbd "C-.") 'completion-at-point)
 (define-key lisp-interaction-mode-map (kbd "C-.") 'completion-at-point)
 
-(add-to-list 'load-path "~/.emacs.d/elisp/")
 
 ;; ------------------------------------------------------------------------
 ;; @ color-theme
@@ -31,10 +34,10 @@
 
 (setq initial-frame-alist
       (append  '((width . 240)
- 		 (height . 80)
-		 (alpha . 90)
-		 (fullscreen . fullboth))
-	       initial-frame-alist))
+                 (height . 80)
+                 (alpha . 90)
+                 (fullscreen . fullboth))
+               initial-frame-alist))
 (setq default-frame-alist initial-frame-alist)
 
 (setq split-width-threshold 100)
