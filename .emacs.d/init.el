@@ -161,11 +161,11 @@
 ;; @ cc
 
 ;; (add-to-list 'load-path "~/.emacs.d/elisp/cc-mode")
-(require 'cc-mode)
+;; (require 'cc-mode)
 
 ;; ------------------------------------------------------------------------
 ;; @ csharp-mode
-(require 'csharp-mode)
+;; (require 'csharp-mode)
 
 ;; ------------------------------------------------------------------------
 ;; @ igrep
