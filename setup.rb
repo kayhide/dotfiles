@@ -1,5 +1,8 @@
 $>.sync = true
 
+Dir.chdir File.dirname(__FILE__)
+puts "in #{Dir.pwd}"
+
 puts "updating git submodules."
 puts `git submodule update --init --recursive`
 
