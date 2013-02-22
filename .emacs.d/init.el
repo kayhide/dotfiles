@@ -13,6 +13,7 @@
 (global-set-key (kbd "C-m") 'newline-and-indent)
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "C-;") 'dabbrev-expand)
+(global-set-key (kbd "C-<f4>") 'kill-this-buffer)
 (global-set-key (kbd "<f8>") 'shell-command)
 (global-set-key (kbd "C-<f8>") 'shell-command-on-region)
 (global-set-key (kbd "S-<f11>") 'delete-other-windows)
