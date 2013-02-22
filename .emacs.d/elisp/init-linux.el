@@ -1,5 +1,8 @@
 ;; -*- coding: utf-8 -*-
 
+(global-set-key (kbd "C-<tab>") 'next-buffer)
+(global-set-key (kbd "C-M-<tab>") 'previous-buffer)
+
 ;; ------------------------------------------------------------------------
 ;; @ frame
 
