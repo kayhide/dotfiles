@@ -110,43 +110,6 @@
 (define-key isearch-mode-map (kbd "C-o") 'anything-c-moccur-from-isearch)
 
 ;; ------------------------------------------------------------------------
-;; @ ruby
-(require 'ruby-mode)
-(add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Guardfile$" . ruby-mode))
-
-;; ------------------------------------------------------------------------
-;; @ rinari
-
-(add-to-list 'load-path "~/.emacs.d/elisp/rinari")
-(require 'rinari)
-(setq rinari-tags-file-name "TAGS")
-
-(eval-after-load 'rinari
-  '(let ((map ruby-mode-map))
-     (define-key map (kbd "C-x C-e") nil)
-     map))
-
-;; ------------------------------------------------------------------------
-;; @ pov
-
-(add-to-list 'load-path "~/.emacs.d/elisp/pov-mode")
-(autoload 'pov-mode "pov-mode" "PoVray scene file mode" t)
-(add-to-list 'auto-mode-alist '("\\.pov\\'" . pov-mode))
-(add-to-list 'auto-mode-alist '("\\.inc\\'" . pov-mode))
-
-;; ------------------------------------------------------------------------
-;; @ cc
-
-;; (add-to-list 'load-path "~/.emacs.d/elisp/cc-mode")
-;; (require 'cc-mode)
-
-;; ------------------------------------------------------------------------
-;; @ csharp-mode
-;; (require 'csharp-mode)
-
-;; ------------------------------------------------------------------------
 ;; @ igrep
 
 (require 'igrep)
@@ -318,6 +281,50 @@
 (unless (server-running-p)
   (server-start))
 
+
+;; ------------------------------------------------------------------------
+;; @ ruby
+(require 'ruby-mode)
+(add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Guardfile$" . ruby-mode))
+
+;; ------------------------------------------------------------------------
+;; @ rinari
+
+(add-to-list 'load-path "~/.emacs.d/elisp/rinari")
+(require 'rinari)
+(setq rinari-tags-file-name "TAGS")
+
+(eval-after-load 'rinari
+  '(let ((map ruby-mode-map))
+     (define-key map (kbd "C-x C-e") nil)
+     map))
+
+;; ------------------------------------------------------------------------
+;; @ coffee
+
+(require 'coffee-mode)
+(setq coffee-tab-width 2)
+
+
+;; ------------------------------------------------------------------------
+;; @ pov
+
+(add-to-list 'load-path "~/.emacs.d/elisp/pov-mode")
+(autoload 'pov-mode "pov-mode" "PoVray scene file mode" t)
+(add-to-list 'auto-mode-alist '("\\.pov\\'" . pov-mode))
+(add-to-list 'auto-mode-alist '("\\.inc\\'" . pov-mode))
+
+;; ------------------------------------------------------------------------
+;; @ cc
+
+;; (add-to-list 'load-path "~/.emacs.d/elisp/cc-mode")
+;; (require 'cc-mode)
+
+;; ------------------------------------------------------------------------
+;; @ csharp-mode
+;; (require 'csharp-mode)
 
 ;; ------------------------------------------------------------------------
 ;; @ deneb-mode
