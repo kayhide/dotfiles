@@ -93,9 +93,6 @@
 (require 'migemo)
 (setq migemo-command "/usr/bin/ruby")
 
-(require 'ido)
-(ido-mode t)
-
 
 ;; ------------------------------------------------------------------------
 ;; @ anything
