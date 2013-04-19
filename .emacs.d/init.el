@@ -3,6 +3,8 @@
 (add-to-list 'load-path "~/.emacs.d/elisp/")
 (cond ((string-match "mingw" system-configuration)
        (load-library "init-cygwin.el"))
+      ((string-match "apple" system-configuration)
+       (load-library "init-apple.el"))
       ((string-match "linux" system-configuration)
        (load-library "init-linux.el")))
 
