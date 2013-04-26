@@ -35,12 +35,20 @@ color0=$'\e[0m'
 color1=$'\e[38;5;46m'
 color2=$'\e[38;5;2m'
 PROMPT=$'%{${color1}%}[ %n@%m | %D{%Y-%m-%d %H:%M:%S} | Retv: %? ]
-[ %{${color2}%}%~ ]$(__git_ps1 " (%s)")
+%{${color2}%}[ %~ ]$(__git_ps1 " (%s)")
 %#%{${color0}%} '
 
 
 # alias
-alias ls='ls -h --color=auto'
+case $(uname) in
+'Darwin')
+  alias ls='ls -h -G'
+;;
+*)
+  alias ls='ls -h --color=auto'
+;;
+esac
+
 alias ll='ls -l'
 alias la='ls -A'
 alias lla='ls -lA'
@@ -53,4 +61,7 @@ alias glgraph='git log --graph --all --decorate --oneline'
 # env
 export EDITOR='emacsclient -t'
 export VISUAL='emacsclient -t'
-export PATH="./bin:$PATH"
+export PATH="./bin:$HOME/bin:$PATH"
+
+export PGDATA="/usr/local/var/postgres"
+export PGHOST="localhost"
