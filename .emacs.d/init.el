@@ -18,7 +18,7 @@
 (global-set-key (kbd "C-<f4>") 'kill-this-buffer)
 (global-set-key (kbd "<f8>") 'shell-command)
 (global-set-key (kbd "C-<f8>") 'shell-command-on-region)
-(global-set-key (kbd "S-<f11>") 'delete-other-windows)
+(global-set-key (kbd "C-<f11>") 'delete-other-windows)
 (global-set-key (kbd "<next>") 'scroll-other-window)
 (global-set-key (kbd "<prior>") 'scroll-other-window-down)
 (global-set-key (kbd "S-<next>") (lambda () (interactive) (scroll-other-window 1)))
@@ -33,6 +33,13 @@
 (require 'color-theme)
 (color-theme-initialize)
 (color-theme-simple-1)
+
+
+;; ------------------------------------------------------------------------
+;; @ dired
+(global-set-key (kbd "C-x C-o") 'dired-jump)
+(put 'dired-find-alternate-file 'disabled nil)
+
 
 ;; ------------------------------------------------------------------------
 ;; @ wdired
@@ -328,3 +335,4 @@
 ;; ------------------------------------------------------------------------
 ;; @ deneb-mode
 (require 'deneb-mode)
+
