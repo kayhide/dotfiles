@@ -42,10 +42,10 @@ PROMPT=$'%{${color1}%}[ %n@%m | %D{%Y-%m-%d %H:%M:%S} | Retv: %? ]
 # alias
 case $(uname) in
 'Darwin')
-  alias ls='ls -h -G'
+	alias ls='ls -h -G'
 ;;
 *)
-  alias ls='ls -h --color=auto'
+	alias ls='ls -h --color=auto'
 ;;
 esac
 
@@ -59,8 +59,16 @@ alias gstatus='git status | lv -c'
 alias glgraph='git log --graph --all --decorate --oneline'
 
 # env
-export EDITOR='emacsclient -t'
-export VISUAL='emacsclient -t'
+case $(uname) in
+'Darwin')
+	export EDITOR='/usr/local/bin/emacsclient'
+;;
+*)
+	export EDITOR='emacsclient -t'
+;;
+esac
+
+export VISUAL=$EDITOR
 export PATH="./bin:$HOME/bin:$PATH"
 
 export PGDATA='/usr/local/var/postgres'
