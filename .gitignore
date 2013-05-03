@@ -3,3 +3,4 @@
 *.old
 *.lock
 *~
+*.emacs.d/elisp/skk

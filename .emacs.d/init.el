@@ -157,9 +157,9 @@
 
 ;; ------------------------------------------------------------------------
 ;; @ skk
-
 (setq skk-user-directory "~/.skk")
 (global-set-key (kbd "<zenkaku-hankaku>") 'skk-mode)
+(global-set-key (kbd "C-x C-j") 'skk-mode)
 
 ;; (require 'context-skk)
 
