@@ -74,3 +74,6 @@ export PATH="./bin:$HOME/bin:$PATH"
 export PGDATA='/usr/local/var/postgres'
 export PGHOST='localhost'
 export PGLOG='/usr/local/var/postgres/server.log'
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
