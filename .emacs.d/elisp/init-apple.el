@@ -1,21 +1,18 @@
 (if window-system (set-frame-parameter nil 'alpha 85))
 
-(let* ((size 12)
-       (asciifont "Menlo")
-       (jpfont "Hiragino Maru Gothic ProN")
-       (h (* size 10))
-       (fontspec)
-       (jp-fontspec))
-  (set-face-attribute 'default nil :family asciifont :height h)
-  (setq fontspec (font-spec :family asciifont))
-  (setq jp-fontspec (font-spec :family jpfont))
-  (set-fontset-font nil 'japanese-jisx0208 jp-fontspec)
-  (set-fontset-font nil 'japanese-jisx0212 jp-fontspec)
-  (set-fontset-font nil 'japanese-jisx0213-1 jp-fontspec)
-  (set-fontset-font nil 'japanese-jisx0213-2 jp-fontspec)
-  (set-fontset-font nil 'katakana-jisx0201 jp-fontspec)
+(let* ((height 140)
+       (fontname "Ricty")
+       (fontspec (font-spec :family fontname))    
+       )
+  (set-face-attribute 'default nil :family fontname :height height)
+  (set-fontset-font nil 'japanese-jisx0208 fontspec)
+  (set-fontset-font nil 'japanese-jisx0212 fontspec)
+  (set-fontset-font nil 'japanese-jisx0213-1 fontspec)
+  (set-fontset-font nil 'japanese-jisx0213-2 fontspec)
+  (set-fontset-font nil 'katakana-jisx0201 fontspec)
   (set-fontset-font nil '(#x0080 . #x024F) fontspec)
   (set-fontset-font nil '(#x0370 . #x03FF) fontspec))
+
 
 
 ;; ------------------------------------------------------------------------

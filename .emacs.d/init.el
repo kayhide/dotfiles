@@ -18,14 +18,25 @@
 (global-set-key (kbd "C-<f4>") 'kill-this-buffer)
 (global-set-key (kbd "<f8>") 'shell-command)
 (global-set-key (kbd "C-<f8>") 'shell-command-on-region)
-(global-set-key (kbd "C-<f11>") 'delete-other-windows)
+(global-set-key (kbd "C-\\") nil)
+(define-key emacs-lisp-mode-map (kbd "C-.") 'completion-at-point)
+(define-key lisp-interaction-mode-map (kbd "C-.") 'completion-at-point)
+
+
+;; ------------------------------------------------------------------------
+;; @ window split
+(defun other-window-or-split ()
+  (interactive)
+  (when (one-window-p)
+    (split-window-horizontally))
+  (other-window 1))
+
+(global-set-key (kbd "C-t") 'other-window-or-split)
+(global-set-key (kbd "C-M-t") 'delete-other-windows)
 (global-set-key (kbd "<next>") 'scroll-other-window)
 (global-set-key (kbd "<prior>") 'scroll-other-window-down)
 (global-set-key (kbd "S-<next>") (lambda () (interactive) (scroll-other-window 1)))
 (global-set-key (kbd "S-<prior>") (lambda () (interactive) (scroll-other-window -1)))
-(global-set-key (kbd "C-\\") nil)
-(define-key emacs-lisp-mode-map (kbd "C-.") 'completion-at-point)
-(define-key lisp-interaction-mode-map (kbd "C-.") 'completion-at-point)
 
 
 ;; ------------------------------------------------------------------------
@@ -100,6 +111,7 @@
 (require 'migemo)
 (setq migemo-command "/usr/bin/ruby")
 
+(require 'align)
 
 ;; ------------------------------------------------------------------------
 ;; @ anything
@@ -295,6 +307,27 @@
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Guardfile$" . ruby-mode))
 
+(add-to-list 'align-rules-list
+             '(ruby-comma-delimiter
+               (regexp . ",\\(\\s-*\\)[^# \t\n]")
+               (repeat . t)
+               (modes  . '(ruby-mode))))
+(add-to-list 'align-rules-list
+             '(ruby-hash-literal
+               (regexp . "\\(\\s-*\\)=>\\s-*[^# \t\n]")
+               (repeat . t)
+               (modes  . '(ruby-mode))))
+(add-to-list 'align-rules-list
+             '(ruby-assignment-literal
+               (regexp . "\\(\\s-*\\)=\\s-*[^# \t\n]")
+               (repeat . t)
+               (modes  . '(ruby-mode))))
+(add-to-list 'align-rules-list          ;TODO add to rcodetools.el
+             '(ruby-xmpfilter-mark
+               (regexp . "\\(\\s-*\\)# => [^#\t\n]")
+               (repeat . nil)
+               (modes  . '(ruby-mode))))
+
 ;; ------------------------------------------------------------------------
 ;; @ rinari
 
@@ -336,3 +369,31 @@
 ;; @ deneb-mode
 (require 'deneb-mode)
 
+;; ------------------------------------------------------------------------
+;; @ whitespace-mode
+(require 'whitespace)
+
+(setq whitespace-style
+      '(face
+	tabs spaces newline trailing space-before-tab space-after-tab
+	space-mark tab-mark newline-mark))
+
+(set-face-attribute 'whitespace-space nil
+		    :foreground "gray20"
+		    :background 'unspecified)
+(set-face-attribute 'whitespace-tab nil
+		    :foreground "gray20"
+		    :background 'unspecified)
+(set-face-attribute 'whitespace-newline nil
+		    :foreground "gray20")
+(set-face-attribute 'whitespace-trailing nil
+		    :foreground "gray30"
+		    :background "gray20")
+(setq whitespace-space-regexp "\\(　+\\)")
+(setq whitespace-display-mappings
+      '((space-mark   ?　 [?□] [?＿]) ; full-width space - square
+	(newline-mark ?\n [?¶ ?\n])   ; line feed
+	(tab-mark     ?\t [?▷ ?\t])   ; tab
+	))
+(setq whitespace-global-modes '(not dired-mode tar-mode))
+(global-whitespace-mode 1)
