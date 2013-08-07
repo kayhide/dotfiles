@@ -397,3 +397,13 @@
 	))
 (setq whitespace-global-modes '(not dired-mode tar-mode))
 (global-whitespace-mode 1)
+
+
+;; ------------------------------------------------------------------------
+;; @ yasnippet
+(add-to-list 'load-path "~/.emacs.d/elisp/yasnippet")
+(require 'yasnippet)
+(setq yas-snippet-dirs '("~/.emacs.d/elisp/yasnippet/snippets"
+			 "~/.emacs.d/elisp/yasnippet/extras/imported"))
+(yas-global-mode 1)
+

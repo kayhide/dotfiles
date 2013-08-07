@@ -4,3 +4,6 @@
 [submodule ".emacs.d/elisp/pov-mode"]
 	path = .emacs.d/elisp/pov-mode
 	url = git://gitorious.org/pov-mode/pov-mode.git
+[submodule ".emacs.d/elisp/yasnippet"]
+	path = .emacs.d/elisp/yasnippet
+	url = https://github.com/capitaomorte/yasnippet
