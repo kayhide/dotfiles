@@ -61,7 +61,7 @@ alias glgraph='git log --graph --all --decorate --oneline'
 # env
 case $(uname) in
 'Darwin')
-	export EDITOR='/usr/local/bin/emacsclient'
+	export EDITOR='/usr/local/bin/emacsclient -t'
 ;;
 *)
 	export EDITOR='emacsclient -t'
