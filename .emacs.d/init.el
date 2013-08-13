@@ -50,6 +50,10 @@
 (color-theme-initialize)
 (color-theme-simple-1)
 
+(set-face-attribute 'region nil
+                    :foreground 'unspecified
+                    :background "navy")
+
 ;; ------------------------------------------------------------------------
 ;; @ wdired
 (require 'wdired)
@@ -120,7 +124,6 @@
 
 ;; ------------------------------------------------------------------------
 ;; @ anything
-
 (require 'anything-startup)
 (global-set-key (kbd "C-x b") 'anything-for-files)
 ;; (setq anything-c-filelist-file-name "/tmp/all.filelist")
@@ -134,7 +137,6 @@
 
 ;; ------------------------------------------------------------------------
 ;; @ igrep
-
 (require 'igrep)
    ;; (autoload 'igrep "igrep"
    ;;    "*Run `grep` PROGRAM to match REGEX in FILES..." t)
@@ -410,9 +412,9 @@
 (define-key yas-minor-mode-map (kbd "C-x i n") 'yas-new-snippet)
 (define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
 
-(add-hook 'rinari-minor-mode-hook
-          (lambda ()
-            (add-to-list 'yas-extra-modes 'rails-mode)))
+;; (add-hook 'rinari-minor-mode-hook
+;;           (lambda ()
+;;             (add-to-list 'yas-extra-modes 'rails-mode)))
 
 (defun yas-anything-prompt (prompt choices &optional display-fn)
   "Use anything for prompt."
@@ -444,4 +446,3 @@
 (add-hook 'emmet-mode-hook
           (lambda ()
             (setq emmet-indentation 2)))
-
