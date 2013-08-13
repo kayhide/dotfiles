@@ -22,6 +22,7 @@
 (define-key emacs-lisp-mode-map (kbd "C-.") 'completion-at-point)
 (define-key lisp-interaction-mode-map (kbd "C-.") 'completion-at-point)
 
+(setq-default indent-tabs-mode nil)
 
 ;; ------------------------------------------------------------------------
 ;; @ window split
@@ -375,26 +376,26 @@
 
 (setq whitespace-style
       '(face
-	tabs spaces newline trailing space-before-tab space-after-tab
-	space-mark tab-mark newline-mark))
+        tabs spaces newline trailing space-before-tab space-after-tab
+        space-mark tab-mark newline-mark))
 
 (set-face-attribute 'whitespace-space nil
-		    :foreground "gray20"
-		    :background 'unspecified)
+                    :foreground "gray20"
+                    :background 'unspecified)
 (set-face-attribute 'whitespace-tab nil
-		    :foreground "gray20"
-		    :background 'unspecified)
+                    :foreground "gray20"
+                    :background 'unspecified)
 (set-face-attribute 'whitespace-newline nil
-		    :foreground "gray20")
+                    :foreground "gray20")
 (set-face-attribute 'whitespace-trailing nil
-		    :foreground "gray30"
-		    :background "gray20")
+                    :foreground "gray30"
+                    :background "gray20")
 (setq whitespace-space-regexp "\\(　+\\)")
 (setq whitespace-display-mappings
       '((space-mark   ?　 [?□] [?＿]) ; full-width space - square
-	(newline-mark ?\n [?¶ ?\n])   ; line feed
-	(tab-mark     ?\t [?▷ ?\t])   ; tab
-	))
+        (newline-mark ?\n [?¶ ?\n])   ; line feed
+        (tab-mark     ?\t [?▷ ?\t])   ; tab
+        ))
 (setq whitespace-global-modes '(not dired-mode tar-mode))
 (global-whitespace-mode 1)
 
@@ -404,6 +405,17 @@
 (add-to-list 'load-path "~/.emacs.d/elisp/yasnippet")
 (require 'yasnippet)
 (setq yas-snippet-dirs '("~/.emacs.d/elisp/yasnippet/snippets"
-			 "~/.emacs.d/elisp/yasnippet/extras/imported"))
+                         "~/.emacs.d/elisp/yasnippet/extras/imported"))
 (yas-global-mode 1)
+
+;; ------------------------------------------------------------------------
+;; @ emmet-mode
+(add-to-list 'load-path "~/.emacs.d/elisp/emmet-mode")
+(require 'emmet-mode)
+
+(add-hook 'sgml-mode-hook 'emmet-mode)
+(add-hook 'css-mode-hook 'emmet-mode)
+(add-hook 'emmet-mode-hook
+          (lambda ()
+            (setq emmet-indentation 2)))
 

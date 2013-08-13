@@ -7,3 +7,6 @@
 [submodule ".emacs.d/elisp/yasnippet"]
 	path = .emacs.d/elisp/yasnippet
 	url = https://github.com/capitaomorte/yasnippet
+[submodule ".emacs.d/elisp/emmet-mode"]
+	path = .emacs.d/elisp/emmet-mode
+	url = https://github.com/smihica/emmet-mode
