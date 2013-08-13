@@ -1,7 +1,7 @@
 $>.sync = true
 
 task :default => [:submodule, :symlink, :elisp]
-  
+
 task :submodule do
   puts "updating git submodules."
   puts `git submodule update --init --recursive`
@@ -30,6 +30,6 @@ task :elisp do
   end.sort
   puts "compiling elisp files: (#{el_files.count})"
   puts `emacs --batch -Q -l .emacs.d/init.el -f batch-byte-compile #{el_files.join ' '}`
-  
+
   puts `rm wget-log*`  if Dir['wget-log*'].any?
 end
