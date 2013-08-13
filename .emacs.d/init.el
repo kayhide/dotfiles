@@ -39,6 +39,10 @@
 (global-set-key (kbd "S-<next>") (lambda () (interactive) (scroll-other-window 1)))
 (global-set-key (kbd "S-<prior>") (lambda () (interactive) (scroll-other-window -1)))
 
+;; ------------------------------------------------------------------------
+;; @ dired
+(global-set-key (kbd "C-x C-o") 'dired-jump)
+(put 'dired-find-alternate-file 'disabled nil)
 
 ;; ------------------------------------------------------------------------
 ;; @ color-theme
@@ -46,18 +50,21 @@
 (color-theme-initialize)
 (color-theme-simple-1)
 
-
-;; ------------------------------------------------------------------------
-;; @ dired
-(global-set-key (kbd "C-x C-o") 'dired-jump)
-(put 'dired-find-alternate-file 'disabled nil)
-
-
 ;; ------------------------------------------------------------------------
 ;; @ wdired
 (require 'wdired)
 (define-key dired-mode-map (kbd "r") 'wdired-change-to-wdired-mode)
 
+;; ------------------------------------------------------------------------
+;; @ ediff-util
+(require 'ediff-util)
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+;; ------------------------------------------------------------------------
+;; @ eldoc
+(require 'eldoc)
+(setq eldoc-idle-delay 0.2)
+(setq eldoc-minor-mode-string "")
 
 ;; ------------------------------------------------------------------------
 ;; @ installed
@@ -66,7 +73,6 @@
 (require 'auto-install)
 (auto-install-update-emacswiki-package-name t)
 (auto-install-compatibility-setup)
-(setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
 (require 'open-junk-file)
 (global-set-key (kbd "C-x C-z") 'open-junk-file)
@@ -93,8 +99,6 @@
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
-(setq eldoc-idle-delay 0.2)
-(setq eldoc-minor-mode-string "")
 
 (require 'redo+)
 (global-set-key (kbd "C-M-/") 'redo)
@@ -166,7 +170,6 @@
 
 (igrep-define lgrep (igrep-use-zgrep nil) (igrep-regex-option "-n -Ou8"))
 (igrep-find-define lgrep (igrep-use-zgrep nil) (igrep-regex-option "-n -Ou8"))
-
 
 ;; ------------------------------------------------------------------------
 ;; @ skk
@@ -293,13 +296,11 @@
    ;; 非アクティブウィンドウの背景色を設定
    ;; (set-face-background 'hiwin-face "gray80")
 
-
 ;; ------------------------------------------------------------------------
 ;; @ server
 (require 'server)
 (unless (server-running-p)
   (server-start))
-
 
 ;; ------------------------------------------------------------------------
 ;; @ ruby
@@ -331,7 +332,6 @@
 
 ;; ------------------------------------------------------------------------
 ;; @ rinari
-
 (add-to-list 'load-path "~/.emacs.d/elisp/rinari")
 (require 'rinari)
 (setq rinari-tags-file-name "TAGS")
@@ -343,14 +343,11 @@
 
 ;; ------------------------------------------------------------------------
 ;; @ coffee
-
 (require 'coffee-mode)
 (setq coffee-tab-width 2)
 
-
 ;; ------------------------------------------------------------------------
 ;; @ pov
-
 (add-to-list 'load-path "~/.emacs.d/elisp/pov-mode")
 (autoload 'pov-mode "pov-mode" "PoVray scene file mode" t)
 (add-to-list 'auto-mode-alist '("\\.pov\\'" . pov-mode))
@@ -399,14 +396,43 @@
 (setq whitespace-global-modes '(not dired-mode tar-mode))
 (global-whitespace-mode 1)
 
-
 ;; ------------------------------------------------------------------------
 ;; @ yasnippet
 (add-to-list 'load-path "~/.emacs.d/elisp/yasnippet")
 (require 'yasnippet)
-(setq yas-snippet-dirs '("~/.emacs.d/elisp/yasnippet/snippets"
+(setq yas-snippet-dirs '("~/.emacs.d/snippets"
+                         "~/.emacs.d/elisp/yasnippet/snippets"
                          "~/.emacs.d/elisp/yasnippet/extras/imported"))
 (yas-global-mode 1)
+(define-key yas-minor-mode-map (kbd "C-<tab>") 'yas-expand)
+(define-key yas-minor-mode-map (kbd "<tab>") nil)
+(define-key yas-minor-mode-map (kbd "C-x i i") 'yas-insert-snippet)
+(define-key yas-minor-mode-map (kbd "C-x i n") 'yas-new-snippet)
+(define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
+
+(add-hook 'rinari-minor-mode-hook
+          (lambda ()
+            (add-to-list 'yas-extra-modes 'rails-mode)))
+
+(defun yas-anything-prompt (prompt choices &optional display-fn)
+  "Use anything for prompt."
+  (interactive)
+  (setq display-fn (or display-fn 'identity))
+  (if (require 'anything-config)
+      (let (tmpsource cands result rmap)
+        (setq cands (mapcar (lambda (x) (funcall display-fn x)) choices))
+        (setq rmap (mapcar (lambda (x) (cons (funcall display-fn x) x)) choices))
+        (setq tmpsource
+              (list
+               (cons 'name prompt)
+               (cons 'candidates cands)
+               '(action . (("Expand" . (lambda (selection) selection))))))
+        (setq result (anything-other-buffer '(tmpsource) "*anything-select-yasnippet"))
+        (if (null result)
+            (signal 'quit "user quit!")
+          (cdr (assoc result rmap))))
+    nil))
+(setq yas-prompt-functions '(yas-anything-prompt))
 
 ;; ------------------------------------------------------------------------
 ;; @ emmet-mode
