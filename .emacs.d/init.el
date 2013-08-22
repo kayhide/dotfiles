@@ -412,11 +412,14 @@
 (setq ac-use-fuzzy t)          ;; 曖昧マッチ
 (setq ac-use-comphist nil)     ;; 補完推測機能
 (setq ac-auto-show-menu 0.1)   ;; n秒後に補完メニューを表示
+(setq ac-use-quick-help nil)   ;; クイックヘルプ
 (setq ac-quick-help-delay 1.0) ;; n秒後にクイックヘルプを表示
 (setq ac-ignore-case nil)      ;; 大文字・小文字を区別
 
-(define-key ac-complete-mode-map (kbd "C-n") 'ac-next)
-(define-key ac-complete-mode-map (kbd "C-p") 'ac-previous)
+(setq ac-use-menu-map t)
+;; デフォルトで設定済み
+(define-key ac-menu-map "\C-n" 'ac-next)
+(define-key ac-menu-map "\C-p" 'ac-previous)
 
 ;; ------------------------------------------------------------------------
 ;; @ yasnippet
