@@ -10,3 +10,6 @@
 [submodule ".emacs.d/elisp/emmet-mode"]
 	path = .emacs.d/elisp/emmet-mode
 	url = https://github.com/smihica/emmet-mode
+[submodule ".emacs.d/elisp/auto-complete"]
+	path = .emacs.d/elisp/auto-complete
+	url = https://github.com/auto-complete/auto-complete.git

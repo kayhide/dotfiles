@@ -19,6 +19,7 @@
 (global-set-key (kbd "<f8>") 'shell-command)
 (global-set-key (kbd "C-<f8>") 'shell-command-on-region)
 (global-set-key (kbd "C-\\") nil)
+(global-set-key (kbd "C-z") nil)
 (define-key emacs-lisp-mode-map (kbd "C-.") 'completion-at-point)
 (define-key lisp-interaction-mode-map (kbd "C-.") 'completion-at-point)
 
@@ -72,7 +73,6 @@
 
 ;; ------------------------------------------------------------------------
 ;; @ installed
-
 (add-to-list 'load-path "~/.emacs.d/auto-install/")
 (require 'auto-install)
 (auto-install-update-emacswiki-package-name t)
@@ -399,6 +399,26 @@
 (global-whitespace-mode 1)
 
 ;; ------------------------------------------------------------------------
+;; @ auto-complete
+(add-to-list 'load-path "~/.emacs.d/elisp/auto-complete/lib/popup/")
+(add-to-list 'load-path "~/.emacs.d/elisp/auto-complete/lib/fuzzy/")
+(add-to-list 'load-path "~/.emacs.d/elisp/auto-complete")
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(ac-config-default)
+
+(setq ac-auto-start 3)         ;; n文字以上の単語の時に補完を開始
+(setq ac-delay 0.1)            ;; n秒後に補完開始
+(setq ac-use-fuzzy t)          ;; 曖昧マッチ
+(setq ac-use-comphist nil)     ;; 補完推測機能
+(setq ac-auto-show-menu 0.1)   ;; n秒後に補完メニューを表示
+(setq ac-quick-help-delay 1.0) ;; n秒後にクイックヘルプを表示
+(setq ac-ignore-case nil)      ;; 大文字・小文字を区別
+
+(define-key ac-complete-mode-map (kbd "C-n") 'ac-next)
+(define-key ac-complete-mode-map (kbd "C-p") 'ac-previous)
+
+;; ------------------------------------------------------------------------
 ;; @ yasnippet
 (add-to-list 'load-path "~/.emacs.d/elisp/yasnippet")
 (require 'yasnippet)
@@ -407,6 +427,7 @@
                          "~/.emacs.d/elisp/yasnippet/extras/imported"))
 (yas-global-mode 1)
 (define-key yas-minor-mode-map (kbd "C-<tab>") 'yas-expand)
+(define-key yas-minor-mode-map (kbd "TAB") nil)
 (define-key yas-minor-mode-map (kbd "<tab>") nil)
 (define-key yas-minor-mode-map (kbd "C-x i i") 'yas-insert-snippet)
 (define-key yas-minor-mode-map (kbd "C-x i n") 'yas-new-snippet)

@@ -4,3 +4,4 @@
 *.lock
 *~
 *.emacs.d/elisp/skk
+*.emacs.d/ac-comphist.dat
