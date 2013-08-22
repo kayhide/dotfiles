@@ -1,0 +1,42 @@
+startup_message off
+altscreen on
+defscrollback 1000
+
+escape ^Zz
+
+caption always "%{= wb} %-w%{=bu dr}%n %t%{-}%+w %= %{=b wk}"
+
+bind 2 split
+bind o focus
+bind q quit
+bindkey -k F1 remove
+
+# switch focus to other region(like vi)
+bind j focus down
+bind k focus up
+bind f next
+bind b prev
+
+# continuous switch focus to other region(like vi)
+bind ^J eval 'focus down' 'command -c cfocus'
+bind ^K eval 'focus up'   'command -c cfocus'
+bind -c cfocus ^J eval 'focus down'   'command -c cfocus'
+bind -c cfocus ^K eval 'focus up'     'command -c cfocus'
+
+# continuous resize region
+bind ^R eval 'command -c cresize'
+bind -c cresize ^J eval 'resize +1'  'command -c cresize'
+bind -c cresize ^K eval 'resize -1'  'command -c cresize'
+bind -c cresize j eval 'resize +5'  'command -c cresize'
+bind -c cresize k eval 'resize -5'  'command -c cresize'
+bind -c cresize J eval 'resize +10' 'command -c cresize'
+bind -c cresize K eval 'resize -10' 'command -c cresize'
+bind -c cresize = eval 'resize ='   'command -c cresize'
+bind -c cresize n eval 'resize min' 'command -c cresize'
+bind -c cresize x eval 'resize max' 'command -c cresize'
+
+# continuous switch to other window
+bind ^F eval 'next' 'command -c cselect'
+bind ^B eval 'prev' 'command -c cselect'
+bind -c cselect ^F eval 'next' 'command -c cselect'
+bind -c cselect ^B eval 'prev' 'command -c cselect'
