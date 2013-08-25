@@ -55,8 +55,12 @@ alias lla='ls -lA'
 
 alias r='rails'
 
+alias g='git'
 alias gstatus='git status | lv -c'
 alias glgraph='git log --graph --all --decorate --oneline'
+
+alias -g G='| grep'
+alias -g L='| lv -c'
 
 # env
 case $(uname) in
@@ -74,6 +78,11 @@ export PATH="./bin:$HOME/bin:$PATH"
 export PGDATA='/usr/local/var/postgres'
 export PGHOST='localhost'
 export PGLOG='/usr/local/var/postgres/server.log'
+
+alias pg_start="pg_ctl start -l $PGLOG"
+alias pg_status="pg_ctl status"
+alias pg_stop="pg_ctl stop -m s"
+
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
