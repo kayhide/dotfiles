@@ -54,6 +54,7 @@ alias la='ls -A'
 alias lla='ls -lA'
 
 alias r='rails'
+alias -g RET='RAILS_ENV=test'
 
 alias g='git'
 alias gstatus='git status | lv -c'
