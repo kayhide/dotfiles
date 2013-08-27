@@ -400,9 +400,12 @@
 
 ;; ------------------------------------------------------------------------
 ;; @ auto-complete
-(add-to-list 'load-path "~/.emacs.d/elisp/auto-complete/lib/popup/")
-(add-to-list 'load-path "~/.emacs.d/elisp/auto-complete/lib/fuzzy/")
-(add-to-list 'load-path "~/.emacs.d/elisp/auto-complete")
+(let ((dir (expand-file-name "~/.emacs.d/elisp/auto-complete")))
+  (add-to-list 'load-path dir)
+  (add-to-list 'load-path (concat dir "/lib/ert"))
+  (add-to-list 'load-path (concat dir "/lib/fuzzy"))
+  (add-to-list 'load-path (concat dir "/lib/popup")))
+
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
@@ -435,6 +438,9 @@
 (define-key yas-minor-mode-map (kbd "C-x i i") 'yas-insert-snippet)
 (define-key yas-minor-mode-map (kbd "C-x i n") 'yas-new-snippet)
 (define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
+(define-key yas-keymap (kbd "C-<tab>") 'yas-next-field-or-maybe-expand)
+(define-key yas-keymap (kbd "TAB") nil)
+(define-key yas-keymap (kbd "<tab>") nil)
 
 ;; (add-hook 'rinari-minor-mode-hook
 ;;           (lambda ()
