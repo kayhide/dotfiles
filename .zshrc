@@ -54,6 +54,7 @@ alias la='ls -A'
 alias lla='ls -lA'
 
 alias r='rails'
+alias sr='spring rails'
 alias -g RET='RAILS_ENV=test'
 
 alias g='git'
