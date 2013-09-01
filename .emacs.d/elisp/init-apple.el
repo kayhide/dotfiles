@@ -2,8 +2,7 @@
 
 (let* ((height 140)
        (fontname "Ricty")
-       (fontspec (font-spec :family fontname))    
-       )
+       (fontspec (font-spec :family fontname)))
   (set-face-attribute 'default nil :family fontname :height height)
   (set-fontset-font nil 'japanese-jisx0208 fontspec)
   (set-fontset-font nil 'japanese-jisx0212 fontspec)
@@ -14,22 +13,19 @@
   (set-fontset-font nil '(#x0370 . #x03FF) fontspec))
 
 
-
-;; ------------------------------------------------------------------------
-;; @ color-theme
-(add-to-list 'load-path "~/.emacs.d/elisp/color-theme")
-(require 'color-theme)
-(color-theme-initialize)
-
-
 ;; ------------------------------------------------------------------------
 ;; @ migemo
-(add-to-list 'load-path "~/.emacs.d/elisp/migemo")
-(require 'migemo)
+(eval-after-load "migemo"
+  '(progn
+     (setq migemo-command "/usr/local/bin/cmigemo")
+     (setq migemo-options '("-q" "--emacs" "-i" "\g"))
+     (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
+     (setq migemo-coding-system 'utf-8-unix)))
 
 
 ;; ------------------------------------------------------------------------
 ;; @ skk
 (add-to-list 'load-path "~/.emacs.d/elisp/skk") ; symlink to skk elisp dir
-(require 'skk-autoloads)
-
+(eval-after-load "skk-autoloads"
+  '(progn
+     (setq skk-user-directory "~/.skk")))
