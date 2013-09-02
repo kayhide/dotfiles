@@ -1,11 +1,8 @@
-;; -*- coding: utf-8 -*-
-
+;; keys
 (global-set-key (kbd "C-<tab>") 'next-buffer)
 (global-set-key (kbd "C-M-<tab>") 'previous-buffer)
 
-;; ------------------------------------------------------------------------
-;; @ frame
-
+;; frame
 (setq initial-frame-alist
       (append  '((width . 240)
                  (height . 80)
@@ -13,13 +10,14 @@
                  (fullscreen . fullboth))
                initial-frame-alist))
 (setq default-frame-alist initial-frame-alist)
-
 (setq split-width-threshold 100)
 
+;; screen
 (defun fullscreen ()
   (interactive)
   (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-			 '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
+                         '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
+
 (defun toggle-fullscreen ()
   "Toggle full screen on X11"
   (interactive)

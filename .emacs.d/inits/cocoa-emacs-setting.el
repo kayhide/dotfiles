@@ -1,5 +1,8 @@
+;; frame
 (if window-system (set-frame-parameter nil 'alpha 85))
 
+
+;; font
 (let* ((height 140)
        (fontname "Ricty")
        (fontspec (font-spec :family fontname)))
@@ -13,8 +16,7 @@
   (set-fontset-font nil '(#x0370 . #x03FF) fontspec))
 
 
-;; ------------------------------------------------------------------------
-;; @ migemo
+;; migemo
 (eval-after-load "migemo"
   '(progn
      (setq migemo-command "/usr/local/bin/cmigemo")
@@ -23,9 +25,8 @@
      (setq migemo-coding-system 'utf-8-unix)))
 
 
-;; ------------------------------------------------------------------------
-;; @ skk
-(add-to-list 'load-path "~/.emacs.d/elisp/skk") ; symlink to skk elisp dir
+;; skk
+(require 'skk-autoloads)
 (eval-after-load "skk-autoloads"
   '(progn
      (setq skk-user-directory "~/.skk")))
