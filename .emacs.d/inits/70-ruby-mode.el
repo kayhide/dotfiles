@@ -36,3 +36,18 @@
 (let ((map ruby-mode-map))
   (define-key map (kbd "C-x C-e") nil)
   map)
+
+
+;; ------------------------------------------------------------------------
+;; @ motion
+(require 'motion-mode)
+;; following adding of hook is very important.
+(add-hook 'ruby-mode-hook 'motion-recognize-project)
+(add-to-list 'ac-modes 'motion-mode)
+(add-to-list 'ac-sources 'ac-source-dictionary)
+
+(let ((map motion-mode-map))
+  (define-key map (kbd "C-c C-c") 'motion-execute-rake)
+  (define-key map (kbd "C-c C-d") 'motion-dash-at-point)
+  map)
+

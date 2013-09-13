@@ -19,6 +19,7 @@
     auto-async-byte-compile
     ruby-mode
     rinari
+    motion-mode
     emmet-mode
     pov-mode
     ))

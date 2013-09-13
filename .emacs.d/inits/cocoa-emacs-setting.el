@@ -26,6 +26,7 @@
 
 
 ;; skk
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/share/skk")
 (require 'skk-autoloads)
 (eval-after-load "skk-autoloads"
   '(progn

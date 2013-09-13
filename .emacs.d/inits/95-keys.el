@@ -15,6 +15,10 @@
 (global-set-key (kbd "C-\\") nil)
 (global-set-key (kbd "C-z") nil)
 
+(let ((map dired-mode-map))
+  (define-key map (kbd "C-t") nil)
+  map
+  )
 
 ;; packages
 (eval-after-load 'open-junk-file
