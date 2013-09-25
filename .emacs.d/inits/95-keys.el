@@ -16,9 +16,10 @@
 (global-set-key (kbd "C-z") nil)
 
 (let ((map dired-mode-map))
-  (define-key map (kbd "C-t") nil)
-  map
-  )
+  (define-key map (kbd "C-t") nil))
+
+(let ((map minibuffer-local-map))
+  (define-key map (kbd "C-l") 'strip-last-basename))
 
 ;; packages
 (eval-after-load 'open-junk-file
