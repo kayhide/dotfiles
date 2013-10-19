@@ -90,7 +90,7 @@ fi
 
 export INST_DIR=$inst_dir
 
-
+alias g='git'
 alias gstatus='git status | lv -c'
 alias glgraph='git log --graph --all --decorate --oneline'
 source ~/.git-completion.sh
