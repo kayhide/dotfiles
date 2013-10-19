@@ -2,7 +2,7 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
 
-(setq ac-auto-start 3)         ;; n文字以上の単語の時に補完を開始
+(setq ac-auto-start 4)         ;; n文字以上の単語の時に補完を開始
 (setq ac-delay 0.1)            ;; n秒後に補完開始
 (setq ac-use-fuzzy t)          ;; 曖昧マッチ
 (setq ac-use-comphist nil)     ;; 補完推測機能
