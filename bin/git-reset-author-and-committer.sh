@@ -8,3 +8,5 @@ git filter-branch --commit-filter '
     git commit-tree "$@"
 ' HEAD
 
+DIR=`echo $0 | sed -e "s#\(.*\)/.*#\1#"`
+ruby $DIR/git-move-tags.rb
