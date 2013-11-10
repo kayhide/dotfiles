@@ -20,6 +20,12 @@ task :symlink do
       puts `ln -sf #{f} ~/`
     end
   end
+  Dir["#{Dir.pwd}/bin/*"].reject do |f|
+    exclusive_files.include? File.basename(f)
+  end.sort.each do |f|
+    puts "making symbolic link: #{f}"
+    puts `ln -sf #{f} ~/bin/`
+  end
 end
 
 task :elisp do
