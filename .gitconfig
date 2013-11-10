@@ -5,5 +5,8 @@
 	ui = always
 [core]
 	pager = lv -c
+	eol = native
+	autocrlf = true
+	editor = ~/bin/xyzzy.sh
 [push]
 	default = simple
