@@ -18,9 +18,6 @@
 (let ((map dired-mode-map))
   (define-key map (kbd "C-t") nil))
 
-(let ((map minibuffer-local-map))
-  (define-key map (kbd "C-l") 'strip-last-basename))
-
 ;; packages
 (eval-after-load 'open-junk-file
   '(progn
@@ -40,6 +37,12 @@
      (global-set-key (kbd "C-x b") 'helm-for-files)))
 
 
-;; defined
+;; defined in 90-local.el
 (global-set-key (kbd "C-t") 'other-window-or-split)
 (global-set-key (kbd "C-M-t") 'delete-other-windows)
+
+(global-set-key (kbd "<f12>") 'kill-all-buffers)
+
+(let ((map minibuffer-local-map))
+  (define-key map (kbd "C-l") 'strip-last-basename))
+

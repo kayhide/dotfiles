@@ -10,9 +10,9 @@
     migemo
     color-theme
     auto-complete
+    yasnippet
     helm
     helm-descbinds
-    helm-c-moccur
     helm-c-yasnippet
     lispxmp
     paredit

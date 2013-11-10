@@ -18,6 +18,5 @@
 (require 'helm-descbinds)
 (helm-descbinds-mode)
 
-(require 'helm-c-moccur)
 (setq moccur-split-word t)
-(define-key isearch-mode-map (kbd "C-o") 'helm-c-moccur-from-isearch)
+(define-key isearch-mode-map (kbd "C-o") 'helm-occur-from-isearch)
