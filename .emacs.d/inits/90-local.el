@@ -5,6 +5,11 @@
     (split-window-horizontally))
   (other-window 1))
 
+;; kill-all-buffers
+(defun kill-all-buffers ()
+  (interactive)
+  (mapc 'kill-buffer (buffer-list)))
+
 ;; minibuffer
 (defun strip-last-basename ()
   (interactive)

@@ -26,6 +26,37 @@
                     (repeat . nil)
                     (modes  . '(ruby-mode))))))
 
+(defun flymake-ruby-init ()
+  (progn
+    (require 'flymake-easy)
+    (require 'flymake-cursor)
+
+    (defconst flymake-ruby-err-line-patterns
+      '(("^\\(.*\.rb\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3)))
+
+    (defvar flymake-ruby-executable (concat (getenv "HOME") "/.rbenv/shims/ruby")
+      "The ruby executable to use for syntax checking.")
+
+    ;; Invoke ruby with '-c' to get syntax checking
+    (defun flymake-ruby-command (filename)
+      "Construct a command that flymake can use to check ruby source."
+      (list flymake-ruby-executable "-w" "-c" filename))
+
+    (defun flymake-ruby-load ()
+      "Configure flymake mode to check the current buffer's ruby syntax."
+      (interactive)
+      (flymake-easy-load 'flymake-ruby-command
+                         flymake-ruby-err-line-patterns
+                         'tempdir
+                         "rb"))
+    (custom-set-variables
+     '(help-at-pt-timer-delay 0.3)
+     '(help-at-pt-display-when-idle '(flymake-overlay)))
+    (flymake-ruby-load)
+    ))
+
+(add-hook 'ruby-mode 'flymake-ruby-init)
+
 
 ;; ------------------------------------------------------------------------
 ;; @ rinari
