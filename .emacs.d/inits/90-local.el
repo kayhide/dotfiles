@@ -8,7 +8,9 @@
 ;; kill-all-buffers
 (defun kill-all-buffers ()
   (interactive)
-  (mapc 'kill-buffer (buffer-list)))
+  (mapc 'kill-buffer (buffer-list))
+  (delete-other-windows)
+  )
 
 ;; minibuffer
 (defun strip-last-basename ()
