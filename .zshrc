@@ -53,16 +53,22 @@ alias ll='ls -l'
 alias la='ls -A'
 alias lla='ls -lA'
 
-alias r='rails'
-alias sr='spring rails'
-alias -g RET='RAILS_ENV=test'
-
 alias g='git'
 alias gstatus='git status | lv -c'
 alias glgraph='git log --graph --all --decorate --oneline'
 
+eval "$(hub alias -s)"
+
 alias -g G='| grep'
 alias -g L='| lv -c'
+
+alias -g r='rails'
+alias -g sr='spring rails'
+alias -g RET='RAILS_ENV=test'
+
+alias -g mm='middleman'
+
+alias be='bundle exec'
 
 # env
 case $(uname) in
