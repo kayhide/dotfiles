@@ -11,9 +11,19 @@
   '(progn
      (setq helm-split-window-default-side 'right)
      (add-to-list 'helm-completing-read-handlers-alist
-                  '(find-file-at-point . nil))))
+                  '(find-file . nil))
+     (add-to-list 'helm-completing-read-handlers-alist
+                  '(find-file-at-point . nil))
+     (add-to-list 'helm-completing-read-handlers-alist
+                  '(dired-do-rename . nil))
+     (add-to-list 'helm-completing-read-handlers-alist
+                  '(dired-do-copy . nil))
+     (add-to-list 'helm-completing-read-handlers-alist
+                  '(dired-do-copy-regexp . nil))
+     (add-to-list 'helm-completing-read-handlers-alist
+                  '(lgrep . nil))
+     ))
 (helm-mode)
-
 
 (require 'helm-descbinds)
 (helm-descbinds-mode)
