@@ -70,6 +70,8 @@ alias -g mm='middleman'
 
 alias be='bundle exec'
 
+alias tcopy='tmux save-buffer - | pbcopy'
+
 # env
 case $(uname) in
 'Darwin')
@@ -83,7 +85,7 @@ esac
 export VISUAL=$EDITOR
 export PATH="./bin:$HOME/bin:$PATH"
 
-export PGDATA='/usr/local/var/postgres'
+export PGDATA='/usr/local/var/postgres/9.3'
 export PGHOST='localhost'
 export PGLOG='/usr/local/var/postgres/server.log'
 
