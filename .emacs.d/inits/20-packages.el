@@ -51,4 +51,3 @@
 (igrep-find-define lgrep (igrep-use-zgrep nil) (igrep-regex-option "-Ou8"))
 
 (require 'migemo)
-
