@@ -12,6 +12,9 @@ setopt share_history
 setopt auto_pushd
 setopt pushd_ignore_dups
 
+setopt auto_cd
+cdpath=(.. ~)
+
 # completion
 zstyle :compinstall filename '/home/mikagami/.zshrc'
 
