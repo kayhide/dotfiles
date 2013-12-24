@@ -1,5 +1,6 @@
 ;; built-in
-(global-set-key (kbd "C-m") 'newline-and-indent)
+(global-set-key (kbd "C-j") 'newline-and-indent)
+(global-set-key (kbd "C-m") 'newline)
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "C-;") 'dabbrev-expand)
 (global-set-key (kbd "C-<f4>") 'kill-this-buffer)
