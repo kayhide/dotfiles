@@ -21,6 +21,7 @@
     rinari
     motion-mode
     emmet-mode
+    scss-mode
     pov-mode
     ))
 
