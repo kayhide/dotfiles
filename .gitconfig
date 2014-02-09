@@ -5,9 +5,16 @@
 	ui = always
 [core]
 	pager = lv -c
+ excludesfile = /opt/boxen/config/git/gitignore
 [push]
 	default = simple
 [pager]
 	log = diff-highlight | lv -c
 	show = diff-highlight | lv -c
 	diff = diff-highlight | lv -c
+
+[credential]
+helper = /opt/boxen/bin/boxen-git-credential
+
+[hub]
+protocol = https

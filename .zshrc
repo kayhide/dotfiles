@@ -42,6 +42,10 @@ PROMPT=$'%{${color1}%}[ %n@%m | %D{%Y-%m-%d %H:%M:%S} | Retv: %? ]
 %#%{${color0}%} '
 
 
+# boxen
+[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
+
+
 # alias
 case $(uname) in
 'Darwin')
@@ -59,8 +63,6 @@ alias lla='ls -lA'
 alias g='git'
 alias gstatus='git status | lv -c'
 alias glgraph='git log --graph --all --decorate --oneline'
-
-eval "$(hub alias -s)"
 
 alias -g G='| grep'
 alias -g L='| lv -c'
@@ -95,7 +97,3 @@ export PGLOG='/usr/local/var/postgres/server.log'
 alias pg_start="pg_ctl start -l $PGLOG"
 alias pg_status="pg_ctl status"
 alias pg_stop="pg_ctl stop -m s"
-
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
