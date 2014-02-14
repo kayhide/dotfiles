@@ -60,8 +60,6 @@ alias g='git'
 alias gstatus='git status | lv -c'
 alias glgraph='git log --graph --all --decorate --oneline'
 
-eval "$(hub alias -s)"
-
 alias -g G='| grep'
 alias -g L='| lv -c'
 
@@ -96,6 +94,11 @@ alias pg_start="pg_ctl start -l $PGLOG"
 alias pg_status="pg_ctl status"
 alias pg_stop="pg_ctl stop -m s"
 
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+eval "$(hub alias -s)"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
