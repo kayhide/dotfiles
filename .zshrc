@@ -82,9 +82,7 @@ case $(uname) in
 	export EDITOR='emacsclient -t'
 ;;
 esac
-
 export VISUAL=$EDITOR
-export PATH="./bin:$HOME/bin:$PATH"
 
 export PGDATA='/usr/local/var/postgres/9.3'
 export PGHOST='localhost'
@@ -94,11 +92,11 @@ alias pg_start="pg_ctl start -l $PGLOG"
 alias pg_status="pg_ctl status"
 alias pg_stop="pg_ctl stop -m s"
 
+eval "$(rbenv init -)"
+eval "$(hub alias -s)"
 
 export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
-eval "$(hub alias -s)"
+export PATH="./bin:$HOME/bin:$PATH"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
