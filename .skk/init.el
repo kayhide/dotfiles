@@ -1,21 +1,26 @@
 ;; -*- mode: emacs-lisp; coding: utf-8 -*-
 
 ;; (skk-restart)
-;; skk-search-prog-list                 ; => ((skk-search-kakutei-jisyo-file skk-kakutei-jisyo 10000 t) (skk-search-jisyo-file skk-initial-search-jisyo 10000 t) (skk-search-jisyo-file skk-jisyo 0 t) (skk-okuri-search) (skk-search-jisyo-file skk-large-jisyo 10000) (skk-search-server skk-aux-large-jisyo 10000))
+;; skk-search-prog-list                 ; =>
 ;; skk-kakutei-jisyo                    ; => nil
 ;; skk-initial-search-jisyo             ; => nil
-;; skk-jisyo                            ; => "/home/mikagami/.skk/jisyo"
-;; skk-large-jisyo                      ; => "/usr/share/skk/SKK-JISYO.L"
+;; skk-jisyo                            ; => "~/.skk/jisyo"
+;; skk-large-jisyo                      ; => "~/.skk/SKK-JISYO.L"
 
-;; (setq skk-large-jisyo "/usr/share/skk/SKK-JISYO.L")
-(setq skk-server-host "localhost")
-(setq skk-server-portnum 11178)
-(setq skk-server-report-response t)
+(eval-when-compile
+  (require 'skk-vars)
+  (require 'skk-autoloads))
+
+(setq skk-large-jisyo "~/.skk/SKK-JISYO.L")
+;; (setq skk-server-host "localhost")
+;; (setq skk-server-portnum 11178)
+;; (setq skk-server-report-response t)
 
 (setq skk-preload t)
 (setq skk-isearch-start-mode 'latin)
 (setq skk-egg-like-newline t)
 (setq skk-undo-kakutei-word-only t)
+(setq skk-use-color-cursor t)
 
 (setq skk-process-okuri-early nil)
 (setq skk-henkan-strict-okuri-precedence t)
@@ -503,7 +508,7 @@
         ("c@" nil "◆")
         ("co" nil "・")
         ("c:" nil "・・・")
-        ("c]" nil "⇒")
+        ("z]" nil "⇒")
         ("x:" nil "：")
         ("x?" nil "？")
         ("x!" nil "！")
