@@ -44,6 +44,7 @@
 (sequential-command-setup-keys)
 
 (require 'wgrep)
+(setq wgrep-enable-key (kbd "r"))
 
 (require 'color-moccur)
 

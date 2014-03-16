@@ -1,3 +1,10 @@
+;; ------------------------------------------------------------------------
+;; @ rbenv
+(add-to-list 'exec-path (expand-file-name "~/.rbenv/shims"))
+(add-to-list 'exec-path (expand-file-name "~/.rbenv/bin"))
+
+;; ------------------------------------------------------------------------
+;; @ ruby
 (autoload 'ruby-mode "ruby-mode" nil t)
 (add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
