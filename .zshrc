@@ -16,8 +16,7 @@ setopt auto_cd
 cdpath=(.. ~)
 
 # completion
-zstyle :compinstall filename '/home/mikagami/.zshrc'
-
+zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit
 compinit
 
@@ -40,10 +39,6 @@ color2=$'\e[38;5;2m'
 PROMPT=$'%{${color1}%}[ %n@%m | %D{%Y-%m-%d %H:%M:%S} | Retv: %? ]
 %{${color2}%}[ %~ ]$(__git_ps1 " (%s)")
 %#%{${color0}%} '
-
-
-# boxen
-[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 
 
 # alias
@@ -86,6 +81,7 @@ case $(uname) in
 	export EDITOR='emacsclient -t'
 ;;
 esac
+
 export VISUAL=$EDITOR
 
 export PGDATA='/usr/local/var/postgres/9.3'
@@ -96,8 +92,8 @@ alias pg_start="pg_ctl start -l $PGLOG"
 alias pg_status="pg_ctl status"
 alias pg_stop="pg_ctl stop -m s"
 
-eval "$(rbenv init -)"
-eval "$(hub alias -s)"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if which hub > /dev/null; then eval "$(hub alias -s)"; fi
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="./bin:$HOME/bin:$PATH"
