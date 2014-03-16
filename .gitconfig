@@ -14,7 +14,6 @@
 	diff = diff-highlight | lv -c
 
 [credential]
-helper = /opt/boxen/bin/boxen-git-credential
 
 [hub]
 protocol = https
