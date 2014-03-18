@@ -96,7 +96,8 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which hub > /dev/null; then eval "$(hub alias -s)"; fi
 
 export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH="./bin:$HOME/bin:$PATH"
-
-### Added by the Heroku Toolbelt
+export PATH="$HOME/.cabal/bin:$PATH"
+export PATH="/usr/texbin:$PATH"
 export PATH="/usr/local/heroku/bin:$PATH"
+
+export PATH="./bin:$HOME/bin:$PATH"
