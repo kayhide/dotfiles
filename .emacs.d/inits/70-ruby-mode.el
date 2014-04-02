@@ -3,33 +3,20 @@
 (add-to-list 'exec-path (expand-file-name "~/.rbenv/shims"))
 (add-to-list 'exec-path (expand-file-name "~/.rbenv/bin"))
 
+
 ;; ------------------------------------------------------------------------
-;; @ ruby
-(autoload 'ruby-mode "ruby-mode" nil t)
-(add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Guardfile$" . ruby-mode))
+;; @ enh-ruby
+(autoload 'enh-ruby-mode "enh-ruby-mode" nil t)
+(add-to-list 'auto-mode-alist '("Rakefile$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '("Guardfile$" . enh-ruby-mode))
 
-(setq ruby-deep-indent-paren-style nil)
-(defadvice ruby-indent-line (after unindent-closing-paren activate)
-  (let ((column (current-column))
-        indent offset)
-    (save-excursion
-      (back-to-indentation)
-      (let ((state (syntax-ppss)))
-        (setq offset (- column (current-column)))
-        (when (and (eq (char-after) ?\))
-                   (not (zerop (car state))))
-          (goto-char (cadr state))
-          (setq indent (current-indentation)))))
-    (when indent
-      (indent-line-to indent)
-      (when (> offset 0) (forward-char offset)))))
-
-(add-hook 'ruby-mode-hook
-  '(lambda ()
-     (electric-indent-mode t)
-     (electric-layout-mode t)))
+(add-hook 'enh-ruby-mode-hook
+          (setq enh-ruby-deep-indent-paren nil)
+          (custom-set-faces
+           '(erm-syn-errline ((t (:underline (:color "red"))))))
+          (custom-set-faces
+           '(erm-syn-warnline ((t (:underline (:color "orange")))))))
 
 (eval-after-load 'align
   '(progn
@@ -37,53 +24,22 @@
                   '(ruby-comma-delimiter
                     (regexp . ",\\(\\s-*\\)[^# \t\n]")
                     (repeat . t)
-                    (modes  . '(ruby-mode))))
+                    (modes  . '(enh-ruby-mode))))
      (add-to-list 'align-rules-list
                   '(ruby-hash-literal
                     (regexp . "\\(\\s-*\\)=>\\s-*[^# \t\n]")
                     (repeat . t)
-                    (modes  . '(ruby-mode))))
+                    (modes  . '(enh-ruby-mode))))
      (add-to-list 'align-rules-list
                   '(ruby-assignment-literal
                     (regexp . "\\(\\s-*\\)=\\s-*[^# \t\n]")
                     (repeat . t)
-                    (modes  . '(ruby-mode))))
+                    (modes  . '(enh-ruby-mode))))
      (add-to-list 'align-rules-list     ;TODO add to rcodetools.el
                   '(ruby-xmpfilter-mark
                     (regexp . "\\(\\s-*\\)# => [^#\t\n]")
                     (repeat . nil)
-                    (modes  . '(ruby-mode))))))
-
-(defun flymake-ruby-init ()
-  (progn
-    (require 'flymake-easy)
-    (require 'flymake-cursor)
-
-    (defconst flymake-ruby-err-line-patterns
-      '(("^\\(.*\.rb\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3)))
-
-    (defvar flymake-ruby-executable (concat (getenv "HOME") "/.rbenv/shims/ruby")
-      "The ruby executable to use for syntax checking.")
-
-    ;; Invoke ruby with '-c' to get syntax checking
-    (defun flymake-ruby-command (filename)
-      "Construct a command that flymake can use to check ruby source."
-      (list flymake-ruby-executable "-w" "-c" filename))
-
-    (defun flymake-ruby-load ()
-      "Configure flymake mode to check the current buffer's ruby syntax."
-      (interactive)
-      (flymake-easy-load 'flymake-ruby-command
-                         flymake-ruby-err-line-patterns
-                         'tempdir
-                         "rb"))
-    (custom-set-variables
-     '(help-at-pt-timer-delay 0.3)
-     '(help-at-pt-display-when-idle '(flymake-overlay)))
-    (flymake-ruby-load)
-    ))
-
-(add-hook 'ruby-mode 'flymake-ruby-init)
+                    (modes  . '(enh-ruby-mode))))))
 
 
 ;; ------------------------------------------------------------------------
@@ -101,7 +57,7 @@
 ;; @ motion
 (require 'motion-mode)
 ;; following adding of hook is very important.
-(add-hook 'ruby-mode-hook 'motion-recognize-project)
+(add-hook 'enh-ruby-mode-hook 'motion-recognize-project)
 (add-to-list 'ac-modes 'motion-mode)
 (add-to-list 'ac-sources 'ac-source-dictionary)
 

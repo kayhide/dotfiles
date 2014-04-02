@@ -17,7 +17,7 @@
     lispxmp
     paredit
     auto-async-byte-compile
-    ruby-mode
+    enh-ruby-mode
     rinari
     motion-mode
     emmet-mode
