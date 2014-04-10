@@ -41,6 +41,8 @@
                     (repeat . nil)
                     (modes  . '(enh-ruby-mode))))))
 
+(defadvice enh-ruby-mode-set-encoding (around suppress-enh-ruby-mode-set-encoding))
+(ad-activate 'enh-ruby-mode-set-encoding)
 
 ;; ------------------------------------------------------------------------
 ;; @ rinari
