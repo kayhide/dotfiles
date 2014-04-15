@@ -73,15 +73,7 @@ alias be='bundle exec'
 alias tcopy='tmux save-buffer - | pbcopy'
 
 # env
-case $(uname) in
-'Darwin')
-	export EDITOR='/usr/local/bin/emacsclient -t'
-;;
-*)
-	export EDITOR='emacsclient -t'
-;;
-esac
-
+export EDITOR='vim'
 export VISUAL=$EDITOR
 
 export PGDATA='/usr/local/var/postgres/9.3'
