@@ -45,17 +45,6 @@
 (ad-activate 'enh-ruby-mode-set-encoding)
 
 ;; ------------------------------------------------------------------------
-;; @ rinari
-(require 'rinari)
-(global-rinari-mode t)
-(setq rinari-tags-file-name "TAGS")
-
-(let ((map ruby-mode-map))
-  (define-key map (kbd "C-x C-e") nil)
-  map)
-
-
-;; ------------------------------------------------------------------------
 ;; @ motion
 (require 'motion-mode)
 ;; following adding of hook is very important.

@@ -7,6 +7,9 @@
 (global-set-key (kbd "<f8>") 'shell-command)
 (global-set-key (kbd "C-<f8>") 'shell-command-on-region)
 (global-set-key (kbd "C-x C-o") 'dired-jump)
+(global-set-key (kbd "s-¥") 'split-window-right)
+(global-set-key (kbd "s--") 'split-window-below)
+
 
 (global-set-key (kbd "<next>") 'scroll-other-window)
 (global-set-key (kbd "<prior>") 'scroll-other-window-down)
