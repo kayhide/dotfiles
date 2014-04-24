@@ -15,23 +15,23 @@ setopt pushd_ignore_dups
 setopt auto_cd
 cdpath=(.. ~)
 
-# completion
-zstyle :compinstall filename '~/.zshrc'
-autoload -Uz compinit
-compinit
-
 # colors
 autoload colors
 colors
 
-# git completion
-autoload bashcompinit
-bashcompinit
-source ~/.git-completion.sh
+# completion
+fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
+fpath=($(brew --prefix)/share/zsh-completions $fpath)
+autoload -Uz compinit
+compinit
 
 
 # prompt
 setopt prompt_subst
+
+if [ -f $(brew --prefix)/etc/bash_completion.d/git-prompt.sh ]; then
+    source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
+fi
 
 color0=$'\e[0m'
 color1=$'\e[38;5;46m'
