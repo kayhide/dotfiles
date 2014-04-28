@@ -8,8 +8,11 @@
 ;; @ enh-ruby
 (autoload 'enh-ruby-mode "enh-ruby-mode" nil t)
 (add-to-list 'auto-mode-alist '("Rakefile$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '(".rake$" . enh-ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile$" . enh-ruby-mode))
 (add-to-list 'auto-mode-alist '("Guardfile$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '("Capfile$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '(".cap$" . enh-ruby-mode))
 
 (add-hook 'enh-ruby-mode-hook
           (setq enh-ruby-deep-indent-paren nil)

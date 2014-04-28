@@ -17,8 +17,9 @@
     lispxmp
     paredit
     auto-async-byte-compile
+    projectile
+    git-gutter-fringe
     enh-ruby-mode
-    rinari
     motion-mode
     emmet-mode
     scss-mode
@@ -56,3 +57,5 @@
 
 (projectile-global-mode)
 
+(require 'git-gutter-fringe)
+(global-git-gutter-mode t)
