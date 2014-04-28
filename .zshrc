@@ -54,10 +54,13 @@ esac
 alias ll='ls -l'
 alias la='ls -A'
 alias lla='ls -lA'
+alias tree='tree -N'
 
 alias g='git'
 alias gstatus='git status | lv -c'
 alias glgraph='git log --graph --all --decorate --oneline'
+alias gcheckout='git checkout'
+alias gbranch='git branch'
 
 alias -g G='| grep'
 alias -g L='| lv -c'
