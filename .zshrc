@@ -25,6 +25,7 @@ fpath=($(brew --prefix)/share/zsh-completions $fpath)
 autoload -Uz compinit
 compinit
 
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
 
 # prompt
 setopt prompt_subst
