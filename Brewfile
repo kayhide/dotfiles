@@ -2,6 +2,7 @@ update
 # upgrade
 
 install zsh
+install zsh-completions
 install emacs --cocoa
 install tig
 install lv
@@ -17,7 +18,7 @@ install heroku-toolbelt
 install redis
 install imagemagick
 
-tap phinze/cask
+tap caskroom/cask
 install brew-cask
 cask install iterm2
 cask install google-chrome
