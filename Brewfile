@@ -17,6 +17,7 @@ install postgresql
 install heroku-toolbelt
 install redis
 install imagemagick
+install node.js
 
 tap caskroom/cask
 install brew-cask
