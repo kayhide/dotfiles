@@ -62,6 +62,11 @@ alias gstatus='git status | lv -c'
 alias glgraph='git log --graph --all --decorate --oneline'
 alias gcheckout='git checkout'
 alias gbranch='git branch'
+alias gmerge='git merge'
+
+alias gflow='git flow'
+alias gffstart='git flow feature start'
+alias gfffinish='git flow feature finish'
 
 alias -g G='| grep'
 alias -g L='| lv -c'
