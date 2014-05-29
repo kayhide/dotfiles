@@ -6,6 +6,7 @@ install zsh-completions
 install emacs --cocoa
 install tig
 install lv
+install ag
 install tmux
 install reattach-to-user-namespace
 install cmigemo
