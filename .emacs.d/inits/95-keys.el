@@ -41,6 +41,13 @@
   '(progn
      (global-set-key (kbd "C-x b") 'helm-for-files)))
 
+(eval-after-load 'wgrep
+  '(progn
+     (setq wgrep-enable-key (kbd "r"))))
+
+(eval-after-load 'projectile
+  '(progn
+     (define-key projectile-mode-map (kbd "s-g") 'projectile-ag)))
 
 ;; defined in 90-local.el
 (global-set-key (kbd "C-t") 'other-window-or-split)

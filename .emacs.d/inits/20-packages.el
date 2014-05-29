@@ -4,20 +4,23 @@
   '(open-junk-file
     redo+
     sequential-command
+    ag
     wgrep
+    wgrep-ag
     color-moccur
-    igrep
     migemo
     color-theme
     auto-complete
     yasnippet
     helm
+    helm-ag
     helm-descbinds
     helm-c-yasnippet
     lispxmp
-    paredit
+    smartparens
     auto-async-byte-compile
     projectile
+    magit
     git-gutter-fringe
     enh-ruby-mode
     motion-mode
@@ -45,13 +48,8 @@
 (sequential-command-setup-keys)
 
 (require 'wgrep)
-(setq wgrep-enable-key (kbd "r"))
 
 (require 'color-moccur)
-
-(require 'igrep)
-(igrep-define lgrep (igrep-use-zgrep nil) (igrep-regex-option "-Ou8"))
-(igrep-find-define lgrep (igrep-use-zgrep nil) (igrep-regex-option "-Ou8"))
 
 (require 'migemo)
 
