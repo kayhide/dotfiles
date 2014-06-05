@@ -12,20 +12,25 @@
     color-theme
     auto-complete
     yasnippet
+    projectile
     helm
     helm-ag
     helm-descbinds
     helm-c-yasnippet
+    helm-projectile
     lispxmp
     smartparens
     auto-async-byte-compile
-    projectile
     magit
     git-gutter-fringe
+    org
     enh-ruby-mode
     motion-mode
     emmet-mode
+    slim-mode
     scss-mode
+    markdown-mode
+    pandoc-mode
     pov-mode
     ))
 
