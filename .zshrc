@@ -96,7 +96,6 @@ alias pg_stop="pg_ctl stop -m s"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which hub > /dev/null; then eval "$(hub alias -s)"; fi
 
-export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
 export PATH="/usr/texbin:$PATH"
 export PATH="/usr/local/heroku/bin:$PATH"
