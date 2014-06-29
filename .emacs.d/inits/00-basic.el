@@ -18,8 +18,15 @@
 
 ;; ------------------------------------------------------------------------
 ;; @ dired
+(eval-after-load 'dired
+ '(progn
+    (setq ls-lisp-dirs-first t)
+    (setq dired-dwim-target t)
+    (setq dired-recursive-copies 'always)
+    (setq dired-recursive-deletes 'always)))
+
 (put 'dired-find-alternate-file 'disabled nil)
-(setq dired-dwim-target t)
+
 
 ;; ------------------------------------------------------------------------
 ;; @ wdired

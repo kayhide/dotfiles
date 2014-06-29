@@ -21,7 +21,11 @@
 (global-set-key (kbd "C-z") nil)
 
 (let ((map dired-mode-map))
-  (define-key map (kbd "C-t") nil))
+  (define-key map (kbd "C-t") nil)
+  (define-key map (kbd "RET") 'dired-find-alternate-file)
+  (define-key map (kbd "^")
+    (lambda () (interactive) (find-alternate-file ".."))))
+
 
 ;; packages
 (eval-after-load 'open-junk-file
@@ -47,7 +51,7 @@
 
 (eval-after-load 'projectile
   '(progn
-     (define-key projectile-mode-map (kbd "s-g") 'projectile-ag)))
+     (define-key projectile-mode-map (kbd "C-M-S-s") 'projectile-ag)))
 
 ;; defined in 90-local.el
 (global-set-key (kbd "C-t") 'other-window-or-split)
