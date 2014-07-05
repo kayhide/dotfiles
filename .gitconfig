@@ -8,5 +8,6 @@
 	eol = native
 	autocrlf = true
 	editor = ~/bin/xyzzy.sh
+	quotepath = false
 [push]
 	default = simple
