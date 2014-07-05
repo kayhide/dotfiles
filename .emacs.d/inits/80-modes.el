@@ -5,6 +5,11 @@
   '(progn
      (setq coffee-tab-width 2)))
 
+;; scss-mode
+(eval-after-load 'scss-mode
+  '(progn
+     (setq scss-compile-at-save nil)
+     ))
 
 ;; emmet-mode
 (autoload 'emmet-mode "emmet-mode" nil t)

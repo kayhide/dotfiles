@@ -13,8 +13,8 @@
 
 (defun root-directory-p (dir)
   (string= ""
-	   (file-name-nondirectory
-	    (directory-file-name dir))))
+           (file-name-nondirectory
+            (directory-file-name dir))))
 
 
 (defvar deneb-mode-map
@@ -52,34 +52,34 @@
   (when buffer-file-name
     (and
      (set (make-local-variable 'deneb-root-directory)
-	  (deneb-find-root-directory buffer-file-name))
+          (deneb-find-root-directory buffer-file-name))
      (set (make-local-variable 'deneb-setting-file)
-	  (deneb-find-setting-file))
+          (deneb-find-setting-file))
      (deneb-mode))))
 
 (defun deneb-find-root-directory (file)
   (loop
    for dir = file then (expand-file-name "../" dir)
    do (if (root-directory-p dir)
-	  (return nil))
+          (return nil))
    do (if (and (file-readable-p (merge-pathnames deneb-setting-entry dir))
-	       (file-readable-p (merge-pathnames "erb" dir))
-	       (file-readable-p (merge-pathnames "Rakefile" dir))
-	       )
-	  (return dir))))
+               (file-readable-p (merge-pathnames "erb" dir))
+               (file-readable-p (merge-pathnames "Rakefile" dir))
+               )
+          (return dir))))
 
 (defun deneb-find-setting-file ()
   (let ((candidates (list (merge-pathnames "init.rb" deneb-setting-entry)
-			  deneb-setting-entry)))
+                          deneb-setting-entry)))
     (find-if 'file-readable-p
-	     (mapcar
-	      '(lambda (arg) (merge-pathnames arg deneb-root-directory))
-	      candidates))))
+             (mapcar
+              (lambda (arg) (merge-pathnames arg deneb-root-directory))
+              candidates))))
 
 (defun deneb-shell-command ()
   (interactive)
   (let ((buf (current-buffer))
-	(dir default-directory))
+        (dir default-directory))
     (setq default-directory deneb-root-directory)
     (call-interactively 'shell-command)
     (with-current-buffer buf
@@ -99,8 +99,8 @@
 ;;;rake
 (defun rake-call (arg)
   (apply 'start-process
-  	 (append (list "deneb-process" deneb-buffer-name "rake" arg)
-  		 (if deneb-debug-rake (list "--trace"))))
+         (append (list "deneb-process" deneb-buffer-name "rake" arg)
+                 (if deneb-debug-rake (list "--trace"))))
   (display-buffer deneb-buffer-name))
 
 

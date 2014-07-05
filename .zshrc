@@ -12,9 +12,11 @@ setopt share_history
 setopt auto_pushd
 setopt pushd_ignore_dups
 
-# completion
-zstyle :compinstall filename '/home/mikagami/.zshrc'
+setopt auto_cd
+cdpath=(.. ~)
 
+# completion
+zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit
 compinit
 
@@ -53,16 +55,22 @@ alias ll='ls -l'
 alias la='ls -A'
 alias lla='ls -lA'
 
-alias r='rails'
-alias sr='spring rails'
-alias -g RET='RAILS_ENV=test'
-
 alias g='git'
 alias gstatus='git status | lv -c'
 alias glgraph='git log --graph --all --decorate --oneline'
 
 alias -g G='| grep'
 alias -g L='| lv -c'
+
+alias -g r='rails'
+alias -g sr='spring rails'
+alias -g RET='RAILS_ENV=test'
+
+alias -g mm='middleman'
+
+alias be='bundle exec'
+
+alias tcopy='tmux save-buffer - | pbcopy'
 
 # env
 case $(uname) in
@@ -75,9 +83,8 @@ case $(uname) in
 esac
 
 export VISUAL=$EDITOR
-export PATH="./bin:$HOME/bin:$PATH"
 
-export PGDATA='/usr/local/var/postgres'
+export PGDATA='/usr/local/var/postgres/9.3'
 export PGHOST='localhost'
 export PGLOG='/usr/local/var/postgres/server.log'
 
@@ -85,6 +92,12 @@ alias pg_start="pg_ctl start -l $PGLOG"
 alias pg_status="pg_ctl status"
 alias pg_stop="pg_ctl stop -m s"
 
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if which hub > /dev/null; then eval "$(hub alias -s)"; fi
 
-### Added by the Heroku Toolbelt
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.cabal/bin:$PATH"
+export PATH="/usr/texbin:$PATH"
 export PATH="/usr/local/heroku/bin:$PATH"
+
+export PATH="./bin:$HOME/bin:$PATH"

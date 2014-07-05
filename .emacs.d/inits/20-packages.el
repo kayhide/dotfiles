@@ -21,6 +21,7 @@
     rinari
     motion-mode
     emmet-mode
+    scss-mode
     pov-mode
     ))
 
@@ -43,6 +44,7 @@
 (sequential-command-setup-keys)
 
 (require 'wgrep)
+(setq wgrep-enable-key (kbd "r"))
 
 (require 'color-moccur)
 
@@ -51,4 +53,3 @@
 (igrep-find-define lgrep (igrep-use-zgrep nil) (igrep-regex-option "-Ou8"))
 
 (require 'migemo)
-
