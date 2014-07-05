@@ -7,6 +7,10 @@
 (global-set-key (kbd "<f8>") 'shell-command)
 (global-set-key (kbd "C-<f8>") 'shell-command-on-region)
 (global-set-key (kbd "C-x C-o") 'dired-jump)
+(global-set-key (kbd "s-¥") 'split-window-right)
+(global-set-key (kbd "s--") 'split-window-below)
+(global-set-key (kbd "s-0") 'delete-window)
+
 
 (global-set-key (kbd "<next>") 'scroll-other-window)
 (global-set-key (kbd "<prior>") 'scroll-other-window-down)
@@ -17,7 +21,11 @@
 (global-set-key (kbd "C-z") nil)
 
 (let ((map dired-mode-map))
-  (define-key map (kbd "C-t") nil))
+  (define-key map (kbd "C-t") nil)
+  (define-key map (kbd "RET") 'dired-find-alternate-file)
+  (define-key map (kbd "^")
+    (lambda () (interactive) (find-alternate-file ".."))))
+
 
 ;; packages
 (eval-after-load 'open-junk-file
@@ -37,6 +45,13 @@
   '(progn
      (global-set-key (kbd "C-x b") 'helm-for-files)))
 
+(eval-after-load 'wgrep
+  '(progn
+     (setq wgrep-enable-key (kbd "r"))))
+
+(eval-after-load 'projectile
+  '(progn
+     (define-key projectile-mode-map (kbd "C-M-S-s") 'projectile-ag)))
 
 ;; defined in 90-local.el
 (global-set-key (kbd "C-t") 'other-window-or-split)

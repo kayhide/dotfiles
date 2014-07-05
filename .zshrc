@@ -15,23 +15,24 @@ setopt pushd_ignore_dups
 setopt auto_cd
 cdpath=(.. ~)
 
-# completion
-zstyle :compinstall filename '~/.zshrc'
-autoload -Uz compinit
-compinit
-
 # colors
 autoload colors
 colors
 
-# git completion
-autoload bashcompinit
-bashcompinit
-source ~/.git-completion.sh
+# completion
+fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
+fpath=($(brew --prefix)/share/zsh-completions $fpath)
+autoload -Uz compinit
+compinit
 
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
 
 # prompt
 setopt prompt_subst
+
+if [ -f $(brew --prefix)/etc/bash_completion.d/git-prompt.sh ]; then
+    source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
+fi
 
 color0=$'\e[0m'
 color1=$'\e[38;5;46m'
@@ -54,10 +55,18 @@ esac
 alias ll='ls -l'
 alias la='ls -A'
 alias lla='ls -lA'
+alias tree='tree -N'
 
 alias g='git'
 alias gstatus='git status | lv -c'
 alias glgraph='git log --graph --all --decorate --oneline'
+alias gcheckout='git checkout'
+alias gbranch='git branch'
+alias gmerge='git merge'
+
+alias gflow='git flow'
+alias gffstart='git flow feature start'
+alias gfffinish='git flow feature finish'
 
 alias -g G='| grep'
 alias -g L='| lv -c'
@@ -73,15 +82,7 @@ alias be='bundle exec'
 alias tcopy='tmux save-buffer - | pbcopy'
 
 # env
-case $(uname) in
-'Darwin')
-	export EDITOR='/usr/local/bin/emacsclient -t'
-;;
-*)
-	export EDITOR='emacsclient -t'
-;;
-esac
-
+export EDITOR='vim'
 export VISUAL=$EDITOR
 
 export PGDATA='/usr/local/var/postgres/9.3'
@@ -95,7 +96,6 @@ alias pg_stop="pg_ctl stop -m s"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which hub > /dev/null; then eval "$(hub alias -s)"; fi
 
-export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
 export PATH="/usr/texbin:$PATH"
 export PATH="/usr/local/heroku/bin:$PATH"

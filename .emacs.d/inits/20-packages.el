@@ -4,24 +4,33 @@
   '(open-junk-file
     redo+
     sequential-command
+    ag
     wgrep
+    wgrep-ag
     color-moccur
-    igrep
     migemo
     color-theme
     auto-complete
     yasnippet
+    projectile
     helm
+    helm-ag
     helm-descbinds
     helm-c-yasnippet
+    helm-projectile
     lispxmp
-    paredit
+    smartparens
     auto-async-byte-compile
-    ruby-mode
-    rinari
+    magit
+    git-gutter-fringe
+    org
+    enh-ruby-mode
     motion-mode
     emmet-mode
+    slim-mode
     scss-mode
+    markdown-mode
+    pandoc-mode
     pov-mode
     ))
 
@@ -44,12 +53,12 @@
 (sequential-command-setup-keys)
 
 (require 'wgrep)
-(setq wgrep-enable-key (kbd "r"))
 
 (require 'color-moccur)
 
-(require 'igrep)
-(igrep-define lgrep (igrep-use-zgrep nil) (igrep-regex-option "-Ou8"))
-(igrep-find-define lgrep (igrep-use-zgrep nil) (igrep-regex-option "-Ou8"))
-
 (require 'migemo)
+
+(projectile-global-mode)
+
+(require 'git-gutter-fringe)
+(global-git-gutter-mode t)

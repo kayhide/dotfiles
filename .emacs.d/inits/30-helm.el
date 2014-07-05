@@ -21,6 +21,8 @@
      (add-to-list 'helm-completing-read-handlers-alist
                   '(dired-do-copy-regexp . nil))
      (add-to-list 'helm-completing-read-handlers-alist
+                  '(dired-create-directory . nil))
+     (add-to-list 'helm-completing-read-handlers-alist
                   '(lgrep . nil))
      ))
 (helm-mode)
