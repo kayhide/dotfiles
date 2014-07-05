@@ -93,6 +93,9 @@ export INST_DIR=$inst_dir
 alias g='git'
 alias gstatus='git status | lv -c'
 alias glgraph='git log --graph --all --decorate --oneline'
+alias gcheckout='git checkout'
+alias gbranch='git branch'
+alias gmerge='git merge'
 source ~/.git-completion.sh
 
 export PATH="$HOME/.rbenv/bin:$PATH"
