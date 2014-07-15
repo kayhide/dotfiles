@@ -1,3 +1,6 @@
+;; js-mode
+(add-to-list 'auto-mode-alist '("\\.js.erb\\'" . js-mode))
+
 ;; coffee-mode
 (autoload 'coffee-mode "coffee-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.coffee\\'" . coffee-mode))
@@ -6,6 +9,7 @@
      (setq coffee-tab-width 2)))
 
 ;; scss-mode
+(add-to-list 'auto-mode-alist '("\\.scss.erb\\'" . slim-mode))
 (eval-after-load 'scss-mode
   '(progn
      (setq scss-compile-at-save nil)

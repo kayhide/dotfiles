@@ -15,7 +15,9 @@
          (lambda (buf)
            (with-current-buffer buf
              (or buffer-file-name
-                 list-buffers-directory)))
+                 list-buffers-directory
+                 (string-match-p "\*ag " (buffer-name))
+                 (string-match-p "\*vc" (buffer-name)))))
          (buffer-list)))
   (delete-other-windows))
 
