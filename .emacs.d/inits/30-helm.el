@@ -1,6 +1,8 @@
 (require 'helm-config)
 ;; (setq helm-c-filelist-file-name "/tmp/all.filelist")
 ;; (setq helm-grep-candidates-fast-directory-regexp "^/tmp")
+;; (custom-set-variables '(helm-ff-auto-update-initial-value nil))
+
 (eval-after-load 'helm
   '(let ((map helm-map))
      (define-key map (kbd "C-h") 'delete-backward-char)

@@ -1,5 +1,6 @@
 (require 'yasnippet)
-(setq yas-snippet-dirs '("~/.emacs.d/snippets"
+(setq yas-snippet-dirs '("~/.snippets"
+                         "~/.emacs.d/snippets"
                          "~/.emacs.d/snippets_imported"))
 (yas-global-mode 1)
 (setq yas-buffer-local-condition t)

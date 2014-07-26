@@ -13,6 +13,7 @@
     auto-complete
     yasnippet
     projectile
+    projectile-rails
     helm
     helm-ag
     helm-descbinds
@@ -59,6 +60,7 @@
 (require 'migemo)
 
 (projectile-global-mode)
+(add-hook 'projectile-mode-hook 'projectile-rails-on)
 
 (require 'git-gutter-fringe)
 (global-git-gutter-mode t)
