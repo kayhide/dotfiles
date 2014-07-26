@@ -70,6 +70,8 @@ alias gfffinish='git flow feature finish'
 
 alias -g G='| grep'
 alias -g L='| lv -c'
+alias -g X='| xargs'
+alias -g XG='| xargs grep'
 
 alias -g r='rails'
 alias -g sr='spring rails'
