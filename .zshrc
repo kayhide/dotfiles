@@ -75,7 +75,14 @@ alias -g XG='| xargs grep'
 
 alias -g r='rails'
 alias -g sr='spring rails'
+alias -g RED='RAILS_ENV=development'
 alias -g RET='RAILS_ENV=test'
+alias -g REP='RAILS_ENV=production'
+
+alias rdmigrate='rake db:migrate'
+alias rdstatus='rake db:migrate:status'
+alias rdrollback='rake db:rollback'
+
 
 alias -g mm='middleman'
 
