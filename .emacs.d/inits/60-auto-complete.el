@@ -10,3 +10,6 @@
 (setq ac-use-quick-help nil)   ;; クイックヘルプ
 (setq ac-quick-help-delay 1.0) ;; n秒後にクイックヘルプを表示
 (setq ac-ignore-case nil)      ;; 大文字・小文字を区別
+
+(add-to-list 'ac-modes 'enh-ruby-mode)
+(add-to-list 'ac-modes 'web-mode)

@@ -3,6 +3,9 @@
 (find-function-setup-keys)
 (ffap-bindings)
 
+(cua-mode t)
+(setq cua-enable-cua-keys nil)
+
 (setq-default indent-tabs-mode nil)
 (global-auto-revert-mode t)
 
