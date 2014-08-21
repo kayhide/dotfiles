@@ -35,4 +35,7 @@ cask install bettertouchtool
 tap sanemat/font
 install ricty
 
+tap peco/peco
+install peco
+
 linkapps
