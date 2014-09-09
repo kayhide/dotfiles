@@ -11,6 +11,7 @@ install tmux
 install reattach-to-user-namespace
 install cmigemo
 install rbenv
+install rbenv-default-gems
 install ruby-build
 install hub
 install gist
