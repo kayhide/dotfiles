@@ -10,7 +10,7 @@
 (global-set-key (kbd "s-¥") 'split-window-right)
 (global-set-key (kbd "s--") 'split-window-below)
 (global-set-key (kbd "s-0") 'delete-window)
-
+(global-set-key (kbd "M-_") 'fixup-whitespace)
 
 (global-set-key (kbd "<next>") 'scroll-other-window)
 (global-set-key (kbd "<prior>") 'scroll-other-window-down)
