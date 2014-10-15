@@ -83,6 +83,12 @@ alias rdmigrate='rake db:migrate'
 alias rdstatus='rake db:migrate:status'
 alias rdrollback='rake db:rollback'
 
+alias powopen='powder open'
+alias powlink='powder link'
+alias powunlink='powder unlink'
+alias powstop='powder stop'
+alias powstart='powder start'
+alias powrestart='powder stop; powder start'
 
 alias -g mm='middleman'
 
