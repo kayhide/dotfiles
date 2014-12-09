@@ -21,7 +21,6 @@ install redis
 install imagemagick
 install node.js
 install python
-install aws-elasticbeanstalk
 
 tap caskroom/cask
 install brew-cask
