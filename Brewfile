@@ -31,8 +31,11 @@ cask install evernote
 cask install alfred
 cask alfred link
 # cask install mactex
-cask install keyremap4macbook
+cask install karabiner
 cask install bettertouchtool
+cask install dropbox
+cask install gyazo
+cask install xquartz
 
 tap sanemat/font
 install ricty
