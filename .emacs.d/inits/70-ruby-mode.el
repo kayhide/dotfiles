@@ -13,6 +13,7 @@
 (add-to-list 'auto-mode-alist '("Guardfile$" . enh-ruby-mode))
 (add-to-list 'auto-mode-alist '("Capfile$" . enh-ruby-mode))
 (add-to-list 'auto-mode-alist '(".cap$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '(".thor$" . enh-ruby-mode))
 
 (add-hook 'enh-ruby-mode-hook
           (setq enh-ruby-deep-indent-paren nil)

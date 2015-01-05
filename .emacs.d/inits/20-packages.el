@@ -12,6 +12,7 @@
     color-theme
     auto-complete
     yasnippet
+    cn-outline
     projectile
     projectile-rails
     helm
@@ -64,3 +65,6 @@
 
 (require 'git-gutter-fringe)
 (global-git-gutter-mode t)
+
+(require 'cn-outline)
+(setq-default cn-outline t)
