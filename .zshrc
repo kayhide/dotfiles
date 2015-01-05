@@ -118,6 +118,7 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 export PATH="./bin:$HOME/bin:$PATH"
 
+export ANDROID_HOME="/usr/local/opt/android-sdk"
 
 
 function cdgem() {
