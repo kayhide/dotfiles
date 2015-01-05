@@ -103,6 +103,7 @@ export VISUAL=$EDITOR
 export PGDATA='/usr/local/var/postgres/9.3'
 export PGHOST='localhost'
 export PGLOG='/usr/local/var/postgres/server.log'
+export PGUSER='postgres'
 
 alias pg_start="pg_ctl start -l $PGLOG"
 alias pg_status="pg_ctl status"
