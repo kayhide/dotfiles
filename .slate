@@ -13,13 +13,16 @@ default 2-monitors count:2
 bind 1:cmd focus 'iTerm'
 bind 2:cmd focus 'Emacs'
 bind 3:cmd focus 'Google Chrome'
+bind 4:cmd focus 'Dash'
 
 bind up:cmd push up bar-resize:screenSizeY
-bind left:cmd push left bar-resize:screenSizeX/2
-bind right:cmd push right bar-resize:screenSizeX/2
+# bind left:cmd push left bar-resize:screenSizeX/2
+# bind right:cmd push right bar-resize:screenSizeX/2
 
 
 bind 0:cmd relaunch
 
 bind e:cmd hint
 bind esc:cmd grid
+
+source .slate.js if_exists
