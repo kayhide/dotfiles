@@ -20,6 +20,9 @@
 (global-set-key (kbd "C-\\") nil)
 (global-set-key (kbd "C-z") nil)
 
+(global-set-key (kbd "s-C") nil)
+(global-set-key (kbd "s-t") nil)
+
 (let ((map dired-mode-map))
   (define-key map (kbd "C-t") nil)
   (define-key map (kbd "RET") 'dired-find-alternate-file)
