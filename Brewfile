@@ -26,21 +26,26 @@ tap caskroom/cask
 install brew-cask
 cask install iterm2
 cask install google-chrome
-cask install picasa
-cask install evernote
 cask install alfred
 cask alfred link
 # cask install mactex
 cask install karabiner
 cask install bettertouchtool
+cask install slate
+cask install picasa
+cask install evernote
 cask install dropbox
 cask install gyazo
 cask install xquartz
+cask install vmware-fusion
 
 tap sanemat/font
 install ricty
 
 tap peco/peco
 install peco
+
+tap gapple/services
+tap petere/postgresql
 
 linkapps
