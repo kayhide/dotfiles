@@ -72,6 +72,7 @@ alias -g G='| grep'
 alias -g L='| lv -c'
 alias -g X='| xargs'
 alias -g XG='| xargs grep'
+alias -g PBCOPY='| pbcopy'
 
 alias -g r='rails'
 alias -g sr='spring rails'
