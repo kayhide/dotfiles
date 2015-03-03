@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<root>
+  <item>
+    <name>Private</name>
+    <item>
+      <name>Command_R to Command_R+Shift_R+Control_R+Option_R</name>
+      <appendix>(+ When you type Command_R only, send KANA/EISUU (toggle))</appendix>
+      <identifier>private.commandR2hyper_toggle_kana_eisuu</identifier>
+      <autogen>__KeyOverlaidModifier__ KeyCode::COMMAND_R, KeyCode::COMMAND_R, ModifierFlag::SHIFT_R, ModifierFlag::CONTROL_R, ModifierFlag::OPTION_R, KeyCode::VK_JIS_TOGGLE_EISUU_KANA</autogen>
+    </item>
+    <item>
+      <name>Command_R+Num to Hyper+Num</name>
+      <identifier>private.commandR_num2hyper_num</identifier>
+      <autogen>__KeyToKey__ KeyCode::KEY_1, ModifierFlag::COMMAND_R, KeyCode::KEY_1, ModifierFlag::COMMAND_R, ModifierFlag::SHIFT_R, ModifierFlag::CONTROL_R, ModifierFlag::OPTION_R</autogen>
+      <autogen>__KeyToKey__ KeyCode::KEY_2, ModifierFlag::COMMAND_R, KeyCode::KEY_2, ModifierFlag::COMMAND_R, ModifierFlag::SHIFT_R, ModifierFlag::CONTROL_R, ModifierFlag::OPTION_R</autogen>
+      <autogen>__KeyToKey__ KeyCode::KEY_3, ModifierFlag::COMMAND_R, KeyCode::KEY_3, ModifierFlag::COMMAND_R, ModifierFlag::SHIFT_R, ModifierFlag::CONTROL_R, ModifierFlag::OPTION_R</autogen>
+      <autogen>__KeyToKey__ KeyCode::KEY_4, ModifierFlag::COMMAND_R, KeyCode::KEY_4, ModifierFlag::COMMAND_R, ModifierFlag::SHIFT_R, ModifierFlag::CONTROL_R, ModifierFlag::OPTION_R</autogen>
+      <autogen>__KeyToKey__ KeyCode::KEY_5, ModifierFlag::COMMAND_R, KeyCode::KEY_5, ModifierFlag::COMMAND_R, ModifierFlag::SHIFT_R, ModifierFlag::CONTROL_R, ModifierFlag::OPTION_R</autogen>
+      <autogen>__KeyToKey__ KeyCode::KEY_6, ModifierFlag::COMMAND_R, KeyCode::KEY_6, ModifierFlag::COMMAND_R, ModifierFlag::SHIFT_R, ModifierFlag::CONTROL_R, ModifierFlag::OPTION_R</autogen>
+      <autogen>__KeyToKey__ KeyCode::KEY_7, ModifierFlag::COMMAND_R, KeyCode::KEY_7, ModifierFlag::COMMAND_R, ModifierFlag::SHIFT_R, ModifierFlag::CONTROL_R, ModifierFlag::OPTION_R</autogen>
+      <autogen>__KeyToKey__ KeyCode::KEY_8, ModifierFlag::COMMAND_R, KeyCode::KEY_8, ModifierFlag::COMMAND_R, ModifierFlag::SHIFT_R, ModifierFlag::CONTROL_R, ModifierFlag::OPTION_R</autogen>
+      <autogen>__KeyToKey__ KeyCode::KEY_9, ModifierFlag::COMMAND_R, KeyCode::KEY_9, ModifierFlag::COMMAND_R, ModifierFlag::SHIFT_R, ModifierFlag::CONTROL_R, ModifierFlag::OPTION_R</autogen>
+      <autogen>__KeyToKey__ KeyCode::KEY_0, ModifierFlag::COMMAND_R, KeyCode::KEY_0, ModifierFlag::COMMAND_R, ModifierFlag::SHIFT_R, ModifierFlag::CONTROL_R, ModifierFlag::OPTION_R</autogen>
+    </item>
+    <item>
+      <name>Command_R+Arrow to Hyper+Arrow</name>
+      <appendix>(except virtual machine, RDC)</appendix>
+      <identifier>private.commandR_arrow2hyper_arrow</identifier>
+      <not>VIRTUALMACHINE, REMOTEDESKTOPCONNECTION</not>
+      <autogen>__KeyToKey__ KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_R, KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_R, ModifierFlag::SHIFT_R, ModifierFlag::CONTROL_R, ModifierFlag::OPTION_R</autogen>
+      <autogen>__KeyToKey__ KeyCode::CURSOR_DOWN, ModifierFlag::COMMAND_R, KeyCode::CURSOR_DOWN, ModifierFlag::COMMAND_R, ModifierFlag::SHIFT_R, ModifierFlag::CONTROL_R, ModifierFlag::OPTION_R</autogen>
+      <autogen>__KeyToKey__ KeyCode::CURSOR_UP, ModifierFlag::COMMAND_R, KeyCode::CURSOR_UP, ModifierFlag::COMMAND_R, ModifierFlag::SHIFT_R, ModifierFlag::CONTROL_R, ModifierFlag::OPTION_R</autogen>
+      <autogen>__KeyToKey__ KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_R, KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_R, ModifierFlag::SHIFT_R, ModifierFlag::CONTROL_R, ModifierFlag::OPTION_R</autogen>
+    </item>
+    <item>
+      <name>Command_L+Arrow to Hyper+Arrow</name>
+      <appendix>(except virtual machine, RDC)</appendix>
+      <identifier>private.commandL_arrow2hyper_arrow</identifier>
+      <not>VIRTUALMACHINE, REMOTEDESKTOPCONNECTION</not>
+      <autogen>__KeyToKey__ KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_L, KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_L, ModifierFlag::SHIFT_L, ModifierFlag::CONTROL_L, ModifierFlag::OPTION_L</autogen>
+      <autogen>__KeyToKey__ KeyCode::CURSOR_DOWN, ModifierFlag::COMMAND_L, KeyCode::CURSOR_DOWN, ModifierFlag::COMMAND_L, ModifierFlag::SHIFT_L, ModifierFlag::CONTROL_L, ModifierFlag::OPTION_L</autogen>
+      <autogen>__KeyToKey__ KeyCode::CURSOR_UP, ModifierFlag::COMMAND_L, KeyCode::CURSOR_UP, ModifierFlag::COMMAND_L, ModifierFlag::SHIFT_L, ModifierFlag::CONTROL_L, ModifierFlag::OPTION_L</autogen>
+      <autogen>__KeyToKey__ KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L, KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L, ModifierFlag::SHIFT_L, ModifierFlag::CONTROL_L, ModifierFlag::OPTION_L</autogen>
+    </item>
+
+    <modifierdef>M0</modifierdef>
+    <modifierdef>M1</modifierdef>
+    <item>
+      <name>Kana+PNBF to Up/Down/Left/Right etc.</name>
+      <appendix>(only virtual machine, RDC)</appendix>
+      <identifier>private.kana_pnbf2arrow</identifier>
+      <only>VIRTUALMACHINE, REMOTEDESKTOPCONNECTION</only>
+      <autogen>__KeyToKey__ KeyCode::JIS_KANA, KeyCode::VK_MODIFIER_M0</autogen>
+      <autogen>__KeyToKey__ KeyCode::JIS_EISUU, KeyCode::VK_MODIFIER_M1</autogen>
+      <autogen>__KeyToKey__ KeyCode::P, ModifierFlag::M0, KeyCode::CURSOR_UP</autogen>
+      <autogen>__KeyToKey__ KeyCode::N, ModifierFlag::M0, KeyCode::CURSOR_DOWN</autogen>
+      <autogen>__KeyToKey__ KeyCode::B, ModifierFlag::M0, KeyCode::CURSOR_LEFT</autogen>
+      <autogen>__KeyToKey__ KeyCode::F, ModifierFlag::M0, KeyCode::CURSOR_RIGHT</autogen>
+
+      <autogen>__KeyToKey__ KeyCode::B, ModifierFlag::M1, KeyCode::CURSOR_LEFT, ModifierFlag::CONTROL_L</autogen>
+      <autogen>__KeyToKey__ KeyCode::F, ModifierFlag::M1, KeyCode::CURSOR_RIGHT, ModifierFlag::CONTROL_L</autogen>
+      <autogen>__KeyToKey__ KeyCode::A, ModifierFlag::M0, KeyCode::HOME</autogen>
+      <autogen>__KeyToKey__ KeyCode::E, ModifierFlag::M0, KeyCode::END</autogen>
+      <autogen>__KeyToKey__ KeyCode::V, ModifierFlag::M0, KeyCode::PAGEDOWN</autogen>
+      <autogen>__KeyToKey__ KeyCode::V, ModifierFlag::M1, KeyCode::PAGEUP</autogen>
+
+      <autogen>__KeyToKey__ KeyCode::J, ModifierFlag::M0, KeyCode::ENTER</autogen>
+      <autogen>__KeyToKey__ KeyCode::M, ModifierFlag::M0, KeyCode::RETURN</autogen>
+      <autogen>__KeyToKey__ KeyCode::H, ModifierFlag::M0, KeyCode::DELETE</autogen>
+      <autogen>__KeyToKey__ KeyCode::D, ModifierFlag::M0, KeyCode::FORWARD_DELETE</autogen>
+      <autogen>__KeyToKey__ KeyCode::SLASH, ModifierFlag::M0, ModifierFlag::M1, KeyCode::Y, ModifierFlag::CONTROL_L</autogen>
+      <autogen>__KeyToKey__ KeyCode::SLASH, ModifierFlag::M0, KeyCode::Z, ModifierFlag::CONTROL_L</autogen>
+      <autogen>__KeyToKey__ KeyCode::G, ModifierFlag::M0, KeyCode::ESCAPE</autogen>
+
+      <autogen>__KeyToKey__ KeyCode::K, ModifierFlag::M0, KeyCode::K, ModifierFlag::CONTROL_L</autogen>
+    </item>
+  </item>
+</root>

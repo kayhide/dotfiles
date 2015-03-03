@@ -39,3 +39,10 @@ task :elisp do
 
   puts `rm wget-log*`  if Dir['wget-log*'].any?
 end
+
+task :karabiner do
+  Dir["#{Dir.pwd}/Karabiner/*.xml"].sort.each do |f|
+    puts "making symbolic link: #{f}"
+    FileUtils.ln_sf f, File.expand_path('~/Library/Application Support/Karabiner/')
+  end
+end
