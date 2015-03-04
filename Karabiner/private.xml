@@ -68,11 +68,22 @@
       <autogen>__KeyToKey__ KeyCode::M, ModifierFlag::M0, KeyCode::RETURN</autogen>
       <autogen>__KeyToKey__ KeyCode::H, ModifierFlag::M0, KeyCode::DELETE</autogen>
       <autogen>__KeyToKey__ KeyCode::D, ModifierFlag::M0, KeyCode::FORWARD_DELETE</autogen>
-      <autogen>__KeyToKey__ KeyCode::SLASH, ModifierFlag::M0, ModifierFlag::M1, KeyCode::Y, ModifierFlag::CONTROL_L</autogen>
-      <autogen>__KeyToKey__ KeyCode::SLASH, ModifierFlag::M0, KeyCode::Z, ModifierFlag::CONTROL_L</autogen>
+      <autogen>__KeyToKey__ KeyCode::D, ModifierFlag::M1, KeyCode::FORWARD_DELETE, ModifierFlag::CONTROL_L</autogen>
       <autogen>__KeyToKey__ KeyCode::G, ModifierFlag::M0, KeyCode::ESCAPE</autogen>
 
+      <autogen>__KeyToKey__ KeyCode::SLASH, ModifierFlag::M0, ModifierFlag::M1, KeyCode::Z, ModifierFlag::CONTROL_L, ModifierFlag::OPTION_L</autogen>
+      <autogen>__KeyToKey__ KeyCode::SLASH, ModifierFlag::M0, KeyCode::Z, ModifierFlag::CONTROL_L</autogen>
+
       <autogen>__KeyToKey__ KeyCode::K, ModifierFlag::M0, KeyCode::K, ModifierFlag::CONTROL_L</autogen>
+      <autogen>__KeyToKey__ KeyCode::X, ModifierFlag::M0, KeyCode::X, ModifierFlag::CONTROL_L</autogen>
+      <autogen>__KeyToKey__ KeyCode::S, ModifierFlag::M0, KeyCode::S, ModifierFlag::CONTROL_L</autogen>
+      <autogen>__KeyToKey__ KeyCode::W, ModifierFlag::M0, KeyCode::W, ModifierFlag::CONTROL_L</autogen>
+      <autogen>__KeyToKey__ KeyCode::W, ModifierFlag::M1, KeyCode::W, ModifierFlag::OPTION_L</autogen>
+      <autogen>__KeyToKey__ KeyCode::Y, ModifierFlag::M0, KeyCode::Y, ModifierFlag::CONTROL_L</autogen>
+      <autogen>__KeyToKey__ KeyCode::TAB, ModifierFlag::M0, KeyCode::TAB, ModifierFlag::CONTROL_L</autogen>
+      <autogen>__KeyToKey__ KeyCode::TAB, ModifierFlag::M1, KeyCode::TAB, ModifierFlag::OPTION_L</autogen>
+      <autogen>__KeyToKey__ KeyCode::F4, ModifierFlag::M0, KeyCode::F4, ModifierFlag::CONTROL_L</autogen>
+      <autogen>__KeyToKey__ KeyCode::F4, ModifierFlag::M1, KeyCode::F4, ModifierFlag::OPTION_L</autogen>
     </item>
   </item>
 </root>
