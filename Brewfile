@@ -13,6 +13,7 @@ install cmigemo
 install rbenv
 install rbenv-default-gems
 install ruby-build
+install rsense
 install hub
 install gist
 install postgresql
@@ -21,6 +22,8 @@ install redis
 install imagemagick
 install node.js
 install python
+install lua
+install vim --with-lua
 
 tap caskroom/cask
 install brew-cask
@@ -40,7 +43,7 @@ cask install xquartz
 cask install vmware-fusion
 
 tap sanemat/font
-install ricty
+install ricty --vim-powerline
 
 tap peco/peco
 install peco
