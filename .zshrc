@@ -68,6 +68,8 @@ alias gflow='git flow'
 alias gffstart='git flow feature start'
 alias gfffinish='git flow feature finish'
 
+alias vf='vim +VimFiler'
+
 alias -g G='| grep'
 alias -g L='| lv -c'
 alias -g X='| xargs'
