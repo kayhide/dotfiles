@@ -59,6 +59,10 @@ NeoBundleCheck
 inoremap <silent> jj <ESC>
 nnoremap <silent> <C-L> :<C-U>noh<C-L><CR>
 nnoremap <silent> <C-X><C-O> :<C-U>VimFilerBufferDir<CR>
+cnoremap <C-G> <C-C>
+cnoremap <C-A> <Home>
+cnoremap <C-F> <Right>
+cnoremap <C-B> <Left>
 
 " set encoding=utf-8
 " set fileencodings=ucs-bom,utf-8,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932
@@ -104,7 +108,7 @@ nnoremap <silent> <C-p> :<C-u>Unite file_rec/async:!<CR>
 " unite grep に ag(The Silver Searcher) を使う
 if executable('ag')
         let g:unite_source_grep_command='ag'
-        let g:unite_source_grep_default_opts='--nogroup --nocolor --column'
+        let g:unite_source_grep_default_opts='--nogroup --nocolor'
         let g:unite_source_grep_recursive_opt=''
         let g:unite_source_rec_async_command= 'ag --nocolor --nogroup --hidden -g ""'
 endif
