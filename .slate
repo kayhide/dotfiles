@@ -14,6 +14,7 @@ bind 1:cmd focus 'iTerm'
 bind 2:cmd focus 'Emacs'
 bind 3:cmd focus 'Google Chrome'
 bind 4:cmd focus 'Dash'
+bind 5:cmd focus 'Evernote'
 
 bind up:cmd push up bar-resize:screenSizeY
 # bind left:cmd push left bar-resize:screenSizeX/2
