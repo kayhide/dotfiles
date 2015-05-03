@@ -7,23 +7,34 @@ config checkDefaultsOnLoad true
 layout 1-monitor 'Google Chrome' throw 0 resize
 layout 2-monitors 'Google Chrome' throw 1 resize
 
+layout 1-monitor 'Emacs' throw 0 resize
+layout 2-monitors 'Emacs' throw 0 resize
+
 default 1-monitors count:1
 default 2-monitors count:2
+
 
 bind 1:cmd focus 'iTerm'
 bind 2:cmd focus 'Emacs'
 bind 3:cmd focus 'Google Chrome'
 bind 4:cmd focus 'Dash'
 bind 5:cmd focus 'Evernote'
+bind 7:cmd focus 'VMware Fusion'
 
 bind up:cmd push up bar-resize:screenSizeY
 # bind left:cmd push left bar-resize:screenSizeX/2
 # bind right:cmd push right bar-resize:screenSizeX/2
 
-
 bind 0:cmd relaunch
 
 bind e:cmd hint
 bind esc:cmd grid
+
+alias hyper ctrl;shift;alt;cmd
+
+bind up:${hyper} push up bar-resize:screenSizeY
+# bind left:${hyper} push left bar-resize:screenSizeX/2
+# bind right:${hyper} push right bar-resize:screenSizeX/2
+
 
 source .slate.js if_exists

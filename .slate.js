@@ -45,7 +45,7 @@ var push = function(win, direction, screen) {
 }
 
 slate.bindAll({
-    'left:cmd': function(win) {
+    'left:shift,cmd,ctrl,alt': function(win) {
         if (!win) return;
         if (push(win, 'left')) {
         }
@@ -59,7 +59,21 @@ slate.bindAll({
             }
         }
     },
-    'right:cmd': function(win) {
+    'right:shift,cmd,ctrl,alt': function(win) {
+        if (!win) return;
+        if (push(win, 'right')) {
+        }
+        else {
+            var rect = win.rect();
+            var pt = {x: rect.x + rect.width + tolerance, y: rect.y};
+            if (!slate.isPointOffScreen(pt)) {
+                var screen = slate.screenUnderPoint(pt);
+                push(win, 'left', screen);
+                push(win, 'left');
+            }
+        }
+    },
+    'right:alt,cmd': function(win) {
         if (!win) return;
         if (push(win, 'right')) {
         }
