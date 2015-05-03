@@ -43,4 +43,10 @@ install ricty
 tap peco/peco
 install peco
 
+tap petere/postgresql
+# install postgresql-9.3
+
+tap homebrew/dupes
+install openldap
+
 linkapps
