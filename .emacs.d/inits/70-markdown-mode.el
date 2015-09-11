@@ -8,5 +8,5 @@
 (eval-after-load 'markdown-mode
   '(progn
      ;; (setq markdown-command-needs-filename t)
-     (setq markdown-command "/usr/local/bin/multimarkdown")
+     (setq-default markdown-command "/usr/local/bin/multimarkdown")
      ))

@@ -1,4 +1,6 @@
+(require 'helm)
 (require 'helm-config)
+(require 'helm-descbinds)
 ;; (setq helm-c-filelist-file-name "/tmp/all.filelist")
 ;; (setq helm-grep-candidates-fast-directory-regexp "^/tmp")
 ;; (custom-set-variables '(helm-ff-auto-update-initial-value nil))
@@ -12,6 +14,7 @@
 (eval-after-load 'helm-mode
   '(progn
      (setq helm-split-window-default-side 'right)
+     (defvar helm-completing-read-handlers-alist)
      (add-to-list 'helm-completing-read-handlers-alist
                   '(find-file . nil))
      (add-to-list 'helm-completing-read-handlers-alist
@@ -28,9 +31,7 @@
                   '(lgrep . nil))
      ))
 (helm-mode)
-
-(require 'helm-descbinds)
 (helm-descbinds-mode)
 
-(setq moccur-split-word t)
+(setq-default moccur-split-word t)
 (define-key isearch-mode-map (kbd "C-o") 'helm-occur-from-isearch)

@@ -22,7 +22,7 @@
 ;; 行番号のフォーマット
 ;; (set-face-attribute 'linum nil :foreground "red" :height 0.8)
 (set-face-attribute 'linum nil :height 0.8)
-(setq linum-format "%4d")
+(setq-default linum-format "%4d")
 
 ;; ------------------------------------------------------------------------
 ;; @ modeline

@@ -36,6 +36,7 @@
     pov-mode
     ))
 
+(require 'package)
 (let ((not-installed (loop for x in installing-package-list
                            when (not (package-installed-p x))
                            collect x)))
@@ -43,7 +44,6 @@
     (package-refresh-contents)
     (dolist (pkg not-installed)
       (package-install pkg))))
-
 
 
 (require 'open-junk-file)
@@ -59,9 +59,6 @@
 (require 'color-moccur)
 
 (require 'migemo)
-
-(projectile-global-mode)
-(add-hook 'projectile-mode-hook 'projectile-rails-on)
 
 (require 'git-gutter-fringe)
 (global-git-gutter-mode t)

@@ -16,15 +16,19 @@
 (add-to-list 'auto-mode-alist '(".thor$" . enh-ruby-mode))
 (add-to-list 'auto-mode-alist '(".pryrc$" . enh-ruby-mode))
 
-(add-hook 'enh-ruby-mode-hook
-          (setq enh-ruby-deep-indent-paren nil)
-          (custom-set-faces
-           '(erm-syn-errline ((t (:underline (:color "red"))))))
-          (custom-set-faces
-           '(erm-syn-warnline ((t (:underline (:color "orange")))))))
+(setq-default ruby-insert-encoding-magic-comment nil)
+
+(custom-set-variables
+ '(enh-ruby-add-encoding-comment-on-save nil)
+ '(enh-ruby-deep-indent-paren nil)
+ )
+(custom-set-faces
+ '(erm-syn-errline ((t (:underline (:color "red")))))
+ '(erm-syn-warnline ((t (:underline (:color "orange"))))))
 
 (eval-after-load 'align
   '(progn
+     (defvar align-rules-list)
      (add-to-list 'align-rules-list
                   '(ruby-comma-delimiter
                     (regexp . ",\\(\\s-*\\)[^# \t\n]")
@@ -46,9 +50,6 @@
                     (repeat . nil)
                     (modes  . '(enh-ruby-mode))))))
 
-(defadvice enh-ruby-mode-set-encoding (around suppress-enh-ruby-mode-set-encoding))
-(ad-activate 'enh-ruby-mode-set-encoding)
-
 ;; ------------------------------------------------------------------------
 ;; @ motion
 (require 'motion-mode)
@@ -61,4 +62,3 @@
   (define-key map (kbd "C-c C-c") 'motion-execute-rake)
   (define-key map (kbd "C-c C-d") 'motion-dash-at-point)
   map)
-

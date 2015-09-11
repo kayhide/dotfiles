@@ -4,7 +4,7 @@
 (ffap-bindings)
 
 (cua-mode t)
-(setq cua-enable-cua-keys nil)
+(setq-default cua-enable-cua-keys nil)
 
 (setq-default indent-tabs-mode nil)
 (global-auto-revert-mode t)
@@ -23,10 +23,10 @@
 ;; @ dired
 (eval-after-load 'dired
  '(progn
-    (setq ls-lisp-dirs-first t)
-    (setq dired-dwim-target t)
-    (setq dired-recursive-copies 'always)
-    (setq dired-recursive-deletes 'always)))
+    (setq-default ls-lisp-dirs-first t)
+    (setq-default dired-dwim-target t)
+    (setq-default dired-recursive-copies 'always)
+    (setq-default dired-recursive-deletes 'always)))
 
 (put 'dired-find-alternate-file 'disabled nil)
 
@@ -39,7 +39,7 @@
 ;; ------------------------------------------------------------------------
 ;; @ ediff-util
 (require 'ediff-util)
-(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq-default ediff-window-setup-function 'ediff-setup-windows-plain)
 
 ;; ------------------------------------------------------------------------
 ;; @ align

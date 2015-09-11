@@ -10,8 +10,8 @@
 (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
 (eval-after-load 'eldoc
   '(progn
-     (setq eldoc-idle-delay 0.5)
-     (setq eldoc-minor-mode-string "")))
+     (setq-default eldoc-idle-delay 0.5)
+     (setq-default eldoc-minor-mode-string "")))
 
 
 ;; lispxmp
@@ -24,6 +24,7 @@
 (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
 (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
 (add-hook 'ielm-mode-hook 'enable-paredit-mode)
+(defvar paredit-mode-map)
 (eval-after-load 'paredit
   '(let ((map paredit-mode-map))
      (define-key map (kbd "C-j") nil)
@@ -39,4 +40,4 @@
 (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
 (eval-after-load 'auto-async-byte-compile
   '(progn
-     (setq auto-async-byte-compile-exclude-files-regexp "/junk/")))
+     (setq-default auto-async-byte-compile-exclude-files-regexp "/junk/")))
