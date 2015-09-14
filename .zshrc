@@ -115,6 +115,7 @@ alias pg_stop="pg_ctl stop -m s"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which hub > /dev/null; then eval "$(hub alias -s)"; fi
 
+export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
 export PATH="/usr/texbin:$PATH"
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -123,11 +124,31 @@ export PATH="./bin:$HOME/bin:$PATH"
 
 export ANDROID_HOME="/usr/local/opt/android-sdk"
 
+export RUBYMOTION_ANDROID_SDK="$HOME/.rubymotion-android/sdk"
+export RUBYMOTION_ANDROID_NDK="$HOME/.rubymotion-android/ndk"
 
 function cdgem() {
-    local gem_name=$(bundle list | sed -e 's/^ *\* *//g' | peco | cut -d \  -f 1)
-    if [ -n "$gem_name" ]; then
-        local gem_dir=$(bundle show ${gem_name})
-        cd $gem_dir
-    fi
+  local gem_name=$(bundle list | sed -e 's/^ *\* *//g' | peco | cut -d \  -f 1)
+  if [ -n "$gem_name" ]; then
+    local gem_dir=$(bundle show ${gem_name})
+    cd $gem_dir
+  fi
 }
+
+function peco-path() {
+  local filepath="$(find . | grep -v '/\.' | peco --prompt 'PATH>')"
+  [ -z "$filepath" ] && return
+  if [ -n "$LBUFFER" ]; then
+    BUFFER="$LBUFFER$filepath"
+  else
+    if [ -d "$filepath" ]; then
+      BUFFER="cd $filepath"
+    elif [ -f "$filepath" ]; then
+      BUFFER="$EDITOR $filepath"
+    fi
+  fi
+  CURSOR=$#BUFFER
+}
+
+zle -N peco-path
+# bindkey '^f' peco-path # Ctrl+f で起動
