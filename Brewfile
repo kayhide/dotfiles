@@ -24,6 +24,7 @@ install node.js
 install python
 install lua
 install vim --with-lua
+# install macvim --with-lua
 
 tap caskroom/cask
 install brew-cask
