@@ -5,6 +5,7 @@
 	ui = true
 [core]
 	pager = lv -c
+	excludesfile = ~/.gitignore
 [push]
 	default = simple
 [pager]
