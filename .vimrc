@@ -46,6 +46,7 @@ NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'slim-template/vim-slim'
+NeoBundle 'elixir-lang/vim-elixir'
 
 NeoBundle 'ujihisa/unite-colorscheme'
 
@@ -59,6 +60,10 @@ NeoBundleCheck
 inoremap <silent> jj <ESC>
 nnoremap <silent> <C-L> :<C-U>noh<C-L><CR>
 nnoremap <silent> <C-X><C-O> :<C-U>VimFilerBufferDir<CR>
+nnoremap <silent> ]<Space> :<C-U>put =repeat(nr2char(10),v:count)<Bar>execute "'[-1"<CR>
+nnoremap <silent> [<Space> :<C-u>put!=repeat(nr2char(10),v:count)<Bar>execute "']+1"<CR>
+nnoremap <C-W><C-P> <C-W>o<C-W><C-V><C-W><C-W>
+nnoremap <C-W><C-A> <C-W>o<C-W><C-V><C-W><C-W>:<C-U>A<CR>
 cnoremap <C-G> <C-C>
 cnoremap <C-A> <Home>
 cnoremap <C-F> <Right>
@@ -77,7 +82,7 @@ set smartcase
 set incsearch
 set hlsearch
 set number
-
+set autoread
 
 "colors
 syntax enable
