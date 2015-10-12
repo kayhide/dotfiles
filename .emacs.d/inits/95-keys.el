@@ -24,6 +24,7 @@
 
 (let ((map dired-mode-map))
   (define-key map (kbd "C-t") nil)
+  (define-key map (kbd "C-l") 'revert-buffer)
   (define-key map (kbd "RET") 'dired-find-alternate-file)
   (define-key map (kbd "^")
     (lambda () (interactive) (find-alternate-file ".."))))
