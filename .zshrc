@@ -56,6 +56,7 @@ alias ll='ls -l'
 alias la='ls -A'
 alias lla='ls -lA'
 alias tree='tree -N'
+alias lv='lv -c'
 
 alias g='git'
 alias gstatus='git status | lv -c'
@@ -92,6 +93,10 @@ alias powunlink='powder unlink'
 alias powstop='powder stop'
 alias powstart='powder start'
 alias powrestart='powder stop; powder start'
+
+alias -g MED='MOTION_ENV=development'
+alias -g MET='MOTION_ENV=test'
+alias -g MEP='MOTION_ENV=production'
 
 alias -g mm='middleman'
 
