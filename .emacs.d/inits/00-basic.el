@@ -21,14 +21,14 @@
 
 ;; ------------------------------------------------------------------------
 ;; @ dired
-(eval-after-load 'dired
- '(progn
-    (setq-default ls-lisp-dirs-first t)
-    (setq-default dired-dwim-target t)
-    (setq-default dired-recursive-copies 'always)
-    (setq-default dired-recursive-deletes 'always)))
 
-(put 'dired-find-alternate-file 'disabled nil)
+(setq-default ls-lisp-dirs-first t)
+(setq-default dired-isearch-filenames t)
+(setq-default dired-dwim-target t)
+(setq-default dired-recursive-copies 'always)
+(setq-default dired-recursive-deletes 'always)
+
+;; (put 'dired-find-alternate-file 'disabled nil)
 
 
 ;; ------------------------------------------------------------------------
@@ -50,3 +50,5 @@
 (require 'server)
 (unless (server-running-p)
   (server-start))
+
+(remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)

@@ -51,6 +51,14 @@
                     (modes  . '(enh-ruby-mode))))))
 
 ;; ------------------------------------------------------------------------
+;; @ inf-ruby
+(require 'inf-ruby)
+(setq-default inf-ruby-default-implementation "pry")
+(setq-default inf-ruby-eval-binding "Pry.toplevel_binding")
+
+(add-hook 'inf-ruby-mode-hook 'ansi-color-for-comint-mode-on)
+
+;; ------------------------------------------------------------------------
 ;; @ motion
 (require 'motion-mode)
 ;; following adding of hook is very important.

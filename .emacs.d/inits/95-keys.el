@@ -25,9 +25,10 @@
 (let ((map dired-mode-map))
   (define-key map (kbd "C-t") nil)
   (define-key map (kbd "C-l") 'revert-buffer)
-  (define-key map (kbd "RET") 'dired-find-alternate-file)
-  (define-key map (kbd "^")
-    (lambda () (interactive) (find-alternate-file ".."))))
+  ;; (define-key map (kbd "RET") 'dired-find-alternate-file)
+  ;; (define-key map (kbd "^")
+    ;; (lambda () (interactive) (find-alternate-file "..")))
+  )
 
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 
@@ -47,7 +48,7 @@
 
 (eval-after-load 'wgrep
   '(progn
-     (setq wgrep-enable-key (kbd "r"))))
+     (setq-default wgrep-enable-key (kbd "r"))))
 
 (eval-after-load 'projectile
   '(progn

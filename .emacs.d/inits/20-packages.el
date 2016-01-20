@@ -20,6 +20,7 @@
     helm-descbinds
     helm-c-yasnippet
     helm-projectile
+    helm-swoop
     lispxmp
     smartparens
     auto-async-byte-compile
