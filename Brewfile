@@ -25,6 +25,7 @@ install python
 install lua
 install vim --with-lua
 # install macvim --with-lua
+install graphviz --with-gts
 
 tap caskroom/cask
 install brew-cask
