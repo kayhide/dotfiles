@@ -28,6 +28,14 @@
   ad-do-it)
 (ad-activate 'save-buffer)
 
+;; what-cursor-position
+(defadvice what-cursor-position (around what-cursor-position-around)
+  (if current-prefix-arg
+      (describe-char (point))
+    ad-do-it
+    ))
+(ad-activate 'what-cursor-position)
+
 ;; minibuffer
 (defun strip-last-basename ()
   (interactive)

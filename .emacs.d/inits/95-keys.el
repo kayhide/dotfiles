@@ -6,21 +6,21 @@
 (global-set-key (kbd "<f8>") 'shell-command)
 (global-set-key (kbd "C-<f8>") 'shell-command-on-region)
 (global-set-key (kbd "C-x C-o") 'dired-jump)
-(global-set-key (kbd "S-¥") 'split-window-right)
-(global-set-key (kbd "S--") 'split-window-below)
-(global-set-key (kbd "S-0") 'delete-window)
+(global-set-key (kbd "s-¥") 'split-window-right)
+(global-set-key (kbd "s--") 'split-window-below)
+(global-set-key (kbd "s-0") 'delete-window)
 (global-set-key (kbd "M-_") 'fixup-whitespace)
 
 (global-set-key (kbd "<next>") 'scroll-other-window)
 (global-set-key (kbd "<prior>") 'scroll-other-window-down)
-(global-set-key (kbd "S-<next>") (lambda () (interactive) (scroll-other-window 1)))
-(global-set-key (kbd "S-<prior>") (lambda () (interactive) (scroll-other-window -1)))
+(global-set-key (kbd "s-<next>") (lambda () (interactive) (scroll-other-window 1)))
+(global-set-key (kbd "s-<prior>") (lambda () (interactive) (scroll-other-window -1)))
 
 (global-set-key (kbd "C-\\") nil)
 (global-set-key (kbd "C-z") nil)
 
-(global-set-key (kbd "S-c") nil)
-(global-set-key (kbd "S-t") nil)
+(global-set-key (kbd "s-c") nil)
+(global-set-key (kbd "s-t") nil)
 
 (let ((map dired-mode-map))
   (define-key map (kbd "C-t") nil)
@@ -52,7 +52,7 @@
 
 (eval-after-load 'projectile
   '(progn
-     (define-key projectile-mode-map (kbd "C-M-S-s") 'projectile-ag)))
+     (define-key projectile-mode-map (kbd "C-M-s-s") 'projectile-ag)))
 
 (eval-after-load 'helm-config
   '(progn

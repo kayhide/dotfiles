@@ -1,5 +1,5 @@
 ;; frame
-(if window-system (set-frame-parameter nil 'alpha 85))
+(if window-system (set-frame-parameter nil 'alpha 75))
 
 
 ;; font
