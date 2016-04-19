@@ -57,6 +57,7 @@ alias la='ls -A'
 alias lla='ls -lA'
 alias tree='tree -N'
 alias lv='lv -c'
+alias less='less -R'
 
 alias g='git'
 alias gstatus='git status | lv -c'
