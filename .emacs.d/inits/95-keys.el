@@ -33,14 +33,6 @@
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 
 ;; packages
-(eval-after-load 'open-junk-file
-  '(progn
-     (global-set-key (kbd "C-x C-z") 'open-junk-file)))
-
-(eval-after-load 'redo+
-  '(progn
-     (global-set-key (kbd "C-M-/") 'redo)))
-
 (eval-after-load 'skk-autoloads
   '(progn
      (global-set-key (kbd "<zenkaku-hankaku>") 'skk-mode)
@@ -52,7 +44,7 @@
 
 (eval-after-load 'projectile
   '(progn
-     (define-key projectile-mode-map (kbd "C-M-s-s") 'projectile-ag)))
+     (define-key projectile-mode-map (kbd "C-M-S") 'projectile-ag)))
 
 (eval-after-load 'helm-config
   '(progn
