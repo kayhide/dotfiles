@@ -1,14 +1,33 @@
-(require 'projectile)
-(setq-default projectile-switch-project-action 'projectile-dired)
-(setq-default projectile-completion-system 'helm)
-(setq-default helm-projectile-fuzzy-match nil)
+(eval-when-compile
+  (require 'use-package))
 
-(projectile-global-mode)
-(add-hook 'projectile-mode-hook 'projectile-rails-on)
+(require 'bind-key)
 
-(require 'f)
-(require 's)
-(require 'dash)
+(use-package projectile
+  :bind
+  (:map
+   projectile-mode-map
+   ("C-M-s" . projectile-ag))
+
+  :init
+  (projectile-global-mode)
+  (add-hook 'projectile-mode-hook 'projectile-rails-on)
+
+  :config
+  (setq-default projectile-switch-project-action 'projectile-dired)
+  (setq-default projectile-completion-system 'helm)
+  (setq-default helm-projectile-fuzzy-match nil)
+  )
+
+(use-package projectile-direnv
+  :commands (projectile-direnv-export-variables)
+  :init
+  (add-hook 'projectile-mode-hook 'projectile-direnv-export-variables)
+  )
+
+(use-package f)
+(use-package s)
+(use-package dash)
 (defun projectile-root-ruby-gem (dir &optional _)
   (let* ((patterns '("^ruby$" "^gems$" "^[0-9\.]+$" "^gems$" ".+"))
          (len (length patterns))

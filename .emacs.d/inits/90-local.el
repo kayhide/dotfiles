@@ -1,4 +1,9 @@
-(eval-when-compile (require 'cl))
+(eval-when-compile
+  (require 'use-package)
+  (require 'cl))
+
+(use-package bind-key)
+(use-package dash)
 
 ;; window split
 (defun other-window-or-split ()
@@ -6,12 +11,14 @@
   (when (one-window-p)
     (split-window-horizontally))
   (other-window 1))
+(bind-key "C-t" 'other-window-or-split)
+(bind-key "C-M-t" 'delete-other-windows)
 
 ;; kill-all-buffers
 (defun kill-all-buffers ()
   (interactive)
   (mapc 'kill-buffer
-        (remove-if-not
+        (-filter
          (lambda (buf)
            (with-current-buffer buf
              (or buffer-file-name
@@ -20,6 +27,7 @@
                  (string-match-p "\*vc" (buffer-name)))))
          (buffer-list)))
   (delete-other-windows))
+(bind-key "<f12>" 'kill-all-buffers)
 
 ;; save-buffer
 (defadvice save-buffer (around save-buffer-around)
@@ -44,7 +52,4 @@
     (when (re-search-backward "/[^/]+/?" nil t)
       (forward-char 1)
       (delete-region (point) current-pt))))
-
-;; deneb-mode
-(add-to-list 'load-path "~/.emacs.d/elisp")
-(require 'deneb-mode)
+(bind-key "C-l" 'strip-last-basename minibuffer-local-map)

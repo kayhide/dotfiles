@@ -1,8 +1,10 @@
 (eval-when-compile
   (require 'use-package))
 
+(require 'bind-key)
+(require 'diminish)
+
 (use-package yasnippet
-  :defer t
   :diminish (yas-minor-mode yas-global-mode)
   :functions (yas-global-mode)
   :bind (:map

@@ -1,7 +1,6 @@
 ;; frame
 (if window-system (set-frame-parameter nil 'alpha 75))
 
-
 ;; font
 (let* ((height 140)
        (fontname "Ricty")
@@ -15,6 +14,8 @@
   (set-fontset-font nil '(#x0080 . #x024F) fontspec)
   (set-fontset-font nil '(#x0370 . #x03FF) fontspec))
 
+;; dired
+(setq-default dired-use-ls-dired nil)
 
 ;; migemo
 (eval-after-load "migemo"
