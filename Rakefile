@@ -2,11 +2,13 @@ $>.sync = true
 
 task :default => [:submodule, :symlink, :elisp]
 
+desc 'Update git submodules'
 task :submodule do
   puts "updating git submodules."
   puts `git submodule update --init --recursive`
 end
 
+desc 'Create symlinks for dotfiles and bin files'
 task :symlink do
   exclusive_files = %w(. .. .git .gitignore .gitmodules)
   Dir["#{Dir.pwd}/.*"].reject do |f|
@@ -28,18 +30,7 @@ task :symlink do
   end
 end
 
-task :elisp do
-  exclusive_putterns = %w(elisp)
-  ptn = /#{exclusive_putterns.join('|')}/
-  el_files = Dir[".emacs.d/**/*.el"].reject do |f|
-    f =~ ptn
-  end.sort
-  puts "compiling elisp files: (#{el_files.count})"
-  puts `emacs --batch -Q -l .emacs.d/init.el -f batch-byte-compile #{el_files.join ' '}`
-
-  puts `rm wget-log*`  if Dir['wget-log*'].any?
-end
-
+desc 'Create symlink for karabiner'
 task :karabiner do
   Dir["#{Dir.pwd}/Karabiner/*.xml"].sort.each do |f|
     puts "making symbolic link: #{f}"

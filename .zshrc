@@ -133,6 +133,8 @@ export ANDROID_HOME="/usr/local/opt/android-sdk"
 export RUBYMOTION_ANDROID_SDK="$HOME/.rubymotion-android/sdk"
 export RUBYMOTION_ANDROID_NDK="$HOME/.rubymotion-android/ndk"
 
+export GTAGSLABEL=pygments
+
 function cdgem() {
   local gem_name=$(bundle list | sed -e 's/^ *\* *//g' | peco | cut -d \  -f 1)
   if [ -n "$gem_name" ]; then
@@ -158,3 +160,5 @@ function peco-path() {
 
 zle -N peco-path
 # bindkey '^f' peco-path # Ctrl+f で起動
+
+eval "$(direnv hook zsh)"

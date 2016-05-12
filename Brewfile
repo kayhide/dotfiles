@@ -7,6 +7,7 @@ install emacs --cocoa
 install tig
 install lv
 install ag
+install direnv
 install tmux
 install reattach-to-user-namespace
 install cmigemo
@@ -25,6 +26,7 @@ install python
 install lua
 install vim --with-lua
 # install macvim --with-lua
+install global --with-ctags --with-pygments
 install graphviz --with-gts
 
 tap caskroom/cask
