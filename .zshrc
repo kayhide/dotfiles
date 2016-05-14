@@ -27,20 +27,23 @@ compinit
 
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
 
-# prompt
-setopt prompt_subst
-
 if [ -f $(brew --prefix)/etc/bash_completion.d/git-prompt.sh ]; then
     source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
 fi
 
-color0=$'\e[0m'
-color1=$'\e[38;5;46m'
-color2=$'\e[38;5;2m'
-PROMPT=$'%{${color1}%}[ %n@%m | %D{%Y-%m-%d %H:%M:%S} | Retv: %? ]
-%{${color2}%}[ %~ ]$(__git_ps1 " (%s)")
-%#%{${color0}%} '
+# prompt
+setopt prompt_subst
 
+autoload -Uz vcs_info
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!%f"
+zstyle ':vcs_info:git:*' unstagedstr "%F{red}+%f"
+zstyle ':vcs_info:*' formats "%c%u%F{green}[%b]%f"
+zstyle ':vcs_info:*' actionformats '%F{yellow}[%b|%a]'
+precmd () { vcs_info }
+
+PROMPT=$'%F{yellow}[%D{%Y-%m-%d %H:%M:%S}] %F{blue}%n@%m %F{cyan}%~ ${vcs_info_msg_0_}
+%F{blue}%#%f '
 
 # alias
 case $(uname) in
