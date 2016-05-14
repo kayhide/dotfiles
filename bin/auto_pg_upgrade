@@ -29,12 +29,12 @@ String.send :include, VersionedPath
 current_version = `pg_upgrade --version`.split.last
 say :current, "Version #{current_version}", :blue
 
-bin_dirs = Dir['/usr/local/Cellar/*'].
-  select { |dir| File.basename(dir) =~ /^postgresql/ }.
+bin_dirs = Dir['/usr/local/Cellar/postgresql*'].
   map { |dir| Dir[File.join(dir, '*/bin')] }.
   inject(:+).
+  select { |dir| Dir.exist? dir }.
   map { |dir| [dir.to_version, dir] }.
-  sort_by(&:first).reverse.to_h
+  select(&:first).sort_by(&:first).reverse.to_h
 
 bin_dirs.values.each do |dir|
   say :bin, dir, :yellow
@@ -51,9 +51,11 @@ data_dirs.values.each do |dir|
 end
 
 Unit = Struct.new :version, :bin_dir, :data_dir
-dst, src = bin_dirs.
-  map { |ver, dir| Unit.new(ver.take(2), dir, data_dirs[ver.take(2)]) }.
-  take(2)
+units = bin_dirs.
+  map { |ver, dir| Unit.new(ver.take(2), dir, data_dirs[ver.take(2)]) }
+
+dst = units.first
+src = units.select(&:data_dir).first
 
 exit unless src && dst
 
