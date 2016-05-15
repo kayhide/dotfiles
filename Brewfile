@@ -12,6 +12,7 @@ brew 'emacs', args: ['cocoa']
 brew 'cask'
 brew 'nkf'
 brew 'cmigemo'
+brew 'ghq'
 brew 'go'
 brew 'direnv'
 brew 'erlang'
