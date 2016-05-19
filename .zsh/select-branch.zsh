@@ -5,4 +5,4 @@ function select-branch() {
     zle clear-screen
 }
 zle -N select-branch
-bindkey '^b' select-branch
+# bindkey '^b' select-branch
