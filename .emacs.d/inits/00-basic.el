@@ -51,9 +51,9 @@
 ;; 選択範囲をハイライト
 (transient-mark-mode t)
 
-;; 変更ファイルのバックアップ
+;; files
 (setq make-backup-files nil)
-
+(setq auto-save-default nil)
 
 ;; (find-function-setup-keys)
 (ffap-bindings)
