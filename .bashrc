@@ -36,9 +36,7 @@ function custom_prompt_command {
     else 
         _PromptColor=$BASH_PROMPT_NG
     fi
-  export PS1="\[${_PromptColor}\]
-[ \u@\H | Time: $(/bin/date '+%Y-%m-%d %H:%M:%S') | Retv: \$? ]
-[ \w ]$(__git_ps1 " (%s)")
+  export PS1="\[${_PromptColor}\][$(/bin/date '+%Y-%m-%d %H:%M:%S')] \u@\H \w $(__git_ps1 " (%s)")
 # \[\e[0m\]"
 }
 
@@ -98,7 +96,7 @@ alias gbranch='git branch'
 alias gmerge='git merge'
 source ~/.git-completion.sh
 
-export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 
