@@ -7,8 +7,8 @@
 	pager = lv -c
 	eol = native
 	autocrlf = true
-	editor = ~/bin/xyzzy.sh
 	quotepath = false
+	excludesfile = ~/.gitignore
 [push]
 	default = simple
 [pager]
@@ -21,3 +21,5 @@
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
+[fetch]
+	prune = true

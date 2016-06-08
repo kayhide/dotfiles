@@ -1,38 +1,79 @@
-update
-# upgrade
-
-install zsh
-install zsh-completions
-install emacs --cocoa
-install tig
-install lv
-install ag
-install tmux
-install reattach-to-user-namespace
-install cmigemo
-install rbenv
-install ruby-build
-install hub
-install gist
-install postgresql
-install heroku-toolbelt
-install redis
-install imagemagick
-install node.js
-
-tap caskroom/cask
-install brew-cask
-cask install iterm2
-cask install google-chrome
-cask install picasa
-cask install evernote
-cask install alfred
-cask alfred link
-# cask install mactex
-cask install keyremap4macbook
-cask install bettertouchtool
-
-tap sanemat/font
-install ricty
-
-linkapps
+tap 'caskroom/cask'
+tap 'homebrew/brewdler'
+tap 'homebrew/core'
+tap 'homebrew/dupes'
+tap 'homebrew/versions'
+tap 'peco/peco'
+tap 'sanemat/font'
+brew 'pkg-config'
+brew 'git'
+brew 'imagemagick'
+brew 'emacs', args: ['cocoa']
+brew 'cask'
+brew 'nkf'
+brew 'cmigemo'
+brew 'ghq'
+brew 'go'
+brew 'direnv'
+brew 'erlang'
+brew 'elixir'
+brew 'fontforge'
+# brew 'gcc'
+brew 'gibo'
+brew 'gist'
+brew 'global', args: ['with-ctags', 'with-pygments']
+brew 'graphviz', args: ['with-gts']
+brew 'haskell-stack'
+brew 'heroku'
+brew 'hub'
+brew 'kotlin'
+brew 'leiningen'
+brew 'lua'
+brew 'lv'
+brew 'markdown'
+brew 'mongodb'
+brew 'mysql'
+brew 'node'
+brew 'peco'
+brew 'readline'
+brew 'sqlite'
+brew 'python'
+brew 'postgresql'
+brew 'ruby-build'
+brew 'rbenv'
+brew 'rbenv-default-gems'
+brew 'reattach-to-user-namespace'
+brew 'redis'
+brew 'rsense'
+brew 'skktools'
+brew 'solr'
+brew 'the_silver_searcher'
+brew 'tig'
+brew 'tmux'
+brew 'tree'
+brew 'unar'
+brew 'vim', args: ['with-lua']
+brew 'wget'
+brew 'zsh'
+brew 'zsh-completions'
+brew 'homebrew/dupes/openldap'
+brew 'homebrew/dupes/rsync'
+brew 'sanemat/font/ricty', args: ['vim-powerline']
+cask 'alfred'
+cask 'bettertouchtool'
+cask 'chatwork'
+cask 'disk-inventory-x'
+cask 'dropbox'
+cask 'evernote'
+cask 'genymotion'
+cask 'google-chrome'
+cask 'google-japanese-ime'
+cask 'gyazo'
+cask 'iterm2'
+cask 'mediafire-desktop'
+cask 'picasa'
+cask 'skype'
+cask 'slate'
+cask 'virtualbox'
+cask 'vmware-fusion'
+cask 'xquartz'

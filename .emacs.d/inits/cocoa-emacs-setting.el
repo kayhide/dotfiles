@@ -1,6 +1,5 @@
 ;; frame
-(if window-system (set-frame-parameter nil 'alpha 85))
-
+(if window-system (set-frame-parameter nil 'alpha 75))
 
 ;; font
 (let* ((height 140)
@@ -15,19 +14,13 @@
   (set-fontset-font nil '(#x0080 . #x024F) fontspec)
   (set-fontset-font nil '(#x0370 . #x03FF) fontspec))
 
+;; dired
+(setq-default dired-use-ls-dired nil)
 
 ;; migemo
 (eval-after-load "migemo"
   '(progn
-     (setq migemo-command "/usr/local/bin/cmigemo")
-     (setq migemo-options '("-q" "--emacs" "-i" "\g"))
-     (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
-     (setq migemo-coding-system 'utf-8-unix)))
-
-
-;; skk
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/skk")
-(require 'skk-autoloads)
-(eval-after-load "skk-autoloads"
-  '(progn
-     (setq skk-user-directory "~/.skk")))
+     (setq-default migemo-command "/usr/local/bin/cmigemo")
+     (setq-default migemo-options '("-q" "--emacs" "-i" "\g"))
+     (setq-default migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
+     (setq-default migemo-coding-system 'utf-8-unix)))

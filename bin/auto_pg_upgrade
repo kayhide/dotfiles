@@ -1,0 +1,93 @@
+#! /usr/bin/env ruby
+
+require 'pathname'
+begin
+  require 'colored'
+rescue LoadError
+end
+
+def say status, message, color = nil
+  status =
+    if defined? Colored
+      Colored.colorize('%12s' % status, foreground: color)
+    else
+      '%12s' % status
+    end
+  puts "#{status} #{message}"
+end
+
+module VersionedPath
+  def to_version
+    Pathname.new(self).ascend.
+      find { |p| p.basename.to_s =~ /^\d+(\.\d+)+$/ }
+    $&.split('.').map(&:to_i) if $&
+  end
+end
+
+String.send :include, VersionedPath
+
+current_version = `pg_upgrade --version`.split.last
+say :current, "Version #{current_version}", :blue
+
+bin_dirs = Dir['/usr/local/Cellar/postgresql*'].
+  map { |dir| Dir[File.join(dir, '*/bin')] }.
+  inject(:+).
+  select { |dir| Dir.exist? dir }.
+  map { |dir| [dir.to_version, dir] }.
+  select(&:first).sort_by(&:first).reverse.to_h
+
+bin_dirs.values.each do |dir|
+  say :bin, dir, :yellow
+end
+
+$data_base_dir = '/usr/local/var/postgres'
+data_dirs = Dir[File.join($data_base_dir, '*/PG_VERSION')].
+  map { |dir| File.dirname(dir) }.
+  map { |dir| [dir.to_version, dir] }.
+  sort_by(&:first).reverse.to_h
+
+data_dirs.values.each do |dir|
+  say :data, dir, :yellow
+end
+
+Unit = Struct.new :version, :bin_dir, :data_dir
+units = bin_dirs.
+  map { |ver, dir| Unit.new(ver.take(2), dir, data_dirs[ver.take(2)]) }
+
+dst = units.first
+src = units.select(&:data_dir).first
+
+exit unless src && dst
+
+Command = Struct.new :exe, :args
+commands = []
+unless dst.data_dir
+  dst.data_dir = File.join($data_base_dir, dst.version.join('.'))
+  commands << Command.new('initdb', [
+    ['-E', 'UTF8'],
+    ['-D', dst.data_dir],
+    ENV['PGUSER'] && ['-U', ENV['PGUSER']]
+  ].compact.flatten)
+end
+
+commands << Command.new('pg_upgrade', [
+  '-d', src.data_dir, '-D', dst.data_dir,
+  '-b', src.bin_dir, '-B', dst.bin_dir
+])
+
+commands.each do |command|
+  say :executing, command.exe, :magenta
+  command.args.each_slice(2) do |pair|
+    say nil, pair.join(' ')
+  end
+end
+
+say nil, 'OK? [y/n]'.bold
+exit unless gets[0].downcase == 'y'
+
+
+commands.each do |command|
+  say :execute, command.exe, :red
+  res = system command.exe, *command.args
+  raise 'failed to execute' unless res
+end

@@ -10,3 +10,4 @@
 *.emacs.d/snippets_imported
 *.emacs.d/elisp/skk
 *.emacs.d/ac-comphist.dat
+*.emacs.d/projectile.cache

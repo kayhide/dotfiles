@@ -1,7 +1,10 @@
-(require 'color-theme)
-(color-theme-initialize)
-(color-theme-simple-1)
+(eval-when-compile
+  (require 'use-package))
 
-(set-face-attribute 'region nil
-                    :foreground 'unspecified
-                    :background "navy")
+(use-package color-theme
+  :config
+  (color-theme-initialize)
+  (color-theme-simple-1)
+  (set-face-attribute 'region nil
+                      :foreground 'unspecified
+                      :background "navy"))

@@ -1,0 +1,14 @@
+{
+  "Keymap": {
+    "M-f": "peco.ForwardWord",
+    "M-b": "peco.BackwardWord",
+
+    "C-h": "peco.DeleteBackwardChar",
+    "C-l": "peco.DeleteAll",
+
+    "C-v": "peco.ScrollPageDown",
+    "M-v": "peco.ScrollPageUp",
+
+    "C-g": "peco.Cancel"
+  }
+}
