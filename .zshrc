@@ -129,7 +129,11 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
 export PATH="/usr/texbin:$PATH"
 export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="/usr/local/cuda/bin:$PATH"
 export PATH="./bin:$HOME/bin:$PATH"
+
+export CUDA_PATH="/usr/local/cuda"
+export DYLD_LIBRARY_PATH="/usr/local/cuda/lib"
 
 export ANDROID_HOME="/usr/local/opt/android-sdk"
 
