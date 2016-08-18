@@ -57,7 +57,7 @@ filetype plugin indent on
 NeoBundleCheck
 
 
-inoremap <silent> jj <ESC>
+inoremap <silent> fd <ESC>
 nnoremap <silent> <C-L> :<C-U>noh<C-L><CR>
 nnoremap <silent> <C-X><C-O> :<C-U>VimFilerBufferDir<CR>
 nnoremap <silent> ]<Space> :<C-U>put =repeat(nr2char(10),v:count)<Bar>execute "'[-1"<CR>
