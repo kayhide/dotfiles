@@ -1,3 +1,4 @@
+require 'pry'
 $>.sync = true
 
 task :default => [:submodule, :symlink, :elisp]
@@ -10,7 +11,7 @@ end
 
 desc 'Create symlinks for dotfiles and bin files'
 task :symlink do
-  exclusive_files = %w(. .. .git .gitignore .gitmodules)
+  exclusive_files = %w(. .. .git .gitignore .gitmodules .emacs.d)
   Dir["#{Dir.pwd}/.*"].reject do |f|
     exclusive_files.include? File.basename(f)
   end.sort.each do |f|
