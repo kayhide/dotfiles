@@ -264,9 +264,10 @@ you should place your code here."
     ad-do-it)
   (ad-activate 'save-buffer)
 
-  (define-key evil-insert-state-map (kbd "C-h") 'backward-delete-char-untabify)
+  (define-key key-translation-map (kbd "C-h") (kbd "DEL"))
   (with-eval-after-load 'helm
-    (define-key helm-map (kbd "C-h") 'backward-delete-char))
+    (dolist (keymap (list helm-find-files-map helm-read-file-map))
+      (define-key keymap (kbd "C-u") 'helm-find-files-up-one-level)))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
