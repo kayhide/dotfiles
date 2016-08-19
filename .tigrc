@@ -1,2 +1,6 @@
+set main-view = id date author commit-title:graph=yes,refs=yes
+
+bind generic <Ctrl-J> next
+bind generic <Ctrl-K> previous
 bind status D !@?rm %(file)
 bind tree C !?git checkout %(commit) %(file)
