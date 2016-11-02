@@ -85,5 +85,131 @@
       <autogen>__KeyToKey__ KeyCode::F4, ModifierFlag::M0, KeyCode::F4, ModifierFlag::CONTROL_L</autogen>
       <autogen>__KeyToKey__ KeyCode::F4, ModifierFlag::M1, KeyCode::F4, ModifierFlag::OPTION_L</autogen>
     </item>
+    <item>
+      <name>[F+D] to Escape</name>
+      <identifier>private.keyf_plus_keyd_to_esc</identifier>
+      <inputsource_only>ENGLISH</inputsource_only>
+      <autogen>__SimultaneousKeyPresses__ KeyCode::F, KeyCode::D, KeyCode::ESCAPE</autogen>
+    </item>
+    <item>
+      <name>[F+D] to Escape x 3 + KANA/EISUU</name>
+      <appendix>(when input source is not English)</appendix>
+      <identifier>private.keyf_plus_keyd_to_kana_eisuu</identifier>
+      <inputsource_not>ENGLISH</inputsource_not>
+      <autogen>
+        __SimultaneousKeyPresses__ KeyCode::F, KeyCode::D,
+        KeyCode::ESCAPE,
+        KeyCode::ESCAPE,
+        KeyCode::ESCAPE,
+        KeyCode::VK_JIS_TOGGLE_EISUU_KANA
+      </autogen>
+    </item>
+  </item>
+  <item>
+    <name>Japanese Input Keyboard Layout</name>
+    <item>
+      <name>Sky Keyboard Layout</name>
+      <identifier>private.sky_sharp_keyboard_layout</identifier>
+      <inputsource_only>JAPANESE</inputsource_only>
+      <autogen>__KeyToKey__ KeyCode::J, ModifierFlag::NONE, KeyCode::A</autogen>
+      <autogen>__KeyToKey__ KeyCode::U, ModifierFlag::NONE, KeyCode::A, KeyCode::I</autogen>
+      <autogen>__KeyToKey__ KeyCode::M, ModifierFlag::NONE, KeyCode::A, KeyCode::N, KeyCode::N</autogen>
+      <autogen>__KeyToKey__ KeyCode::L, ModifierFlag::NONE, KeyCode::I</autogen>
+      <autogen>__KeyToKey__ KeyCode::DOT, ModifierFlag::NONE, KeyCode::I, KeyCode::N, KeyCode::N</autogen>
+      <autogen>__KeyToKey__ KeyCode::H, ModifierFlag::NONE, KeyCode::U</autogen>
+      <autogen>__KeyToKey__ KeyCode::Y, ModifierFlag::NONE, KeyCode::U, KeyCode::U</autogen>
+      <autogen>__KeyToKey__ KeyCode::N, ModifierFlag::NONE, KeyCode::U, KeyCode::N, KeyCode::N</autogen>
+      <autogen>__KeyToKey__ KeyCode::SEMICOLON, ModifierFlag::NONE, KeyCode::E</autogen>
+      <autogen>__KeyToKey__ KeyCode::P, ModifierFlag::NONE, KeyCode::E, KeyCode::I</autogen>
+      <autogen>__KeyToKey__ KeyCode::SLASH, ModifierFlag::NONE, KeyCode::E, KeyCode::N, KeyCode::N</autogen>
+      <autogen>__KeyToKey__ KeyCode::K, ModifierFlag::NONE, KeyCode::O</autogen>
+      <autogen>__KeyToKey__ KeyCode::I, ModifierFlag::NONE, KeyCode::O, KeyCode::U</autogen>
+      <autogen>__KeyToKey__ KeyCode::COMMA, ModifierFlag::NONE, KeyCode::O, KeyCode::N, KeyCode::N</autogen>
+      <autogen>__KeyToKey__ KeyCode::F, ModifierFlag::NONE, KeyCode::K</autogen>
+      <autogen>__KeyToKey__ KeyCode::D, ModifierFlag::NONE, KeyCode::S</autogen>
+      <autogen>__KeyToKey__ KeyCode::S, ModifierFlag::NONE, KeyCode::T</autogen>
+      <autogen>__KeyToKey__ KeyCode::A, ModifierFlag::NONE, KeyCode::N</autogen>
+      <autogen>__KeyToKey__ KeyCode::T, ModifierFlag::NONE, KeyCode::H</autogen>
+      <autogen>__KeyToKey__ KeyCode::R, ModifierFlag::NONE, KeyCode::M</autogen>
+      <autogen>__KeyToKey__ KeyCode::G, ModifierFlag::NONE, KeyCode::Y</autogen>
+      <autogen>__KeyToKey__ KeyCode::E, ModifierFlag::NONE, KeyCode::R</autogen>
+      <!-- <autogen>__KeyToKey__ KeyCode::W, ModifierFlag::NONE, KeyCode::W</autogen> -->
+      <autogen>__KeyToKey__ KeyCode::V, ModifierFlag::NONE, KeyCode::G</autogen>
+      <autogen>__KeyToKey__ KeyCode::C, ModifierFlag::NONE, KeyCode::Z</autogen>
+      <autogen>__KeyToKey__ KeyCode::X, ModifierFlag::NONE, KeyCode::D</autogen>
+      <!-- <autogen>__KeyToKey__ KeyCode::B, ModifierFlag::NONE, KeyCode::B</autogen> -->
+      <autogen>__KeyToKey__ KeyCode::Z, ModifierFlag::NONE, KeyCode::P</autogen>
+      <autogen>__KeyToKey__ KeyCode::JIS_COLON, ModifierFlag::NONE, KeyCode::MINUS</autogen>
+      <autogen>__KeyToKey__ KeyCode::O, ModifierFlag::NONE, KeyCode::DOT</autogen>
+      <autogen>__KeyToKey__ KeyCode::O, ModifierFlag::SHIFT_L | ModifierFlag::NONE, KeyCode::COMMA</autogen>
+      <autogen>
+        __SimultaneousKeyPresses__ KeyCode::F, KeyCode::A,
+        KeyCode::K, KeyCode::Y
+      </autogen>
+      <autogen>
+        __SimultaneousKeyPresses__ KeyCode::D, KeyCode::G,
+        KeyCode::S, KeyCode::H
+      </autogen>
+      <autogen>
+        __SimultaneousKeyPresses__ KeyCode::S, KeyCode::G,
+        KeyCode::C, KeyCode::H
+      </autogen>
+      <autogen>
+        __SimultaneousKeyPresses__ KeyCode::S, KeyCode::T,
+        KeyCode::T, KeyCode::H
+      </autogen>
+      <autogen>
+        __SimultaneousKeyPresses__ KeyCode::A, KeyCode::G,
+        KeyCode::N, KeyCode::Y
+      </autogen>
+      <autogen>
+        __SimultaneousKeyPresses__ KeyCode::T, KeyCode::A,
+        KeyCode::H, KeyCode::Y
+      </autogen>
+      <autogen>
+        __SimultaneousKeyPresses__ KeyCode::R, KeyCode::A,
+        KeyCode::M, KeyCode::Y
+      </autogen>
+      <autogen>
+        __SimultaneousKeyPresses__ KeyCode::E, KeyCode::G,
+        KeyCode::R, KeyCode::Y
+      </autogen>
+      <autogen>
+        __SimultaneousKeyPresses__ KeyCode::W, KeyCode::T,
+        KeyCode::W, KeyCode::H
+      </autogen>
+      <autogen>
+        __SimultaneousKeyPresses__ KeyCode::D, KeyCode::A,
+        KeyCode::F
+      </autogen>
+      <autogen>
+        __SimultaneousKeyPresses__ KeyCode::D, KeyCode::S,
+        KeyCode::V
+      </autogen>
+      <autogen>
+        __SimultaneousKeyPresses__ KeyCode::A, KeyCode::S,
+        KeyCode::X
+      </autogen>
+      <autogen>
+        __SimultaneousKeyPresses__ KeyCode::V, KeyCode::A,
+        KeyCode::G, KeyCode::Y
+      </autogen>
+      <autogen>
+        __SimultaneousKeyPresses__ KeyCode::C, KeyCode::G,
+        KeyCode::J
+      </autogen>
+      <autogen>
+        __SimultaneousKeyPresses__ KeyCode::X, KeyCode::G,
+        KeyCode::D, KeyCode::Y
+      </autogen>
+      <autogen>
+        __SimultaneousKeyPresses__ KeyCode::B, KeyCode::A,
+        KeyCode::B, KeyCode::Y
+      </autogen>
+      <autogen>
+        __SimultaneousKeyPresses__ KeyCode::Z, KeyCode::G,
+        KeyCode::P, KeyCode::Y
+      </autogen>
+    </item>
   </item>
 </root>
