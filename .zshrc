@@ -113,14 +113,13 @@ alias tcopy='tmux save-buffer - | pbcopy'
 export EDITOR='vim'
 export VISUAL=$EDITOR
 
-export PGDATA='/usr/local/var/postgres/9.5'
+export PGDATA='/usr/local/var/postgres'
 export PGHOST='localhost'
-export PGLOG=$PGDATA'/server.log'
 export PGUSER='postgres'
 
-alias pg_start="pg_ctl start -l $PGLOG"
+alias pg_start="brew services start postgres"
+alias pg_stop="brew services stop postgres"
 alias pg_status="pg_ctl status"
-alias pg_stop="pg_ctl stop -m s"
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which hub > /dev/null; then eval "$(hub alias -s)"; fi
