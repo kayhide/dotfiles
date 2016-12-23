@@ -203,6 +203,10 @@
         KeyCode::D, KeyCode::Y
       </autogen>
       <autogen>
+        __SimultaneousKeyPresses__ KeyCode::X, KeyCode::T,
+        KeyCode::D, KeyCode::H
+      </autogen>
+      <autogen>
         __SimultaneousKeyPresses__ KeyCode::B, KeyCode::A,
         KeyCode::B, KeyCode::Y
       </autogen>
