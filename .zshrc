@@ -124,9 +124,11 @@ alias pg_status="pg_ctl status"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which hub > /dev/null; then eval "$(hub alias -s)"; fi
 if which direnv > /dev/null; then eval "$(direnv hook zsh)"; fi
+if which docker-machine > /dev/null; then eval "$(docker-machine env default)"; fi
 
 export PATH="/usr/local/sbin:$PATH"
-export PATH="$HOME/.cabal/bin:$PATH"
+# export PATH="$HOME/.cabal/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="/usr/texbin:$PATH"
 export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="/usr/local/cuda/bin:$PATH"
