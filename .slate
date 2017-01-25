@@ -19,7 +19,8 @@ bind 2:cmd focus 'Emacs'
 bind 3:cmd focus 'Google Chrome'
 bind 4:cmd focus 'Dash'
 bind 5:cmd focus 'Slack'
-bind 9:cmd focus 'ChatWork'
+bind 7:cmd focus 'Xcode'
+bind 8:cmd focus 'Simulator'
 
 # bind up:cmd push up bar-resize:screenSizeY
 # bind left:cmd push left bar-resize:screenSizeX/2
