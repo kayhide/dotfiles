@@ -15,7 +15,7 @@ def process file
   end
 end
 
-Dir['**/*.swift'].each do |f|
-  process f
-end
+Dir['**/*.swift']
+  .reject { |f| f =~ /Carthage\/Checkouts/ }
+  .each { |f| process f }
 
