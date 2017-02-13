@@ -92,16 +92,14 @@
       <autogen>__SimultaneousKeyPresses__ KeyCode::F, KeyCode::D, KeyCode::ESCAPE</autogen>
     </item>
     <item>
-      <name>[F+D] to Escape x 3 + KANA/EISUU</name>
+      <name>[F+D] to EISUU + Escape</name>
       <appendix>(when input source is not English)</appendix>
-      <identifier>private.keyf_plus_keyd_to_kana_eisuu</identifier>
+      <identifier>private.keyf_plus_keyd_to_eisuu_esc</identifier>
       <inputsource_not>ENGLISH</inputsource_not>
       <autogen>
         __SimultaneousKeyPresses__ KeyCode::F, KeyCode::D,
-        KeyCode::ESCAPE,
-        KeyCode::ESCAPE,
-        KeyCode::ESCAPE,
-        KeyCode::VK_JIS_TOGGLE_EISUU_KANA
+        KeyCode::JIS_EISUU,
+        KeyCode::ESCAPE
       </autogen>
     </item>
   </item>
