@@ -40,10 +40,9 @@ bin_dirs.values.each do |dir|
   say :bin, dir, :yellow
 end
 
-$data_base_dir = '/usr/local/var/postgres'
+$data_base_dir = '/usr/local/var'
 data_dirs = Dir[File.join($data_base_dir, '*/PG_VERSION')].
-  map { |dir| File.dirname(dir) }.
-  map { |dir| [dir.to_version, dir] }.
+  map { |f| [File.open(f).read.chomp.split('.').map(&:to_i), File.dirname(f)] }.
   sort_by(&:first).reverse.to_h
 
 data_dirs.values.each do |dir|
@@ -62,7 +61,7 @@ exit unless src && dst
 Command = Struct.new :exe, :args
 commands = []
 unless dst.data_dir
-  dst.data_dir = File.join($data_base_dir, dst.version.join('.'))
+  dst.data_dir = File.join($data_base_dir, "postgresql@#{dst.version.join('.')}")
   commands << Command.new('initdb', [
     ['-E', 'UTF8'],
     ['-D', dst.data_dir],
