@@ -22,13 +22,18 @@ colors
 # completion
 fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 fpath=($(brew --prefix)/share/zsh-completions $fpath)
-autoload -Uz compinit
-compinit
+
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
 
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
 
 if [ -f $(brew --prefix)/etc/bash_completion.d/git-prompt.sh ]; then
     source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
+fi
+
+if which stack > /dev/null; then
+  eval "$(stack --bash-completion-script stack)"
 fi
 
 # prompt
@@ -80,7 +85,7 @@ alias -g G='| grep'
 alias -g L='| lv -c'
 alias -g X='| xargs'
 alias -g XG='| xargs grep'
-alias -g CPY='| pbcopy'
+alias -g CP='| pbcopy'
 
 alias -g r='rails'
 alias -g sr='spring rails'
@@ -99,15 +104,14 @@ alias powstop='powder stop'
 alias powstart='powder start'
 alias powrestart='powder stop; powder start'
 
-alias -g MED='MOTION_ENV=development'
-alias -g MET='MOTION_ENV=test'
-alias -g MEP='MOTION_ENV=production'
-
 alias -g mm='middleman'
 
 alias be='bundle exec'
 
-alias tcopy='tmux save-buffer - | pbcopy'
+alias ghc="stack ghc --"
+alias runghc="stack runghc --"
+alias runhaskell="stack runhaskell --"
+alias ghci="stack exec -- ghci"
 
 # env
 export EDITOR='vim'
@@ -122,6 +126,7 @@ alias pg_stop="brew services stop postgres"
 alias pg_status="pg_ctl status"
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which hub > /dev/null; then eval "$(hub alias -s)"; fi
 if which direnv > /dev/null; then eval "$(direnv hook zsh)"; fi
 if which docker-machine > /dev/null; then eval "$(docker-machine env default)"; fi
@@ -129,6 +134,7 @@ if which docker-machine > /dev/null; then eval "$(docker-machine env default)"; 
 export PATH="/usr/local/sbin:$PATH"
 # export PATH="$HOME/.cabal/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="/usr/texbin:$PATH"
 export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="/usr/local/cuda/bin:$PATH"
