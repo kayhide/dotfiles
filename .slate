@@ -6,30 +6,39 @@ config checkDefaultsOnLoad true
 
 layout 1-monitor 'Google Chrome' throw 0 resize
 layout 2-monitors 'Google Chrome' throw 1 resize
+layout 3-monitors 'Google Chrome' throw 0 resize
 
 layout 1-monitor 'Emacs' throw 0 resize
 layout 2-monitors 'Emacs' throw 0 resize
+layout 3-monitors 'Emacs' throw 1 resize
+
+layout 3-monitors 'iTerm2' throw 2 resize
+layout 3-monitors 'XMind' throw 2 resize
+
+layout 3-monitors 'Slack' throw 0 resize
 
 default 1-monitors count:1
 default 2-monitors count:2
+default 3-monitors count:3
 
 
-bind 1:cmd focus 'iTerm2'
-bind 2:cmd focus 'Emacs'
-bind 3:cmd focus 'Google Chrome'
-bind 4:cmd focus 'Dash'
+bind 0:cmd focus 'iTerm2'
+bind 9:cmd focus 'XMind'
+bind 8:cmd focus 'Google Chrome'
+bind 7:cmd focus 'Emacs'
 bind 5:cmd focus 'Slack'
-bind 7:cmd focus 'Xcode'
-bind 8:cmd focus 'Simulator'
+bind 4:cmd focus 'Dash'
+bind 3:cmd focus 'Xcode'
+bind 2:cmd focus 'Simulator'
 
 # bind up:cmd push up bar-resize:screenSizeY
 # bind left:cmd push left bar-resize:screenSizeX/2
 # bind right:cmd push right bar-resize:screenSizeX/2
 
-bind 0:cmd relaunch
+bind 1:cmd relaunch
 
 bind e:cmd hint
-bind esc:cmd grid
+# bind esc:cmd grid
 
 alias hyper ctrl;shift;alt;cmd
 
