@@ -322,13 +322,13 @@ you should place your code here."
                   (haskell :variables haskell-completion-backend 'intero)))
 
   (setq-default
-   js-indent-level 4
-   js2-basic-offset 4
+   js-indent-level 2
+   js2-basic-offset 2
    css-indent-offset 4
-   web-mode-markup-indent-offset 4
+   web-mode-markup-indent-offset 2
    web-mode-css-indent-offset 4
-   web-mode-code-indent-offset 4
-   web-mode-attr-indent-offset 4)
+   web-mode-code-indent-offset 2
+   web-mode-attr-indent-offset 2)
 
   (with-eval-after-load 'web-mode
     (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
@@ -343,7 +343,6 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(css-indent-offset 2 t)
  '(evil-want-Y-yank-to-eol t)
  '(package-selected-packages
    (quote
