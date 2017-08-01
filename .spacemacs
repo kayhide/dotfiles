@@ -280,6 +280,8 @@ layers configuration.
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+  (setenv "LC_COLLATE" "C")
+
   ;; save-buffer
   (defadvice save-buffer (around save-buffer-around)
     (and current-prefix-arg
