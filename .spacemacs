@@ -48,27 +48,26 @@ values."
      ;;        shell-default-position 'bottom)
      ;; spell-checking
      ;; syntax-checking
-     version-control
+     ;; version-control
      github
      gtags
-     themes-megapack
+     ;; themes-megapack
      emoji
      html
      yaml
      csv
      ruby
      ruby-on-rails
-     haskell
+     (haskell
+      :variables
+      haskell-process-type 'stack-ghci
+      ;; haskell-completion-backend 'intero
+      )
      javascript
      purescript
-     coq
-     sql
-     swift
-     python
-     lua
      react
-     elm
-     php
+     python
+     osx
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -158,8 +157,8 @@ values."
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
-   ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
-   ;; size to make separators look not too crappy.
+   ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
+   ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Ricty"
                                :size 12
                                :weight normal
@@ -188,7 +187,7 @@ values."
    ;; and TAB or <C-m> and RET.
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
-   dotspacemacs-distinguish-gui-tab nil
+   dotspacemacs-distinguish-gui-tab t
    ;; If non nil `Y' is remapped to `y$' in Evil states. (default nil)
    dotspacemacs-remap-Y-to-y$ nil
    ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
@@ -256,7 +255,7 @@ values."
    ;; If non nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup nil
+   dotspacemacs-maximized-at-startup t
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
@@ -339,6 +338,10 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+  ;; Hack for `Symbol’s value as variable is void: helm-bookmark-map`
+  ;; https://github.com/syl20bnr/spacemacs/issues/9549#issuecomment-327788403
+  (require 'helm-bookmark)
+
   (setenv "LC_COLLATE" "C")
 
   ;; save-buffer
@@ -349,13 +352,16 @@ you should place your code here."
   (ad-activate 'save-buffer)
 
   (define-key key-translation-map (kbd "C-h") (kbd "DEL"))
+  (define-key key-translation-map (kbd "M-¥") (kbd "\\"))
   (global-set-key (kbd "C-<tab>") 'other-window)
+  (global-set-key (kbd "s-p") nil)
 
   (with-eval-after-load 'dired
     (define-key dired-mode-map (kbd "C-c C-e") 'dired-toggle-read-only)
     )
   (with-eval-after-load 'wdired
     (define-key wdired-mode-map (kbd "C-c C-g") 'wdired-abort-changes)
+    ;; (define-key wdired-mode-map (kbd "SPC f s") 'wdired-finish-edit)
     )
 
   (setq powerline-default-separator 'bar)
@@ -376,15 +382,24 @@ you should place your code here."
     (define-key coffee-mode-map (kbd "S-TAB") 'coffee-indent-shift-left)
     )
 
-  (setq-default dotspacemacs-configuration-layers
-                '((haskell :variables haskell-process-type 'stack-ghci)))
-  (setq-default dotspacemacs-configuration-layers
-                '(auto-completion
-                  (haskell :variables haskell-completion-backend 'intero)))
+  (setq-default projectile-switch-project-action 'projectile-find-file)
+
+  (projectile-register-project-type 'yarn '("*/yarn.lock")
+                                    :compile "yarn build"
+                                    :test "yarn test"
+                                    :test-suffix ".test"
+                                    )
+  (projectile-register-project-type 'rails-rspec- '("Gemfile" "app" "lib" "db" "config" "spec")
+                                    :compile "bundle exec rails server"
+                                    :test "bundle exec rspec"
+                                    :test-suffix "_spec"
+                                    )
+
 
   (setq-default
    js-indent-level 2
    js2-basic-offset 2
+   js2-strict-missing-semi-warning nil
    css-indent-offset 4
    web-mode-markup-indent-offset 2
    web-mode-css-indent-offset 4
@@ -395,6 +410,40 @@ you should place your code here."
     (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
     (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
     (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
+
+
+  (add-hook 'purescript-mode-hook
+            (lambda ()
+              (psc-ide-mode)
+              (company-mode)
+              (flycheck-mode)
+              (turn-on-purescript-indentation)))
+
+  (push "~/.emacs.d/private/local/offside-trap" load-path)
+  (require 'offside-trap)
+  (add-hook 'purescript-mode-hook
+            (lambda ()
+              (offside-trap-mode)))
+
+  ;; To apply half width chars for box drawing. Does not work
+  ;; (set-fontset-font t '(#x2500 . #x25ff) (font-spec :family "Noto Sans Regular"))
+  ;; (let* ((size 12)
+  ;;        (asciifont "Fira Code")
+  ;;        (jpfont "Hiragino Maru Gothic ProN")
+  ;;        (h (* size 10))
+  ;;        (fontspec)
+  ;;        (jp-fontspec))
+  ;;   (set-face-attribute 'default nil :family asciifont :height h)
+  ;;   (setq fontspec (font-spec :family asciifont))
+  ;;   (setq jp-fontspec (font-spec :family jpfont))
+  ;;   (set-fontset-font "fontset-startup" 'japanese-jisx0208 jp-fontspec)
+  ;;   (set-fontset-font "fontset-startup" 'japanese-jisx0212 jp-fontspec)
+  ;;   (set-fontset-font "fontset-startup" 'japanese-jisx0213-1 jp-fontspec)
+  ;;   (set-fontset-font "fontset-startup" 'japanese-jisx0213-2 jp-fontspec)
+  ;;   (set-fontset-font "fontset-startup" '(#x0080 . #x024F) fontspec)
+  ;;   (set-fontset-font "fontset-startup" '(#x0370 . #x03FF) fontspec))
+  ;; (push "~/.emacs.d/private/local/fira-code" load-path)
+  ;; (require 'fira-code)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -405,12 +454,12 @@ you should place your code here."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(evil-want-Y-yank-to-eol nil)
+ '(flycheck-check-syntax-automatically (quote (save)))
  '(package-selected-packages
    (quote
-    (phpunit phpcbf php-extras php-auto-yasnippets elm-mode drupal-mode php-mode unfill mwim helm-company helm-c-yasnippet fuzzy company-web web-completion-data company-tern tern company-statistics company-emoji company-cabal company-anaconda auto-yasnippet ac-ispell auto-complete winum solarized-theme madhat2r-theme swift-mode helm-gtags ggtags yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode anaconda-mode pythonic lua-mode autothemer bind-key bind-map pcache sql-indent csv-mode powerline spinner company pcre2el vmd-mode emoji-cheat-sheet-plus inflections org highlight gh purescript-mode inf-ruby minitest hide-comnt web-mode tagedit sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode async web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc coffee-mode yaml-mode wgrep smex ivy-hydra counsel-projectile counsel swiper ivy rake hydra git-gutter iedit yasnippet anzu smartparens evil undo-tree ht request projectile helm helm-core haskell-mode markdown-mode magit magit-popup git-commit f s uuidgen toc-org org-plus-contrib org-bullets link-hint intero flycheck hlint-refactor helm-hoogle github-search with-editor dash eyebrowse evil-visual-mark-mode evil-unimpaired evil-ediff dumb-jump darkokai-theme company-ghci company-ghc column-enforce-mode zonokai-theme zenburn-theme zen-and-art-theme ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe use-package underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme tronesque-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme stekene-theme spacemacs-theme spaceline spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smooth-scrolling smeargle slim-mode shm seti-theme scss-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reverse-theme restart-emacs rbenv rainbow-delimiters railscasts-theme quelpa purple-haze-theme psci psc-ide projectile-rails professional-theme popwin planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pastels-on-dark-theme paradox page-break-lines orgit organic-green-theme open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme niflheim-theme neotree naquadah-theme mustang-theme move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-toc majapahit-theme magit-gitflow magit-gh-pulls macrostep lush-theme lorem-ipsum linum-relative light-soap-theme leuven-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme info+ indent-guide ido-vertical-mode hungry-delete hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation heroku-theme hemisu-theme help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-ag hc-zenburn-theme haskell-snippets gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate golden-ratio github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist ghc gh-md gandalf-theme flx-ido flatui-theme flatland-theme firebelly-theme fill-column-indicator feature-mode farmhouse-theme fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu espresso-theme elisp-slime-nav dracula-theme django-theme diff-hl define-word darktooth-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme company-coq colorsarenice-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmm-mode clues-theme clean-aindent-mode chruby cherry-blossom-theme busybee-theme bundler buffer-move bubbleberry-theme bracketed-paste birds-of-paradise-plus-theme badwolf-theme auto-highlight-symbol auto-compile apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+    (reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck-haskell auto-dictionary gmail-message-mode ham-mode html-to-markdown flymd edit-server parent-mode pkg-info epl gitignore-mode fringe-helper git-gutter+ marshal logito flx dash-functional popup diminish company-math math-symbol-lists packed avy goto-chg vue-mode edit-indirect ssass-mode vue-html-mode phpunit phpcbf php-extras php-auto-yasnippets elm-mode drupal-mode php-mode unfill mwim helm-company helm-c-yasnippet fuzzy company-web web-completion-data company-tern tern company-statistics company-emoji company-cabal company-anaconda auto-yasnippet ac-ispell auto-complete winum solarized-theme madhat2r-theme swift-mode helm-gtags ggtags yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode anaconda-mode pythonic lua-mode autothemer bind-key bind-map pcache sql-indent csv-mode powerline spinner company pcre2el vmd-mode emoji-cheat-sheet-plus inflections org highlight gh purescript-mode inf-ruby minitest hide-comnt web-mode tagedit sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode async web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc coffee-mode yaml-mode wgrep smex ivy-hydra counsel-projectile counsel swiper ivy rake hydra git-gutter iedit yasnippet anzu smartparens evil undo-tree ht request projectile helm helm-core haskell-mode markdown-mode magit magit-popup git-commit f s uuidgen toc-org org-plus-contrib org-bullets link-hint intero flycheck hlint-refactor helm-hoogle github-search with-editor dash eyebrowse evil-visual-mark-mode evil-unimpaired evil-ediff dumb-jump darkokai-theme company-ghci company-ghc column-enforce-mode zonokai-theme zenburn-theme zen-and-art-theme ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe use-package underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme tronesque-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme stekene-theme spacemacs-theme spaceline spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smooth-scrolling smeargle slim-mode shm seti-theme scss-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reverse-theme restart-emacs rbenv rainbow-delimiters railscasts-theme quelpa purple-haze-theme psci psc-ide projectile-rails professional-theme popwin planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pastels-on-dark-theme paradox page-break-lines orgit organic-green-theme open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme niflheim-theme neotree naquadah-theme mustang-theme move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-toc majapahit-theme magit-gitflow magit-gh-pulls macrostep lush-theme lorem-ipsum linum-relative light-soap-theme leuven-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme info+ indent-guide ido-vertical-mode hungry-delete hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation heroku-theme hemisu-theme help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-ag hc-zenburn-theme haskell-snippets gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate golden-ratio github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist ghc gh-md gandalf-theme flx-ido flatui-theme flatland-theme firebelly-theme fill-column-indicator feature-mode farmhouse-theme fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu espresso-theme elisp-slime-nav dracula-theme django-theme diff-hl define-word darktooth-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme company-coq colorsarenice-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmm-mode clues-theme clean-aindent-mode chruby cherry-blossom-theme busybee-theme bundler buffer-move bubbleberry-theme bracketed-paste birds-of-paradise-plus-theme badwolf-theme auto-highlight-symbol auto-compile apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme adaptive-wrap ace-window ace-link ace-jump-helm-line)))
  '(paradox-github-token t)
  '(psc-ide-add-import-on-completion t t)
- '(psc-ide-rebuild-on-save nil t)
  '(ruby-align-chained-calls t)
  '(ruby-deep-arglist t)
  '(ruby-insert-encoding-magic-comment nil)
@@ -423,4 +472,4 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((((class color) (min-colors 4096)) (:foreground "#c6c6c6" :background "#303030")) (((class color) (min-colors 256)) (:foreground "#c6c6c6" :background "#303030")) (((class color) (min-colors 89)) (:foreground "#c6c6c6" :background "#303030")))))
