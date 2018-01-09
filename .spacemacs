@@ -67,6 +67,7 @@ values."
      purescript
      react
      python
+     agda
      osx
      )
    ;; List of additional packages that will be installed without being
@@ -159,12 +160,12 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Ricty"
+   dotspacemacs-default-font '("DejaVu Sans Mono for Powerline"
                                :size 12
                                :weight normal
                                :width normal
                                :height 12
-                               :powerline-scale 1.4)
+                               :powerline-scale 1.2)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -352,9 +353,11 @@ you should place your code here."
   (ad-activate 'save-buffer)
 
   (define-key key-translation-map (kbd "C-h") (kbd "DEL"))
-  (define-key key-translation-map (kbd "M-¥") (kbd "\\"))
+  ;; (define-key key-translation-map (kbd "M-¥") (kbd "\\"))
   (global-set-key (kbd "C-<tab>") 'other-window)
   (global-set-key (kbd "s-p") nil)
+  ;; (global-set-key (kbd "¥") (kbd "\\"))
+  ;; (global-set-key (kbd "M-¥") (kbd "¥"))
 
   (with-eval-after-load 'dired
     (define-key dired-mode-map (kbd "C-c C-e") 'dired-toggle-read-only)
