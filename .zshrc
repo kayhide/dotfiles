@@ -97,6 +97,12 @@ alias rdmigrate='rake db:migrate'
 alias rdstatus='rake db:migrate:status'
 alias rdrollback='rake db:rollback'
 
+alias -g ST='STAGE=test'
+alias -g SD='STAGE=dev'
+alias -g SP='STAGE=prod'
+alias -g RSD='ON_REMOTE=1 STAGE=dev'
+alias -g RSP='ON_REMOTE=1 STAGE=prod'
+
 alias powopen='powder open'
 alias powlink='powder link'
 alias powunlink='powder unlink'
@@ -127,6 +133,7 @@ alias pg_status="pg_ctl status"
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
 if which hub > /dev/null; then eval "$(hub alias -s)"; fi
 if which direnv > /dev/null; then eval "$(direnv hook zsh)"; fi
 if which docker-machine > /dev/null; then eval "$(docker-machine env default)"; fi
@@ -139,10 +146,11 @@ export PATH="/usr/local/sbin:$PATH"
 # export PATH="$HOME/.cabal/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.pyenv/bin:$PATH"
+export PATH="$HOME/.nodenv/bin:$PATH"
 export PATH="/usr/texbin:$PATH"
 export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="/usr/local/cuda/bin:$PATH"
-export PATH="./bin:$HOME/bin:$PATH"
+export PATH="./bin:../bin:$HOME/bin:$PATH"
 
 export CUDA_PATH="/usr/local/cuda"
 export DYLD_LIBRARY_PATH="/usr/local/cuda/lib"
