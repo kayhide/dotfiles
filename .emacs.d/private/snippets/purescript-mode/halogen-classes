@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+#name : halogen-classes
+#key : hcss
+# --
+[ HP.class_ $ H.ClassName "$1" ]
+$0
