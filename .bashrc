@@ -96,8 +96,7 @@ alias glgraph='git log --graph --all --decorate --oneline'
 source ~/.git-completion.sh
 
 export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
+export PATH="$HOME/.local/bin:$PATH"
 
 case ${OSTYPE} in
     "cygwin")
