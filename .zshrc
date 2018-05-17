@@ -75,10 +75,6 @@ alias gbranch='git branch'
 alias gmerge='git merge'
 alias gbrowse='git browse'
 
-alias gflow='git flow'
-alias gffstart='git flow feature start'
-alias gfffinish='git flow feature finish'
-
 alias d='docker'
 alias dbuild='docker build'
 alias drun='docker run'
@@ -119,8 +115,6 @@ alias powstop='powder stop'
 alias powstart='powder start'
 alias powrestart='powder stop; powder start'
 
-alias -g mm='middleman'
-
 alias be='bundle exec'
 
 alias ghc="stack ghc --"
@@ -132,13 +126,6 @@ alias ghci="stack exec -- ghci"
 export EDITOR='vim'
 export VISUAL=$EDITOR
 
-export PGDATA='/usr/local/var/postgres'
-export PGHOST='localhost'
-export PGUSER='postgres'
-
-alias pg_start="brew services start postgres"
-alias pg_stop="brew services stop postgres"
-alias pg_status="pg_ctl status"
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
