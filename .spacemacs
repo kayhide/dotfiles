@@ -237,7 +237,7 @@ values."
    ;; in all non-asynchronous sources. If set to `source', preserve individual
    ;; source settings. Else, disable fuzzy matching in all sources.
    ;; (default 'always)
-   dotspacemacs-helm-use-fuzzy 'always
+   dotspacemacs-helm-use-fuzzy nil
    ;; If non nil the paste micro-state is enabled. When enabled pressing `p`
    ;; several times cycle between the kill ring content. (default nil)
    dotspacemacs-enable-paste-transient-state nil
@@ -375,9 +375,6 @@ you should place your code here."
 
   (setq powerline-default-separator 'bar)
 
-  (setq helm-ff-fuzzy-matching nil)
-  (setq helm-buffers-fuzzy-matching nil)
-  (setq helm-projectile-fuzzy-match nil)
   (with-eval-after-load 'helm
     (dolist (keymap (list helm-find-files-map helm-read-file-map))
       (define-key keymap (kbd "C-u") 'helm-find-files-up-one-level)))
