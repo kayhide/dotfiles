@@ -137,6 +137,7 @@ if which direnv > /dev/null; then eval "$(direnv hook zsh)"; fi
 export LANG="ja_JP.UTF-8"
 export LC_COLLATE="C"
 
+export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.pyenv/bin:$PATH"
