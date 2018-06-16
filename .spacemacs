@@ -373,7 +373,8 @@ you should place your code here."
     ;; (define-key wdired-mode-map (kbd "SPC f s") 'wdired-finish-edit)
     )
 
-  (setq powerline-default-separator 'bar)
+  ;; (setq powerline-default-separator 'bar)
+  (setq powerline-default-separator 'utf-8)
 
   (with-eval-after-load 'helm
     (dolist (keymap (list helm-find-files-map helm-read-file-map))
