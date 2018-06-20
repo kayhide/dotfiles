@@ -20,17 +20,19 @@ autoload colors
 colors
 
 # completion
-fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
-fpath=($(brew --prefix)/share/zsh-completions $fpath)
+if which brew > /dev/null; then
+  fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
+  fpath=($(brew --prefix)/share/zsh-completions $fpath)
+  if [ -f $(brew --prefix)/etc/bash_completion.d/git-prompt.sh ]; then
+    source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
+  fi
+fi
 
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
 
-if [ -f $(brew --prefix)/etc/bash_completion.d/git-prompt.sh ]; then
-    source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
-fi
 
 if which stack > /dev/null; then
   eval "$(stack --bash-completion-script stack)"
