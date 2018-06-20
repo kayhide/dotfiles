@@ -91,6 +91,7 @@ alias -g L='| lv -c'
 alias -g X='| xargs'
 alias -g XG='| xargs grep'
 alias -g CP='| pbcopy'
+alias -g P='| peco'
 
 alias -g r='rails'
 alias -g sr='spring rails'
@@ -127,13 +128,6 @@ export EDITOR='vim'
 export VISUAL=$EDITOR
 
 
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
-if which hub > /dev/null; then eval "$(hub alias -s)"; fi
-if which direnv > /dev/null; then eval "$(direnv hook zsh)"; fi
-
-
 export LANG="ja_JP.UTF-8"
 export LC_COLLATE="C"
 
@@ -150,6 +144,13 @@ export CUDA_PATH="/usr/local/cuda"
 export DYLD_LIBRARY_PATH="/usr/local/cuda/lib"
 
 export GTAGSLABEL=pygments
+
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
+if which hub > /dev/null; then eval "$(hub alias -s)"; fi
+if which direnv > /dev/null; then eval "$(direnv hook zsh)"; fi
 
 
 source ~/.zsh/tac.zsh
