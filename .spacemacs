@@ -345,10 +345,6 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
-  ;; Hack for `Symbol’s value as variable is void: helm-bookmark-map`
-  ;; https://github.com/syl20bnr/spacemacs/issues/9549#issuecomment-327788403
-  (require 'helm-bookmark)
-
   (setenv "LC_COLLATE" "C")
 
   ;; save-buffer
