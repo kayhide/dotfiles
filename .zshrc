@@ -70,7 +70,6 @@ alias lv='lv -c'
 alias less='less -R'
 
 alias g='git'
-alias gstatus='git status | lv -c'
 alias glgraph='git log --graph --all --decorate --oneline'
 alias gcheckout='git checkout'
 alias gbranch='git branch'
@@ -163,3 +162,9 @@ source ~/.zsh/cdrepo.zsh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/kayhide/src/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/kayhide/src/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/kayhide/src/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/kayhide/src/google-cloud-sdk/completion.zsh.inc'; fi
