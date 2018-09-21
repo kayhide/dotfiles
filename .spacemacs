@@ -83,6 +83,7 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages
    '(
+     vue-mode
      slim-mode
      scss-mode
      )
