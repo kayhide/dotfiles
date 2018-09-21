@@ -75,6 +75,7 @@ values."
      react
      python
      ;; agda
+     ;; coq
      osx
      )
    ;; List of additional packages that will be installed without being
