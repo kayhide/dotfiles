@@ -9,6 +9,8 @@ layout 1-monitor 'Emacs' throw 0 resize
 
 layout 2-monitors 'Google Chrome' throw 1 resize
 layout 2-monitors 'Emacs' throw 0 resize
+layout 2-monitors 'Slack' push left bar-resize:screenSizeX/2 0
+layout 2-monitors 'iTerm2' push left bar-resize:screenSizeX/2 0
 
 layout 3-monitors 'Google Chrome' push right bar-resize:screenSizeX/2 0
 layout 3-monitors 'Slack' push left bar-resize:screenSizeX/2 0
