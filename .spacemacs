@@ -75,9 +75,11 @@ values."
      react
      python
      ;; agda
-     ;; coq
+     coq
+     protobuf
      osx
      )
+
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
@@ -338,7 +340,11 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+
+  (setq evil-want-abbrev-expand-on-insert-exit nil)
+
   )
+
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
