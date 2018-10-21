@@ -571,32 +571,6 @@ before packages are loaded."
               (company-mode)
               (flycheck-mode)
               (turn-on-purescript-indentation)))
-
-  (push "~/.emacs.d/private/local/offside-trap" load-path)
-  (require 'offside-trap)
-  (add-hook 'purescript-mode-hook
-            (lambda ()
-              (offside-trap-mode)))
-
-  ;; To apply half width chars for box drawing. Does not work
-  ;; (set-fontset-font t '(#x2500 . #x25ff) (font-spec :family "Noto Sans Regular"))
-  ;; (let* ((size 12)
-  ;;        (asciifont "Fira Code")
-  ;;        (jpfont "Hiragino Maru Gothic ProN")
-  ;;        (h (* size 10))
-  ;;        (fontspec)
-  ;;        (jp-fontspec))
-  ;;   (set-face-attribute 'default nil :family asciifont :height h)
-  ;;   (setq fontspec (font-spec :family asciifont))
-  ;;   (setq jp-fontspec (font-spec :family jpfont))
-  ;;   (set-fontset-font "fontset-startup" 'japanese-jisx0208 jp-fontspec)
-  ;;   (set-fontset-font "fontset-startup" 'japanese-jisx0212 jp-fontspec)
-  ;;   (set-fontset-font "fontset-startup" 'japanese-jisx0213-1 jp-fontspec)
-  ;;   (set-fontset-font "fontset-startup" 'japanese-jisx0213-2 jp-fontspec)
-  ;;   (set-fontset-font "fontset-startup" '(#x0080 . #x024F) fontspec)
-  ;;   (set-fontset-font "fontset-startup" '(#x0370 . #x03FF) fontspec))
-  ;; (push "~/.emacs.d/private/local/fira-code" load-path)
-  ;; (require 'fira-code)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
