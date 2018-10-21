@@ -23,26 +23,21 @@ default 2-monitors count:2
 default 3-monitors count:3
 
 
-bind 0:cmd focus 'iTerm2'
-bind 9:cmd focus 'Slack'
-bind 8:cmd focus 'Google Chrome'
-bind 7:cmd focus 'Emacs'
-bind 4:cmd focus 'Dash'
-
-# bind up:cmd push up bar-resize:screenSizeY
-# bind left:cmd push left bar-resize:screenSizeX/2
-# bind right:cmd push right bar-resize:screenSizeX/2
-
-bind 1:cmd relaunch
-
-bind e:cmd hint
-# bind esc:cmd grid
 
 alias hyper ctrl;shift;alt;cmd
 
-bind up:${hyper} push up bar-resize:screenSizeY
+bind 1:${hyper} relaunch
+# bind up:${hyper} push up bar-resize:screenSizeY
 # bind left:${hyper} push left bar-resize:screenSizeX/2
 # bind right:${hyper} push right bar-resize:screenSizeX/2
 
+bind e:${hyper} hint
+# bind esc:${hyper} grid
+
+bind 0:${hyper} focus 'iTerm2'
+bind 9:${hyper} focus 'Slack'
+bind 8:${hyper} focus 'Google Chrome'
+bind 7:${hyper} focus 'Emacs'
+bind 4:${hyper} focus 'Dash'
 
 source .slate.js if_exists
