@@ -21,7 +21,6 @@ colors
 
 # completion
 if which brew > /dev/null; then
-  fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
   fpath=($(brew --prefix)/share/zsh-completions $fpath)
   if [ -f $(brew --prefix)/etc/bash_completion.d/git-prompt.sh ]; then
     source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
@@ -132,15 +131,6 @@ export VISUAL=$EDITOR
 export LANG="ja_JP.UTF-8"
 export LC_COLLATE="C"
 
-export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.pyenv/bin:$PATH"
-export PATH="$HOME/.nodenv/bin:$PATH"
-export PATH="/usr/local/heroku/bin:$PATH"
-export PATH="/usr/local/cuda/bin:$PATH"
-export PATH="./bin:../bin:$HOME/bin:$PATH"
-
 export CUDA_PATH="/usr/local/cuda"
 export DYLD_LIBRARY_PATH="/usr/local/cuda/lib"
 
@@ -152,6 +142,10 @@ if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
 if which hub > /dev/null; then eval "$(hub alias -s)"; fi
 if which direnv > /dev/null; then eval "$(direnv hook zsh)"; fi
+
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$CUDA_PATH/bin:$PATH"
+export PATH="./bin:../bin:$HOME/bin:$PATH"
 
 
 source ~/.zsh/tac.zsh
