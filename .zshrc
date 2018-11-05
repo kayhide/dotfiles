@@ -140,7 +140,7 @@ export GTAGSLABEL=pygments
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
-if which hub > /dev/null; then eval "$(hub alias -s)"; fi
+if which hub > /dev/null; then eval "$(hub alias -s zsh)"; fi
 if which direnv > /dev/null; then eval "$(direnv hook zsh)"; fi
 
 export PATH="$HOME/.local/bin:$PATH"
