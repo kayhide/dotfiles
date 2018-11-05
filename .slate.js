@@ -1,5 +1,5 @@
 var tolerance = 20;
-var grid_points = [0, 1/4, 2/4, 3/4, 1];
+var grid_points = [0, 1/4, 1/3, 2/4, 2/3, 3/4, 1];
 
 
 function points(length, offset) {
