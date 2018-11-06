@@ -1,18 +1,38 @@
 bindkey -e
 
-# history
-HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
+setopt auto_cd
+setopt auto_param_keys
+setopt auto_param_slash
+setopt auto_pushd
+setopt brace_ccl
+setopt correct
+setopt extended_glob
 setopt extended_history
 setopt hist_ignore_dups
+setopt hist_ignore_space
 setopt hist_reduce_blanks
+setopt list_packed
+setopt magic_equal_subst
+setopt mark_dirs
+setopt nolistbeep
+setopt prompt_subst
+setopt pushd_ignore_dups
 setopt share_history
 
-setopt auto_pushd
-setopt pushd_ignore_dups
+zstyle ':chpwd:*' recent-dirs-max 500
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z-_}={A-Za-z_-}'
+zstyle ':completion:*:default' menu select=1
+zstyle ':filter-select' case-insensitive yes
+zstyle ':filter-select' extended-search yes
+zstyle ':filter-select' hist-find-no-dups yes
+zstyle ':filter-select' rotate-list yes
 
-setopt auto_cd
+export HISTFILE=~/.zsh_history
+export HISTSIZE=10000
+export LISTMAX=0
+export SAVEHIST=100000
+
+
 cdpath=(.. ~)
 
 # colors
@@ -30,12 +50,10 @@ fi
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
-
-
 if which stack > /dev/null; then
   eval "$(stack --bash-completion-script stack)"
 fi
+
 
 # prompt
 setopt prompt_subst
