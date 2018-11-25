@@ -1,4 +1,4 @@
-bindkey -e
+bindkey -v
 
 setopt auto_cd
 setopt auto_param_keys
@@ -32,28 +32,14 @@ export HISTSIZE=10000
 export LISTMAX=0
 export SAVEHIST=100000
 
-
 cdpath=(.. ~)
 
-# colors
-autoload colors
-colors
-
 # completion
-if which brew > /dev/null; then
-  fpath=($(brew --prefix)/share/zsh-completions $fpath)
-  if [ -f $(brew --prefix)/etc/bash_completion.d/git-prompt.sh ]; then
-    source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
-  fi
-fi
-
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
-if which stack > /dev/null; then
-  eval "$(stack --bash-completion-script stack)"
-fi
-
+# colors
+autoload colors && colors
 
 # prompt
 setopt prompt_subst
@@ -68,6 +54,18 @@ precmd () { vcs_info }
 
 PROMPT=$'%F{yellow}[%D{%Y-%m-%d %H:%M:%S}] %F{blue}%n@%m %F{cyan}%~ ${vcs_info_msg_0_}
 %F{blue}%#%f '
+
+# zplug
+export ZPLUG_HOME=/usr/local/opt/zplug
+if [ -f $ZPLUG_HOME/init.zsh ]; then
+    source $ZPLUG_HOME/init.zsh
+
+    # zplug "zsh-users/zsh-autosuggestions" # does not work with cdpath
+    zplug "zsh-users/zsh-syntax-highlighting"
+    zplug "zsh-users/zsh-completions"
+    zplug check --verbose || zplug install
+    zplug load
+fi
 
 # alias
 case $(uname) in
@@ -155,11 +153,13 @@ export DYLD_LIBRARY_PATH="/usr/local/cuda/lib"
 export GTAGSLABEL=pygments
 
 
+if which direnv > /dev/null; then eval "$(direnv hook zsh)"; fi
+if which hub > /dev/null; then eval "$(hub alias -s zsh)"; fi
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
-if which hub > /dev/null; then eval "$(hub alias -s zsh)"; fi
-if which direnv > /dev/null; then eval "$(direnv hook zsh)"; fi
+if which stack > /dev/null; then eval "$(stack --bash-completion-script stack)"; fi
+
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$CUDA_PATH/bin:$PATH"
