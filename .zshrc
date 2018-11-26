@@ -172,6 +172,7 @@ source ~/.zsh/select-branch.zsh
 source ~/.zsh/cdgem.zsh
 source ~/.zsh/cdrepo.zsh
 
+test -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" && source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 
