@@ -324,9 +324,9 @@ dau	ふぁい
 dam	ふぁん
 dal	ふぃ
 da.	ふぃん
-dah	ふ
-day	ふう
-dan	ふん
+dah	ふゅ
+day	ふゅう
+dan	ふゅん
 da;	ふぇ
 dap	ふぇい
 da/	ふぇん
@@ -447,7 +447,7 @@ zgi	ぴょう
 zg,	ぴょん
 aa	ん
 o	。
-O	、
+ao	、
 do	っ
 :	ー
 \	ーん
@@ -458,7 +458,7 @@ d\	〜ん
 q:	：
 q;	；
 qo	・
-qO	・・・
+qwo	・・・
 q/	／
 q.	…
 q,	‥
