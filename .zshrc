@@ -125,6 +125,8 @@ alias -g SP='STAGE=prod'
 alias -g RSD='ON_REMOTE=1 STAGE=dev'
 alias -g RSP='ON_REMOTE=1 STAGE=prod'
 
+alias brew="PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin brew"
+
 alias powopen='powder open'
 alias powlink='powder link'
 alias powunlink='powder unlink'
