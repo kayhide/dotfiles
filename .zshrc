@@ -164,6 +164,7 @@ if which stack > /dev/null; then eval "$(stack --bash-completion-script stack)";
 
 
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$CUDA_PATH/bin:$PATH"
 export PATH="./bin:../bin:$HOME/bin:$PATH"
 
