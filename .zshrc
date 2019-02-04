@@ -92,13 +92,13 @@ alias gmerge='git merge'
 alias gbrowse='git browse'
 
 alias d='docker'
-alias dbuild='docker build'
-alias drun='docker run'
-alias dps='docker ps'
-alias dstats='docker stats'
-alias dimages='docker images'
 alias dcontainer='docker container'
 alias dsweep='docker rm $(docker ps --filter "status=exited" -q) && docker rmi $(docker images --filter "dangling=true" -aq'
+
+alias dc='docker-compose'
+alias dcup='docker-compose up'
+alias dcrun='docker-compose run'
+alias dcexec='docker-compose exec'
 
 alias vf='vim +VimFiler'
 
