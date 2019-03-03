@@ -1,4 +1,4 @@
-bindkey -v
+bindkey -e
 
 setopt auto_cd
 setopt auto_param_keys
