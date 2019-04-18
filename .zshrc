@@ -170,13 +170,6 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$CUDA_PATH/bin:$PATH"
 export PATH="./bin:../bin:$HOME/bin:$PATH"
 
-
-source ~/.zsh/tac.zsh
-source ~/.zsh/select-history.zsh
-source ~/.zsh/select-branch.zsh
-source ~/.zsh/cdgem.zsh
-source ~/.zsh/cdrepo.zsh
-
 test -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" && source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
@@ -186,3 +179,10 @@ if [ -f '/Users/kayhide/src/google-cloud-sdk/path.zsh.inc' ]; then source '/User
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/kayhide/src/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/kayhide/src/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+source ~/.zsh/tac.zsh
+source ~/.zsh/select-history.zsh
+source ~/.zsh/select-branch.zsh
+source ~/.zsh/cdgem.zsh
+source ~/.zsh/cdrepo.zsh
