@@ -533,7 +533,12 @@ before packages are loaded."
     )
 
   (setq-default projectile-switch-project-action 'projectile-find-file)
-
+  (setq-default projectile-project-root-files-functions
+                '(projectile-root-local
+                  projectile-root-top-down
+                  projectile-root-bottom-up
+                  projectile-root-top-down-recurring)
+                )
   (projectile-register-project-type 'yarn '("*/yarn.lock")
                                     :compile "yarn build"
                                     :test "yarn test"
