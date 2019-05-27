@@ -56,15 +56,17 @@ PROMPT=$'%F{yellow}[%D{%Y-%m-%d %H:%M:%S}] %F{blue}%n@%m %F{cyan}%~ ${vcs_info_m
 %F{blue}%#%f '
 
 # zplug
-export ZPLUG_HOME=/usr/local/opt/zplug
-if [ -f $ZPLUG_HOME/init.zsh ]; then
-    source $ZPLUG_HOME/init.zsh
+if which brew > /dev/null; then
+	export ZPLUG_HOME="$(brew --prefix)/opt/zplug"
+	if [ -f "$ZPLUG_HOME/init.zsh" ]; then
+		source "$ZPLUG_HOME/init.zsh"
 
-    # zplug "zsh-users/zsh-autosuggestions" # does not work with cdpath
-    zplug "zsh-users/zsh-syntax-highlighting"
-    zplug "zsh-users/zsh-completions"
-    zplug check --verbose || zplug install
-    zplug load
+		# zplug "zsh-users/zsh-autosuggestions" # does not work with cdpath
+		zplug "zsh-users/zsh-syntax-highlighting"
+		zplug "zsh-users/zsh-completions"
+		zplug check --verbose || zplug install
+		zplug load
+	fi
 fi
 
 # alias
@@ -125,8 +127,8 @@ alias -g SP='STAGE=prod'
 alias -g RSD='ON_REMOTE=1 STAGE=dev'
 alias -g RSP='ON_REMOTE=1 STAGE=prod'
 
-if [[ "/usr/local" == $(brew --prefix) ]]; then
-    alias brew="PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin brew"
+if which brew > /dev/null; then
+       	alias brew="PATH=$(brew --prefix)/bin:/usr/bin:/bin:/usr/sbin:/sbin brew"
 fi
 
 alias powopen='powder open'
