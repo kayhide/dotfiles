@@ -12,12 +12,14 @@ iterm:
 
 linuxbrew:
 	sh -c "$$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-	cd && test -d ~/.linuxbrew && eval $$(~/.linuxbrew/bin/brew shellenv) && echo "eval \$$($$(brew --prefix)/bin/brew shellenv)" >>~/.profile
+	test -d ~/.linuxbrew && eval $$(~/.linuxbrew/bin/brew shellenv) 
+	test -d /home/linuxbrew/.linuxbrew && eval $$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+	echo "eval \$$($$(brew --prefix)/bin/brew shellenv)" >> ~/.profile
 .PHONY: linuxbrew
 
 brew:
-	brew install zsh tig hub lv direnv peco zplug
+	brew install zsh tig hub lv direnv peco zplug entr tree
 .PHONY: brew
 
 
-init: dotfiles iterm linuxbrew
+init: dotfiles iterm linuxbrew brew
