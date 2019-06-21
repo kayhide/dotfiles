@@ -32,7 +32,7 @@ export HISTSIZE=10000
 export LISTMAX=0
 export SAVEHIST=100000
 
-cdpath=(.. ~)
+# cdpath=(.. ~) # Does not work with autosuggestions.
 
 # completion
 autoload -U +X compinit && compinit
@@ -49,7 +49,7 @@ zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!%f"
 zstyle ':vcs_info:git:*' unstagedstr "%F{red}+%f"
 zstyle ':vcs_info:*' formats "%c%u%F{green}[%b]%f"
-zstyle ':vcs_info:*' actionformats '%F{yellow}[%b|%a]'
+zstyle ':vcs_info:*' actionformats "%F{yellow}[%b|%a]"
 precmd () { vcs_info }
 
 PROMPT=$'%F{yellow}[%D{%Y-%m-%d %H:%M:%S}] %F{blue}%n@%m %F{cyan}%~ ${vcs_info_msg_0_}
@@ -57,16 +57,18 @@ PROMPT=$'%F{yellow}[%D{%Y-%m-%d %H:%M:%S}] %F{blue}%n@%m %F{cyan}%~ ${vcs_info_m
 
 # zplug
 if which brew > /dev/null; then
-	export ZPLUG_HOME="$(brew --prefix)/opt/zplug"
-	if [ -f "$ZPLUG_HOME/init.zsh" ]; then
-		source "$ZPLUG_HOME/init.zsh"
+    export ZPLUG_HOME="$(brew --prefix)/opt/zplug"
+else
+    export ZPLUG_HOME="/usr/local/opt/zplug"
+fi
+if [[ -f "$ZPLUG_HOME/init.zsh" ]]; then
+    source "$ZPLUG_HOME/init.zsh"
 
-		# zplug "zsh-users/zsh-autosuggestions" # does not work with cdpath
-		zplug "zsh-users/zsh-syntax-highlighting"
-		zplug "zsh-users/zsh-completions"
-		zplug check --verbose || zplug install
-		zplug load
-	fi
+    zplug "zsh-users/zsh-autosuggestions" # Does not work with cdpath.
+    zplug "zsh-users/zsh-syntax-highlighting"
+    zplug "zsh-users/zsh-completions"
+    zplug check --verbose || zplug install
+    zplug load
 fi
 
 # alias
@@ -167,24 +169,25 @@ if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
 if which stack > /dev/null; then eval "$(stack --bash-completion-script stack)"; fi
 
 
+source_if_exists() {
+    if [[ -e "$1" ]]; then source "$1"; fi
+}
+
+source_if_exists "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+source_if_exists "${HOME}/.iterm2_shell_integration.zsh"
+source_if_exists "${HOME}/.google-cloud-sdk/path.zsh.inc"
+source_if_exists "${HOME}/.google-cloud-sdk/completion.zsh.inc"
+
+source_if_exists "${HOME}/.zsh/tac.zsh"
+source_if_exists "${HOME}/.zsh/select-history.zsh"
+source_if_exists "${HOME}/.zsh/select-branch.zsh"
+source_if_exists "${HOME}/.zsh/cdgem.zsh"
+source_if_exists "${HOME}/.zsh/cdrepo.zsh"
+
+
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$CUDA_PATH/bin:$PATH"
-export PATH="./bin:../bin:$HOME/bin:$PATH"
-
-test -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" && source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+export PATH="./bin:../bin:./result/bin:$HOME/bin:$PATH"
 
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/kayhide/src/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/kayhide/src/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/kayhide/src/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/kayhide/src/google-cloud-sdk/completion.zsh.inc'; fi
-
-
-source ~/.zsh/tac.zsh
-source ~/.zsh/select-history.zsh
-source ~/.zsh/select-branch.zsh
-source ~/.zsh/cdgem.zsh
-source ~/.zsh/cdrepo.zsh
