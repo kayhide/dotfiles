@@ -8,10 +8,6 @@
 	excludesfile = ~/.gitignore
 [push]
 	default = simple
-[pager]
-	log = diff-highlight | lv -c
-	show = diff-highlight | lv -c
-	diff = diff-highlight | lv -c
 
 [credential]
 
