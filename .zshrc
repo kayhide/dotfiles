@@ -73,12 +73,12 @@ fi
 
 # alias
 case $(uname) in
-'Darwin')
-	alias ls='ls -h -G'
-;;
-*)
-	alias ls='ls -h --color=auto'
-;;
+    'Darwin')
+	      alias ls='ls -h -G'
+        ;;
+    *)
+	      alias ls='ls -h --color=auto'
+        ;;
 esac
 
 alias ll='ls -l'
@@ -130,7 +130,7 @@ alias -g RSD='ON_REMOTE=1 STAGE=dev'
 alias -g RSP='ON_REMOTE=1 STAGE=prod'
 
 if which brew > /dev/null; then
-       	alias brew="PATH=$(brew --prefix)/bin:/usr/bin:/bin:/usr/sbin:/sbin brew"
+    alias brew="PATH=$(brew --prefix)/bin:/usr/bin:/bin:/usr/sbin:/sbin brew"
 fi
 
 alias powopen='powder open'
@@ -161,16 +161,16 @@ export DYLD_LIBRARY_PATH="/usr/local/cuda/lib"
 export GTAGSLABEL=pygments
 
 
-if which direnv > /dev/null; then eval "$(direnv hook zsh)"; fi
-if which hub > /dev/null; then eval "$(hub alias -s zsh)"; fi
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
-if which stack > /dev/null; then eval "$(stack --bash-completion-script stack)"; fi
+which direnv > /dev/null && eval "$(direnv hook zsh)"
+which hub > /dev/null && eval "$(hub alias -s zsh)"
+which rbenv > /dev/null && eval "$(rbenv init -)"
+which pyenv > /dev/null && eval "$(pyenv init -)"
+which nodenv > /dev/null && eval "$(nodenv init -)"
+which stack > /dev/null && eval "$(stack --bash-completion-script stack)"
 
 
 source_if_exists() {
-    if [[ -e "$1" ]]; then source "$1"; fi
+    [[ -e "$1" ]] && source "$1"
 }
 
 source_if_exists "${HOME}/.nix-profile/etc/profile.d/nix.sh"
