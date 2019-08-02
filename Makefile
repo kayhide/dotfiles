@@ -13,8 +13,7 @@ iterm:
 
 linuxbrew:
 	sh -c "$$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-	test -d ~/.linuxbrew && eval $$(~/.linuxbrew/bin/brew shellenv) || true
-	test -d /home/linuxbrew/.linuxbrew && eval $$(/home/linuxbrew/.linuxbrew/bin/brew shellenv) || true
+	$(eval PATH+=~/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/bin:$$PATH )
 	echo "eval \$$($$(brew --prefix)/bin/brew shellenv)" >> ~/.profile
 .PHONY: linuxbrew
 
