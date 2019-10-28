@@ -32,8 +32,6 @@ export HISTSIZE=10000
 export LISTMAX=0
 export SAVEHIST=100000
 
-# cdpath=(.. ~) # Does not work with autosuggestions.
-
 # completion
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
@@ -56,15 +54,18 @@ PROMPT=$'%F{yellow}[%D{%Y-%m-%d %H:%M:%S}] %F{blue}%n@%m %F{cyan}%~ ${vcs_info_m
 %F{blue}%#%f '
 
 # zplug
-if which brew > /dev/null; then
-    export ZPLUG_HOME="$(brew --prefix)/opt/zplug"
-else
-    export ZPLUG_HOME="/usr/local/opt/zplug"
+if [[ -d $HOME/.nix-profile/opt/zplug ]]; then
+    export ZPLUG_INIT="$HOME/.nix-profile/opt/zplug/init.zsh"
+elif [[ -d /usr/local/opt/zplug ]]; then
+    export ZPLUG_INIT="/usr/local/opt/zplug/init.zsh"
 fi
-if [[ -f "$ZPLUG_HOME/init.zsh" ]]; then
-    source "$ZPLUG_HOME/init.zsh"
+if [[ -n ${ZPLUG_INIT+x} ]]; then
+    export ZPLUG_HOME="$HOME/.zplug"
+    mkdir -p "$ZPLUG_HOME"
 
-    zplug "zsh-users/zsh-autosuggestions" # Does not work with cdpath.
+    source "$ZPLUG_INIT"
+
+    zplug "zsh-users/zsh-autosuggestions"
     zplug "zsh-users/zsh-syntax-highlighting"
     zplug "zsh-users/zsh-completions"
     zplug check --verbose || zplug install
@@ -177,6 +178,7 @@ source_if_exists "${HOME}/.nix-profile/etc/profile.d/nix.sh"
 source_if_exists "${HOME}/.iterm2_shell_integration.zsh"
 source_if_exists "${HOME}/.google-cloud-sdk/path.zsh.inc"
 source_if_exists "${HOME}/.google-cloud-sdk/completion.zsh.inc"
+# source_if_exists "${HOME}/.opam/opam-init/init.sh"
 
 source_if_exists "${HOME}/.zsh/tac.zsh"
 source_if_exists "${HOME}/.zsh/select-history.zsh"
@@ -188,6 +190,4 @@ source_if_exists "${HOME}/.zsh/cdrepo.zsh"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$CUDA_PATH/bin:$PATH"
-export PATH="./bin:../bin:./result/bin:$HOME/bin:$PATH"
-
-
+export PATH="$HOME/bin:$PATH"
