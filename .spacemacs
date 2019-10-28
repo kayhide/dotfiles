@@ -51,10 +51,10 @@ This function should only modify configuration layer settings."
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
-     (syntax-checking
-      :variables
-      syntax-checking-enable-tooltips nil
-      )
+     ;; (syntax-checking
+     ;;  :variables
+     ;;  syntax-checking-enable-tooltips nil
+     ;;  )
      ;; version-control
      ;; github
      ;; gtags
@@ -75,9 +75,14 @@ This function should only modify configuration layer settings."
      sql
      nim
      javascript
-     typescript
+     (typescript
+      :variables
+      typescript-fmt-on-save t
+      typescript-fmt-tool 'prettier
+      )
      ;; purescript
      ;; elm
+     reasonml
      react
      python
      ;; agda
@@ -532,6 +537,7 @@ before packages are loaded."
     (define-key coffee-mode-map (kbd "S-TAB") 'coffee-indent-shift-left)
     )
 
+  (setq-default create-lockfiles nil)
   (setq-default projectile-switch-project-action 'projectile-find-file)
   (setq-default projectile-project-root-files-functions
                 '(projectile-root-local
@@ -557,6 +563,7 @@ before packages are loaded."
 
 
   (setq-default
+   typescript-indent-level 2
    js-indent-level 2
    js2-basic-offset 2
    js2-strict-missing-semi-warning nil
@@ -564,13 +571,23 @@ before packages are loaded."
    web-mode-markup-indent-offset 2
    web-mode-css-indent-offset 4
    web-mode-code-indent-offset 2
-   web-mode-attr-indent-offset 2)
+   web-mode-attr-indent-offset 2
+   )
 
   (with-eval-after-load 'web-mode
     (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
     (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
-    (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
+    (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))
+    )
 
+  (add-hook
+   'typescript-mode-hook
+   (lambda ()
+     (ignore-errors
+       (let ((path (s-chomp (shell-command-to-string "npm bin"))))
+         (make-local-variable 'exec-path)
+         (add-to-list 'exec-path path)
+         ))))
 
   (add-hook 'purescript-mode-hook
             (lambda ()
