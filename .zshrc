@@ -40,18 +40,31 @@ autoload -U +X bashcompinit && bashcompinit
 autoload colors && colors
 
 # prompt
-setopt prompt_subst
+set_prompt() {
+    setopt prompt_subst
+    autoload -Uz vcs_info
+    zstyle ':vcs_info:*' formats "%F{green}[%b]%f%c%u"
+    zstyle ':vcs_info:*' actionformats "%F{yellow}[%b|%a]"
+    zstyle ':vcs_info:git:*' check-for-changes true
+    zstyle ':vcs_info:git:*' stagedstr "❗"
+    zstyle ':vcs_info:git:*' unstagedstr "❕"
+    precmd () { vcs_info }
 
-autoload -Uz vcs_info
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!%f"
-zstyle ':vcs_info:git:*' unstagedstr "%F{red}+%f"
-zstyle ':vcs_info:*' formats "%c%u%F{green}[%b]%f"
-zstyle ':vcs_info:*' actionformats "%F{yellow}[%b|%a]"
-precmd () { vcs_info }
+    local date="%F{yellow}[%D{%Y-%m-%d %H:%M:%S}]"
+    local user="%F{blue}%n@%m"
+    local dir="%F{cyan}%~"
+    local vcs_info='${vcs_info_msg_0_}'
+    local nix="✨"
+    if [[ -n ${IN_NIX_SHELL+x} ]]; then
+        PROMPT="$date $nix $user $dir $vcs_info
+%F{blue}%#%f "
+    else
+        PROMPT="$date $user $dir $vcs_info
+%F{blue}%#%f "
+    fi
+}
+set_prompt
 
-PROMPT=$'%F{yellow}[%D{%Y-%m-%d %H:%M:%S}] %F{blue}%n@%m %F{cyan}%~ ${vcs_info_msg_0_}
-%F{blue}%#%f '
 
 # zplug
 if [[ -d $HOME/.nix-profile/opt/zplug ]]; then
