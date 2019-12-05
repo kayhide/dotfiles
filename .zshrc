@@ -54,7 +54,7 @@ set_prompt() {
     local user="%F{blue}%n@%m"
     local dir="%F{cyan}%~"
     local vcs_info='${vcs_info_msg_0_}'
-    local nix="✨"
+    local nix="💠"
     if [[ -n ${IN_NIX_SHELL+x} ]]; then
         PROMPT="$date $nix $user $dir $vcs_info
 %F{blue}%#%f "
