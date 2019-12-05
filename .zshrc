@@ -39,33 +39,6 @@ autoload -U +X bashcompinit && bashcompinit
 # colors
 autoload colors && colors
 
-# prompt
-set_prompt() {
-    setopt prompt_subst
-    autoload -Uz vcs_info
-    zstyle ':vcs_info:*' formats "%F{green}[%b]%f%c%u"
-    zstyle ':vcs_info:*' actionformats "%F{yellow}[%b|%a]"
-    zstyle ':vcs_info:git:*' check-for-changes true
-    zstyle ':vcs_info:git:*' stagedstr "❗"
-    zstyle ':vcs_info:git:*' unstagedstr "❕"
-    precmd () { vcs_info }
-
-    local date="%F{yellow}[%D{%Y-%m-%d %H:%M:%S}]"
-    local user="%F{blue}%n@%m"
-    local dir="%F{cyan}%~"
-    local vcs_info='${vcs_info_msg_0_}'
-    local nix="💠"
-    if [[ -n ${IN_NIX_SHELL+x} ]]; then
-        PROMPT="$date $nix $user $dir $vcs_info
-%F{blue}%#%f "
-    else
-        PROMPT="$date $user $dir $vcs_info
-%F{blue}%#%f "
-    fi
-}
-set_prompt
-
-
 # zplug
 if [[ -d $HOME/.nix-profile/opt/zplug ]]; then
     export ZPLUG_INIT="$HOME/.nix-profile/opt/zplug/init.zsh"
@@ -81,9 +54,23 @@ if [[ -n ${ZPLUG_INIT+x} ]]; then
     zplug "zsh-users/zsh-autosuggestions"
     zplug "zsh-users/zsh-syntax-highlighting"
     zplug "zsh-users/zsh-completions"
+    zplug "mafredri/zsh-async", from:github
+    zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
     zplug check --verbose || zplug install
     zplug load
 fi
+
+set_style__pure() {
+    zstyle :prompt:pure:git:branch color green
+    zstyle :prompt:pure:git:action color yellow
+    if [[ -n ${IN_NIX_SHELL+x} ]]; then
+        local nix="💠"
+        PROMPT=$(echo $PROMPT | sed -e "1 s/\(.*\)/$nix \1/")
+    fi
+
+}
+set_style__pure
+
 
 # alias
 case $(uname) in
