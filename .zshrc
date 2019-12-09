@@ -164,10 +164,13 @@ export GTAGSLABEL=pygments
 
 which direnv > /dev/null && eval "$(direnv hook zsh)"
 which hub > /dev/null && eval "$(hub alias -s zsh)"
-which rbenv > /dev/null && eval "$(rbenv init -)"
-which pyenv > /dev/null && eval "$(pyenv init -)"
-which nodenv > /dev/null && eval "$(nodenv init -)"
 which stack > /dev/null && eval "$(stack --bash-completion-script stack)"
+
+if [[ -z $IN_NIX_SHELL ]]; then
+    which rbenv > /dev/null && eval "$(rbenv init -)"
+    which pyenv > /dev/null && eval "$(pyenv init -)"
+    which nodenv > /dev/null && eval "$(nodenv init -)"
+fi
 
 
 source_if_exists() {
