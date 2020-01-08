@@ -44,17 +44,20 @@ This function should only modify configuration layer settings."
      better-defaults
      emacs-lisp
      ;; git
-     (markdown :variables markdown-live-preview-engine 'vmd)
+     (markdown
+      :variables
+      markdown-live-preview-engine 'vmd
+      )
      neotree
      ;; org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
-     ;; (syntax-checking
-     ;;  :variables
-     ;;  syntax-checking-enable-tooltips nil
-     ;;  )
+     (syntax-checking
+      :variables
+      syntax-checking-enable-tooltips nil
+      )
      ;; version-control
      ;; github
      ;; gtags
@@ -65,7 +68,8 @@ This function should only modify configuration layer settings."
      yaml
      csv
      (ruby
-      :variables ruby-enable-enh-ruby-mode t
+      :variables
+      ruby-enable-enh-ruby-mode t
       )
      ruby-on-rails
      nixos
@@ -587,21 +591,26 @@ before packages are loaded."
     (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))
     )
 
+  (defun add-npm-bin-path ()
+    (ignore-errors
+      (let ((path (s-chomp (shell-command-to-string "npm bin"))))
+        (make-local-variable 'exec-path)
+        (add-to-list 'exec-path path)
+        ))
+   )
+
   (add-hook
    'typescript-mode-hook
    (lambda ()
-     (ignore-errors
-       (let ((path (s-chomp (shell-command-to-string "npm bin"))))
-         (make-local-variable 'exec-path)
-         (add-to-list 'exec-path path)
-         ))))
+     (add-npm-bin-path)
+     ))
 
-  (add-hook 'purescript-mode-hook
-            (lambda ()
-              (psc-ide-mode)
-              (company-mode)
-              (flycheck-mode)
-              (turn-on-purescript-indentation)))
+  (add-hook
+   'purescript-mode-hook
+   (lambda ()
+     (add-npm-bin-path)
+     (psc-ide-mode)
+     ))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
