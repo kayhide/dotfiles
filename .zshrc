@@ -5,7 +5,7 @@ setopt auto_param_keys
 setopt auto_param_slash
 setopt auto_pushd
 setopt brace_ccl
-setopt correct
+# setopt correct
 setopt extended_glob
 setopt extended_history
 setopt hist_ignore_dups
