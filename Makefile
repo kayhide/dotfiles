@@ -5,6 +5,7 @@ dotfiles:
 	ln -sf "$$(pwd)/.zsh" "$$HOME/"
 	ln -sf "$$(pwd)/.tmux.conf" "$$HOME/"
 	ln -sf "$$(pwd)/.mayu" "$$HOME/"
+	ln -sf "$$(pwd)/.spacemacs" "$$HOME/"
 .PHONY: dotfiles
 
 iterm:
@@ -24,3 +25,4 @@ brew:
 
 
 init: dotfiles iterm linuxbrew brew
+.PHONY: init
