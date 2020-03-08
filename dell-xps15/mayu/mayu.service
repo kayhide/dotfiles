@@ -1,0 +1,14 @@
+[Unit]
+Description=Mayu
+After=basic.target
+
+[Service]
+Type=simple
+RemainAfterExit=yes
+User=root
+Environment="HOME=/home/kayhide"
+ExecStart=/home/kayhide/.nix-profile/bin/mayu
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -26,3 +26,26 @@ brew:
 
 init: dotfiles iterm linuxbrew brew
 .PHONY: init
+
+
+verify-sudo:
+	@echo "Permission required."
+	test $$USER = root
+	@echo "...OK"
+.PHONY: verify-sudo
+
+xps15: xps15-brightness xps15-mayu
+.PHONY: xps15
+
+xps15-brightness: verify-sudo
+	cp dell-xps15/dell-brightness/dell-brightness-down /etc/acpi/events/
+	cp dell-xps15/dell-brightness/dell-brightness-up /etc/acpi/events/
+	cp dell-xps15/dell-brightness/dell-brightness.sh /etc/acpi/
+	acpid reload
+.PHONY: xps15-brightness
+
+xps15-mayu: verify-sudo
+	cp dell-xps15/mayu/mayu.service /etc/systemd/system/
+	systemctl enable mayu
+	systemctl start mayu
+.PHONY: xps15-mayu
