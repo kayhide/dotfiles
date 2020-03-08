@@ -42,6 +42,8 @@ autoload colors && colors
 # zplug
 if [[ -d $HOME/.nix-profile/opt/zplug ]]; then
     export ZPLUG_INIT="$HOME/.nix-profile/opt/zplug/init.zsh"
+elif [[ -d $HOME/.zplug ]]; then
+    export ZPLUG_INIT="$HOME/.zplug/init.zsh"
 elif [[ -d /usr/local/opt/zplug ]]; then
     export ZPLUG_INIT="/usr/local/opt/zplug/init.zsh"
 fi
@@ -149,7 +151,7 @@ alias runhaskell="stack runhaskell --"
 alias ghci="stack exec -- ghci"
 
 # env
-export EDITOR='vim'
+export EDITOR='nvim'
 export VISUAL=$EDITOR
 
 
