@@ -4,6 +4,7 @@ dotfiles:
 	ln -sf "$$(pwd)/.zshrc" "$$HOME/"
 	ln -sf "$$(pwd)/.zsh" "$$HOME/"
 	ln -sf "$$(pwd)/.tmux.conf" "$$HOME/"
+	ln -sf "$$(pwd)/.mayu" "$$HOME/"
 .PHONY: dotfiles
 
 iterm:

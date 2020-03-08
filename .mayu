@@ -1,0 +1,41 @@
+include "linux109.mayu" 
+keymap Global
+
+key *Eisuu = *Escape
+
+mod mod0 = Henkan
+
+mod shift += !!!Space
+def option delay-of !!! = 2
+
+mod control += !Hiragana
+
+
+key M0-*P = *Up
+key M0-*N = *Down
+key M0-*B = *Left
+key M0-*F = *Right
+# key M0-*J = *Return
+# key M0-*M = *Return
+# key M0-*G = *Esc
+# key M0-*D = *Delete
+key M0-*H = *BackSpace
+key M0-*U = *PageUp
+key M0-*D = *PageDown
+key M0-*A = *Home
+key M0-*E = *End
+
+key M0-OpenBracket = S-C-Tab
+key M0-CloseBracket = C-Tab
+key M0-*_1 = W-*_1
+key M0-*_2 = W-*_2
+key M0-*_3 = W-*_3
+key M0-*_4 = W-*_4
+key M0-*_5 = W-*_5
+
+key M0-*Atmark = A-*Kanji
+key M0-Tab = S-C-N
+key M0-S-Tab = S-C-P
+key M0-T = S-C-T
+# mod control -= LControl
+# key *LControl = *LWindows
