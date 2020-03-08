@@ -1,0 +1,133 @@
+mod shift += !!Space
+mod control += !英数
+mod windows += !!LWindows
+mod mod0 = !変換
+mod mod1 = !無変換
+mod control -= !LControl
+mod mod2 = !LControl
+
+key *IC- =
+
+keymap X : Global
+ key M0-S = C-S
+ key M0-C = A-F4
+
+keymap Global
+ key M0-*P = *Up
+ key M0-*N = *Down
+ key M0-*B = *Left
+ key M0-*F = *Right
+ key M0-*J = *Return
+ key M0-*M = *Return
+ key M0-*G = *Esc
+ key M0-*D = *Delete
+ key M0-*H = *BackSpace
+ key M1-*V = *PageUp
+ key M0-*V = *PageDown
+ key M0-*A = *Home
+ key M0-*E = *End
+ key M1-*B = C-*Left
+ key M1-*F = C-*Right
+ key M0-M1-*A = C-*Home
+ key M0-M1-*E = C-*End
+ key M1-*D = C-*Delete
+ 
+ key M0-X = &Prefix(X)
+ key M0-W = C-X
+ key M1-W = C-C
+ key M0-Y = C-V
+ key M0-Solidus = C-Z
+ key M0-M1-Solidus = C-Y
+ key M0-K = S-End S-Right C-X
+ key M0-L = C-L
+ key M0-S = C-F
+ key M0-R = C-R
+ key M0-C = C-C
+ key M0-*S-*A-Tab = C-*S-*A-Tab
+ 
+ key W-M		= &LoadSetting		# 設定ファイルの読み込み
+ key *半角/全角 = A-半角/全角
+
+ key W-_1 = C-M-S-_1
+ key W-_2 = C-M-S-_2
+ key W-_3 = C-M-S-_3
+ key W-_4 = C-M-S-_4
+ key W-_5 = C-M-S-_5
+ key W-_6 = C-M-S-_6
+
+
+
+
+if(WINDOW_HANDLING)
+ key W-M     C-A-M	= Applications		# アプリケーションキー
+ key W-*PageUp		= &WindowLower		# ウィンドウを一番下へ
+ key W-*PageDown	= &WindowRaise		# ウィンドウを一番上へ
+ key W-Z     C-A-Z	= &WindowMaximize	# ウィンドウの最大化 (IE全画面)
+ key W-I     C-A-I	= &WindowMinimize	# ウィンドウの最小化
+ key W-X     C-A-X	= &WindowVMaximize	# ウィンドウの縦最大化
+ key W-C     C-A-C	= &WindowHMaximize	# ウィンドウの横最大化
+ key W-*Left  	= &WindowMove(-16, 0)	# ウィンドウの移動
+ key W-*Right 	= &WindowMove(16, 0)	#	〃
+ key W-*Up    	= &WindowMove(0, -16)	#	〃
+ key W-*Down  	= &WindowMove(0, 16)	#	〃
+ key W-A-*Left		= &WindowMove(-1, 0)	#	〃
+ key W-A-*Right		= &WindowMove(1, 0)	#	〃
+ key W-A-*Up		= &WindowMove(0, -1)	#	〃
+ key W-A-*Down		= &WindowMove(0, 1)	#	〃
+ key W-Left		= &MouseMove(-16, 0)	# マウスの移動
+ key W-Right		= &MouseMove(16, 0)	#	〃
+ key W-Up		= &MouseMove(0, -16)	#	〃
+ key W-Down		= &MouseMove(0, 16)	#	〃
+ key W-A-Left	= &MouseMove(-1, 0)	#	〃
+ key W-A-Right	= &MouseMove(1, 0)	#	〃
+ key W-A-Up	= &MouseMove(0, -1)	#	〃
+ key W-A-Down	= &MouseMove(0, 1)	#	〃
+ key W-C-*Left		= &WindowClingToLeft	# ウィンドウを左に寄せる
+ key W-C-*Right		= &WindowClingToRight	# ウィンドウを右に寄せる
+ key W-C-*Up		= &WindowClingToTop	# ウィンドウを上に寄せる
+ key W-C-*Down		= &WindowClingToBottom	# ウィンドウを下に寄せる
+ key W-V		= &WindowMoveVisibly	# ウィンドウを見える位置へ移動
+ key W-H		= &WindowSetAlpha(70)	# ウィンドウの半透明化
+ key W-A-H		= &WindowSetAlpha(-1)	# 半透明化全て解除
+ key W-U		= &WindowRedraw		# ウィンドウの再描画
+endif
+
+
+if(HANA)
+  include "./custom/hana.mayu"
+endif
+
+if(SKY)
+  include "./custom/SKY_qwerty109.mayu"
+endif
+
+if(SKY_SHARP)
+  include "./custom/SKYsharp_qwerty109.mayu"
+endif
+
+
+window illustrator /:illustrator/ : Global
+mod shift -= !!Space
+
+window Tod2003 /:The Typing of The Dead 2003/ : Global
+key LeftWindows => &Ignore
+key RightWindows => &Ignore
+
+
+window Yayoi /:YPFrameWin_KaikeiApplication/ : Global
+key M0-F => Esc C-F Down
+
+
+
+keymap Linux : Global
+ mod mod0 -= !変換
+ mod control += !変換
+ mod mod1 -= !無変換
+ mod alt += !無変換
+ 
+window xyzzy /xyzzy\.exe:[　\s:]+$/ : Linux
+
+window emacs /:Emacs/ : Linux
+
+window mintty /:mintty/ : Linux
+

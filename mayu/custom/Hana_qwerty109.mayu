@@ -1,0 +1,299 @@
+########################################################################
+#窓使いの憂鬱（http://mayu.sourceforge.net/ja/index.html）用
+#花(http://member.nifty.ne.jp/togasi/hana_no_kuni/index.html)
+#作者：冨樫 雅文
+#配列設定ファイル
+#    by 野分(nowake@debilotte.net)
+#
+# 使用の際は，IMEの入力モードを「かな入力」にしてください．
+########################################################################
+#############################################################
+# キーボード定義読み出し
+#############################################################
+include "109.mayu"
+#############################################################
+# キーボード定義
+#############################################################
+#--------------------------------------------------------------
+#|  |_t0|_t1|_t2|_t3|_t4|_t5|_t6|_t7|_t8|_t9|_t10|_t11|_t12|  |
+#--------------------------------------------------------------
+#|     |_u0|_u1|_u2|_u3|_u4|_u5|_u6|_u7|_u8|_u9|_u10|_u11|    |
+#----------------------------------------------------------   |
+#|      |_m0|_m1|_m2|_m3|_m4|_m5|_m6|_m7|_m8|_m9|_m10|_m11|   |
+#--------------------------------------------------------------
+#|        |_l0|_l1|_l2|_l3|_l4|_l5|_l6|_l7|_l8|_l9|_l10|      |
+#--------------------------------------------------------------
+def key _t0	=    0x02
+def key _t1	=    0x03
+def key _t2	=    0x04
+def key _t3	=    0x05
+def key _t4	=    0x06
+def key _t5	=    0x07
+def key _t6	=    0x08
+def key _t7	=    0x09
+def key _t8	=    0x0a
+def key _t9	=    0x0b
+def key _t10	=    0x0c
+def key _t11	=    0x0d
+def key _t12	=    0x7d
+def key _u0 	=    0x10
+def key _u1 	=    0x11
+def key _u2 	=    0x12
+def key _u3 	=    0x13
+def key _u4 	=    0x14
+def key _u5 	=    0x15
+def key _u6 	=    0x16
+def key _u7 	=    0x17
+def key _u8 	=    0x18
+def key _u9 	=    0x19
+def key _u10	=    0x1a
+def key _u11	=    0x1b
+def key _m0 	=    0x1e
+def key _m1 	=    0x1f
+def key _m2 	=    0x20
+def key _m3 	=    0x21
+def key _m4 	=    0x22
+def key _m5 	=    0x23
+def key _m6 	=    0x24
+def key _m7 	=    0x25
+def key _m8 	=    0x26
+def key _m9 	=    0x27
+def key _m10	=    0x28
+def key _m11	=    0x2b
+def key _l0 	=    0x2c
+def key _l1 	=    0x2d
+def key _l2 	=    0x2e
+def key _l3 	=    0x2f
+def key _l4 	=    0x30
+def key _l5 	=    0x31
+def key _l6 	=    0x32
+def key _l7 	=    0x33
+def key _l8 	=    0x34
+def key _l9 	=    0x35
+def key _l10	=    0x73
+#############################################################
+# かな配列定義
+# 旧JISキー配列を前提に再定義
+#############################################################
+def alias _nu = _t0
+def alias _hu = _t1
+def alias _a  = _t2
+def alias _u  = _t3
+def alias _e  = _t4
+def alias _o  = _t5
+def alias _ya = _t6
+def alias _yu = _t7
+def alias _yo = _t8
+def alias _wa = _t9
+def alias _ho = _t10
+def alias _he = _t11
+def alias _- = _t12
+def alias _ta = _u0
+def alias _te = _u1
+def alias _i  = _u2
+def alias _su = _u3
+def alias _ka = _u4
+def alias _nn = _u5
+def alias _na = _u6
+def alias _ni = _u7
+def alias _ra = _u8
+def alias _se = _u9
+def alias _daku = _u10
+def alias _hann = _u11
+def alias _ti = _m0
+def alias _to = _m1
+def alias _si = _m2
+def alias _ha = _m3
+def alias _ki = _m4
+def alias _ku = _m5
+def alias _ma = _m6
+def alias _no = _m7
+def alias _ri = _m8
+def alias _re = _m9
+def alias _ke = _m10
+def alias _mu = _m11
+def alias _tu = _l0
+def alias _sa = _l1
+def alias _so = _l2
+def alias _hi = _l3
+def alias _ko = _l4
+def alias _mi = _l5
+def alias _mo = _l6
+def alias _ne = _l7
+def alias _ru = _l8
+def alias _me = _l9
+def alias _ro = _l10
+#############################################################
+# アルファベット定義
+#############################################################
+keymap Alphabet
+	key *_t0	=> *_1
+	key *_t1	=> *_2
+	key *_t2 	=> *_3
+	key *_t3 	=> *_4
+	key *_t4 	=> *_5
+	key *_t5 	=> *_6
+	key *_t6 	=> *_7
+	key *_t7 	=> *_8
+	key *_t8 	=> *_9
+	key *_t9 	=> *_0
+	key *_t10	=> *HyphenMinus
+	key *_t11	=> *CircumflexAccent
+	key *_t12	=> *YenSign
+	key *_u0 	=> *q
+	key *_u1 	=> *w
+	key *_u2 	=> *e
+	key *_u3 	=> *r
+	key *_u4 	=> *t
+	key *_u5 	=> *y
+	key *_u6 	=> *u
+	key *_u7 	=> *i
+	key *_u8 	=> *o
+	key *_u9 	=> *p
+	key *_u10	=> *CommercialAt
+	key *_u11	=> *LeftSquareBracket
+	key *_m0 	=> *a
+	key *_m1 	=> *s
+	key *_m2 	=> *d
+	key *_m3 	=> *f
+	key *_m4 	=> *g
+	key *_m5 	=> *h
+	key *_m6 	=> *j
+	key *_m7 	=> *k
+	key *_m8 	=> *l
+	key *_m9 	=> *Semicolon
+	key *_m10	=> *Colon
+	key *_m11	=> *RightSquareBracket
+	key *_l0 	=> *z
+	key *_l1 	=> *x
+	key *_l2 	=> *c
+	key *_l3 	=> *v
+	key *_l4 	=> *b
+	key *_l5 	=> *n
+	key *_l6 	=> *m
+	key *_l7 	=> *Comma
+	key *_l8 	=> *FullStop
+	key *_l9 	=> *Solidus
+	key *_l10	=> *ReverseSolidus
+#############################################################
+# キーテーブル
+# 旧JIS仮名配列と同じキーのアルファベットで代用
+#############################################################
+keymap Shifted : Alphabet
+	key ~C-~A-*_u0 => _hi
+	key ~C-~A-*_u1 => _ke
+	key ~C-~A-*_u2 => S-_e
+	key ~C-~A-*_u3 => _ho
+	key ~C-~A-*_u4 => _he
+	key ~C-~A-*_u5 => S-_ya
+	key ~C-~A-*_u6 => _ma
+	key ~C-~A-*_u7 => _so
+	key ~C-~A-*_u8 => _mo
+	key ~C-~A-*_u9 => S-_i
+	key ~C-~A-*_u10 => S-_hann
+	key ~C-~A-*_m0 => S-_a
+	key ~C-~A-*_m1 => _yo
+	key ~C-~A-*_m2 => S-_yu
+	key ~C-~A-*_m3 => _ya
+	key ~C-~A-*_m4 => _hann
+	key ~C-~A-*_m5 => S-_me
+	key ~C-~A-*_m6 => _hu
+	key ~C-~A-*_m7 => _ti
+	key ~C-~A-*_m8 => _mu
+	key ~C-~A-*_m9 => S-_o
+	key ~C-~A-*_m10 => S-_mu
+	key ~C-~A-*_l0 => S-_u
+	key ~C-~A-*_l1 => _se
+	key ~C-~A-*_l2 => _a
+	key ~C-~A-*_l3 => _wa
+	key ~C-~A-*_l4 => _yu
+	key ~C-~A-*_l5 => _ne
+	key ~C-~A-*_l6 => _mi
+	key ~C-~A-*_l7 => S-_wa
+	key ~C-~A-*_l8 => _o
+	key ~C-~A-*_l9 => _nu
+
+keymap Global : Alphabet
+	key ~C-~A-*_t12 => _e
+	key ~C-~A-*_u0 => S-_yo
+	key ~C-~A-*_u1 => _te
+	key ~C-~A-*_u2 => _to
+	key ~C-~A-*_u3 => _ko
+	key ~C-~A-*_u4 => _ha
+	key ~C-~A-*_u5 => S-_tu
+	key ~C-~A-*_u6 => _ku
+	key ~C-~A-*_u7 => _u
+	key ~C-~A-*_u8 => _ru
+	key ~C-~A-*_u9 => _ra
+	key ~C-~A-*_u10 => S-YenSign
+	key ~C-~A-*_m0 => _su
+	key ~C-~A-*_m1 => _ka
+	key ~C-~A-*_m2 => &Prefix(Shifted)
+	key ~C-~A-*_m3 => _ki
+	key ~C-~A-*_m4 => _ta
+	key ~C-~A-*_m5 => _nn
+	key ~C-~A-*_m6 => _re
+	key ~C-~A-*_m7 => &Prefix(Shifted)
+	key ~C-~A-*_m8 => _daku
+	key ~C-~A-*_m9 => _ro
+	key ~C-~A-*_m10 => _ri
+	key ~C-~A-*_l0 => _sa
+	key ~C-~A-*_l1 => _si
+	key ~C-~A-*_l2 => _na
+	key ~C-~A-*_l3 => _no
+	key ~C-~A-*_l4 => _ni
+	key ~C-~A-*_l5 => _i
+	key ~C-~A-*_l6 => _tu
+	key ~C-~A-*_l7 => S-_ru
+	key ~C-~A-*_l8 => S-_ne
+	key ~C-~A-*_l9 => _me
+	key ~C-~A-*_l10 => _e
+
+	key ~IL-~IC-*_t0 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_t1 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_t2 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_t3 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_t4 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_t5 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_t6 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_t7 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_t8 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_t9 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_t10=> &Keymap(Alphabet) 
+	key ~IL-~IC-*_t11=> &Keymap(Alphabet) 
+	key ~IL-~IC-*_t12=> &Keymap(Alphabet) 
+	key ~IL-~IC-*_u0 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_u1 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_u2 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_u3 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_u4 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_u5 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_u6 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_u7 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_u8 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_u9 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_u10=> &Keymap(Alphabet) 
+	key ~IL-~IC-*_u11=> &Keymap(Alphabet) 
+	key ~IL-~IC-*_m0 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_m1 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_m2 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_m3 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_m4 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_m5 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_m6 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_m7 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_m8 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_m9 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_m10=> &Keymap(Alphabet) 
+	key ~IL-~IC-*_m11=> &Keymap(Alphabet) 
+	key ~IL-~IC-*_l0 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_l1 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_l2 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_l3 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_l4 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_l5 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_l6 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_l7 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_l8 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_l9 => &Keymap(Alphabet) 
+	key ~IL-~IC-*_l10=> &Keymap(Alphabet) 

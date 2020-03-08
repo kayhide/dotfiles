@@ -1,0 +1,113 @@
+#############################################################
+# キーテーブル
+#############################################################
+
+keymap Alpha : Global
+ key IL-*S-d => *S-y
+ 
+keymap Beta : Global
+ key IL-*S-a => *S-f
+ key IL-*S-s => *S-v
+ key IL-*S-d => *S-s
+ key IL-*S-f => *S-x
+ key IL-*S-q => *S-q
+ 
+ key IL-*S-y => *S-s u u
+ key IL-*S-u => *S-s a i
+ key IL-*S-i => *S-s o u
+ key IL-*S-o => *S-x t u
+ key IL-*S-p => *S-s e i
+ key IL-*S-g => *S-s y
+ key IL-*S-h => *S-s u
+ key IL-*S-j => *S-s a
+ key IL-*S-k => *S-s o
+ key IL-*S-l => *S-s i
+ key IL-*S-Semicolon => *S-s e
+ key IL-*S-Colon=> *S-n n
+ key IL-*S-v => *S-Solidus
+ key IL-*S-n => *S-s u n n
+ key IL-*S-m => *S-s a n n
+ key IL-*S-Comma => *S-s o n n
+ key IL-*S-FullStop => *S-s i n n
+ key IL-*S-Solidus => *S-s e n n
+ 
+ key IL-*S-o => *S-x t u
+ key IL-*S-Colon => *S-n n
+ 
+keymap BetaCapital : Global
+ key IL-*a => S-*f
+ key IL-*s => S-*v
+ key IL-*d => S-*s
+ key IL-*f => S-*x
+ key IL-*q => S-*q
+ 
+ key IL-*y => S-*s u u
+ key IL-*u => S-*s a i
+ key IL-*i => S-*s o u
+ key IL-*o => S-*x t u
+ key IL-*p => S-*s e i
+ key IL-*g => S-*s y
+ key IL-*h => S-*s u
+ key IL-*j => S-*s a
+ key IL-*k => S-*s o
+ key IL-*l => S-*s i
+ key IL-*Semicolon => S-*s e
+ key IL-*v => S-*Solidus
+ key IL-*n => S-*s u n n
+ key IL-*m => S-*s a n n
+ key IL-*Comma => S-*s o n n
+ key IL-*FullStop => S-*s i n n
+ key IL-*Solidus => S-*s e n n
+ 
+ key IL-*o => S-x t u
+ key IL-*Colon => S-n n
+ 
+keymap Gamma : Global
+ key IL-S-Solidus => S-Solidus
+ 
+keymap Global
+ key IL-q => &Prefix(Gamma)
+ key IL-*S-w => *S-w &Prefix(Alpha)
+ key IL-*S-e => *S-r &Prefix(Alpha)
+ key IL-*S-r => *S-m &Prefix(Alpha)
+ key IL-*S-t => *S-h &Prefix(Alpha)
+ key IL-*S-y => *S-u u
+ key IL-*S-u => *S-a i
+ key IL-*S-i => *S-o u
+ key IL-o => Period
+ key IL-S-o => Comma
+ key IL-*S-p => *S-e i
+ key IL-*S-a => *S-n &Prefix(Alpha)
+ key IL-*S-s => *S-t &Prefix(Alpha)
+ key IL-d => &Prefix(Beta)
+ key IL-S-d => &Prefix(BetaCapital)
+ key IL-*S-f => *S-k &Prefix(Alpha)
+ key IL-*S-g => *S-y
+ key IL-*S-h => *S-u
+ key IL-*S-j => *S-a
+ key IL-*S-k => *S-o
+ key IL-*S-l => *S-i
+ key IL-*S-Semicolon => *S-e
+ key IL-*S-Colon=> *S-HyphenMinus
+ key IL-*S-z => *S-p &Prefix(Alpha)
+ key IL-*S-x => *S-d &Prefix(Alpha)
+ key IL-*S-c => *S-z &Prefix(Alpha)
+ key IL-*S-v => *S-g &Prefix(Alpha)
+ key IL-*S-b => *S-b &Prefix(Alpha)
+ key IL-*S-n => *S-u n n
+ key IL-*S-m => *S-a n n
+ key IL-*S-Comma => *S-o n n
+ key IL-*S-FullStop => *S-i n n
+ key IL-*S-Solidus => *S-e n n
+ key IL-C-*S-Semicolon => *S-Semicolon
+ key IL-C-*S-Colon => *S-Colon
+ key IL-C-*S-Comma => *S-Comma
+ key IL-C-*S-FullStop => *S-FullStop
+ key IL-C-*S-Solidus => *S-Solidus
+ key IL-A-*S-Semicolon => *S-Semicolon
+ key IL-A-*S-Colon => *S-Colon
+ key IL-A-*S-Comma => *S-Comma
+ key IL-A-*S-FullStop => *S-FullStop
+ key IL-A-*S-Solidus => *S-Solidus
+ key IL-M0-G => C-G
+

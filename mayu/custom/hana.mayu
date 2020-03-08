@@ -1,0 +1,208 @@
+keymap2 HanaK : Global
+
+keymap2 HanaS : Global
+  key IL-l => BackSpace g a
+keymap2 HanaF : Global
+  key IL-l => BackSpace g i
+keymap2 HanaU : Global
+  key IL-l => BackSpace g u
+keymap2 HanaKW : Global
+  key IL-l => BackSpace g e
+keymap2 HanaR : Global
+  key IL-l => BackSpace g o
+
+keymap2 HanaZ : Global
+  key IL-l => BackSpace z a
+keymap2 HanaX : Global
+  key IL-l => BackSpace z i
+keymap2 HanaA : Global
+  key IL-l => BackSpace z u
+keymap2 HanaKX : Global
+  key IL-l => BackSpace z e
+keymap2 HanaDI : Global
+  key IL-l => BackSpace z o
+
+keymap2 HanaG : Global
+  key IL-l => BackSpace d a
+keymap2 HanaDK : Global
+  key IL-l => BackSpace d i
+keymap2 HanaM : Global
+  key IL-l => BackSpace d u
+keymap2 HanaW : Global
+  key IL-l => BackSpace d e
+keymap2 HanaE : Global
+  key IL-l => BackSpace d o
+
+keymap2 HanaTK : HanaK
+  key IL-g => BackSpace p a
+keymap2 HanaKQK : HanaK
+  key IL-g => BackSpace p i
+keymap2 HanaDJK : HanaK
+  key IL-g => BackSpace p u
+keymap2 HanaKTK : HanaK
+  key IL-g => BackSpace p e
+keymap2 HanaKRK : HanaK
+  key IL-g => BackSpace p o
+
+keymap2 HanaT : Global
+  key IL-l => BackSpace b a
+  key IL-k => &Prefix(HanaTK)
+keymap2 HanaKQ : Global
+  key IL-l => BackSpace b i
+  key IL-k => &Prefix(HanaKQK)
+keymap2 HanaDJ : Global
+  key IL-l => BackSpace b u
+  key IL-k => &Prefix(HanaDJK)
+keymap2 HanaKT : Global
+  key IL-l => BackSpace b e
+  key IL-k => &Prefix(HanaKTK)
+keymap2 HanaKR : Global
+  key IL-l => BackSpace b o
+  key IL-k => &Prefix(HanaKRK)
+
+keymap2 HanaD : Global
+  key IL-CommercialAt => LeftSquareBracket
+  key IL-Colon => RightSquareBracket
+  key IL-h => Solidus
+  key IL-p => x i
+  key IL-Semicolon => x o
+  key IL-FullStop => o
+  key IL-i => s o &Prefix(HanaDI)
+  key IL-k => t i &Prefix(HanaDK)
+  key IL-Solidus => n u
+  key IL-n => n e
+  key IL-j => f u &Prefix(HanaDJ)
+  key IL-u => m a
+  key IL-m => m i
+  key IL-l => m u
+  key IL-o => m o
+  key IL-y => x y a
+  key IL-Comma => w o
+
+keymap2 HanaK : Global
+  key IL-a => x a
+  key IL-c => a
+  key IL-z => x u
+  key IL-e => x e
+  key IL-w => k e &Prefix(HanaKW)
+  key IL-x => s e &Prefix(HanaKX)
+  key IL-q => h i &Prefix(HanaKQ)
+  key IL-t => h e &Prefix(HanaKT)
+  key IL-r => h o &Prefix(HanaKR)
+  key IL-f => y a
+  key IL-d => x y u
+  key IL-b => y u
+  key IL-s => y o
+  key IL-v => w a
+
+
+keymap Global
+  key IL-d => &Prefix(HanaD)
+  key IL-k => &Prefix(HanaK)
+  key IL-l => &Ignore
+  key IL-n => i
+  key IL-i => u
+  key IL-ReverseSolidus => e
+  key IL-s => k a &Prefix(HanaS)
+  key IL-f => k i &Prefix(HanaF)
+  key IL-u => k u &Prefix(HanaU)
+  key IL-r => k o &Prefix(HanaR)
+  key IL-z => s a &Prefix(HanaZ)
+  key IL-x => s i &Prefix(HanaX)
+  key IL-a => s u &Prefix(HanaA)
+  key IL-g => t a &Prefix(HanaG)
+  key IL-y => x t u
+  key IL-m => t u &Prefix(HanaM)
+  key IL-w => t e &Prefix(HanaW)
+  key IL-e => t o &Prefix(HanaE)
+  key IL-c => n a
+  key IL-b => n i
+  key IL-v => n o
+  key IL-t => h a &Prefix(HanaT)
+  key IL-Solidus => m e
+  key IL-q => x y o
+  key IL-p => r a
+  key IL-Colon => r i
+  key IL-o => r u
+  key IL-j => r e
+  key IL-SemiColon => r o
+  key IL-h => n n 
+  key IL-CommercialAt => HyphenMinus
+
+
+
+keymap2 Tod2003HanaD : Global
+  key ~S-CommercialAt => S-LeftSquareBracket
+  key ~S-Colon => S-RightSquareBracket
+  key ~S-h => S-Solidus
+  key ~S-p => S-e
+  key ~S-Semicolon => S-_6
+  key ~S-FullStop => _6
+  key ~S-i => c
+  key ~S-k => a
+  key ~S-Solidus => _1
+  key ~S-n => Comma
+  key ~S-j => _2
+  key ~S-u => j
+  key ~S-m => n
+  key ~S-l => RightSquareBracket
+  key ~S-o => m
+  key ~S-y => S-_7
+  key ~S-Comma => S-_0
+
+keymap2 Tod2003HanaK : Global
+  key ~S-l => LeftSquareBracket
+  key ~S-g => LeftSquareBracket
+  key ~S-a => S-_3
+  key ~S-c => _3
+  key ~S-z => S-_4
+  key ~S-e => S-_5
+  key ~S-w => Colon
+  key ~S-x => p
+  key ~S-q => v
+  key ~S-t => CircumflexAccent
+  key ~S-r => HyphenMinus
+  key ~S-f => _7
+  key ~S-d => S-_8
+  key ~S-b => _8
+  key ~S-s => _9
+  key ~S-v => _0
+
+
+window Tod2003 /:The Typing of The Dead 2003/ : Global
+  mod shift += !Space
+  key ~S-d => &Prefix(Tod2003HanaD)
+  key ~S-k => &Prefix(Tod2003HanaK)
+  key ~S-Comma => S-Comma
+  key ~S-FullStop => S-FullStop
+  key ~S-l => CommercialAt
+  key ~S-n => e
+  key ~S-i => _4
+  key ~S-ReverseSolidus => _5
+  key ~S-s => t
+  key ~S-f => g
+  key ~S-u => h
+  key ~S-r => b
+  key ~S-z => x
+  key ~S-x => d
+  key ~S-a => r
+  key ~S-g => q
+  key ~S-y => S-z
+  key ~S-m => z
+  key ~S-w => w
+  key ~S-e => s
+  key ~S-c => u
+  key ~S-b => i
+  key ~S-v => k
+  key ~S-t => f
+  key ~S-q => S-_9
+  key ~S-p => o
+  key ~S-Colon => l
+  key ~S-o => FullStop
+  key ~S-j => SemiColon
+  key ~S-SemiColon => ReverseSolidus
+  key ~S-h => y
+  key ~S-CommercialAt => YenSign
+
+
+
