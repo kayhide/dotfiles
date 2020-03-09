@@ -18,16 +18,16 @@ key M0-*F = *Right
 # key M0-*J = *Return
 # key M0-*M = *Return
 # key M0-*G = *Esc
-# key M0-*D = *Delete
+key M0-*D = *Delete
 key M0-*H = *BackSpace
 key M0-*U = *PageUp
-key M0-*D = *PageDown
+# key M0-*D = *PageDown
 key M0-*A = *Home
 key M0-*E = *End
 
 key M0-OpenBracket = S-C-Tab
 key M0-CloseBracket = C-Tab
-key M0-*_1 = W-*_1
+key M0-*_0 = W-*_1
 key M0-*_2 = W-*_2
 key M0-*_3 = W-*_3
 key M0-*_4 = W-*_4
@@ -37,5 +37,11 @@ key M0-*Atmark = A-*Kanji
 key M0-Tab = S-C-N
 key M0-S-Tab = S-C-P
 key M0-T = S-C-T
+
+key M0-R = C-R
+key M0-K = C-K
+key M0-C = S-C-C
+key M0-V = S-C-V
+
 # mod control -= LControl
 # key *LControl = *LWindows
