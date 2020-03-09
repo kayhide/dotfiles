@@ -34,7 +34,8 @@ verify-sudo:
 	@echo "...OK"
 .PHONY: verify-sudo
 
-xps15: xps15-brightness xps15-mayu
+# xps15: xps15-brightness # Does not work for Pop!_OS
+xps15: xps15-mayu
 .PHONY: xps15
 
 xps15-brightness: verify-sudo
