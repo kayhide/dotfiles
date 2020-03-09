@@ -79,6 +79,8 @@ This function should only modify configuration layer settings."
       ;; haskell-completion-backend 'intero
       )
      sql
+     nginx
+     systemd
      nim
      javascript
      (typescript
