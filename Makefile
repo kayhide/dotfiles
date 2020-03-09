@@ -35,8 +35,14 @@ verify-sudo:
 .PHONY: verify-sudo
 
 # xps15: xps15-brightness # Does not work for Pop!_OS
+xps15: bin-dell-brightness
 xps15: xps15-mayu
 .PHONY: xps15
+
+bin-dell-brightness:
+	@mkdir -p "$$HOME/bin"
+	cp bin/dell-brightness "$$HOME/bin/"
+.PHONY: bin-dell-brightness
 
 xps15-brightness: verify-sudo
 	cp dell-xps15/dell-brightness/dell-brightness-down /etc/acpi/events/
