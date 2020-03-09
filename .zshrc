@@ -40,11 +40,11 @@ autoload -U +X bashcompinit && bashcompinit
 autoload colors && colors
 
 # zplug
-if [[ -d $HOME/.nix-profile/opt/zplug ]]; then
+if [[ -f $HOME/.nix-profile/opt/zplug/init.zsh ]]; then
     export ZPLUG_INIT="$HOME/.nix-profile/opt/zplug/init.zsh"
-elif [[ -d $HOME/.zplug ]]; then
+elif [[ -f $HOME/.zplug/init.zsh ]]; then
     export ZPLUG_INIT="$HOME/.zplug/init.zsh"
-elif [[ -d /usr/local/opt/zplug ]]; then
+elif [[ -f /usr/local/opt/zplug/init.zsh ]]; then
     export ZPLUG_INIT="/usr/local/opt/zplug/init.zsh"
 fi
 if [[ -n ${ZPLUG_INIT+x} ]]; then
