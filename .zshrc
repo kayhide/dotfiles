@@ -158,6 +158,10 @@ export VISUAL=$EDITOR
 export LANG="ja_JP.UTF-8"
 export LC_COLLATE="C"
 
+if [[ -f $HOME/.nix-profile/lib/locale/locale-archive ]]; then
+    export LOCALE_ARCHIVE="$HOME/.nix-profile/lib/locale/locale-archive"
+fi
+
 export CUDA_PATH="/usr/local/cuda"
 export DYLD_LIBRARY_PATH="/usr/local/cuda/lib"
 
