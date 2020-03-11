@@ -58,6 +58,7 @@ if [[ -n ${ZPLUG_INIT+x} ]]; then
     zplug "zsh-users/zsh-completions"
     zplug "mafredri/zsh-async", from:github
     zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
+    zplug "docker/compose", use:contrib/completion/zsh
     zplug check --verbose || zplug install
     zplug load
 fi
@@ -169,7 +170,7 @@ export GTAGSLABEL=pygments
 
 
 which direnv > /dev/null && eval "$(direnv hook zsh)"
-which hub > /dev/null && eval "$(hub alias -s zsh)"
+# which hub > /dev/null && eval "$(hub alias -s zsh)"
 which stack > /dev/null && eval "$(stack --bash-completion-script stack)"
 
 if [[ -z $IN_NIX_SHELL ]]; then
