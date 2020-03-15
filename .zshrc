@@ -92,6 +92,9 @@ alias tree='tree -N'
 alias lv='lv -c'
 alias less='less -R'
 
+which xsel > /dev/null && alias pbcopy="xsel --clipboard --input"
+which xdg-open > /dev/null && alias open="xdg-open"
+
 alias g='git'
 alias glgraph='git log --graph --all --decorate --oneline'
 alias gcheckout='git checkout'
@@ -145,11 +148,6 @@ alias powstart='powder start'
 alias powrestart='powder stop; powder start'
 
 alias be='bundle exec'
-
-alias ghc="stack ghc --"
-alias runghc="stack runghc --"
-alias runhaskell="stack runhaskell --"
-alias ghci="stack exec -- ghci"
 
 # env
 export EDITOR='nvim'
