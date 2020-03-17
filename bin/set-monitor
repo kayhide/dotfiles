@@ -1,0 +1,18 @@
+#! /bin/bash
+echo "[$(date)] set-monitor" >> ~/xsession.log
+
+primary_monitor="eDP-1-1"
+primary_monitor_mode="2560x1440"
+
+for i in $(seq 1 5); do
+    sleep 5
+    echo "[$(date)] $i..." >> ~/xsession.log
+    xrandr -q | grep $primary_monitor >> ~/xsession.log
+    if xrandr -q | grep $primary_monitor | grep $primary_monitor_mode; then
+        echo "Succeeded to set monitor mode." >> ~/xsession.log
+        exit 0
+    fi
+    xrandr --output eDP-1-1 --mode $primary_monitor_mode 2>> ~/xsession.log
+done
+
+echo "Failed to set monitor mode." >> ~/xsession.log
