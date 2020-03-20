@@ -34,14 +34,14 @@ verify-sudo:
 	@echo "...OK"
 .PHONY: verify-sudo
 
-# xps15: xps15-brightness # Does not work for Pop!_OS
-xps15: bin-dell-brightness
+xps15: xps15-brightness # For Ubuntu
+# xps15: bin-dell-brightness # For Pop!_OS
 xps15: xps15-mayu
 .PHONY: xps15
 
 bin-dell-brightness:
 	@mkdir -p "$$HOME/bin"
-	cp bin/dell-brightness "$$HOME/bin/"
+	ln -s $(pwd)/bin/dell-brightness "$$HOME/bin/"
 .PHONY: bin-dell-brightness
 
 xps15-brightness: verify-sudo
