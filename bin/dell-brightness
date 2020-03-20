@@ -1,26 +1,23 @@
 #! /usr/bin/env bash
-DISPLAYNAME=$(xrandr --listmonitors | awk '$1 == "0:" {print $4}')
-CURR=$(xrandr --verbose | grep -i brightness -m 1 | cut -f2 -d ' ')
-MAX=1.2
 
-INTEL_PANEL="/sys/devices/pci0000:00/0000:00:02.0/drm/card0/card0-eDP-1/intel_backlight/"
-if [[ -d $INTEL_PANEL ]]; then
-    INTEL_MAX=$(cat "$INTEL_PANEL/max_brightness")
-    INTEL_CURRENT=$(cat "$INTEL_PANEL/brightness")
-    VAL=$(echo "$MAX*$INTEL_CURRENT/$INTEL_MAX" | bc -l)
+monitor=${1:-eDP-1-1}
+max=1.2
+
+intel_panel="/sys/devices/pci0000:00/0000:00:02.0/drm/card0/card0-eDP-1/intel_backlight/"
+if [[ -d $intel_panel ]]; then
+    intel_max=$(cat "$intel_panel/max_brightness")
+    intel_current=$(cat "$intel_panel/brightness")
+    val=$(echo "$max*$intel_current/$intel_max" | bc -l)
     cat <<EOF
 Intel Panel:
-    Current Brightness: $INTEL_CURRENT
-    Max Brightness: $INTEL_MAX
+    Brightness: $intel_current / $intel_max
 
 OLED:
-    Current Brightness: $CURR
-    Max Brightness: $MAX
-    Updating Brightness: $VAL
+    Brightness: $(printf "%5.3f" "$val") / $(printf "%5.3f" "$max")
 EOF
 
-    xrandr --output $DISPLAYNAME --brightness $VAL
+    xrandr --output "$monitor" --brightness "$val"
 else
-    >2 echo "Intel panel is not found at:"
-    >2 echo "$INTEL_PANEL"
+    >2 echo "Intel panel is not found at:" >2
+    >2 echo "$intel_panel"
 fi
