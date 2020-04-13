@@ -35,8 +35,8 @@ bind e:${hyper} hint
 # bind esc:${hyper} grid
 
 bind 0:ctrl focus 'iTerm2'
-bind 9:ctrl focus 'Slack'
-bind 3:ctrl focus 'Google Chrome'
 bind 2:ctrl focus 'Emacs'
+bind 3:ctrl focus 'Google Chrome'
+bind 5:ctrl focus 'Slack'
 
 source .slate.js if_exists
