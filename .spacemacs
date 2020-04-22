@@ -612,6 +612,8 @@ before packages are loaded."
    (lambda ()
      (add-npm-bin-path)
      (psc-ide-mode)
+     (spacemacs/set-leader-keys-for-major-mode 'purescript-mode
+       "hh"  'purescript-pursuit)
      ))
   )
 
