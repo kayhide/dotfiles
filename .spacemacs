@@ -615,6 +615,11 @@ before packages are loaded."
      (spacemacs/set-leader-keys-for-major-mode 'purescript-mode
        "hh"  'purescript-pursuit)
      ))
+  (with-eval-after-load 'purescript-indentation
+    (defun purescript-indentation-expression-token (token)
+      (member token '("if" "let" "do" "case" "\\" "(" "[" "{" "::"
+                      value operator no-following-token)))
+    )
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
