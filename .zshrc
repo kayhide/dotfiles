@@ -63,17 +63,22 @@ if [[ -n ${ZPLUG_INIT+x} ]]; then
     zplug load
 fi
 
+
+_prompt_mark() {
+    if [[ -n ${DIRENV_DIR+x} ]]; then
+        echo -n "🎃"
+    fi
+    if [[ -n ${IN_NIX_SHELL+x} ]]; then
+        echo -n "💠"
+    fi
+}
+
 set_style__pure() {
     zstyle :prompt:pure:git:branch color green
     zstyle :prompt:pure:git:action color yellow
-    if [[ -n ${IN_NIX_SHELL+x} ]]; then
-        local nix="💠"
-        PROMPT=$(echo $PROMPT | sed -e "1 s/\(.*\)/$nix \1/")
-    fi
-
+    PROMPT=$(echo $PROMPT | sed -e "1 s/\(.*\)/\$(_prompt_mark)\1/")
 }
 set_style__pure
-
 
 # alias
 case $(uname) in
