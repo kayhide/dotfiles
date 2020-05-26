@@ -159,7 +159,7 @@ export EDITOR='nvim'
 export VISUAL=$EDITOR
 
 
-export LANG="ja_JP.UTF-8"
+export LANG="en_US.UTF-8"
 export LC_COLLATE="C"
 
 if [[ -f $HOME/.nix-profile/lib/locale/locale-archive ]]; then
