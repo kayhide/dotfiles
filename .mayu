@@ -4,6 +4,7 @@ keymap Global
 key *Eisuu = *Escape
 
 mod mod0 = Henkan
+mod mod1 = Muhenkan
 
 mod shift += !!!Space
 def option delay-of !!! = 2
@@ -27,16 +28,24 @@ key M0-*E = *End
 
 key M0-OpenBracket = S-C-Tab
 key M0-CloseBracket = C-Tab
-key M0-*_0 = W-*_1
+key M0-*_0 = W-*_0
+key M0-*_1 = W-*_1
 key M0-*_2 = W-*_2
 key M0-*_3 = W-*_3
 key M0-*_4 = W-*_4
 key M0-*_5 = W-*_5
 
+key M1-*Return = W-*Return
+key M1-*H = W-*Left
+key M1-*L = W-*Right
+key M1-*K = W-*Up
+key M1-*J = W-*Down
+key M1-*B = W-*H
+key M1-*V = W-*V
+
 key M0-*Atmark = A-*Kanji
-key M0-Tab = S-C-N
-key M0-S-Tab = S-C-P
-key M0-T = S-C-T
+key M0-*Tab = W-*Right
+key M0-Q = W-S-Q
 
 key M0-R = C-R
 key M0-K = C-K

@@ -4,7 +4,6 @@ dotfiles:
 	ln -sf "$$(pwd)/.zshrc" "$$HOME/"
 	ln -sf "$$(pwd)/.zsh" "$$HOME/"
 	ln -sf "$$(pwd)/.tmux.conf" "$$HOME/"
-	ln -sf "$$(pwd)/.mayu" "$$HOME/"
 	ln -sf "$$(pwd)/.spacemacs" "$$HOME/"
 .PHONY: dotfiles
 
@@ -52,6 +51,7 @@ xps15-brightness: verify-sudo
 .PHONY: xps15-brightness
 
 xps15-mayu: verify-sudo
+	ln -sf "$$(pwd)/.mayu" "/root/"
 	cp dell-xps15/mayu/mayu.service /etc/systemd/system/
 	systemctl enable mayu
 	systemctl start mayu
