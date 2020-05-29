@@ -20,7 +20,9 @@ in
 {
   imports = [
     <nixos-hardware/dell/xps/15-7590>
-    /etc/nixos/hardware-configuration.nix
+    ./hardware-configuration.nix
+    ./hardware-power.nix
+    ./hardware-iris.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -31,6 +33,7 @@ in
     efiInstallAsRemovable = true;
   };
   boot.loader.efi.canTouchEfiVariables = true;
+  # boot.kernelPackages = pkgs.linuxPackages_5_6;
 
   networking.hostName = "napoli";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -112,7 +115,10 @@ in
   # services.xserver.xkbOptions = "eurosign:e";
 
   # Enable touchpad support.
-  services.xserver.libinput.enable = true;
+  services.xserver.libinput = {
+    enable = true;
+    naturalScrolling = true;
+  };
 
   # Enable the KDE Desktop Environment.
   # services.xserver.displayManager.sddm.enable = true;
@@ -125,6 +131,8 @@ in
     noto-fonts-cjk
     noto-fonts-emoji
   ];
+
+  services.lorri.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kayhide = {

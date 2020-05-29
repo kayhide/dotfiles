@@ -9,6 +9,7 @@ in
 {
   imports = [
   #  ./home/alacritty.nix
+    ./home/wm.nix
   ];
   programs.home-manager.enable = true;
 
@@ -25,49 +26,11 @@ in
   # changes in each release.
   home.stateVersion = "20.09";
 
-  xsession = {
-    enable = true;
-    windowManager.i3 =
-      let mod = "Mod4";
-      in {
-        enable = true;
-        package = pkgs.i3-gaps;
-        config = {
-          modifier = mod;
-	        keybindings = lib.mkOptionDefault {
-	          "${mod}+Return" = "exec kitty";
-	          # "${mod}+d" = "exec rofi --show drun";
-	        };
-
-	        window = {
-	          border = 2;
-	        };
-
-	        gaps = {
-	          inner = 20;
-	          outer = 0;
-	        };
-        };
-        extraConfig = ''
-
-        '';
-      };
-  };
-
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     # WM
     acpi
-    arandr
-    autorandr
-    conky
-    feh
-    i3-gaps
-    i3blocks
-    i3lock
-    i3status
     maim
-    rofi
 
     # Cli
     direnv
@@ -129,5 +92,8 @@ in
     zplug
   ];
 
-  # home.file.".config/i3/config".source = ./home/i3/config;
+  home.file."bin/wallpaper" = {
+    source = ./bin/wallpaper;
+    executable = true;
+  };
 }
