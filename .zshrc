@@ -32,10 +32,6 @@ export HISTSIZE=10000
 export LISTMAX=0
 export SAVEHIST=100000
 
-# completion
-autoload -U +X compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
-
 # colors
 autoload colors && colors
 
@@ -59,9 +55,27 @@ if [[ -n ${ZPLUG_INIT+x} ]]; then
     zplug "mafredri/zsh-async", from:github
     zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
     zplug "docker/compose", use:contrib/completion/zsh
+    zplug "nnao45/zsh-kubectl-completion"
+    zplug "ahmetb/kubectx"
     zplug check --verbose || zplug install
     zplug load
+
+    if [[ ! -e $ZPLUG_HOME/completions ]]; then
+        mkdir -p "$ZPLUG_HOME/completions"
+    fi
+    if [[ ! -f $ZPLUG_HOME/completions/_kubectx.zsh ]]; then
+        cp "$ZPLUG_HOME/repos/ahmetb/kubectx/completion/kubectx.zsh" "$ZPLUG_HOME/completions/_kubectx.zsh"
+    fi
+    if [[ ! -f $ZPLUG_HOME/completions/_kubens.zsh ]]; then
+        cp "$ZPLUG_HOME/repos/ahmetb/kubectx/completion/kubens.zsh" "$ZPLUG_HOME/completions/_kubens.zsh"
+    fi
 fi
+
+
+# completion
+fpath=($ZPLUG_HOME/completions $fpath)
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
 
 
 _prompt_mark() {
