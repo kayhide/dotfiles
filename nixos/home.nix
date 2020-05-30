@@ -53,6 +53,11 @@ in
     xsel
     yq
 
+    # HW
+    glxinfo
+    pciutils
+    usbutils
+
     # Apps
     awscli
     dropbox

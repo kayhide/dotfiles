@@ -22,8 +22,11 @@ in
     <nixos-hardware/dell/xps/15-7590>
     ./hardware-configuration.nix
     ./hardware-power.nix
-    ./hardware-iris.nix
+    # ./hardware-iris.nix
+    ./hardware-nvidia.nix
+    ./hardware-opengl.nix
   ];
+
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -120,11 +123,17 @@ in
     naturalScrolling = true;
   };
 
+
   # Enable the KDE Desktop Environment.
   # services.xserver.displayManager.sddm.enable = true;
   # services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.desktopManager.xterm.enable = true;
   services.xserver.displayManager.lightdm.enable = true;
+
+  # TODO Set the following resolution onto the login screen
+  # services.xserver.displayManager.setupCommands = ''
+  #   xrandr --output default --mode 2560x1400 || true
+  # '';
 
   fonts.fonts = with pkgs; [
     noto-fonts

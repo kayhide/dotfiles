@@ -5,8 +5,8 @@ set-monitor() {
     xrandr --output $monitor --mode $mode --pos $pos
 }
 
-set-monitor eDP-1 2560x1440
-set-monitor DP-3 1920x1080 2560x0
+set-monitor eDP1 2560x1440
+set-monitor DP3 1920x1080 2560x0
 
 ergo &
 keynav &
