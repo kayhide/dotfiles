@@ -15,6 +15,6 @@ nm-applet &
 parcellite &
 pasystray &
 xautolock -locker "i3lock --color '#332233'"  -time 5 -detectsleep &
+picom --experimental-backends &
 
-
-~/bin/wallpaper ~/.wallpaper &!
+~/bin/wallpaper ~/.wallpaper &

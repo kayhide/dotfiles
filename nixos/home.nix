@@ -65,9 +65,10 @@ in
     neovim
 
     # Container
-    kubernetes-helm
+    kompose
     kubectl
     kubectx
+    kubernetes-helm
     lazydocker
     minikube
 

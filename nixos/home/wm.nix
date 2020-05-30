@@ -9,38 +9,7 @@ in
   config = {
     xsession = {
       enable = true;
-      # windowManager.command = "i3";
-      windowManager.i3 = {
-        enable = true;
-        package = pkgs.i3-gaps;
-        config = {
-          modifier = mod;
-	        keybindings = lib.mkOptionDefault {
-	          "${mod}+Return" = "exec kitty";
-	          "${mod}+h" = "focus left";
-	          "${mod}+j" = "focus down";
-	          "${mod}+k" = "focus up";
-	          "${mod}+l" = "focus right";
-	          "${mod}+b" = "split h";
-	          "${mod}+v" = "split v";
-	          "${mod}+d" = "exec rofi -modi drun -show drun";
-	          "${mod}+Shift+Tab" = "workspace prev";
-	          "${mod}+Tab" = "workspace next";
-	        };
-
-	        window = {
-	          border = 2;
-	        };
-
-	        gaps = {
-	          inner = 20;
-	          outer = 0;
-	        };
-        };
-        extraConfig = ''
-          exec --no-startup-id bash ~/.config/i3/autostart.sh
-        '';
-      };
+      windowManager.command = "i3";
     };
 
     home.packages = with pkgs; [
@@ -48,7 +17,10 @@ in
       autorandr
       dunst
       feh
+      i3-gaps
+      i3status
       i3lock
+      i3blocks
       keynav
       # libnotify
       lxappearance
@@ -56,6 +28,7 @@ in
       parcellite
       pasystray
       pavucontrol
+      picom
       redshift
       rofi
       unclutter
@@ -66,6 +39,8 @@ in
       xorg.xkill
     ];
 
+    home.file.".config/i3/config".source = ../dotfiles/i3/config;
     home.file.".config/i3/autostart.sh".source = ../dotfiles/i3/autostart.sh;
+    home.file.".config/picom/picom.conf".source = ../dotfiles/picom/picom.conf;
   };
 }
