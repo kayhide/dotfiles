@@ -16,15 +16,6 @@ in
   home.username = "kayhide";
   home.homeDirectory = "/home/kayhide";
 
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "20.09";
 
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
@@ -33,6 +24,7 @@ in
     maim
 
     # Cli
+    bat
     direnv
     entr
     ghq
@@ -68,8 +60,11 @@ in
     imagemagick
     kitty
     neovim
+    ranger
 
     # Container
+    docker
+    docker-compose
     kompose
     kubectl
     kubectx
@@ -102,4 +97,14 @@ in
     source = ./bin/wallpaper;
     executable = true;
   };
+
+  # This value determines the Home Manager release that your
+  # configuration is compatible with. This helps avoid breakage
+  # when a new Home Manager release introduces backwards
+  # incompatible changes.
+  #
+  # You can update Home Manager without changing this value. See
+  # the Home Manager release notes for a list of state version
+  # changes in each release.
+  home.stateVersion = "20.09";
 }

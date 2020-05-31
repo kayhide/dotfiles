@@ -10,7 +10,7 @@ mod shift += !!!Space
 def option delay-of !!! = 2
 
 mod control += !Hiragana
-mod windows += Muhenkan
+mod windows += !Muhenkan
 
 
 key M0-*P = *Up
@@ -27,8 +27,8 @@ key M0-*U = *PageUp
 key M0-*A = *Home
 key M0-*E = *End
 
-key M0-OpenBracket = W-S-Tab
-key M0-CloseBracket = W-Tab
+key M0-OpenBracket = C-S-Tab
+key M0-CloseBracket = C-Tab
 key M0-*_0 = W-*_0
 key M0-*_1 = W-*_1
 key M0-*_2 = W-*_2
@@ -42,7 +42,6 @@ key M0-*_9 = W-*_9
 
 key M0-*Atmark = A-*Kanji
 key M0-*Tab = W-*Right
-key M0-Q = W-S-Q
 
 key M0-R = C-R
 key M0-K = C-K
