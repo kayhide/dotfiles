@@ -207,11 +207,10 @@ source_if_exists "${HOME}/.google-cloud-sdk/path.zsh.inc"
 source_if_exists "${HOME}/.google-cloud-sdk/completion.zsh.inc"
 # source_if_exists "${HOME}/.opam/opam-init/init.sh"
 
-source_if_exists "${HOME}/.zsh/tac.zsh"
-source_if_exists "${HOME}/.zsh/select-history.zsh"
-source_if_exists "${HOME}/.zsh/select-branch.zsh"
 source_if_exists "${HOME}/.zsh/cdgem.zsh"
 source_if_exists "${HOME}/.zsh/cdrepo.zsh"
+source_if_exists "${HOME}/.zsh/select-history.zsh"
+source_if_exists "${HOME}/.zsh/save-last-pwd.zsh"
 
 
 export PATH="$HOME/.local/bin:$PATH"

@@ -13,8 +13,13 @@ in
   ];
   programs.home-manager.enable = true;
 
-  home.username = "kayhide";
-  home.homeDirectory = "/home/kayhide";
+  home = {
+    username = "kayhide";
+    homeDirectory = "/home/kayhide";
+    sessionVariables = {
+      SAVE_LAST_PWD = "/home/kayhide/.cache/last-pwd";
+    };
+  };
 
 
   nixpkgs.config.allowUnfree = true;

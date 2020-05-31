@@ -18,3 +18,7 @@ xautolock -locker "i3lock --color '#332233'"  -time 5 -detectsleep &
 picom --experimental-backends &
 
 ~/bin/wallpaper ~/.wallpaper &
+
+if [[ -n ${SAVE_LAST_PWD+x} && -f $SAVE_LAST_PWD ]]; then
+    rm $SAVE_LAST_PWD
+fi
