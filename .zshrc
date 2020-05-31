@@ -206,6 +206,7 @@ source_if_exists "${HOME}/.iterm2_shell_integration.zsh"
 source_if_exists "${HOME}/.google-cloud-sdk/path.zsh.inc"
 source_if_exists "${HOME}/.google-cloud-sdk/completion.zsh.inc"
 # source_if_exists "${HOME}/.opam/opam-init/init.sh"
+which minikube > /dev/null && source <(minikube completion zsh)
 
 source_if_exists "${HOME}/.zsh/cdgem.zsh"
 source_if_exists "${HOME}/.zsh/cdrepo.zsh"
