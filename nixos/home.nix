@@ -30,9 +30,11 @@ in
 
     # Cli
     bat
+    bind
     direnv
     entr
     ghq
+    gibo
     htop
     hub
     jq
@@ -49,6 +51,7 @@ in
     xclip
     xsel
     yq
+    zplug
 
     # HW
     glxinfo
@@ -67,16 +70,6 @@ in
     neovim
     ranger
 
-    # Container
-    docker
-    docker-compose
-    kompose
-    kubectl
-    kubectx
-    kubernetes-helm
-    lazydocker
-    minikube
-
     # Unfree Apps
     google-chrome
     slack
@@ -88,14 +81,21 @@ in
     elixir
     chez
 
+    # Container
+    docker
+    docker-compose
+    kompose
+    kubectl
+    kubectx
+    kubernetes-helm
+    lazydocker
+    minikube
+
     # Nix
     nix-prefetch
     patchelf
     niv
     nixpkgs-fmt
-
-    # Utils
-    zplug
   ];
 
   home.file."bin/wallpaper" = {
