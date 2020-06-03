@@ -139,6 +139,8 @@ in
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
+    font-awesome
+    material-icons
   ];
 
   services.lorri.enable = true;

@@ -8,8 +8,8 @@ in
 
 {
   imports = [
-  #  ./home/alacritty.nix
     ./home/wm.nix
+    ./home/bar.nix
   ];
   programs.home-manager.enable = true;
 
@@ -69,6 +69,8 @@ in
     kitty
     neovim
     ranger
+    font-manager
+    gucharmap
 
     # Unfree Apps
     google-chrome
@@ -102,6 +104,8 @@ in
     source = ./bin/wallpaper;
     executable = true;
   };
+
+  home.file.".Xresources".source = ./dotfiles/Xresources;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

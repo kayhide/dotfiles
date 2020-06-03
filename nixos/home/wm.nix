@@ -19,7 +19,7 @@ in
       feh
       i3-gaps
       i3status
-      i3lock
+      i3lock-fancy
       i3blocks
       keynav
       # libnotify

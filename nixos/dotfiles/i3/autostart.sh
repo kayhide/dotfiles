@@ -16,7 +16,7 @@ unclutter &
 nm-applet &
 parcellite &
 pasystray &
-xautolock -locker "i3lock --color '#332233'"  -time 5 -detectsleep &
+xautolock -locker "i3lock-fancy -- maim"  -time 5 -detectsleep &
 picom --experimental-backends &
 
 ~/bin/wallpaper ~/.wallpaper &
@@ -24,3 +24,5 @@ picom --experimental-backends &
 if [[ -n ${SAVE_LAST_PWD+x} && -f $SAVE_LAST_PWD ]]; then
     rm $SAVE_LAST_PWD
 fi
+
+(sleep 5; systemctl --user restart polybar) &
