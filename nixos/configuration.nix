@@ -141,6 +141,7 @@ in
     noto-fonts-emoji
     font-awesome
     material-icons
+    nerdfonts
   ];
 
   services.lorri.enable = true;
