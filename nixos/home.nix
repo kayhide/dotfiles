@@ -35,14 +35,19 @@ in
     entr
     ghq
     gibo
+    git
+    git-lfs
+    gotop
     htop
     hub
     jq
     lv
+    ncdu
     neofetch
     openssh
     peco
     powertop
+    ripgrep
     rsync
     tig
     tree
@@ -60,17 +65,18 @@ in
 
     # Apps
     awscli
+    cmatrix
     dropbox
     emacs
     exercism
+    font-manager
     google-cloud-sdk
+    gucharmap
     heroku
     imagemagick
     kitty
     neovim
     ranger
-    font-manager
-    gucharmap
 
     # Unfree Apps
     google-chrome
@@ -78,10 +84,11 @@ in
     zoom-us
 
     # Languages
-    gnumake
-    stack
-    elixir
     chez
+    elixir
+    gnumake
+    shellcheck
+    stack
 
     # Container
     docker
@@ -95,6 +102,7 @@ in
 
     # Nix
     nix-prefetch
+    nix-prefetch-git
     patchelf
     niv
     nixpkgs-fmt
