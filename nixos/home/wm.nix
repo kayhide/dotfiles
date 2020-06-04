@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 
 let
+  i3lock-fancy = pkgs.callPackage ./i3lock-fancy.nix {};
   mod = "Mod4";
 
 in
@@ -10,6 +11,12 @@ in
     xsession = {
       enable = true;
       windowManager.command = "i3";
+    };
+
+    services.screen-locker = {
+      enable = true;
+      lockCmd = "i3lock-fancy -- maim";
+      inactiveInterval = 5;
     };
 
     home.packages = with pkgs; [

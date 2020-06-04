@@ -16,7 +16,6 @@ unclutter &
 nm-applet &
 parcellite &
 pasystray &
-xautolock -locker "i3lock-fancy -- maim"  -time 5 -detectsleep &
 picom --experimental-backends &
 
 ~/bin/wallpaper ~/.wallpaper &
