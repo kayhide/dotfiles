@@ -33,6 +33,7 @@ in
     bind
     direnv
     entr
+    envsubst
     ghq
     gibo
     git
