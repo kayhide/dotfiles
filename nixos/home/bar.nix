@@ -70,7 +70,7 @@ in
           time = "%H:%M:%S";
 
           label = px-2 "%date% %time%";
-      	  format-background = with_alpha "77" colors.black;
+          format-background = with_alpha "77" colors.black;
         };
 
         "module/backlight" = {
@@ -78,9 +78,9 @@ in
           card = "intel_backlight";
 
           label = px-2 "%percentage%%";
-      	  format-background = with_alpha "77" colors.black;
+          format-background = with_alpha "77" colors.black;
           format-prefix = px-2 (i "");
-      	  format-prefix-background = with_alpha "aa" colors.black;
+          format-prefix-background = with_alpha "aa" colors.black;
         };
 
         "module/battery" = {
@@ -89,72 +89,62 @@ in
           battery = "BAT0";
           adapter = "AC";
 
-      	  label-charging = px-2 "%percentage%%";
-      	  label-discharging = px-2 "%percentage%%";
-      	  label-full = px-2 "%percentage%%";
+          label-charging = px-2 "%percentage%%";
+          label-discharging = px-2 "%percentage%%";
+          label-full = px-2 "%percentage%%";
 
-      	  format-charging-background = with_alpha "77" colors.black;
-      	  format-discharging-background = with_alpha "77" colors.black;
-      	  format-full-background = with_alpha "77" colors.black;
+          format-charging-background = with_alpha "77" colors.black;
+          format-discharging-background = with_alpha "77" colors.black;
+          format-full-background = with_alpha "77" colors.black;
 
-      	  format-charging-prefix = px-2 (i "");
-      	  format-discharging-prefix = px-2 (i "");
-      	  format-full-prefix = px-2 (i "");
+          format-charging-prefix = px-2 (i "");
+          format-discharging-prefix = px-2 (i "");
+          format-full-prefix = px-2 (i "");
 
-      	  format-charging-prefix-background = with_alpha "aa" colors.yellow;
-      	  format-discharging-prefix-background = with_alpha "aa" colors.red;
-      	  format-full-prefix-background = with_alpha "aa" colors.cyan;
+          format-charging-prefix-background = with_alpha "aa" colors.yellow;
+          format-discharging-prefix-background = with_alpha "aa" colors.red;
+          format-full-prefix-background = with_alpha "aa" colors.cyan;
         };
 
         "module/pulseaudio" = {
           type = "internal/pulseaudio";
           sink = "alsa_output.pci-0000_00_1f.3.analog-stereo";
 
-      	  label-volume = px-2 "%percentage%%";
-      	  label-muted = px-2 "0%";
+          label-volume = px-2 "%percentage%%";
+          label-muted = px-2 "0%";
 
-      	  format-volume-background = with_alpha "77" colors.black;
-      	  format-muted-background = with_alpha "77" colors.black;
+          format-volume-background = with_alpha "77" colors.black;
+          format-muted-background = with_alpha "77" colors.black;
 
-      	  format-volume-prefix = px-2 (i "");
-      	  format-muted-prefix = px-2 (i "");
+          format-volume-prefix = px-2 (i "");
+          format-muted-prefix = px-2 (i "");
 
-      	  format-volume-prefix-background = with_alpha "aa" colors.blue;
-      	  format-muted-prefix-background = with_alpha "aa" colors.magenta;
+          format-volume-prefix-background = with_alpha "aa" colors.blue;
+          format-muted-prefix-background = with_alpha "aa" colors.magenta;
         };
 
         "module/wired-network" = {
           type = "internal/network";
           interface = "ens20u1u4";
 
-          label-connected = px-2 "%linkspeed%";
-          label-disconnected = px-2 "0 Mbit/s";
+          label-connected = px-2 (i "");
+          format-connected-background = with_alpha "99" colors.green;
 
-          format-connected-prefix = px-2 (i "");
-          format-disconnected-prefix = px-2 (i "");
-
-      	  format-connected-background = with_alpha "77" colors.black;
-      	  format-disconnected-background = with_alpha "77" colors.black;
-
-      	  format-connected-prefix-background = with_alpha "aa" colors.black;
-      	  format-disconnected-prefix-background = with_alpha "aa" colors.red;
+          label-disconnected = px-2 (i "");
+          format-disconnected-background = with_alpha "cc" colors.red;
         };
 
         "module/wireless-network" = {
           type = "internal/network";
           interface = "wlp59s0";
 
-          label-connected = px-2 "%signal%%";
-          label-disconnected = px-2 "0%";
-
           format-connected-prefix = px-2 (i "");
-          format-disconnected-prefix = px-2 (i "");
+          format-connected-prefix-background = with_alpha "cc" colors.black;
+          label-connected = px-2 "%essid%";
+          format-connected-background = with_alpha "77" colors.black;
 
-      	  format-connected-background = with_alpha "77" colors.black;
-      	  format-disconnected-background = with_alpha "77" colors.black;
-
-      	  format-connected-prefix-background = with_alpha "aa" colors.black;
-      	  format-disconnected-prefix-background = with_alpha "aa" colors.red;
+          label-disconnected = px-2 (i "");
+          format-disconnected-background = with_alpha "cc" colors.red;
         };
 
         "module/workspaces" = {
@@ -164,25 +154,25 @@ in
           enable-click = false;
           enable-scroll = false;
 
-      	  label-mode-background = colors.green;
-      	  label-mode-foreground = colors.white;
-      	  label-mode-padding    = 4;
+          label-mode-background = colors.green;
+          label-mode-foreground = colors.white;
+          label-mode-padding    = 4;
 
-      	  label-focused-background = with_alpha "aa" colors.green;
-      	  label-focused-foreground = colors.white;
-      	  label-focused-padding    = 4;
+          label-focused-background = with_alpha "cc" colors.blue;
+          label-focused-foreground = colors.white;
+          label-focused-padding    = 4;
 
-      	  label-unfocused-background = with_alpha "33" colors.gray;
-      	  label-unfocused-foreground = colors.white;
-      	  label-unfocused-padding    = 4;
+          label-unfocused-background = with_alpha "66" colors.gray;
+          label-unfocused-foreground = colors.white;
+          label-unfocused-padding    = 4;
 
-      	  label-visible-background = with_alpha "99" colors.cyan;
-      	  label-visible-foreground = colors.white;
-      	  label-visible-padding    = 4;
+          label-visible-background = with_alpha "66" colors.blue;
+          label-visible-foreground = colors.white;
+          label-visible-padding    = 4;
 
-      	  label-urgent-background = with_alpha "aa" colors.magenta;
-      	  label-urgent-foreground = colors.white;
-      	  label-urgent-padding    = 4;
+          label-urgent-background = with_alpha "cc" colors.magenta;
+          label-urgent-foreground = colors.white;
+          label-urgent-padding    = 4;
 
         };
       };
