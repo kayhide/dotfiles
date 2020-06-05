@@ -62,6 +62,7 @@ in
     glxinfo
     pciutils
     usbutils
+    connman-gtk
 
     # Apps
     awscli

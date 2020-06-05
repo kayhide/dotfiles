@@ -39,8 +39,16 @@ in
   # boot.kernelPackages = pkgs.linuxPackages_5_6;
 
   networking.hostName = "napoli";
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;
+  networking.wireless.enable = true;
+
+  # Use this if networking.wireless does not work.
+  # networking.networkmanager.enable = true;
+
+  # Touch /etc/wpa_supplicant.conf.
+  # Without this file, wpa_supplicant service does not work.
+  environment.etc."wpa_supplicant.conf".text = "";
+
+  services.connman.enable = true;
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
