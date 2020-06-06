@@ -13,10 +13,10 @@ set-monitor DP3 1920x1080 2560x0
 ergo &
 keynav &
 unclutter &
-nm-applet &
 parcellite &
 pasystray &
 picom --experimental-backends &
+conky --config ~/.config/conky/clock.conf &
 
 ~/bin/wallpaper ~/.wallpaper &
 
