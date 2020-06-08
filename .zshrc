@@ -212,6 +212,7 @@ source_if_exists "${HOME}/.zsh/cdgem.zsh"
 source_if_exists "${HOME}/.zsh/cdrepo.zsh"
 source_if_exists "${HOME}/.zsh/select-history.zsh"
 source_if_exists "${HOME}/.zsh/save-last-pwd.zsh"
+source_if_exists "${HOME}/.zsh/zinputrc"
 
 
 export PATH="$HOME/.local/bin:$PATH"

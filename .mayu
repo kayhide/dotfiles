@@ -22,8 +22,8 @@ key M0-*M = *Return
 # key M0-*G = *Esc
 key M0-*D = *Delete
 key M0-*H = *BackSpace
-key M0-*U = *PageUp
-# key M0-*D = *PageDown
+key M0-*I = *PageUp
+key M0-*U = *PageDown
 key M0-*A = *Home
 key M0-*E = *End
 
