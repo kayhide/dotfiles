@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, coreutils, scrot, imagemagick, gawk
+{ stdenv, fetchFromGitHub, coreutils, scrot, imagemagick, gawk, gnused
 , i3lock-color, getopt, fontconfig, xrandr
 }:
 
@@ -14,7 +14,7 @@ stdenv.mkDerivation rec {
 
   patchPhase = ''
     sed -i -e "s|mktemp|${coreutils}/bin/mktemp|" i3lock-fancy
-    sed -i -e "s|'rm -f |'${coreutils}/bin/rm -f |" i3lock-fancy
+    sed -i -e "s|'rm -rf |'${coreutils}/bin/rm -rf |" i3lock-fancy
     sed -i -e "s|scrot -z |${scrot}/bin/scrot -z |" i3lock-fancy
     sed -i -e "s|convert |${imagemagick.out}/bin/convert |" i3lock-fancy
     sed -i -e "s|awk -F|${gawk}/bin/awk -F|" i3lock-fancy
@@ -26,6 +26,9 @@ stdenv.mkDerivation rec {
     sed -i -e "s|fc-match |${fontconfig.bin}/bin/fc-match |" i3lock-fancy
     sed -i -e "s|shot=(import -window root)|shot=(${scrot}/bin/scrot -z -o)|" i3lock-fancy
     sed -i -e "s|xrandr --listmonitors|${xrandr}/bin/xrandr --listmonitors|" i3lock-fancy
+    sed -i -e "s|cut -d|${coreutils}/bin/cut -d|" i3lock-fancy
+    sed -i -e "s|cp -f|${coreutils}/bin/cp -f|" i3lock-fancy
+    sed -i -e "s|sed |${gnused}/bin/sed |" i3lock-fancy
     rm Makefile
   '';
   installPhase = ''

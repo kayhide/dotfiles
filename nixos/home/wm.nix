@@ -15,7 +15,7 @@ in
 
     services.screen-locker = {
       enable = true;
-      lockCmd = "i3lock-fancy -- maim";
+      lockCmd = "${i3lock-fancy}/bin/i3lock-fancy -- ${pkgs.maim}/bin/maim";
       inactiveInterval = 5;
     };
 

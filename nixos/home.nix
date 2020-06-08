@@ -10,6 +10,7 @@ in
   imports = [
     ./home/wm.nix
     ./home/bar.nix
+    ./home/suspend.nix
   ];
   programs.home-manager.enable = true;
 
@@ -42,6 +43,7 @@ in
     htop
     hub
     jq
+    lsof
     lv
     ncdu
     neofetch

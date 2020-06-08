@@ -2,6 +2,6 @@
 
 {
   services.logind.extraConfig = ''
-    HandlePowerKey=suspend
+    HandlePowerKey=lock
   '';
 }
