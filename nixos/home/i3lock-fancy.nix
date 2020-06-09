@@ -1,40 +1,48 @@
-{ stdenv, fetchFromGitHub, coreutils, scrot, imagemagick, gawk, gnused
-, i3lock-color, getopt, fontconfig, xrandr
+{ stdenv, fetchFromGitHub, makeWrapper
+, coreutils
+, fontconfig
+, gawk
+, getopt
+, gnused
+, i3lock-color
+, imagemagick
+, scrot
+, xrandr
 }:
 
 stdenv.mkDerivation rec {
-  rev = "339970d66a945467b3b22476803e768de8caa933";
-  name = "i3lock-fancy-multi-monitor-2020-06-04_rev${builtins.substring 0 7 rev}";
+  rev = "a13e5283e03674acd59d835b920ccf0c07cf248e";
+  name = "i3lock-fancy-multi-monitor-2020-06-09_rev${builtins.substring 0 7 rev}";
   src = fetchFromGitHub {
     owner = "kayhide";
     repo = "i3lock-fancy";
     inherit rev;
-    sha256 = "1vxm9228rq5dc5j0pbjkasvpc4fw9l4mnq15359k4yx35l5pv8sj";
+    sha256 = "04mkq52qsmv1rncqcmfl7m0l93mi0n1vg95zj84nxbk94pb8cakq";
   };
 
+  buildInputs = [ makeWrapper ];
+
   patchPhase = ''
-    sed -i -e "s|mktemp|${coreutils}/bin/mktemp|" i3lock-fancy
-    sed -i -e "s|'rm -rf |'${coreutils}/bin/rm -rf |" i3lock-fancy
-    sed -i -e "s|scrot -z |${scrot}/bin/scrot -z |" i3lock-fancy
-    sed -i -e "s|convert |${imagemagick.out}/bin/convert |" i3lock-fancy
-    sed -i -e "s|awk -F|${gawk}/bin/awk -F|" i3lock-fancy
-    sed -i -e "s| awk | ${gawk}/bin/awk |" i3lock-fancy
-    sed -i -e "s|i3lock -i |${i3lock-color}/bin/i3lock-color -i |" i3lock-fancy
-    sed -i -e 's|icon="/usr/share/i3lock-fancy/icons/lockdark.png"|icon="'$out'/share/i3lock-fancy/icons/lockdark.png"|' i3lock-fancy
-    sed -i -e 's|icon="/usr/share/i3lock-fancy/icons/lock.png"|icon="'$out'/share/i3lock-fancy/icons/lock.png"|' i3lock-fancy
-    sed -i -e "s|getopt |${getopt}/bin/getopt |" i3lock-fancy
-    sed -i -e "s|fc-match |${fontconfig.bin}/bin/fc-match |" i3lock-fancy
-    sed -i -e "s|shot=(import -window root)|shot=(${scrot}/bin/scrot -z -o)|" i3lock-fancy
-    sed -i -e "s|xrandr --listmonitors|${xrandr}/bin/xrandr --listmonitors|" i3lock-fancy
-    sed -i -e "s|cut -d|${coreutils}/bin/cut -d|" i3lock-fancy
-    sed -i -e "s|cp -f|${coreutils}/bin/cp -f|" i3lock-fancy
-    sed -i -e "s|sed |${gnused}/bin/sed |" i3lock-fancy
     rm Makefile
   '';
   installPhase = ''
     mkdir -p $out/bin $out/share/i3lock-fancy/icons
-    cp i3lock-fancy $out/bin/i3lock-fancy
+    cp i3lock-fancy $out/bin
     cp icons/lock*.png $out/share/i3lock-fancy/icons
+
+    wrapProgram $out/bin/i3lock-fancy \
+      --argv0 i3lock-fancy \
+      --set i3lock_cmd i3lock-color \
+      --set data_dir $out/share/i3lock-fancy \
+      --prefix PATH : ${coreutils}/bin \
+      --prefix PATH : ${fontconfig}/bin \
+      --prefix PATH : ${gawk}/bin \
+      --prefix PATH : ${getopt}/bin \
+      --prefix PATH : ${gnused}/bin \
+      --prefix PATH : ${i3lock-color}/bin \
+      --prefix PATH : ${imagemagick}/bin \
+      --prefix PATH : ${scrot}/bin \
+      --prefix PATH : ${xrandr}/bin
   '';
   meta = with stdenv.lib; {
     description = "i3lock is a bash script that takes a screenshot of the desktop, blurs the background and adds a lock icon and text.";

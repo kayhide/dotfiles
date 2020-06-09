@@ -15,8 +15,13 @@ in
 
     services.screen-locker = {
       enable = true;
-      lockCmd = "${i3lock-fancy}/bin/i3lock-fancy -- ${pkgs.maim}/bin/maim";
-      inactiveInterval = 5;
+      lockCmd = "${i3lock-fancy}/bin/i3lock-fancy -n -- ${pkgs.maim}/bin/maim -m 1";
+      inactiveInterval = 10;
+      xautolockExtraOptions = [
+        "-corners" "++--"
+        "-cornerdelay" "1"
+        "-cornerredelay" "60"
+      ];
     };
 
     home.packages = with pkgs; [
