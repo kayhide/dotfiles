@@ -92,7 +92,11 @@ in
     elixir
     gnumake
     shellcheck
+
+    # Haskell
+    hlint
     stack
+    stylish-haskell
 
     # Container
     docker
