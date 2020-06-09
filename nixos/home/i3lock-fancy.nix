@@ -8,17 +8,13 @@
 , imagemagick
 , scrot
 , xrandr
+, sources ? import ../nix/sources.nix
 }:
 
 stdenv.mkDerivation rec {
-  rev = "a13e5283e03674acd59d835b920ccf0c07cf248e";
-  name = "i3lock-fancy-multi-monitor-2020-06-09_rev${builtins.substring 0 7 rev}";
-  src = fetchFromGitHub {
-    owner = "kayhide";
-    repo = "i3lock-fancy";
-    inherit rev;
-    sha256 = "04mkq52qsmv1rncqcmfl7m0l93mi0n1vg95zj84nxbk94pb8cakq";
-  };
+  pname = "i3lock-fancy";
+  version = "${sources.i3lock-fancy.branch}-rev${builtins.substring 0 7 src.rev}";
+  src = sources.i3lock-fancy;
 
   buildInputs = [ makeWrapper ];
 
