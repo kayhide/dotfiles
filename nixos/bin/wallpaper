@@ -15,5 +15,5 @@ fi
 
 while true; do
     feh --no-fehbg --bg-center --bg-fill --randomize --recursive "$1"
-    sleep 30m
+    sleep 15m
 done
