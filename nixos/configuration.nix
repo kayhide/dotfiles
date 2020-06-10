@@ -136,7 +136,13 @@ in
   # services.xserver.displayManager.sddm.enable = true;
   # services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.desktopManager.xterm.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.lightdm = {
+    enable = true;
+    autoLogin = {
+      enable = true;
+      user = "kayhide";
+    };
+  };
 
   # TODO Set the following resolution onto the login screen
   # services.xserver.displayManager.setupCommands = ''
