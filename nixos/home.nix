@@ -31,6 +31,7 @@ in
 
     # Cli
     bat
+    bc
     bind
     direnv
     entr
@@ -62,10 +63,11 @@ in
     zplug
 
     # HW
+    connman-gtk
+    dmidecode
     glxinfo
     pciutils
     usbutils
-    connman-gtk
 
     # Apps
     awscli
