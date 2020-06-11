@@ -8,7 +8,7 @@
 , imagemagick
 , scrot
 , xrandr
-, sources ? import ../nix/sources.nix
+, sources ? import ../sources.nix
 }:
 
 stdenv.mkDerivation rec {

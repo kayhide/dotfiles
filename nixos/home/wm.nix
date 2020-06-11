@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 let
-  i3lock-fancy = pkgs.callPackage ./i3lock-fancy.nix {};
+  i3lock-fancy = pkgs.callPackage ../nix/pkgs/i3lock-fancy.nix {};
   mod = "Mod4";
 
 in

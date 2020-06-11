@@ -12,19 +12,19 @@ let
     then (builtins.parseDrvName drv.name).name
     else throw "Cannot figure out name of: ${drv}";
 
-  mayu = pkgs.callPackage ./mayu.nix {};
-  mayuService = import ./mayu.service.nix { inherit mayu; };
+  mayu = pkgs.callPackage ./nix/pkgs/mayu.nix {};
+  mayuService = import ./system/mayu.service.nix { inherit mayu; };
 
 in
 
 {
   imports = [
     <nixos-hardware/dell/xps/15-7590>
-    ./hardware-configuration.nix
-    ./hardware-power.nix
-    # ./hardware-iris.nix
-    ./hardware-nvidia.nix
-    ./hardware-opengl.nix
+    ./system/hardware-configuration.nix
+    ./system/power.nix
+    # ./system/iris.nix
+    ./system/nvidia.nix
+    ./system/opengl.nix
   ];
 
 
