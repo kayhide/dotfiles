@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+set -eu
+
+die() {
+    >&2 echo "$1"
+    exit 1
+}
+
+# export XAUTHORITY=/home/<user>/.Xauthority
+# export DISPLAY=:0
+DISPLAYNAME="$(xrandr --listmonitors | grep "0: " | sed "s/.* //")"
+OLED_BR="$(xrandr --verbose | grep -i brightness -m 1 | cut -f2 -d ' ')"
+CURR="$(LC_ALL=C printf "%.*f" 1 "$OLED_BR")"
+
+
+MIN=0
+MAX=1.2
+
+case ${1:-} in
+    up )
+        VAL=$(bc <<< "scale=1; $CURR+0.1")
+        ;;
+    down )
+        VAL=$(bc <<< "scale=1; $CURR-0.1")
+        ;;
+    "" )
+        die "No input"
+        ;;
+    * )
+        die "Bad input: $1"
+        ;;
+esac
+
+
+if (( $(bc -l <<< "$VAL < $MIN") )); then
+    VAL="$MIN"
+elif (( $(bc -l <<< "$VAL > $MAX") )); then
+    VAL="$MAX"
+else
+    xrandr --output "$DISPLAYNAME" --brightness "$VAL"
+fi
+
+
+# Set Intel backlight to fake value
+# to sync OSD brightness indicator to actual brightness
+INTEL_PANEL=$(find /sys/devices -type d -name intel_backlight | head -n 1)
+if [[ -n "$INTEL_PANEL" ]]; then
+    PERCENT="$(bc -l <<< "scale=4; $VAL/$MAX")"
+    INTEL_MAX="$(cat "$INTEL_PANEL/max_brightness")"
+    INTEL_BRIGHTNESS="$(bc -l <<< "scale=4; $PERCENT*$INTEL_MAX")"
+    INTEL_BRIGHTNESS="$(LC_ALL=C printf "%.*f" 0 "$INTEL_BRIGHTNESS")"
+    echo $INTEL_BRIGHTNESS > "$INTEL_PANEL/brightness"
+fi

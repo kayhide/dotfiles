@@ -25,6 +25,7 @@ in
     # ./system/iris.nix
     ./system/nvidia.nix
     ./system/opengl.nix
+    ./system/brightness.nix
     ./users.nix
   ];
 
@@ -171,4 +172,3 @@ in
   system.stateVersion = "20.03"; # Did you read the comment?
 
 }
-
