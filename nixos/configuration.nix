@@ -25,6 +25,7 @@ in
     # ./system/iris.nix
     ./system/nvidia.nix
     ./system/opengl.nix
+    ./users.nix
   ];
 
 
@@ -160,29 +161,6 @@ in
 
   services.lorri.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.kayhide = {
-    isNormalUser = true;
-    uid = 1000;
-    home = "/home/kayhide";
-    shell = pkgs.zsh;
-    extraGroups = [ "wheel" "networkmanager" "docker"];
-  };
-
-  users.groups.dockremap.gid = 114;
-  users.users.dockremap = {
-    isSystemUser = true;
-    uid = 114;
-    group = "dockremap";
-    subUidRanges = [
-      { startUid = 1000; count = 1; }
-      { startUid = 100000; count = 65536; }
-    ];
-    subGidRanges = [
-      { startGid = 100; count = 1; }
-      { startGid = 100000; count = 65536; }
-    ];
-  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
