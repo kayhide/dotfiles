@@ -638,6 +638,12 @@ before packages are loaded."
    )
 
   (add-hook
+   'sh-mode-hook
+   (lambda ()
+     (sh-electric-here-document-mode -1)
+     ))
+
+  (add-hook
    'typescript-mode-hook
    (lambda ()
      (add-npm-bin-path)
