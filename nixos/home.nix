@@ -63,26 +63,32 @@ in
     zplug
 
     # HW
-    connman-gtk
     dmidecode
     glxinfo
     pciutils
     usbutils
+    udiskie
 
-    # Apps
+    # Cli Apps
     awscli
     cmatrix
     dropbox
-    emacs
     exercism
-    font-manager
+    ffmpeg
     google-cloud-sdk
-    gucharmap
     heroku
     imagemagick
     kitty
     neovim
     ranger
+
+    # Gui Apps
+    connman-gtk
+    emacs
+    font-manager
+    gucharmap
+    pcmanfm
+    vlc
 
     # Unfree Apps
     google-chrome
