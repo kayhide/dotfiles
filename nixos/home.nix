@@ -10,6 +10,7 @@ in
   imports = [
     ./home/wm.nix
     ./home/bar.nix
+    ./home/notification.nix
     ./home/suspend.nix
   ];
   programs.home-manager.enable = true;

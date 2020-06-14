@@ -22,11 +22,12 @@ unclutter &
 parcellite &
 pasystray &
 picom --experimental-backends &
+dropbox &
+
 xrandr --listmonitors |tail -n +2 |while read -r line; do
     head="${line%:*}"
     conky --xinerama-head="$head" --config ~/.config/conky/clock.conf &
 done
-
 
 ~/bin/wallpaper ~/.wallpaper &
 
