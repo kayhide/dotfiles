@@ -8,7 +8,7 @@
         uid = 1000;
         home = "/home/kayhide";
         shell = pkgs.zsh;
-        extraGroups = [ "wheel" "networkmanager" "docker"];
+        extraGroups = ["wheel" "audio" "docker"];
       };
     };
   };

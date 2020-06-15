@@ -26,6 +26,7 @@ in
     ./system/nvidia.nix
     ./system/opengl.nix
     ./system/brightness.nix
+    ./system/audio.nix
     ./users.nix
   ];
 
@@ -119,7 +120,10 @@ in
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio = {
+    enable = true;
+    systemWide = true;
+  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;

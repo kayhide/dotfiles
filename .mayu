@@ -12,6 +12,13 @@ def option delay-of !!! = 2
 mod control += !Hiragana
 mod windows += !Muhenkan
 
+def key VolumeMute = 0x71
+def key VolumeDown = 0x72
+def key VolumeUp = 0x73
+def key MediaPrev = 0xa5
+def key MediaPlay = 0xa4
+def key MedirNext = 0xa3
+def key Search = 0xd9
 
 key M0-*P = *Up
 key M0-*N = *Down

@@ -80,6 +80,7 @@ in
     heroku
     imagemagick
     kitty
+    mplayer
     neovim
     ranger
 
