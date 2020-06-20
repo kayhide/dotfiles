@@ -4,19 +4,6 @@
 
 { config, pkgs, ... }:
 
-let
-  getName = drv:
-    if builtins.hasAttr "pname" drv
-    then drv.pname
-    else if builtins.hasAttr "name" drv
-    then (builtins.parseDrvName drv.name).name
-    else throw "Cannot figure out name of: ${drv}";
-
-  mayu = pkgs.callPackage ./nix/pkgs/mayu.nix {};
-  mayuService = import ./system/mayu.service.nix { inherit mayu; };
-
-in
-
 {
   imports = [
     <nixos-hardware/dell/xps/15-7590>
@@ -27,6 +14,7 @@ in
     ./system/opengl.nix
     ./system/brightness.nix
     ./system/audio.nix
+    ./system/mayu.nix
     ./users.nix
     ./mounts.nix
   ];
@@ -85,7 +73,7 @@ in
   time.timeZone = "Asia/Tokyo";
 
   environment.systemPackages = with pkgs; [
-    curl wget git neovim mayu
+    curl wget git neovim
   ];
 
   security.sudo = {
@@ -113,8 +101,6 @@ in
   # };
 
   # List services that you want to enable:
-
-  systemd.services.mayu = mayuService;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
