@@ -28,6 +28,7 @@ in
     ./system/brightness.nix
     ./system/audio.nix
     ./users.nix
+    ./mounts.nix
   ];
 
 
