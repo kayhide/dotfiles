@@ -128,7 +128,7 @@ in
 
         "module/wired-network" = {
           type = "internal/network";
-          interface = "ens20u1u4";
+          interface = "eth0";
 
           label-connected = px-2 (lg "");
           format-connected-background = with_alpha "99" colors.green;
