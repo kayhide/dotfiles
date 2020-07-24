@@ -31,6 +31,7 @@ in
     maim
 
     # Cli
+    atop
     bat
     bc
     bind
@@ -44,6 +45,7 @@ in
     gotop
     htop
     hub
+    iotop
     jq
     lsof
     lv
