@@ -33,6 +33,9 @@ in
     # Cli
     atop
     bat
+    bat-extras.batgrep
+    bat-extras.batman
+    bat-extras.batwatch
     bc
     bind
     direnv
@@ -81,6 +84,7 @@ in
     google-cloud-sdk
     heroku
     imagemagick
+    kakoune
     kitty
     mplayer
     neovim
