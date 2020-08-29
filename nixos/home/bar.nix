@@ -64,7 +64,7 @@ in
       config = {
         "bar/base" = bar // {
           modules-left = "workspaces";
-          modules-right = "wireless-network wired-network pulseaudio backlight battery";
+          modules-right = "wireless-network wired-network-eth0 wired-network-ens20u1u4 pulseaudio backlight battery";
         };
 
         "module/date" = {
@@ -126,9 +126,22 @@ in
           #  
         };
 
-        "module/wired-network" = {
+        "module/wired-network-eth0" = {
           type = "internal/network";
           interface = "eth0";
+
+          label-connected = px-2 (lg "");
+          format-connected-background = with_alpha "99" colors.green;
+
+          label-disconnected = px-2 (lg "");
+          format-disconnected-background = with_alpha "cc" colors.red;
+
+          #  
+        };
+
+        "module/wired-network-ens20u1u4" = {
+          type = "internal/network";
+          interface = "ens20u1u4";
 
           label-connected = px-2 (lg "");
           format-connected-background = with_alpha "99" colors.green;
