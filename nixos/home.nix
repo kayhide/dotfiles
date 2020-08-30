@@ -2,7 +2,6 @@
 
 let
   hub = pkgs.gitAndTools.hub;
-  zplug = pkgs.callPackage ./nix/pkgs/zplug.nix {};
 
 in
 
