@@ -87,6 +87,9 @@ _prompt_mark() {
     if [[ -n ${IN_NIX_SHELL+x} ]]; then
         echo -n "💠"
     fi
+    if [[ -n ${IN_KAKOUNE_CONNECT+x} ]]; then
+        echo -n "🥚\033[33m$KAKOUNE_SESSION"
+    fi
 }
 
 set_style__pure() {
