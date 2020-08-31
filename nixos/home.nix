@@ -40,6 +40,8 @@ in
     direnv
     entr
     envsubst
+    fd
+    fzf
     ghq
     gibo
     git
@@ -106,6 +108,7 @@ in
     chez
     elixir
     gnumake
+    ruby
     shellcheck
 
     # Haskell
@@ -116,6 +119,7 @@ in
     # Container
     docker
     docker-compose
+    k3s
     kompose
     kubectl
     kubectx
