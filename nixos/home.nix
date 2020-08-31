@@ -85,6 +85,7 @@ in
     google-cloud-sdk
     heroku
     imagemagick
+    kak-lsp
     kakoune
     kitty
     mplayer
