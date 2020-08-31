@@ -117,9 +117,9 @@ gaps outer 0
 workspace 1 output primary
 workspace 2 output primary
 workspace 3 output primary
+workspace 4 output primary
+workspace 5 output primary
 workspace 10 output DP-3 DP3
 
-assign [class="Emacs"] 2
 
-exec --no-startup-id i3-msg "exec emacs; workspace 1"
 exec --no-startup-id bash ~/.config/i3/autostart.sh

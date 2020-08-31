@@ -140,6 +140,11 @@ in
     executable = true;
   };
 
+  home.file."bin/conky-clock" = {
+    source = ./bin/conky-clock;
+    executable = true;
+  };
+
   home.file.".Xresources".source = ./dotfiles/Xresources;
   home.file.".config/kitty/kitty.conf".source = ./dotfiles/kitty/kitty.conf;
 

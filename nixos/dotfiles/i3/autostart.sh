@@ -24,15 +24,18 @@ pasystray &
 picom --experimental-backends &
 dropbox &
 
-xrandr --listmonitors |tail -n +2 |while read -r line; do
-    head="${line%:*}"
-    conky --xinerama-head="$head" --config ~/.config/conky/clock.conf &
-done
-
-~/bin/wallpaper ~/.wallpaper &
-
 if [[ -n ${SAVE_LAST_PWD+x} && -f $SAVE_LAST_PWD ]]; then
     rm $SAVE_LAST_PWD
 fi
 
-(sleep 5; systemctl --user restart polybar) &
+# Monitor relatetd settings
+# Waiting 5 seconds is good enough for monitors to get ready.
+sleep 5
+
+for i in $(xrandr --listmonitors |grep "[0-9]\+:" |cut -d : -f 1); do
+    ~/bin/conky-clock "$i" &
+done
+
+~/bin/wallpaper ~/.wallpaper &
+
+systemctl --user restart polybar &
