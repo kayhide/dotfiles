@@ -174,7 +174,7 @@ alias powrestart='powder stop; powder start'
 alias be='bundle exec'
 
 # env
-export EDITOR='nvim'
+export EDITOR='kak'
 export VISUAL=$EDITOR
 
 
