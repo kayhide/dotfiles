@@ -9,6 +9,7 @@ plug "andreyorst/fzf.kak"
 
 
 add-highlighter global/ show-matching
+add-highlighter global/ wrap
 
 hook global WinCreate ^[^*]+$ %{
     add-highlighter window/ number-lines -hlcursor
@@ -25,7 +26,6 @@ map global user F ': format<ret>' -docstring 'format'
 declare-user-mode space
 map global normal <space> ': enter-user-mode<space>space<ret>'
 map global space <semicolon> <space> -docstring 'remove all sels except main'
-map global space + <a-space> -docstring 'remove main sel'
 map global space <space> ': ' -docstring 'prompt'
 
 declare-user-mode space-buffer
