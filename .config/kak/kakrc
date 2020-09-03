@@ -88,3 +88,4 @@ set global lsp_cmd "kak-lsp -s %val{session} -vvv --log /home/kayhide/tmp/kak-ls
 
 
 source "%val{config}/psc-ide.kak"
+source "%val{config}/reload-kakrc.kak"
