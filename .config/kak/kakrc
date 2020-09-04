@@ -71,7 +71,13 @@ def edit-kakrc -docstring 'edit kakrc' %{
     edit! "%val{config}/kakrc"
 }
 
-source "~/ghq/github.com/mawww/kakoune/rc/filetype/purescript.kak"
+# Local configs
+
+source "%val{config}/purescript.kak"
+source "%val{config}/psc-ide.kak"
+# source "%val{config}/reload-kakrc.kak"
+
+# PureScript
 
 declare-user-mode user-purescript
 declare-user-mode user-purescript-import
@@ -86,6 +92,3 @@ hook global WinSetOption filetype=purescript %{
 
 set global lsp_cmd "kak-lsp -s %val{session} -vvv --log /home/kayhide/tmp/kak-lsp.log"
 
-
-source "%val{config}/psc-ide.kak"
-source "%val{config}/reload-kakrc.kak"
