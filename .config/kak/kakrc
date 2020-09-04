@@ -83,6 +83,8 @@ source "%val{config}/psc-ide.kak"
 declare-user-mode user-purescript
 declare-user-mode user-purescript-import
 hook global WinSetOption filetype=purescript %{
+    set-option window tabstop 2
+    set-option window indentwidth 2
     set-option window formatcmd "purty %val{buffile}"
     lsp-enable-window
 
