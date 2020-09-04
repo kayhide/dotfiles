@@ -73,6 +73,7 @@ def edit-kakrc -docstring 'edit kakrc' %{
 
 # Local configs
 
+source "%val{config}/sh.kak"
 source "%val{config}/purescript.kak"
 source "%val{config}/psc-ide.kak"
 # source "%val{config}/reload-kakrc.kak"
