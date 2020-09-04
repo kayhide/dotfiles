@@ -216,8 +216,11 @@ which minikube > /dev/null && source <(minikube completion zsh)
 source_if_exists "${HOME}/.zsh/cdgem.zsh"
 source_if_exists "${HOME}/.zsh/cdrepo.zsh"
 source_if_exists "${HOME}/.zsh/select-history.zsh"
-source_if_exists "${HOME}/.zsh/save-last-pwd.zsh"
 source_if_exists "${HOME}/.zsh/zinputrc"
+
+if [[ -z ${RANGER_LEVEL+x} && -z ${IN_KAKOUNE_CONNECT+x} ]]; then
+    source_if_exists "${HOME}/.zsh/save-last-pwd.zsh"
+fi
 
 
 export PATH="$HOME/.local/bin:$PATH"
