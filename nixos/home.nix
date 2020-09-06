@@ -41,6 +41,7 @@ in
     entr
     envsubst
     fd
+    file
     fzf
     ghq
     gibo

@@ -5,6 +5,7 @@ dotfiles:
 	ln -sf "$$(pwd)/.zsh" "$$HOME/"
 	ln -sf "$$(pwd)/.tmux.conf" "$$HOME/"
 	ln -sf "$$(pwd)/.spacemacs" "$$HOME/"
+	ln -sf "$$(pwd)/.magic" "$$HOME/"
 	bash -c "find .config -type f |while read -r f; do mkdir -p "\$$HOME/$$(dirname \$$f)"; ln -sf "$$(pwd)/\$$f" "\$$HOME/\$$f"; done"
 .PHONY: dotfiles
 
