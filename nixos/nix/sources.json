@@ -5,10 +5,10 @@
         "homepage": null,
         "owner": "kayhide",
         "repo": "i3lock-fancy",
-        "rev": "9c63ad1bf7fe4dae802495a8c21cffb1d5181aac",
-        "sha256": "011r8gabl2d8w529sin1kwki8qf6cwkd0sdknqdpiw3bzkk0680f",
+        "rev": "404890eb3967b575b458fbad70e63cb877968379",
+        "sha256": "0icg39incqxl9vpib2sgg3m768l3jnlqwk3qh1d1lajsf4vxqvld",
         "type": "tarball",
-        "url": "https://github.com/kayhide/i3lock-fancy/archive/9c63ad1bf7fe4dae802495a8c21cffb1d5181aac.tar.gz",
+        "url": "https://github.com/kayhide/i3lock-fancy/archive/404890eb3967b575b458fbad70e63cb877968379.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
