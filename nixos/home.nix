@@ -31,6 +31,7 @@ in
 
     # Cli
     atop
+    bash
     bat
     bat-extras.batgrep
     bat-extras.batman
@@ -69,6 +70,7 @@ in
     xsel
     yq
     zplug
+    zsh
 
     # HW
     dmidecode
