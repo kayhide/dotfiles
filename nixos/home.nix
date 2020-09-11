@@ -150,7 +150,6 @@ in
   };
 
   home.file.".Xresources".source = ./dotfiles/Xresources;
-  home.file.".config/kitty/kitty.conf".source = ./dotfiles/kitty/kitty.conf;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
