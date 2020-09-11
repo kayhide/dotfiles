@@ -87,6 +87,11 @@ _prompt_mark() {
     if [[ -n ${IN_NIX_SHELL+x} ]]; then
         echo -n "💠"
     fi
+    if [[ -n ${RANGER_LEVEL+x} ]]; then
+        for i in $(seq "$RANGER_LEVEL"); do
+            echo -n "🌵"
+        done
+    fi
     if [[ -n ${IN_KAKOUNE_CONNECT+x} ]]; then
         echo -n "🥚\033[33m$KAKOUNE_SESSION"
     fi
