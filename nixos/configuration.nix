@@ -146,6 +146,7 @@
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
+    symbola
     font-awesome
     material-icons
     nerdfonts
