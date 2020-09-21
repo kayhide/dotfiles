@@ -20,8 +20,8 @@ map global user F ': format<ret>' -docstring 'format'
 
 declare-user-mode space
 map global normal <space> ': enter-user-mode<space>space<ret>'
-map global space <semicolon> <space> -docstring 'remove all sels except main'
-map global space <space> ': ' -docstring 'prompt'
+map global space <space> <space> -docstring 'remove all sels except main'
+map global space <semicolon> ': comment-line<ret>' -docstring '(un)comment selected lines'
 
 declare-user-mode space-buffer
 map global space b ': enter-user-mode<space>space-buffer<ret>' -docstring 'buffer'
@@ -100,6 +100,13 @@ source "%val{config}/purescript.kak"
 source "%val{config}/psc-ide.kak"
 # source "%val{config}/reload-kakrc.kak"
 
+# Nix
+
+hook global WinSetOption filetype=nix %{
+    set-option window tabstop 2
+    set-option window indentwidth 2
+}
+
 # Yaml
 
 hook global WinSetOption filetype=yaml %{
@@ -107,9 +114,41 @@ hook global WinSetOption filetype=yaml %{
     set-option window indentwidth 2
 }
 
+# JavaScript / Json
+
+hook global WinSetOption filetype=javascript|json %{
+    set-option window tabstop 2
+    set-option window indentwidth 2
+    set-option window formatcmd "prettier --stdin-filepath=%val{buffile}"
+}
+
+# Css
+
+hook global WinSetOption filetype=css %{
+    set-option window tabstop 2
+    set-option window indentwidth 2
+    set-option window formatcmd "prettier --stdin-filepath=%val{buffile}"
+}
+
 # Ruby
 
 hook global WinSetOption filetype=ruby %{
+    set-option window tabstop 2
+    set-option window indentwidth 2
+}
+
+# Rust
+
+hook global WinSetOption filetype=rust %{
+    set-option window tabstop 4
+    set-option window indentwidth 4
+    set-option window formatcmd "rustfmt"
+    lsp-enable-window
+}
+
+# Haskell
+
+hook global WinSetOption filetype=haskell %{
     set-option window tabstop 2
     set-option window indentwidth 2
 }
@@ -123,6 +162,10 @@ hook global WinSetOption filetype=purescript %{
     set-option window indentwidth 2
     set-option window formatcmd "purty %val{buffile}"
     lsp-enable-window
+
+    set-option buffer comment_line '--'
+    set-option buffer comment_block_begin '{-'
+    set-option buffer comment_block_end '-}'
 
     map window user m ': enter-user-mode<space>user-purescript<ret>'
     map window user-purescript i ': enter-user-mode<space>user-purescript-import<ret>'
