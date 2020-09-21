@@ -57,9 +57,10 @@ in
       enable = true;
       package = polybar;
       script = ''
-        MONITOR="eDP-1" polybar base &
-        MONITOR="DP-3" polybar base &
-      '';
+        for MONITOR in $(xrandr --listactivemonitoros | sed "s/ \+/ /g" | cut -d " " -f 5); do
+          polybar base &
+        done
+        '';
 
       config = {
         "bar/base" = bar // {
