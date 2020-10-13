@@ -8,7 +8,7 @@ in
 {
   imports = [
     ./home/wm.nix
-    ./home/bar.nix
+    ./home/polybar.nix
     ./home/notification.nix
     ./home/suspend.nix
   ];

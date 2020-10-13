@@ -57,9 +57,9 @@ in
       enable = true;
       package = polybar;
       script = ''
-        for MONITOR in $(xrandr --listactivemonitoros | sed "s/ \+/ /g" | cut -d " " -f 5); do
-          polybar base &
-        done
+          polybar --list-monitors | while read -r mon; do
+            MONITOR="''${mon%:*}" polybar base &
+          done
         '';
 
       config = {
