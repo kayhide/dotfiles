@@ -22,7 +22,6 @@ in
     };
   };
 
-
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     # WM
@@ -139,17 +138,32 @@ in
     nixpkgs-fmt
   ];
 
-  home.file."bin/wallpaper" = {
-    source = ./bin/wallpaper;
-    executable = true;
+  home.file = {
+    "bin/reset-monitors" = {
+      source = ./bin/reset-monitors;
+      executable = true;
+    };
+
+    "bin/set-monitor" = {
+      source = ./bin/set-monitor;
+      executable = true;
+    };
+
+    "bin/wallpaper" = {
+      source = ./bin/wallpaper;
+      executable = true;
+    };
+
+    "bin/conky-clock" = {
+      source = ./bin/conky-clock;
+      executable = true;
+    };
+
+    ".Xresources" = {
+      source = ./dotfiles/Xresources;
+    };
   };
 
-  home.file."bin/conky-clock" = {
-    source = ./bin/conky-clock;
-    executable = true;
-  };
-
-  home.file.".Xresources".source = ./dotfiles/Xresources;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

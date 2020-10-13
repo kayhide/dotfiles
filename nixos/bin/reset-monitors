@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+set -eu
+
+set-geometry() {
+    case $1 in
+        eDP-1 )
+            set-monitor "$1" 2560x1440
+            ;;
+        DP-3 )
+            set-monitor "$1" 1920x1080 2560x0
+            ;;
+    esac
+}
+
+restart-wallpaper() {
+    local pids=$(ps -o pid,command -C bash | grep bin/wallpaper | sed -e "s/^ *\([0-9]\+\).*/\\1/")
+    if [[ -n $pids ]]; then
+        kill $pids
+    fi
+
+    wallpaper ~/.wallpaper &
+}
+
+restart-conky-clock() {
+    local pids=$(ps -o pid,command -C conky | grep -e "--xinerama-head=$1" | sed -e "s/^ *\([0-9]\+\).*/\\1/")
+    if [[ -n $pids ]]; then
+        kill $pids
+    fi
+
+    conky-clock "$1" >/dev/null 2>&1 &
+}
+
+export PATH="$HOME/bin:$PATH"
+
+xrandr --listmonitors | grep "^ *[0-9]\+:" | while read -r line; do
+    head=${line%:*}
+    name=${line##* }
+    echo "$name"
+    set-geometry "$name"
+    restart-conky-clock "$head"
+    echo
+done
+
+restart-wallpaper
+systemctl --user restart polybar.service
