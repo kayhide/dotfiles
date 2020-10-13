@@ -15,6 +15,7 @@
     ./system/brightness.nix
     ./system/audio.nix
     ./system/mayu.nix
+    ./system/autorandr.nix
     ./users.nix
     ./mounts.nix
   ];
