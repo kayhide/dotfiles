@@ -31,6 +31,15 @@ restart-conky-clock() {
     conky-clock "$1" >/dev/null 2>&1 &
 }
 
+restart-picom() {
+    local pids=$(ps -o pid -C picom --no-headers)
+    if [[ -n $pids ]]; then
+        kill $pids
+    fi
+
+    picom --experimental-backends &
+}
+
 export PATH="$HOME/bin:$PATH"
 
 xrandr --listmonitors | grep "^ *[0-9]\+:" | while read -r line; do
@@ -43,4 +52,5 @@ xrandr --listmonitors | grep "^ *[0-9]\+:" | while read -r line; do
 done
 
 restart-wallpaper
+restart-picom
 systemctl --user restart polybar.service
