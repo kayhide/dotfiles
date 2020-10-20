@@ -7,6 +7,9 @@ set-geometry() {
         eDP-1 )
             set-monitor "$1" 2560x1440
             ;;
+        DP-1-1 )
+            set-monitor "$1" 1920x1080 2560x0
+            ;;
         DP-3 )
             set-monitor "$1" 1920x1080 2560x0
             ;;
@@ -42,14 +45,22 @@ restart-picom() {
 
 export PATH="$HOME/bin:$PATH"
 
-xrandr --listmonitors | grep "^ *[0-9]\+:" | while read -r line; do
-    head=${line%:*}
-    name=${line##* }
-    echo "$name"
-    set-geometry "$name"
-    restart-conky-clock "$head"
-    echo
+xrandr --query | grep connected | while read -r line; do
+    name=${line%% *}
+    if [[ $line =~ disconnected ]]; then
+        xrandr --output "$name" --off
+    else
+        echo "$name"
+        set-geometry "$name"
+
+        xrandr --listmonitors | grep " $name\$" | while read -r line; do
+            head=${line%:*}
+            restart-conky-clock "$head"
+        done
+        echo
+    fi
 done
+
 
 restart-wallpaper
 restart-picom

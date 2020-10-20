@@ -119,7 +119,11 @@ workspace 2 output primary
 workspace 3 output primary
 workspace 4 output primary
 workspace 5 output primary
-workspace 10 output DP-3 DP3
+workspace 6 output DP-1-1 DP-3 DP3
+workspace 7 output DP-1-1 DP-3 DP3
+workspace 8 output DP-1-1 DP-3 DP3
+workspace 9 output DP-1-1 DP-3 DP3
+workspace 10 output DP-1-1 DP-3 DP3
 
 
 exec --no-startup-id bash ~/.config/i3/autostart.sh
