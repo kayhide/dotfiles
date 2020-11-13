@@ -58,7 +58,7 @@ bindsym Mod4+Tab workspace next
 bindsym Mod4+Up focus up
 bindsym Mod4+a focus parent
 bindsym Mod4+b split h
-bindsym Mod4+d exec rofi -modi drun -show drun
+bindsym Mod4+Control+Tab exec rofi -modi drun -show drun
 bindsym Mod4+e layout toggle split
 bindsym Mod4+f fullscreen toggle
 bindsym Mod4+h focus left
