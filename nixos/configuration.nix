@@ -64,7 +64,14 @@
   # services.printing.enable = true;
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    inputMethod = {
+      enabled = "fcitx";
+      fcitx.engines = with pkgs.fcitx-engines; [ mozc ];
+    };
+  };
+
   console = {
     font = "Lat2-Terminus16";
     keyMap = "jp106";

@@ -11,6 +11,14 @@ in
     xsession = {
       enable = true;
       windowManager.command = "i3";
+      profileExtra = ''
+        export XMODIFIERS="@im=fcitx"
+        export XMODIFIER="@im=fcitx"
+        export GTK_IM_MODULE="fcitx"
+        export QT_IM_MODUE="fcitx"
+        fcitx &
+
+      '';
     };
 
     services.screen-locker = {
