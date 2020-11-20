@@ -31,6 +31,13 @@
   boot.loader.efi.canTouchEfiVariables = true;
   # boot.kernelPackages = pkgs.linuxPackages_5_6;
 
+  systemd = {
+    extraConfig = ''
+      DefaultTimeoutStartSec=15s
+      DefaultTimeoutStopSec=15s
+    '';
+  };
+
   networking.hostName = "napoli";
   networking.wireless.enable = true;
 
@@ -137,11 +144,13 @@
   # services.xserver.displayManager.sddm.enable = true;
   # services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.desktopManager.xterm.enable = true;
-  services.xserver.displayManager.lightdm = {
-    enable = true;
+  services.xserver.displayManager = {
     autoLogin = {
       enable = true;
       user = "kayhide";
+    };
+    lightdm = {
+      enable = true;
     };
   };
 
