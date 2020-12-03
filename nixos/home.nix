@@ -110,6 +110,7 @@ in
     # Languages
     chez
     elixir
+    erlang
     gnumake
     ruby
     shellcheck
