@@ -98,6 +98,7 @@ map global normal <a-/> <a-/>(?i)
 source "%val{config}/sh.kak"
 source "%val{config}/purescript.kak"
 source "%val{config}/psc-ide.kak"
+source "%val{config}/erlang.kak"
 # source "%val{config}/reload-kakrc.kak"
 
 # Nix
@@ -128,6 +129,13 @@ hook global WinSetOption filetype=css %{
     set-option window tabstop 2
     set-option window indentwidth 2
     set-option window formatcmd "prettier --stdin-filepath=%val{buffile}"
+}
+
+# Erlang
+hook global WinSetOption filetype=erlang %{
+    set-option window tabstop 2
+    set-option window indentwidth 2
+    set-option buffer comment_line '%'
 }
 
 # Ruby
