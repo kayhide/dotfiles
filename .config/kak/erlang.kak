@@ -75,7 +75,8 @@ hook -group erlang-highlight global WinSetOption filetype=erlang %{
 }
 
 hook global WinSetOption filetype=erlang %{
- hook window InsertChar \n -group erlang-indent erlang-indent-on-new-line
+    hook window InsertChar \n -group erlang-indent erlang-indent-on-new-line
+    hook window ModeChange pop:insert:.* -group erlang-trim-indent %{ try %{ execute-keys -draft <semicolon> <a-x> s ^\h+$ <ret> d } }
 }
 
 hook -group erlang-highlight global WinSetOption filetype=(?!erlang).* %{ 
