@@ -48,6 +48,13 @@
   # Without this file, wpa_supplicant service does not work.
   environment.etc."wpa_supplicant.conf".text = "";
 
+  nix = {
+    extraOptions = ''
+      keep-outputs = true
+      keep-derivations = true
+    '';
+  };
+
   services.connman.enable = true;
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.

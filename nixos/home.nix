@@ -12,7 +12,6 @@ in
     ./home/notification.nix
     ./home/suspend.nix
   ];
-  programs.home-manager.enable = true;
 
   home = {
     username = "kayhide";
@@ -22,7 +21,16 @@ in
     };
   };
 
+  programs = {
+    home-manager.enable = true;
+    direnv = {
+      enable = true;
+      enableNixDirenvIntegration = true;
+    };
+  };
+
   nixpkgs.config.allowUnfree = true;
+
   home.packages = with pkgs; [
     # WM
     acpi
@@ -37,7 +45,6 @@ in
     bat-extras.batwatch
     bc
     bind
-    direnv
     entr
     envsubst
     fd
