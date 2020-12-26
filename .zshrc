@@ -85,7 +85,7 @@ _prompt_mark() {
         echo -n "🎃"
     fi
     if [[ -n ${IN_NIX_SHELL+x} ]]; then
-        echo -n "💠"
+        echo -n "❄️"
     fi
     if [[ -n ${RANGER_LEVEL+x} ]]; then
         for i in $(seq "$RANGER_LEVEL"); do
