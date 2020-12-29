@@ -72,6 +72,7 @@ in
     tree
     unar
     watch
+    websocat
     xclip
     xsel
     yq
