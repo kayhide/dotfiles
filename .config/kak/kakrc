@@ -102,21 +102,18 @@ source "%val{config}/erlang.kak"
 # source "%val{config}/reload-kakrc.kak"
 
 # Nix
-
 hook global WinSetOption filetype=nix %{
     set-option window tabstop 2
     set-option window indentwidth 2
 }
 
 # Yaml
-
 hook global WinSetOption filetype=yaml %{
     set-option window tabstop 2
     set-option window indentwidth 2
 }
 
 # JavaScript / Json
-
 hook global WinSetOption filetype=javascript|json %{
     set-option window tabstop 2
     set-option window indentwidth 2
@@ -124,8 +121,14 @@ hook global WinSetOption filetype=javascript|json %{
 }
 
 # Css
-
 hook global WinSetOption filetype=css %{
+    set-option window tabstop 2
+    set-option window indentwidth 2
+    set-option window formatcmd "prettier --stdin-filepath=%val{buffile}"
+}
+
+# Html
+hook global WinSetOption filetype=html %{
     set-option window tabstop 2
     set-option window indentwidth 2
     set-option window formatcmd "prettier --stdin-filepath=%val{buffile}"
@@ -138,15 +141,25 @@ hook global WinSetOption filetype=erlang %{
     set-option buffer comment_line '%'
 }
 
-# Ruby
+# Elixir
+hook global WinSetOption filetype=elixir %{
+    set-option window tabstop 2
+    set-option window indentwidth 2
+    set-option buffer comment_line '#'
+}
 
+hook global WinSetOption filetype=eex %{
+    set-option window tabstop 2
+    set-option window indentwidth 2
+}
+
+# Ruby
 hook global WinSetOption filetype=ruby %{
     set-option window tabstop 2
     set-option window indentwidth 2
 }
 
 # Rust
-
 hook global WinSetOption filetype=rust %{
     set-option window tabstop 4
     set-option window indentwidth 4
@@ -155,14 +168,12 @@ hook global WinSetOption filetype=rust %{
 }
 
 # Haskell
-
 hook global WinSetOption filetype=haskell %{
     set-option window tabstop 2
     set-option window indentwidth 2
 }
 
 # PureScript
-
 declare-user-mode user-purescript
 declare-user-mode user-purescript-import
 hook global WinSetOption filetype=purescript %{
