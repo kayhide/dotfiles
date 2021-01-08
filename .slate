@@ -9,8 +9,7 @@ layout 1-monitor 'Emacs' throw 0 resize
 
 layout 2-monitors 'Emacs' throw 0 resize
 layout 2-monitors 'Slack' push left bar-resize:screenSizeX/2 0
-layout 2-monitors 'Google Chrome' push left bar-resize:screenSizeX*2/3 1
-layout 2-monitors 'iTerm2' throw 0 resize
+layout 2-monitors 'iTerm2' push right bar-resize:screenSizeX/2 0
 
 layout 3-monitors 'Google Chrome' push right bar-resize:screenSizeX*2/3 0
 layout 3-monitors 'Slack' push left bar-resize:screenSizeX/3 0
@@ -26,7 +25,7 @@ default 3-monitors count:3
 
 alias hyper ctrl;shift;alt;cmd
 
-bind 1:${hyper} relaunch
+bind r:${hyper} relaunch
 # bind up:${hyper} push up bar-resize:screenSizeY
 # bind left:${hyper} push left bar-resize:screenSizeX/2
 # bind right:${hyper} push right bar-resize:screenSizeX/2
