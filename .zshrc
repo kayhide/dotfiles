@@ -36,7 +36,7 @@ export SAVEHIST=100000
 autoload colors && colors
 
 # zplug
-if which zplug-env > /dev/null; then
+if which zplug-env > /dev/null && readlink -f "$(which zplug-env)" > /dev/null 2>&1; then
     export ZPLUG_INIT=""$(dirname "$(readlink -f "$(which zplug-env)")")"/../init.zsh"
 elif [[ -f $HOME/.nix-profile/opt/zplug/init.zsh ]]; then
     export ZPLUG_INIT="$HOME/.nix-profile/opt/zplug/init.zsh"
