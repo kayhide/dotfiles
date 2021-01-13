@@ -57,6 +57,24 @@ declare-user-mode space-project
 map global space p ': enter-user-mode<space>space-project<ret>' -docstring 'project'
 map global space-project a '<esc>: alt<ret>' -docstring 'edit alternative file'
 
+declare-user-mode space-toggle
+map global space t ': enter-user-mode<space>space-toggle<ret>' -docstring 'toggle'
+map global space-toggle w '<esc>: toggle-highlighter window/ show-whitespaces<ret>' -docstring 'toggle whitespaces'
+
+def toggle-highlighter -params 2.. %{
+    try %{
+        add-highlighter %arg{@}
+    } catch %{
+        evaluate-commands %sh{
+            if [[ $1 == */ ]]; then
+                path="$1$(shift; printf '%s' "$*" | sed 's_/_<slash>_g' | sed 's/ /_/g')"
+            else
+                path="$1"
+            fi
+            printf "remove-highlighter '%s'" "$path"
+        }
+    }
+}
 
 def find-file -params 1 -shell-script-candidates %{ fd --type f } %{
     edit %arg{1}
