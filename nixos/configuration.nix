@@ -103,10 +103,11 @@
     wheelNeedsPassword = false;
   };
 
-  virtualisation.docker = {
-    enable = true;
-    liveRestore = false;
-    extraOptions = "--userns-remap=default";
+  virtualisation = {
+    docker = {
+      enable = true;
+      liveRestore = false;
+    };
   };
 
   virtualisation.virtualbox = {
