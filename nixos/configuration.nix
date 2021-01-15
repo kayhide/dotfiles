@@ -61,7 +61,7 @@
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
-  networking.interfaces.ens20u1u4.useDHCP = true;
+  networking.interfaces.enp58s0u1u3.useDHCP = true;
   networking.interfaces.wlp59s0.useDHCP = true;
 
   # Configure network proxy if necessary
