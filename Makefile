@@ -27,9 +27,12 @@ linuxbrew:
 .PHONY: linuxbrew
 
 brew:
-	brew install zsh tig hub readline lv direnv peco zplug entr tree
+	brew install tig hub readline lv direnv peco fzf zplug entr tree ripgrep
 .PHONY: brew
 
+cask:
+	brew install --cask alfred bettertouchtool google-chrome google-japanese-ime iterm2 karabiner-elements slate
+.PHONY: cask
 
 init: dotfiles iterm linuxbrew brew
 .PHONY: init
