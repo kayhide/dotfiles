@@ -6,8 +6,14 @@ dotfiles:
 	ln -sf "$$(pwd)/.tmux.conf" "$$HOME/"
 	ln -sf "$$(pwd)/.spacemacs" "$$HOME/"
 	ln -sf "$$(pwd)/.magic" "$$HOME/"
-	bash -c "find .config -type f |while read -r f; do mkdir -p "\$$HOME/$$(dirname \$$f)"; ln -sf "$$(pwd)/\$$f" "\$$HOME/\$$f"; done"
 .PHONY: dotfiles
+
+dotconfig: $(addprefix ${HOME}/,$(shell find .config -type f))
+.PHONY: dotconfig
+
+${HOME}/.config/%: .config/%
+	mkdir -p $(@D)
+	ln -sf $(shell pwd)/$< $@
 
 iterm:
 	curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
