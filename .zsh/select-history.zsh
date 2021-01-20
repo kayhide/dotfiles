@@ -1,5 +1,5 @@
 function select-history() {
-    BUFFER=$(history -n 1 | tac | peco --prompt "HISTORY>" --query "$LBUFFER")
+    BUFFER=$(history -n 1 | fzf --tac)
     CURSOR=$#BUFFER
     zle clear-screen
 }
