@@ -15,6 +15,11 @@ ${HOME}/.config/%: .config/%
 	mkdir -p $(@D)
 	ln -sf $(shell pwd)/$< $@
 
+kak:
+	ghq get -p mawww/kakoune
+	ln -sf $(shell ghq root)/github.com/mawww/kakoune/share/kak/autoload ~/.config/kak/autoload
+.PHONY: kak
+	
 iterm:
 	curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
 	curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
