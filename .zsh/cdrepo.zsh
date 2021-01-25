@@ -1,6 +1,6 @@
 function cdrepo() {
-    local selected_dir=$(ghq list --full-path | peco --query "$LBUFFER" --prompt "REPO>")
-    if [ -n "$selected_dir" ]; then
-        cd $selected_dir
+    local dir="$(ghq list --full-path | fzf)"
+    if [[ -n $dir ]]; then
+        cd "$dir"
     fi
 }
