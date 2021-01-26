@@ -5,7 +5,9 @@ plug "alexherbo2/prelude.kak"
 plug "alexherbo2/terminal-mode.kak"
 plug "alexherbo2/connect.kak"
 plug "andreyorst/fzf.kak"
+require-module fzf
 
+set-option global fzf_file_command fd
 
 add-highlighter global/ show-matching
 add-highlighter global/ wrap
@@ -25,14 +27,13 @@ map global space <semicolon> ': comment-line<ret>' -docstring '(un)comment selec
 
 declare-user-mode space-buffer
 map global space b ': enter-user-mode<space>space-buffer<ret>' -docstring 'buffer'
-map global space-buffer b ': buffer<space>' -docstring 'open buffer'
-map global space-buffer d ': delete-buffer<ret>' -docstring 'delete buffer'
+map global space-buffer b ': fzf-buffer<ret>' -docstring 'open buffer'
+map global space-buffer d ': fzf-delete-buffer<ret>' -docstring 'delete buffer'
 map global space-buffer R ': edit!<ret>' -docstring 'reload buffer'
 
 declare-user-mode space-file
 map global space f ': enter-user-mode<space>space-file<ret>' -docstring 'file'
-map global space-file f ': find-file<space>' -docstring 'find file'
-map global space-file d ': find-directory<space>' -docstring 'find directory'
+map global space-file f ': fzf-file<ret>' -docstring 'find file'
 map global space-file s ': write<ret>' -docstring 'save file'
 
 declare-user-mode space-file-e
@@ -74,14 +75,6 @@ def toggle-highlighter -params 2.. %{
             printf "remove-highlighter '%s'" "$path"
         }
     }
-}
-
-def find-file -params 1 -shell-script-candidates %{ fd --type f } %{
-    edit %arg{1}
-}
-
-def find-directory -hidden -params 1 -shell-script-candidates %{ fd --type d } %{
-    echo %arg{1}
 }
 
 def edit-kakrc -docstring 'edit kakrc' %{
