@@ -107,7 +107,6 @@ map global normal <a-/> <a-/>(?i)
 
 # Local configs
 
-source "%val{config}/sh.kak"
 source "%val{config}/psc-ide.kak"
 source "%val{config}/erlang.kak"
 # source "%val{config}/reload-kakrc.kak"
