@@ -28,7 +28,8 @@ map global space <semicolon> ': comment-line<ret>' -docstring '(un)comment selec
 declare-user-mode space-buffer
 map global space b ': enter-user-mode<space>space-buffer<ret>' -docstring 'buffer'
 map global space-buffer b ': fzf-buffer<ret>' -docstring 'open buffer'
-map global space-buffer d ': fzf-delete-buffer<ret>' -docstring 'delete buffer'
+map global space-buffer d ': delete-buffer<ret>' -docstring 'delete current buffer'
+map global space-buffer D ': fzf-delete-buffer<ret>' -docstring 'delete buffer'
 map global space-buffer R ': edit!<ret>' -docstring 'reload buffer'
 
 declare-user-mode space-file
