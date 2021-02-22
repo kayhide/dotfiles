@@ -23,10 +23,6 @@ in
 
   programs = {
     home-manager.enable = true;
-    direnv = {
-      enable = true;
-      enableNixDirenvIntegration = true;
-    };
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -45,6 +41,7 @@ in
     bat-extras.batwatch
     bc
     bind
+    direnv
     entr
     envsubst
     fd
@@ -63,6 +60,7 @@ in
     lv
     ncdu
     neofetch
+    nix-direnv
     openssh
     peco
     powertop
@@ -75,7 +73,7 @@ in
     websocat
     xclip
     xsel
-    yq
+    yq-go
     zplug
     zsh
 
