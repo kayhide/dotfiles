@@ -1,11 +1,1 @@
-function use_env_dir() {
-    local dir="${1:-.direnv/envs}"
-    if [[ -d $dir ]]; then
-        for f in $(ls "$dir"); do
-            if [[ -f $dir/$f ]]; then
-                watch_file "$dir/$f"
-                export "$f=$(cat "$dir/$f")"
-            fi
-        done
-    fi
-}
+source_url "https://raw.githubusercontent.com/kayhide/direnv-use-env-dir/master/use_env_dir.sh" "sha256-OhI9bdI6Wk+/lVcAgxF2ePH5s4znGIGorIKw6qREDBk="
