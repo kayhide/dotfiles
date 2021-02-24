@@ -1,1 +1,5 @@
+if [[ -f ~/.nix-profile/share/nix-direnv/direnvrc ]]; then
+    source ~/.nix-profile/share/nix-direnv/direnvrc
+fi
+
 source_url "https://raw.githubusercontent.com/kayhide/direnv-use-env-dir/master/use_env_dir.sh" "sha256-OhI9bdI6Wk+/lVcAgxF2ePH5s4znGIGorIKw6qREDBk="
