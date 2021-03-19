@@ -50,8 +50,9 @@ key M0-*_9 = W-*_9
 key M0-*Atmark = A-*Kanji
 key M0-*Tab = C-*Tab
 
-key M0-R = C-R
 key M0-K = C-K
+key M0-Q = C-Q
+key M0-R = C-R
 key M0-C = S-C-C
 key M0-V = S-C-V
 key M0-Left = S-C-Left
