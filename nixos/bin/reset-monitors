@@ -5,7 +5,11 @@ set -eu
 set-geometry() {
     case $1 in
         eDP-1 )
-            set-monitor "$1" 2560x1440
+            if [[ -n ${MONITOR_FINEST+x} ]]; then
+                set-monitor "$1" 3840x2160
+            else
+                set-monitor "$1" 2560x1440
+            fi
             ;;
         DP-1-1 )
             set-monitor "$1" 1920x1080 2560x0
