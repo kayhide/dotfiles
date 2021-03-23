@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, makeWrapper
+{ lib, stdenv, fetchFromGitHub, makeWrapper
 , coreutils
 , fontconfig
 , gawk
@@ -40,7 +40,7 @@ stdenv.mkDerivation rec {
       --prefix PATH : ${scrot}/bin \
       --prefix PATH : ${xrandr}/bin
   '';
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "i3lock is a bash script that takes a screenshot of the desktop, blurs the background and adds a lock icon and text.";
     homepage = "https://github.com/meskarune/i3lock-fancy";
     maintainers = with maintainers; [ ];
