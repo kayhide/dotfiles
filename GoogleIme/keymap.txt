@@ -2,6 +2,7 @@ status	key	command
 Conversion	Backspace	Cancel
 Composition	Backspace	Backspace
 Precomposition	Backspace	Revert
+Precomposition	Ctrl ,	LaunchConfigDialog
 Composition	Ctrl ;	DisplayAsHalfWidth
 Conversion	Ctrl ;	DisplayAsHalfWidth
 Composition	Ctrl :	DisplayAsHalfAlphanumeric
@@ -58,8 +59,6 @@ Composition	Enter	Commit
 Conversion	Enter	Commit
 Composition	ESC	Cancel
 Conversion	ESC	Cancel
-Precomposition	Escape	LaunchConfigDialog
-Precomposition	Escape	ToggleAlphanumericMode
 Composition	F10	DisplayAsHalfAlphanumeric
 Conversion	F10	DisplayAsHalfAlphanumeric
 Composition	F2	ConvertWithoutHistory
