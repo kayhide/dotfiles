@@ -1,13 +1,16 @@
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
-
+plug "andreyorst/plug.kak" noload
 plug "ul/kak-lsp"
 plug "alexherbo2/prelude.kak"
 plug "alexherbo2/terminal-mode.kak"
 plug "alexherbo2/connect.kak"
-plug "andreyorst/fzf.kak"
-require-module fzf
 
-set-option global fzf_file_command fd
+plug "andreyorst/fzf.kak" config %{
+    require-module fzf
+    require-module fzf-file
+    require-module fzf-buffer
+    set-option global fzf_file_command fd
+}
 
 add-highlighter global/ show-matching
 add-highlighter global/ wrap
