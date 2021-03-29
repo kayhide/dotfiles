@@ -96,15 +96,21 @@ def edit-kakrc -docstring 'edit kakrc' %{
 
 # Use system clipboard
 
+declare-option str clipboard_copy_command "xsel --clipboard --input"
+declare-option str clipboard_paste_command "xsel --clipboard --output"
+
+
 hook global NormalKey y|d|c %{
-    nop %sh{ printf "%s" "$kak_main_reg_dquote" | xsel --clipboard --input }
+    nop %sh{
+        printf "%s" "$kak_main_reg_dquote" | $kak_opt_clipboard_copy_command
+    }
 }
 
 define-command pull-from-xsel %{
     evaluate-commands %sh{
         printf "set-register '%s' " '"'
         echo -n '%='
-        xsel --clipboard --output | sed "s/=/==/g"
+        $kak_opt_clipboard_paste_command | sed "s/=/==/g"
         echo -n '='
     }
 }
