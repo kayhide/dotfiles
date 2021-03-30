@@ -1,15 +1,20 @@
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
 plug "andreyorst/plug.kak" noload
-plug "ul/kak-lsp"
 plug "alexherbo2/prelude.kak"
 plug "alexherbo2/terminal-mode.kak"
-plug "alexherbo2/connect.kak"
+plug "alexherbo2/connect.kak" config %{
+    require-module connect
+}
 
 plug "andreyorst/fzf.kak" config %{
     require-module fzf
     require-module fzf-file
     require-module fzf-buffer
     set-option global fzf_file_command fd
+}
+
+plug "ul/kak-lsp" config %{
+    # set global lsp_cmd "kak-lsp -s %val{session} -vvv --log /home/kayhide/tmp/kak-lsp.log"
 }
 
 add-highlighter global/ show-matching
@@ -94,38 +99,13 @@ def edit-kakrc -docstring 'edit kakrc' %{
     edit! "%val{config}/kakrc"
 }
 
-# Use system clipboard
-
-declare-option str clipboard_copy_command "xsel --clipboard --input"
-declare-option str clipboard_paste_command "xsel --clipboard --output"
-
-
-hook global NormalKey y|d|c %{
-    nop %sh{
-        printf "%s" "$kak_main_reg_dquote" | $kak_opt_clipboard_copy_command
-    }
-}
-
-define-command pull-from-xsel %{
-    evaluate-commands %sh{
-        printf "set-register '%s' " '"'
-        echo -n '%='
-        $kak_opt_clipboard_paste_command | sed "s/=/==/g"
-        echo -n '='
-    }
-}
-map global normal p ': pull-from-xsel<ret>p'
-map global normal P ': pull-from-xsel<ret>P'
-map global normal R ': pull-from-xsel<ret>R'
-
-
-
 # Seach case insensitive
 map global normal / /(?i)
 map global normal <a-/> <a-/>(?i)
 
 # Local configs
 
+source "%val{config}/clipboard.kak"
 source "%val{config}/psc-ide.kak"
 source "%val{config}/erlang.kak"
 # source "%val{config}/reload-kakrc.kak"
@@ -219,6 +199,3 @@ hook global WinSetOption filetype=purescript %{
     map window user-purescript i ': enter-user-mode<space>user-purescript-import<ret>'
     map window user-purescript-import a ': psc-ide-add-import<ret>'
 }
-
-set global lsp_cmd "kak-lsp -s %val{session} -vvv --log /home/kayhide/tmp/kak-lsp.log"
-
