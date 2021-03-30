@@ -199,3 +199,29 @@ hook global WinSetOption filetype=purescript %{
     map window user-purescript i ': enter-user-mode<space>user-purescript-import<ret>'
     map window user-purescript-import a ': psc-ide-add-import<ret>'
 }
+
+# Python
+define-command python-alternative-file -docstring 'Jump to the alternate file (implementation ↔ test)' %{ evaluate-commands %sh{
+    case $kak_buffile in
+        *test_*.py)
+            altfile=$(eval echo $(echo $kak_buffile | sed s+test/+src/+';'s/test_//))
+            [ ! -f $altfile ] && echo "fail 'implementation file not found'" && exit
+        ;;
+        *.py)
+            path=$kak_buffile
+            basename=test_$(basename $path)
+            altdir=$(dirname $(echo $path | sed s+src/+test/+))
+            altfile="$altdir/$basename"
+            [ ! -f $altfile ] && echo "fail 'test file not found $altfile'" && exit
+        ;;
+        *)
+            echo "fail 'alternative file not found'" && exit
+        ;;
+    esac
+    echo "edit $altfile"
+}}
+
+hook global WinSetOption filetype=python %{
+    alias window alt python-alternative-file
+}
+
