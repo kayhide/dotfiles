@@ -157,10 +157,31 @@ hook global WinSetOption filetype=erlang %{
 }
 
 # Elixir
+# define-command elixir-alternative-file -docstring 'Jump to the alternate file (implementation ↔ test)' %{ evaluate-commands %sh{
+define-command elixir-alternative-file -override -docstring 'Jump to the alternate file (implementation ↔ test)' %{ evaluate-commands %sh{
+    case $kak_buffile in
+        */test/*_test.exs)
+            basepath=$(echo $kak_buffile | sed s+.*test/++';'s+_test.exs+.ex+)
+            altfile=$(find lib -path "*/$basepath" | head -n 1)
+            [ -z $altfile  ] && echo "fail 'implementation file not found'" && exit
+        ;;
+        *.ex)
+            basepath=$(echo $kak_buffile | sed s+.*lib/++';'s+.ex+_test.exs+)
+            altfile=$(find test -path "*/$basepath" | head -n 1)
+            [ -z $altfile  ] && echo "fail 'test file not found'" && exit
+        ;;
+        *)
+            echo "fail 'alternative file not found'" && exit
+        ;;
+    esac
+    echo "edit $altfile"
+}}
+
 hook global WinSetOption filetype=elixir %{
     set-option window tabstop 2
     set-option window indentwidth 2
     set-option buffer comment_line '#'
+    alias window alt elixir-alternative-file
 }
 
 hook global WinSetOption filetype=eex %{
