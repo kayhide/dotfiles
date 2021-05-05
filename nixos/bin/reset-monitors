@@ -14,8 +14,18 @@ set-geometry() {
         DP-1-1 )
             set-monitor "$1" 1920x1080 2560x0
             ;;
-        DP-3 )
+        DP-* )
             set-monitor "$1" 1920x1080 2560x0
+            ;;
+    esac
+}
+
+set-workspaces() {
+    case $1 in
+        DP-* )
+            for i in $(seq 6 10); do
+                i3-msg "workspace $i, move workspace to output $1"
+            done
             ;;
     esac
 }
@@ -56,6 +66,7 @@ xrandr --query | grep connected | while read -r line; do
     else
         echo "$name"
         set-geometry "$name"
+        set-workspaces "$name"
 
         xrandr --listmonitors | grep " $name\$" | while read -r line; do
             head=${line%:*}
