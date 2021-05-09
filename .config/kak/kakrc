@@ -147,6 +147,8 @@ hook global WinSetOption filetype=html %{
 hook global WinSetOption filetype=svelte %{
     set-option window tabstop 2
     set-option window indentwidth 2
+    set-option buffer comment_line '//'
+    set-option window formatcmd "prettier --stdin-filepath=%val{buffile}"
 }
 
 # Erlang
