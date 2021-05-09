@@ -85,6 +85,7 @@ in
     udiskie
 
     # Cli Apps
+    alacritty
     awscli
     cmatrix
     dropbox

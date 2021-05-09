@@ -30,7 +30,7 @@ bindsym Mod4+9 workspace number 9
 bindsym Mod4+Control+Tab exec rofi -modi drun -show drun
 bindsym Mod4+Down focus down
 bindsym Mod4+Left focus left
-bindsym Mod4+Return exec --no-startup-id "kitty"
+bindsym Mod4+Return exec --no-startup-id "alacritty"
 bindsym Mod4+Right focus right
 bindsym Mod4+Shift+0 move container to workspace number 10
 bindsym Mod4+Shift+1 move container to workspace number 1
@@ -42,7 +42,7 @@ bindsym Mod4+Shift+6 move container to workspace number 6
 bindsym Mod4+Shift+7 move container to workspace number 7
 bindsym Mod4+Shift+8 move container to workspace number 8
 bindsym Mod4+Shift+9 move container to workspace number 9
-bindsym Mod4+Shift+Return exec --no-startup-id "rm $SAVE_LAST_PWD 2> /dev/null; kitty"
+bindsym Mod4+Shift+Return exec --no-startup-id "rm $SAVE_LAST_PWD 2> /dev/null; alacritty"
 bindsym Mod4+Shift+Tab focus prev
 bindsym Mod4+Shift+c reload
 bindsym Mod4+Shift+h move left
