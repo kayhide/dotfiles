@@ -16,6 +16,7 @@ in
         export XMODIFIER="@im=fcitx"
         export GTK_IM_MODULE="fcitx"
         export QT_IM_MODUE="fcitx"
+        export GLFW_IM_MODULE="ibus"
         fcitx &
 
       '';

@@ -165,10 +165,6 @@ in
       source = ./bin/conky-clock;
       executable = true;
     };
-
-    ".Xresources" = {
-      source = ./dotfiles/Xresources;
-    };
   };
 
 

@@ -145,7 +145,9 @@
   # Enable touchpad support.
   services.xserver.libinput = {
     enable = true;
-    naturalScrolling = true;
+    touchpad = {
+      naturalScrolling = true;
+    };
   };
 
 
@@ -168,15 +170,47 @@
   #   xrandr --output default --mode 2560x1400 || true
   # '';
 
-  fonts.fonts = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    symbola
-    font-awesome
-    material-icons
-    nerdfonts
-  ];
+  fonts = {
+    fontconfig = {
+       localConf = ''
+        <?xml version="1.0"?>
+        <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+        <fontconfig>
+          <alias binding="weak">
+            <family>monospace</family>
+            <prefer>
+              <family>emoji</family>
+              <family>Symbola</family>
+            </prefer>
+          </alias>
+          <alias binding="weak">
+            <family>sans-serif</family>
+            <prefer>
+              <family>emoji</family>
+              <family>Symbola</family>
+            </prefer>
+          </alias>
+          <alias binding="weak">
+            <family>serif</family>
+            <prefer>
+              <family>emoji</family>
+              <family>Symbola</family>
+            </prefer>
+          </alias>
+        </fontconfig>
+      '';
+    };
+    fonts = with pkgs; [
+      font-awesome
+      material-icons
+      nerdfonts
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      symbola
+      ttf_bitstream_vera
+    ];
+  };
 
   services.lorri.enable = true;
 

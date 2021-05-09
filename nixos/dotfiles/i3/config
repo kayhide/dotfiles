@@ -1,5 +1,4 @@
-# font pango:monospace 8
-font pango:noto-emoji 9
+font pango:monospace 10
 floating_modifier Mod4
 new_window pixel 0
 new_float pixel 0
@@ -87,8 +86,7 @@ bindsym l resize grow width 10 px or 10 ppt
 
 
 bar {
-  # font pango:monospace 8
-  font pango:noto-emoji 9
+  font pango:monospace 12
   mode hide
   hidden_state hide
   position bottom
