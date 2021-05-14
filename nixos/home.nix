@@ -55,12 +55,12 @@ in
     htop
     hub
     iotop
+    jo
     jq
     lsof
     lv
     ncdu
     neofetch
-    nix-direnv
     openssh
     peco
     powertop
@@ -139,6 +139,7 @@ in
     minikube
 
     # Nix
+    nix-direnv
     nix-prefetch
     nix-prefetch-git
     patchelf
