@@ -11,6 +11,7 @@ in
     ./home/polybar.nix
     ./home/notification.nix
     ./home/suspend.nix
+    ./home/autorandr.nix
   ];
 
   home = {

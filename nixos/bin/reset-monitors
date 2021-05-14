@@ -65,8 +65,8 @@ xrandr --query | grep connected | while read -r line; do
         xrandr --output "$name" --off
     else
         echo "$name"
-        set-geometry "$name"
-        set-workspaces "$name"
+        # set-geometry "$name"
+        # set-workspaces "$name"
 
         xrandr --listmonitors | grep " $name\$" | while read -r line; do
             head=${line%:*}
