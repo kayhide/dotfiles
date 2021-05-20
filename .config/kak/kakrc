@@ -10,6 +10,7 @@ plug "andreyorst/fzf.kak" config %{
     require-module fzf
     require-module fzf-file
     require-module fzf-buffer
+    require-module fzf-vcs
     set-option global fzf_file_command fd
 }
 
@@ -66,6 +67,7 @@ map global space-error P '<esc>: lsp-find-error --previous<ret>' -docstring 'fin
 declare-user-mode space-project
 map global space p ': enter-user-mode<space>space-project<ret>' -docstring 'project'
 map global space-project a '<esc>: alt<ret>' -docstring 'edit alternative file'
+map global space-project f ': fzf-vcs<ret>' -docstring 'find version controlled file'
 
 declare-user-mode space-toggle
 map global space t ': enter-user-mode<space>space-toggle<ret>' -docstring 'toggle'
