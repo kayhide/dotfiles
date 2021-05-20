@@ -20,16 +20,21 @@
     ./mounts.nix
   ];
 
-
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.grub = {
-    device = "nodev";
-    efiSupport = true;
-    efiInstallAsRemovable = true;
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      grub = {
+        device = "nodev";
+        efiSupport = true;
+        efiInstallAsRemovable = true;
+      };
+      efi = {
+        canTouchEfiVariables = true;
+      };
+    };
+    # kernelPackages = pkgs.linuxPackages_5_6;
   };
-  boot.loader.efi.canTouchEfiVariables = true;
-  # boot.kernelPackages = pkgs.linuxPackages_5_6;
 
   systemd = {
     extraConfig = ''
@@ -38,11 +43,32 @@
     '';
   };
 
-  networking.hostName = "napoli";
-  networking.wireless.enable = true;
+  networking = {
+    hostName = "napoli";
+    wireless.enable = true;
 
-  # Use this if networking.wireless does not work.
-  # networking.networkmanager.enable = true;
+    # Use this if wireless does not work.
+    # networkmanager.enable = true;
+
+    # The global useDHCP flag is deprecated, therefore explicitly set to false here.
+    # Per-interface useDHCP will be mandatory in the future, so this generated config
+    # replicates the default behaviour.
+    useDHCP = false;
+    interfaces = {
+      enp58s0u1u3.useDHCP = true;
+      wlp59s0.useDHCP = true;
+    };
+
+    # Configure network proxy if necessary
+    # proxy.default = "http://user:password@proxy:port/";
+    # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+    # Open ports in the firewall.
+    firewall.allowedTCPPorts = [ 22 3000 ];
+    # firewall.allowedUDPPorts = [];
+    # Or disable the firewall altogether.
+    # firewall.enable = false;
+  };
 
   # Touch /etc/wpa_supplicant.conf.
   # Without this file, wpa_supplicant service does not work.
@@ -54,28 +80,6 @@
       keep-derivations = true
     '';
   };
-
-  services.connman.enable = true;
-
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
-  networking.useDHCP = false;
-  networking.interfaces.enp58s0u1u3.useDHCP = true;
-  networking.interfaces.wlp59s0.useDHCP = true;
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 3000 ];
-  # networking.firewall.allowedUDPPorts = [];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
 
   # Select internationalisation properties.
   i18n = {
@@ -109,10 +113,16 @@
       enableNvidia = true;
       liveRestore = false;
     };
+    virtualbox = {
+      host.enable = true;
+    };
   };
 
-  virtualisation.virtualbox = {
-    host.enable = true;
+  # Enable sound.
+  sound.enable = true;
+  hardware.pulseaudio = {
+    enable = true;
+    systemWide = true;
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -125,50 +135,44 @@
   # };
 
   # List services that you want to enable:
+  services = {
+    connman.enable = true;
 
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+    # Enable CUPS to print documents.
+    # printing.enable = true;
 
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio = {
-    enable = true;
-    systemWide = true;
-  };
+    # Enable the OpenSSH daemon.
+    openssh.enable = true;
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  # services.xserver.autorun = false;
-  services.xserver.layout = "jp";
-  # services.xserver.xkbOptions = "eurosign:e";
-
-  # Enable touchpad support.
-  services.xserver.libinput = {
-    enable = true;
-    touchpad = {
-      naturalScrolling = true;
-    };
-  };
-
-
-  # Enable the KDE Desktop Environment.
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.desktopManager.xterm.enable = true;
-  services.xserver.displayManager = {
-    autoLogin = {
+    # Enable the X11 windowing system.
+    xserver = {
       enable = true;
-      user = "kayhide";
-    };
-    lightdm = {
-      enable = true;
+      # autorun = false;
+      layout = "jp";
+      # xkbOptions = "eurosign:e";
+
+      # Enable touchpad support.
+      libinput = {
+        enable = true;
+        touchpad = {
+          naturalScrolling = true;
+        };
+      };
+
+      desktopManager = {
+        xterm.enable = true;
+      };
+      displayManager = {
+        autoLogin = {
+          enable = true;
+          user = "kayhide";
+        };
+        lightdm = {
+          enable = true;
+        };
+      };
     };
   };
-
-  # TODO Set the following resolution onto the login screen
-  # services.xserver.displayManager.setupCommands = ''
-  #   xrandr --output default --mode 2560x1400 || true
-  # '';
 
   fonts = {
     fontconfig = {
@@ -211,8 +215,6 @@
       ttf_bitstream_vera
     ];
   };
-
-  services.lorri.enable = true;
 
 
   # This value determines the NixOS release from which the default
