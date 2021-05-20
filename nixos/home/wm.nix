@@ -12,13 +12,11 @@ in
       enable = true;
       windowManager.command = "i3";
       profileExtra = ''
-        export XMODIFIERS="@im=fcitx"
-        export XMODIFIER="@im=fcitx"
-        export GTK_IM_MODULE="fcitx"
-        export QT_IM_MODUE="fcitx"
         export GLFW_IM_MODULE="ibus"
-        fcitx &
-
+        export GTK_IM_MODULE="ibus"
+        export QT_IM_MODUE="ibus"
+        export XMODIFIERS="@im=ibus"
+        ibus-daemon -rxv &
       '';
     };
 
