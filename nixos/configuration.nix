@@ -41,6 +41,7 @@
       DefaultTimeoutStartSec=15s
       DefaultTimeoutStopSec=15s
     '';
+    enableUnifiedCgroupHierarchy = false;
   };
 
   networking = {
