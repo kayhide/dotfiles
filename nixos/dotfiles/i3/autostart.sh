@@ -36,6 +36,5 @@ for i in $(xrandr --listmonitors |grep "[0-9]\+:" |cut -d : -f 1); do
     ~/bin/conky-clock "$i" &
 done
 
-~/bin/wallpaper ~/.wallpaper &
-
+systemctl --user restart wallpaper &
 systemctl --user restart polybar &

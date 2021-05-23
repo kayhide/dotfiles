@@ -77,6 +77,6 @@ xrandr --query | grep connected | while read -r line; do
 done
 
 
-restart-wallpaper
+# restart-wallpaper
 restart-picom
 systemctl --user restart polybar.service

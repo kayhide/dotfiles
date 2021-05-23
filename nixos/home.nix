@@ -12,6 +12,7 @@ in
     ./home/notification.nix
     ./home/suspend.nix
     ./home/autorandr.nix
+    ./home/wallpaper.nix
   ];
 
   home = {

@@ -16,20 +16,6 @@ in
             systemctl --user restart polybar.service
           '';
 
-          "restart-wallpaper" = ''
-            PATH=${pkgs.bash}/bin:${pkgs.gnugrep}/bin:${pkgs.gnused}/nbin:${pkgs.procps}/bin:$HOME/bin:$PATH
-            PATH=${pkgs.feh}/bin:$PATH
-
-            echo "[$(date -Iseconds)] restarting wallpaper..." >> ${logfile}
-            pids=$(ps -o pid,command -C bash | grep bin/wallpaper | sed -e "s/^ *\([0-9]\+\).*/\\1/")
-            if [[ -n $pids ]]; then
-                kill $pids
-            fi
-
-            wallpaper ~/.wallpaper & disown
-            echo "[$(date -Iseconds)] restarted wallpaper." >> ${logfile}
-          '';
-
           "restart-conky-clock" = ''
             PATH=${pkgs.bash}/bin:${pkgs.gnugrep}/bin:${pkgs.gnused}/nbin:${pkgs.procps}/bin:$HOME/bin:$PATH
             PATH=${pkgs.xorg.xrandr}/bin:${pkgs.conky}/bin:$PATH
