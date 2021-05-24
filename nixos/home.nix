@@ -13,6 +13,7 @@ in
     ./home/suspend.nix
     ./home/autorandr.nix
     ./home/wallpaper.nix
+    ./home/conky-clock.nix
   ];
 
   home = {

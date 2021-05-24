@@ -70,7 +70,7 @@ xrandr --query | grep connected | while read -r line; do
 
         xrandr --listmonitors | grep " $name\$" | while read -r line; do
             head=${line%:*}
-            restart-conky-clock "$head"
+            # restart-conky-clock "$head"
         done
         echo
     fi
