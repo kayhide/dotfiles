@@ -160,11 +160,6 @@ in
       source = ./bin/set-monitor;
       executable = true;
     };
-
-    "bin/wallpaper" = {
-      source = ./bin/wallpaper;
-      executable = true;
-    };
   };
 
 
