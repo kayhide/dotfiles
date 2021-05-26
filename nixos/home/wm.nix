@@ -61,6 +61,5 @@ in
 
     home.file.".config/i3/config".source = ../dotfiles/i3/config;
     home.file.".config/i3/autostart.sh".source = ../dotfiles/i3/autostart.sh;
-    home.file.".config/picom/picom.conf".source = ../dotfiles/picom/picom.conf;
   };
 }

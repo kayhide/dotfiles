@@ -14,6 +14,7 @@ in
     ./home/autorandr.nix
     ./home/wallpaper.nix
     ./home/conky-clock.nix
+    ./home/picom.nix
   ];
 
   home = {

@@ -78,5 +78,5 @@ done
 
 
 # restart-wallpaper
-restart-picom
+# restart-picom
 systemctl --user restart polybar.service

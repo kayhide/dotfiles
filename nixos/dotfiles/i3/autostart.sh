@@ -21,7 +21,6 @@ keynav &
 unclutter &
 parcellite &
 pasystray &
-picom --experimental-backends &
 dropbox &
 
 if [[ -n ${SAVE_LAST_PWD+x} && -f $SAVE_LAST_PWD ]]; then
