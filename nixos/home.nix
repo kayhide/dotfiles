@@ -165,11 +165,6 @@ in
       source = ./bin/wallpaper;
       executable = true;
     };
-
-    "bin/conky-clock" = {
-      source = ./bin/conky-clock;
-      executable = true;
-    };
   };
 
 

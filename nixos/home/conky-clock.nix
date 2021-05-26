@@ -17,6 +17,10 @@ in
 
 {
   config = {
+    home = {
+      file.".config/conky/clock.conf".source = ../dotfiles/conky/clock.conf;
+    };
+
     systemd.user = {
       services = {
         conky-clock = {
