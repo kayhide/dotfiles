@@ -11,11 +11,8 @@ in
       enable = true;
       hooks = {
         postswitch = {
-          "restart-i3" = ''
-            ${pkgs.i3}/bin/i3-msg restart
+          "restart-services" = ''
             systemctl --user start wallpaper.service
-            systemctl --user restart picom.service
-            systemctl --user restart conky-clock.service
             systemctl --user restart polybar.service
           '';
         };
