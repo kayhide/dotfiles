@@ -22,7 +22,7 @@ in
 
     services.screen-locker = {
       enable = true;
-      lockCmd = "${i3lock-fancy}/bin/i3lock-fancy -n -- ${pkgs.maim}/bin/maim -m 1";
+      lockCmd = "${i3lock-fancy}/bin/i3lock-fancy -n";
       inactiveInterval = 10;
       xautolockExtraOptions = [
         "-corners" "++--"

@@ -1,14 +1,14 @@
 {
     "i3lock-fancy": {
-        "branch": "multi-monitor",
+        "branch": "simple",
         "description": "i3lock script that takes a screenshot of the desktop, blurs the background and adds a lock icon and text",
         "homepage": null,
         "owner": "kayhide",
         "repo": "i3lock-fancy",
-        "rev": "404890eb3967b575b458fbad70e63cb877968379",
-        "sha256": "0icg39incqxl9vpib2sgg3m768l3jnlqwk3qh1d1lajsf4vxqvld",
+        "rev": "4589ccac428d25c1bfe00c07d42825372c05a1f1",
+        "sha256": "16b7mj4phxn92xp13vw3z56bsd46q0z2c5sg52hzzb9855yw4g1i",
         "type": "tarball",
-        "url": "https://github.com/kayhide/i3lock-fancy/archive/404890eb3967b575b458fbad70e63cb877968379.tar.gz",
+        "url": "https://github.com/kayhide/i3lock-fancy/archive/4589ccac428d25c1bfe00c07d42825372c05a1f1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
