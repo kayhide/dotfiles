@@ -125,6 +125,7 @@ in
     gnumake
     ruby
     shellcheck
+    shfmt
 
     # Haskell
     hlint

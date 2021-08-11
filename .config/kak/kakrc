@@ -112,6 +112,13 @@ source "%val{config}/psc-ide.kak"
 source "%val{config}/erlang.kak"
 # source "%val{config}/reload-kakrc.kak"
 
+# Shell
+hook global WinSetOption filetype=sh %{
+    set-option window tabstop 4
+    set-option window indentwidth 4
+    set-option window formatcmd "shfmt -i 4"
+}
+
 # Nix
 hook global WinSetOption filetype=nix %{
     set-option window tabstop 2
