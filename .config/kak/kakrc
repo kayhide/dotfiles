@@ -193,6 +193,7 @@ hook global WinSetOption filetype=elixir %{
     set-option window tabstop 2
     set-option window indentwidth 2
     set-option buffer comment_line '#'
+    set-option window formatcmd "mix format -"
     alias window alt elixir-alternative-file
 }
 
