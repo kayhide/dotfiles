@@ -13,7 +13,7 @@ in
         postswitch = {
           "restart-services" = ''
             systemctl --user start wallpaper.service
-            systemctl --user restart polybar.service
+            systemctl --user restart polybar.service conky-clock.service
           '';
         };
       };
