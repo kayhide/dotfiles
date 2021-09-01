@@ -1,14 +1,23 @@
 { config, pkgs, lib, ... }:
 
 let
-  wallpaper = pkgs.writeScriptBin "wallpaper" ''
-    #!${pkgs.stdenv.shell}
+  bin-path = with pkgs; lib.makeBinPath [
+    coreutils
+    gnused
+    xorg.xrandr
+    xwinwrap
+  ];
 
-    PATH=${pkgs.coreutils}/bin:$PATH
+  wallpaper = with pkgs; writeScriptBin "wallpaper" ''
+    #!${stdenv.shell}
 
-    wallpaper_dir="$HOME/.wallpaper"
+    PATH=${xscreensaver}/libexec/xscreensaver:${bin-path}:$PATH
 
-    ${pkgs.feh}/bin/feh --no-fehbg --bg-center --bg-fill --randomize --recursive "$wallpaper_dir"
+    xrandr --listmonitors | cut -d " " -f 4 | sed -n "s=/[0-9]*==gp" | while read -r g; do
+      xwinwrap -g "$g" -ov -- glslideshow -window-id WID -zoom 100 -clip -duration 900 -pan 900 &
+    done
+
+    sleep 1
   '';
 
 in
@@ -20,33 +29,17 @@ in
         wallpaper = {
           Unit = {
             Description = "Wallpaper";
-            After = [ "graphical-session-pre.target" ];
+            After = [ "graphical-session-pre.target" "conky-clock.service" ];
             PartOf = [ "graphical-session.target" ];
           };
           Service = {
             Type = "oneshot";
             ExecStart = "${wallpaper}/bin/wallpaper";
             IOSchedulingClass = "idle";
+            RemainAfterExit = true;
           };
           Install = {
             WantedBy = [ "graphical-session.target" ];
-          };
-        };
-      };
-
-      timers = {
-        wallpaper = {
-          Unit = {
-            Description = "Wallpaper timer";
-          };
-          Timer = {
-            Unit = "wallpaper.service";
-            OnCalendar = "*-*-* *:0/15:0";
-            Persistent = true;
-            RandomizedDelaySec = "1s";
-          };
-          Install = {
-            WantedBy = [ "timers.target" ];
           };
         };
       };

@@ -1,16 +1,25 @@
 { config, pkgs, lib, ... }:
 
 let
-  conky-clock = pkgs.writeScriptBin "conky-clock" ''
-    #!${pkgs.stdenv.shell}
+  bin-path = with pkgs; lib.makeBinPath [
+    conky
+    coreutils
+    gnused
+    xorg.xrandr
+  ];
 
-    PATH=${pkgs.bash}/bin:${pkgs.gnugrep}/bin:${pkgs.gnused}/bin:${pkgs.coreutils}/bin:$HOME/bin:$PATH
+  conky-clock = with pkgs; writeScriptBin "conky-clock" ''
+    #!${stdenv.shell}
+
+    PATH=${bin-path}:$PATH
 
     conky_config="$HOME/.config/conky/clock.conf"
 
-    ${pkgs.xorg.xrandr}/bin/xrandr --listmonitors | sed -n "s/^ \([0-9]\+\):.*$/\1/p" | while read -r head; do
-      ${pkgs.conky}/bin/conky --xinerama-head="$head" --config "$conky_config" &
+    xrandr --listmonitors | sed -n "s/^ \([0-9]\+\):.*$/\1/p" | while read -r head; do
+      conky --xinerama-head="$head" --config "$conky_config" &
     done
+
+    sleep 1
   '';
 
 in
@@ -30,10 +39,9 @@ in
             PartOf = [ "graphical-session.target" ];
           };
           Service = {
-            Type = "simple";
+            Type = "oneshot";
             ExecStart = "${conky-clock}/bin/conky-clock";
             IOSchedulingClass = "idle";
-            Restart = "always";
             RemainAfterExit = true;
           };
           Install = {
