@@ -1,7 +1,20 @@
 { config, pkgs, lib, ... }:
 
 let
-  i3lock-fancy = pkgs.callPackage ../nix/pkgs/i3lock-fancy.nix {};
+  i3lock-fancy = pkgs.callPackage ../nix/pkgs/i3lock-fancy.nix { };
+
+  my-screen-locker = with pkgs; writeScriptBin "my-screen-locker" ''
+    #!${stdenv.shell}
+      
+    PATH=${coreutils}/bin:$PATH
+    lock="$HOME/.cache/screen-locker/lock"
+    mkdir -p "$(dirname $lock)"
+    touch "$lock"
+
+    ${util-linux}/bin/flock -x "$lock" -c "${i3lock-fancy}/bin/i3lock-fancy -n"
+    ${autorandr}/bin/autorandr --change --force
+  '';
+
   mod = "Mod4";
 
 in
@@ -22,13 +35,9 @@ in
 
     services.screen-locker = {
       enable = true;
-      lockCmd = "${i3lock-fancy}/bin/i3lock-fancy -n";
+      lockCmd = "${my-screen-locker}/bin/my-screen-locker";
       inactiveInterval = 10;
-      xautolockExtraOptions = [
-        "-corners" "++--"
-        "-cornerdelay" "1"
-        "-cornerredelay" "60"
-      ];
+      xautolockExtraOptions = [ "-corners" "++--" "-cornerdelay" "1" "-cornerredelay" "60" ];
     };
 
     services.udiskie.enable = true;

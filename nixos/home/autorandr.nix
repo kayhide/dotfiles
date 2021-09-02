@@ -1,8 +1,9 @@
 { config, pkgs, lib, ... }:
 
 let
-  logfile = "/home/kayhide/autorandr.log";
-
+  restart-services-command = ''
+    systemctl --user restart polybar conky-clock wallpaper
+  '';
 in
 
 {
@@ -11,8 +12,9 @@ in
       enable = true;
       hooks = {
         postswitch = {
-          "restart-services" = ''
-            systemctl --user restart polybar.service conky-clock.service wallpaper.service
+          restart-services = ''
+            lock="$HOME/.cache/screen-locker/lock"
+            ${pkgs.util-linux}/bin/flock -n -x "$lock" -c "${restart-services-command}"
           '';
         };
       };
