@@ -9,9 +9,7 @@ let
     xwinwrap
   ];
 
-  wallpaper = with pkgs; writeScriptBin "wallpaper" ''
-    #!${stdenv.shell}
-
+  wallpaper = with pkgs; writeShellScriptBin "wallpaper" ''
     PATH=${bin-path}:$PATH
     wallpaper_dir="$HOME/.wallpaper"
 
