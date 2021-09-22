@@ -26,6 +26,9 @@ let
     if (( 0 < width && 0 < height )); then
       xwinwrap -g "''${width}x''${height}+0+0" -ov -- feh --no-fehbg --bg-center --bg-fill --randomize --recursive "$wallpaper_dir"
     fi
+
+    # It needs some time before conky starts
+    sleep 1
   '';
 
 in
@@ -44,6 +47,7 @@ in
             Type = "oneshot";
             ExecStart = "${wallpaper}/bin/wallpaper";
             IOSchedulingClass = "idle";
+            RemainAfterExit = true;
           };
           Install = {
             WantedBy = [ "graphical-session.target" ];

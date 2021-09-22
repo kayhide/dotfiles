@@ -8,9 +8,7 @@ let
     xorg.xrandr
   ];
 
-  conky-clock = with pkgs; writeScriptBin "conky-clock" ''
-    #!${stdenv.shell}
-
+  conky-clock = with pkgs; writeShellScriptBin "conky-clock" ''
     PATH=${bin-path}:$PATH
 
     conky_config="$HOME/.config/conky/clock.conf"
@@ -35,7 +33,7 @@ in
         conky-clock = {
           Unit = {
             Description = "Conky clock";
-            After = [ "graphical-session-pre.target" ];
+            After = [ "graphical-session-pre.target" "wallpaper.service" ];
             PartOf = [ "graphical-session.target" ];
           };
           Service = {
