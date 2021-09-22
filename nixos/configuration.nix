@@ -65,10 +65,25 @@
     # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
     # Open ports in the firewall.
-    firewall.allowedTCPPorts = [ 22 3000 ];
-    # firewall.allowedUDPPorts = [];
-    # Or disable the firewall altogether.
-    # firewall.enable = false;
+    firewall = {
+      allowedTCPPorts = [ 22 3000 ];
+      # allowedUDPPorts = [];
+      # Or disable the firewall altogether.
+      # enable = false;
+
+      # IP forwarding is wanted when docker container accesses to the internet.
+      #   https://docs.docker.com/network/bridge/#enable-forwarding-from-docker-containers-to-the-outside-world
+      # Without it, name resolving may fail and thus apt-get may not work.
+      # You can test if resolving works as:
+      #   docker run --rm busybox ping google.com
+      extraCommands = ''
+        iptables -P FORWARD ACCEPT
+      '';
+    };
+
+    resolvconf = {
+      dnsSingleRequest = true;
+    };
   };
 
   # Touch /etc/wpa_supplicant.conf.
