@@ -47,7 +47,6 @@ in
             Type = "oneshot";
             ExecStart = "${wallpaper}/bin/wallpaper";
             IOSchedulingClass = "idle";
-            RemainAfterExit = true;
           };
           Install = {
             WantedBy = [ "graphical-session.target" ];
@@ -62,7 +61,7 @@ in
           };
           Timer = {
             Unit = "wallpaper.service";
-            OnCalendar = "*-*-* *:0/15:0";
+            OnCalendar = "*:0/15:0";
             Persistent = true;
             RandomizedDelaySec = "1s";
           };
