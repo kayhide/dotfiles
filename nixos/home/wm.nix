@@ -37,7 +37,9 @@ in
       enable = true;
       lockCmd = "${my-screen-locker}/bin/my-screen-locker";
       inactiveInterval = 10;
-      xautolockExtraOptions = [ "-corners" "++--" "-cornerdelay" "1" "-cornerredelay" "60" ];
+      xautolock = {
+        extraOptions = [ "-corners" "++--" "-cornerdelay" "1" "-cornerredelay" "60" ];
+      };
     };
 
     services.udiskie.enable = true;
