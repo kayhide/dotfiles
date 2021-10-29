@@ -3,9 +3,7 @@
 let
   i3lock-fancy = pkgs.callPackage ../nix/pkgs/i3lock-fancy.nix { };
 
-  my-screen-locker = with pkgs; writeScriptBin "my-screen-locker" ''
-    #!${stdenv.shell}
-      
+  my-screen-locker = with pkgs; writeShellScriptBin "my-screen-locker" ''
     PATH=${coreutils}/bin:$PATH
     lock="$HOME/.cache/screen-locker/lock"
     mkdir -p "$(dirname $lock)"
