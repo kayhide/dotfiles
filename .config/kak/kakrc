@@ -18,6 +18,11 @@ plug "kak-lsp/kak-lsp" config %{
     # set global lsp_cmd "kak-lsp -s %val{session} -vvv --log /home/kayhide/tmp/kak-lsp.log"
 }
 
+plug "ftonneau/digraphs.kak" config %{
+    set-option global digraphs_path 'plugins/digraphs.kak'
+    digraphs-enable-on <a-d> <a-k>
+}
+
 add-highlighter global/ show-matching
 add-highlighter global/ wrap
 
