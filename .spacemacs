@@ -65,44 +65,44 @@ This function should only modify configuration layer settings."
      ;; themes-megapack
      emoji
      docker
-     html
-     yaml
-     csv
-     (ruby
-      :variables
-      ruby-enable-enh-ruby-mode t
-      )
-     ruby-on-rails
-     nixos
-     (haskell
-      :variables
-      haskell-process-type 'stack-ghci
-      ;; haskell-completion-backend 'intero
-      )
+     ;; html
+     ;; yaml
+     ;; csv
+     ;; (ruby
+     ;;  :variables
+     ;;  ruby-enable-enh-ruby-mode t
+     ;;  )
+     ;; ruby-on-rails
+     ;; nixos
+     ;; (haskell
+     ;;  :variables
+     ;;  haskell-process-type 'stack-ghci
+     ;;  ;; haskell-completion-backend 'intero
+     ;;  )
      ;; (elixir
      ;;  :variables
      ;;  elixir-backend 'alchemist
      ;;  )
-     sql
-     nginx
-     systemd
-     nim
-     javascript
-     (typescript
-      :variables
-      typescript-fmt-on-save t
-      typescript-fmt-tool 'prettier
-      )
-     purescript
-     idris
+     ;; sql
+     ;; nginx
+     ;; systemd
+     ;; nim
+     ;; javascript
+     ;; (typescript
+     ;;  :variables
+     ;;  typescript-fmt-on-save t
+     ;;  typescript-fmt-tool 'prettier
+     ;;  )
+     ;; purescript
+     ;; idris
      ;; elm
-     reasonml
-     react
-     python
-     ;; agda
+     ;; reasonml
+     ;; react
+     ;; python
+     agda
      coq
-     protobuf
-     osx
+     ;; protobuf
+     ;; osx
      )
 
    ;; List of additional packages that will be installed without being
