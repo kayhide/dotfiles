@@ -64,6 +64,7 @@ bindsym Mod4+h focus left
 bindsym Mod4+j focus down
 bindsym Mod4+k focus up
 bindsym Mod4+l focus right
+bindsym Mod4+m mode move
 bindsym Mod4+minus scratchpad show
 bindsym Mod4+r mode resize
 bindsym Mod4+s layout stacking
@@ -82,6 +83,19 @@ mode "resize" {
   bindsym j resize grow height 10 px or 10 ppt
   bindsym k resize shrink height 10 px or 10 ppt
   bindsym l resize grow width 10 px or 10 ppt
+}
+
+mode "move" {
+  bindsym Escape mode default
+  bindsym Return mode default
+  bindsym Down move down
+  bindsym Left move left
+  bindsym Right move right
+  bindsym Up move up
+  bindsym h move up
+  bindsym j move down
+  bindsym k move left
+  bindsym l move right
 }
 
 
