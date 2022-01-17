@@ -248,6 +248,12 @@ hook global WinSetOption filetype=haskell %{
     alias window alt haskell-alternative-file
 }
 
+# Agda
+hook global WinSetOption filetype=agda %{
+    set-option window tabstop 2
+    set-option window indentwidth 2
+}
+
 # PureScript
 declare-user-mode user-purescript
 declare-user-mode user-purescript-import
@@ -301,3 +307,9 @@ hook global WinSetOption filetype=python %{
     alias window alt python-alternative-file
 }
 
+# Go
+hook global WinSetOption filetype=go %{
+    set-option window tabstop 4
+    # set-option window indentwidth 2
+    set-option window formatcmd "gofmt"
+}
