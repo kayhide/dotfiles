@@ -92,9 +92,9 @@ mode "move" {
   bindsym Left move left
   bindsym Right move right
   bindsym Up move up
-  bindsym h move up
+  bindsym h move left
   bindsym j move down
-  bindsym k move left
+  bindsym k move up
   bindsym l move right
 }
 
