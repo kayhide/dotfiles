@@ -115,6 +115,7 @@ map global normal <a-/> <a-/>(?i)
 source "%val{config}/clipboard.kak"
 source "%val{config}/psc-ide.kak"
 source "%val{config}/erlang.kak"
+source "%val{config}/idris.kak"
 # source "%val{config}/reload-kakrc.kak"
 
 # Shell
@@ -250,6 +251,12 @@ hook global WinSetOption filetype=haskell %{
 
 # Agda
 hook global WinSetOption filetype=agda %{
+    set-option window tabstop 2
+    set-option window indentwidth 2
+}
+
+# Idris
+hook global WinSetOption filetype=idris %{
     set-option window tabstop 2
     set-option window indentwidth 2
 }
