@@ -69,7 +69,10 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages
+   '(
+     (evil-kakoune :location local)
+     )
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -560,6 +563,9 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
+  (setq vc-follow-symlinks t)
+  (setq auto-revert-check-vc-info t)
+
   (setenv "LC_COLLATE" "C")
 
   ;; save-buffer
@@ -578,6 +584,8 @@ before packages are loaded."
 
   (spacemacs/set-leader-keys "xf" 'format-all-buffer)
 
+  (require 'evil-kakoune)
+  (evil-kakoune-activate)
 
   (with-eval-after-load 'dired
     (define-key dired-mode-map (kbd "C-c C-e") 'dired-toggle-read-only)

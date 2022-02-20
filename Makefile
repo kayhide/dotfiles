@@ -15,6 +15,12 @@ ${HOME}/.config/%: .config/%
 	mkdir -p $(@D)
 	ln -sf $(shell pwd)/$< $@
 
+emacs-private: $(addprefix ${HOME}/,$(shell find .emacs.d/private/local -type d))
+.PHONY: emacs-private
+
+${HOME}/.emacs.d/private/local/%: .emacs.d/private/local/%
+	ln -s $(shell pwd)/$< $@
+
 kak:
 	ghq get -p mawww/kakoune
 	ln -sf $(shell ghq root)/github.com/mawww/kakoune/share/kak/autoload ~/.config/kak/autoload
