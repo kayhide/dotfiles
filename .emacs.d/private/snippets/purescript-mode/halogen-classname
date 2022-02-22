@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-#name : halogen-classname
-#key : hcn
-#contributor : Hideaki KAWAI
-# --
-H.ClassName "$1"$0

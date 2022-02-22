@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-#name : halogen-slot
-#key : hasl
-# expand-env: ((yas-indent-line 'fixed))
-# --
-data Slot = $1
-derive instance eq$1 :: Eq Slot
-derive instance ord$1 :: Ord Slot
-$0

@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: halogen-html 
-# key: hh
-# --
-HH.$1
-[ HP.class_ $ H.ClassName "$2" ]
-[
-  $0
-]
