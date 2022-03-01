@@ -117,21 +117,60 @@ This function compasate for the difference.
         ))))
 
   (evil-kakoune-move
+   :key (kbd "b")
+   :expanding-key (kbd "B")
+   :action
+   (lambda ()
+    (evil-backward-word-begin)
+    )
+   :pre
+   (lambda ()
+     (let ((last (point))
+           (bol (line-beginning-position))
+           (eol (line-end-position))
+           )
+       (cond
+        ((or
+          (= bol eol)
+          (= last eol)
+          (evil-looking-at "[[:word:]]")
+          (evil-looking-at "[[:space:]][[:space:]]")
+          )
+         )
+        (t
+         (evil-backward-char 1 nil t)
+         )
+        ))))
+
+  (evil-kakoune-move
    :key (kbd "e")
    :expanding-key (kbd "E")
    :action
    (lambda ()
      (evil-forward-word-end)
      )
-   )
-
-  (evil-kakoune-move
-   :key (kbd "b")
-   :expanding-key (kbd "B")
-   :action
+   :pre
    (lambda ()
-     (evil-backward-word-begin)
-     )
+     (let ((last (point))
+           (bol (line-beginning-position))
+           (eol (line-end-position))
+           )
+       (cond
+        ((= bol eol)
+         (evil-goto-char (+ 1 (point)))
+         )
+        ((= last eol)
+         (evil-goto-char (+ 2 (point)))
+         )
+        ((or
+          (evil-looking-at "[[:word:]][[:word:]]")
+          (evil-looking-at "[[:space:]][[:space:]]")
+          )
+         )
+        (t
+         (evil-forward-char 1 nil t)
+         )
+        )))
    )
 
   (define-key evil-normal-state-map (kbd "x")
@@ -154,16 +193,68 @@ This function compasate for the difference.
       (evil-visual-line)
       ))
   (define-key evil-visual-state-map (kbd "X") 'evil-next-line)
+
+  (define-key evil-normal-state-map (kbd "H")
+    (lambda () (interactive)
+      (evil-visual-char)
+      (evil-backward-char)
+      ))
+  (define-key evil-normal-state-map (kbd "J")
+    (lambda () (interactive)
+      (evil-visual-char)
+      (evil-next-line)
+      ))
+  (define-key evil-normal-state-map (kbd "K")
+    (lambda () (interactive)
+      (evil-visual-char)
+      (evil-previous-line)
+      ))
+  (define-key evil-normal-state-map (kbd "L")
+    (lambda () (interactive)
+      (evil-visual-char)
+      (evil-forward-char)
+      ))
+
   (define-key evil-visual-state-map (kbd "h")
     (lambda () (interactive)
       (evil-exit-visual-state)
       (evil-backward-char)
       ))
+  (define-key evil-visual-state-map (kbd "H")
+    (lambda () (interactive)
+      (evil-backward-char)
+      ))
+
+  (define-key evil-visual-state-map (kbd "j")
+    (lambda () (interactive)
+      (evil-exit-visual-state)
+      (evil-next-line)
+      ))
+  (define-key evil-visual-state-map (kbd "J")
+    (lambda () (interactive)
+      (evil-next-line)
+      ))
+
+  (define-key evil-visual-state-map (kbd "k")
+    (lambda () (interactive)
+      (evil-exit-visual-state)
+      (evil-previous-line)
+      ))
+  (define-key evil-visual-state-map (kbd "K")
+    (lambda () (interactive)
+      (evil-previous-line)
+      ))
+
   (define-key evil-visual-state-map (kbd "l")
     (lambda () (interactive)
       (evil-exit-visual-state)
       (evil-forward-char)
       ))
+  (define-key evil-visual-state-map (kbd "L")
+    (lambda () (interactive)
+      (evil-forward-char)
+      ))
+
 )
 
 (defun evil-kakoune-activate ()
