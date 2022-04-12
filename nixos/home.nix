@@ -37,8 +37,6 @@ in
     maim
 
     # Cli
-    atop
-    bash
     bat
     bat-extras.batgrep
     bat-extras.batman
@@ -51,35 +49,48 @@ in
     fd
     file
     fzf
-    ghq
-    gibo
-    git
-    git-lfs
-    gotop
-    htop
-    hub
-    iotop
-    jo
-    jq
     lsof
     lv
     ncdu
     neofetch
+    nkf
     openssh
     peco
-    powertop
     ripgrep
+    rlwrap
     rsync
-    tig
     tree
     unar
     watch
     websocat
     xclip
     xsel
-    yq-go
+
+    # Shell
+    bash
     zplug
     zsh
+
+    # Top
+    atop
+    gotop
+    htop
+    iftop
+    iotop
+    powertop
+
+    # Git
+    ghq
+    gibo
+    git
+    git-lfs
+    tig
+
+    # Json / Yaml / Html
+    jo
+    jq
+    pup
+    yq-go
 
     # HW
     dmidecode
@@ -97,6 +108,7 @@ in
     ffmpeg
     google-cloud-sdk
     heroku
+    hub
     imagemagick
     kak-lsp
     kakoune
@@ -108,6 +120,7 @@ in
     # Gui Apps
     connman-gtk
     emacs
+    evince
     font-manager
     gucharmap
     pcmanfm
