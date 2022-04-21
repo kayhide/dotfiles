@@ -161,6 +161,8 @@ This function compasate for the difference.
   (define-key evil-normal-state-map (kbd "d") 'evil-delete-char)
   (define-key evil-normal-state-map (kbd "U") 'evil-redo)
   (define-key evil-normal-state-map (kbd "M-j") 'evil-join)
+  (define-key evil-normal-state-map (kbd ">") 'eri-indent)
+  (define-key evil-normal-state-map (kbd "<") 'eri-indent-reverse)
   (define-key evil-visual-state-map (kbd "d") 'evil-delete)
   (define-key evil-visual-state-map (kbd ";") 'evil-exit-visual-state)
   (define-key evil-visual-state-map (kbd "R") 'spacemacs/evil-mc-paste-after)
