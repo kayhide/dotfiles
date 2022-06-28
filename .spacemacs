@@ -578,6 +578,7 @@ before packages are loaded."
   (define-key key-translation-map (kbd "C-h") (kbd "DEL"))
   ;; (define-key key-translation-map (kbd "M-¥") (kbd "\\"))
   (global-set-key (kbd "C-<tab>") 'other-window)
+  (global-set-key (kbd "C-i") nil)
   (global-set-key (kbd "s-p") nil)
   ;; (global-set-key (kbd "¥") (kbd "\\"))
   ;; (global-set-key (kbd "M-¥") (kbd "¥"))
@@ -605,6 +606,16 @@ before packages are loaded."
   (with-eval-after-load 'helm-swoop
     (define-key helm-swoop-edit-map (kbd "C-c C-c") 'helm-swoop--edit-complete)
     )
+
+  (with-eval-after-load 'undo-tree
+    (setq undo-tree-auto-save-history nil))
+
+  (with-eval-after-load 'abbrev
+    (define-key evil-insert-state-map (kbd "C-@") 'abbrev-prefix-mark)
+    (setq abbrev-file-name "~/.config/emacs/abbrev_defs")
+    (read-abbrev-file abbrev-file-name)
+    )
+  (add-hook 'agda2-mode-hook 'abbrev-mode)
 )
 
 
@@ -622,7 +633,8 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
-   '(valign mmm-mode markdown-mode company language-id format-all idris-mode prop-menu tern ob-elixir helm-gtags ggtags flycheck-credo dap-mode lsp-treemacs bui counsel-gtags counsel swiper ivy alchemist elixir-mode yasnippet-snippets yapfify yaml-mode ws-butler writeroom-mode winum which-key web-mode web-beautify vue-mode volatile-highlights vmd-mode vi-tilde-fringe uuidgen utop use-package unfill tuareg treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org tide tagedit systemd symon symbol-overlay string-inflection sql-indent spaceline-all-the-icons slim-mode seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocopfmt rubocop rspec-mode robe rjsx-mode reveal-in-osx-finder restart-emacs request reason-mode rbenv rainbow-delimiters pytest pyenv-mode py-isort pug-mode psci psc-ide protobuf-mode proof-general projectile-rails prettier-js popwin pippel pipenv pip-requirements password-generator paradox overseer osx-trash osx-dictionary osx-clipboard org-plus-contrib org-bullets open-junk-file ocp-indent nodejs-repl nix-mode nim-mode nginx-mode nameless mwim move-text moe-theme minitest markdown-toc macrostep lsp-haskell lorem-ipsum livid-mode live-py-mode link-hint launchctl json-navigator js2-refactor js-doc intero indent-guide importmagic impatient-mode hybrid-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-nixos-options helm-mode-manager helm-make helm-ls-git helm-hoogle helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio gh-md fuzzy font-lock+ flycheck-pos-tip flycheck-package flycheck-ocaml flycheck-nim flycheck-haskell flycheck-elsa flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu enh-ruby-mode emr emojify emoji-cheat-sheet-plus emmet-mode elisp-slime-nav editorconfig dune dumb-jump dotenv-mode dockerfile-mode docker diminish devdocs dante cython-mode csv-mode company-web company-tern company-nixos-options company-ghci company-ghc company-emoji company-coq company-cabal company-anaconda column-enforce-mode cmm-mode clean-aindent-mode chruby centered-cursor-mode bundler blacken auto-yasnippet auto-highlight-symbol auto-compile attrap aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
+   '(valign mmm-mode markdown-mode company language-id format-all idris-mode prop-menu tern ob-elixir helm-gtags ggtags flycheck-credo dap-mode lsp-treemacs bui counsel-gtags counsel swiper ivy alchemist elixir-mode yasnippet-snippets yapfify yaml-mode ws-butler writeroom-mode winum which-key web-mode web-beautify vue-mode volatile-highlights vmd-mode vi-tilde-fringe uuidgen utop use-package unfill tuareg treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org tide tagedit systemd symon symbol-overlay string-inflection sql-indent spaceline-all-the-icons slim-mode seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocopfmt rubocop rspec-mode robe rjsx-mode reveal-in-osx-finder restart-emacs request reason-mode rbenv rainbow-delimiters pytest pyenv-mode py-isort pug-mode psci psc-ide protobuf-mode proof-general projectile-rails prettier-js popwin pippel pipenv pip-requirements password-generator paradox overseer osx-trash osx-dictionary osx-clipboard org-plus-contrib org-bullets open-junk-file ocp-indent nodejs-repl nix-mode nim-mode nginx-mode nameless mwim move-text moe-theme minitest markdown-toc macrostep lsp-haskell lorem-ipsum livid-mode live-py-mode link-hint launchctl json-navigator js2-refactor js-doc intero indent-guide importmagic impatient-mode hybrid-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-nixos-options helm-mode-manager helm-make helm-ls-git helm-hoogle helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio gh-md fuzzy font-lock+ flycheck-pos-tip flycheck-package flycheck-ocaml flycheck-nim flycheck-haskell flycheck-elsa flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu enh-ruby-mode emr emojify emoji-cheat-sheet-plus emmet-mode elisp-slime-nav editorconfig dune dumb-jump dotenv-mode dockerfile-mode docker diminish devdocs dante cython-mode csv-mode company-web company-tern company-nixos-options company-ghci company-ghc company-emoji company-coq company-cabal company-anaconda column-enforce-mode cmm-mode clean-aindent-mode chruby centered-cursor-mode bundler blacken auto-yasnippet auto-highlight-symbol auto-compile attrap aggressive-indent ace-link ace-jump-helm-line ac-ispell))
+ '(sp-autoinsert-pair nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
