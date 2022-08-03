@@ -45,12 +45,14 @@ in
     bind
     direnv
     entr
-    envsubst
     fd
     file
+    findutils
     fzf
+    gettext
     lsof
     lv
+    moreutils
     ncdu
     neofetch
     nkf
@@ -133,8 +135,6 @@ in
 
     # Languages
     chez
-    elixir
-    erlang
     gnumake
     ruby
     shellcheck
@@ -148,13 +148,11 @@ in
     # Container
     docker
     docker-compose
-    k3s
     kompose
     kubectl
     kubectx
     kubernetes-helm
     lazydocker
-    minikube
 
     # Nix
     nix-direnv
