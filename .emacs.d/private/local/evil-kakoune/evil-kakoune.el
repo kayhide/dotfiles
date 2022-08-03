@@ -22,9 +22,31 @@ This function compasate for the difference.
    )
   )
 
+(defun evil-visual-before-pre-move (expanding)
+  "When expanding and 'evil-state' is not 'visual', enter 'visual'."
+    (interactive)
+      (if (and expanding (not (eq 'visual evil-state)))
+          (evil-visual-char)
+        )
+    )
+
+(defun evil-visual-after-pre-move (expanding)
+  "When not expanding and 'evil-state' is 'visual', exit and re-enter 'visual'.
+Otherwise enter 'visual' if not.
+"
+    (interactive)
+  (if (and (not expanding) (eq 'visual evil-state))
+      (evil-exit-visual-state)
+    )
+  (if (not (eq 'visual evil-state))
+      (evil-visual-char)
+    )
+    )
+
 
 (defun evil-kakoune-forward-word-begin (&optional expanding)
   (interactive)
+    (evil-visual-before-pre-move expanding)
   (let ((last (point))
         (bol (line-beginning-position))
         (eol (line-end-position))
@@ -45,11 +67,8 @@ This function compasate for the difference.
       (evil-forward-char 1 nil t)
       )
      ))
+    (evil-visual-after-pre-move expanding)
 
-  (if (and (not expanding) (eq 'visual evil-state))
-      (evil-exit-visual-state)
-    )
-  (evil-visual-char)
 
   (let ((last (point))
         (bol (line-beginning-position))
@@ -72,6 +91,7 @@ This function compasate for the difference.
 
 (defun evil-kakoune-forward-word-end (&optional expanding)
   (interactive)
+    (evil-visual-before-pre-move expanding)
   (let ((last (point))
         (bol (line-beginning-position))
         (eol (line-end-position))
@@ -92,15 +112,13 @@ This function compasate for the difference.
       (evil-forward-char 1 nil t)
       )
      ))
-  (if (and (not expanding) (eq 'visual evil-state))
-      (evil-exit-visual-state)
-    )
-  (evil-visual-char)
+    (evil-visual-after-pre-move expanding)
   (evil-forward-word-end)
   )
 
 (defun evil-kakoune-backward-word-begin (&optional expanding)
   (interactive)
+    (evil-visual-before-pre-move expanding)
   (lambda ()
     (let ((last (point))
           (bol (line-beginning-position))
@@ -118,12 +136,7 @@ This function compasate for the difference.
         (evil-backward-char 1 nil t)
         )
        )))
-  (if (and (not expanding) (eq 'visual evil-state))
-      (evil-exit-visual-state)
-    )
-  (if (not (eq 'visual evil-state))
-      (evil-visual-char)
-    )
+    (evil-visual-after-pre-move expanding)
   (evil-backward-word-begin)
   )
 
@@ -174,22 +187,22 @@ This function compasate for the difference.
   (define-key evil-normal-state-map (kbd "m") 'evil-jump-item)
 
   (define-key evil-normal-state-map (kbd "w") 'evil-kakoune-forward-word-begin)
-  (define-key evil-normal-state-map (kbd "W") 'evil-kakoune-forward-word-begin)
+  (define-key evil-normal-state-map (kbd "W") (expanding 'evil-kakoune-forward-word-begin))
   (define-key evil-visual-state-map (kbd "w") 'evil-kakoune-forward-word-begin)
   (define-key evil-visual-state-map (kbd "W") (expanding 'evil-kakoune-forward-word-begin))
 
   (define-key evil-normal-state-map (kbd "e") 'evil-kakoune-forward-word-end)
-  (define-key evil-normal-state-map (kbd "E") 'evil-kakoune-forward-word-end)
+  (define-key evil-normal-state-map (kbd "E") (expanding 'evil-kakoune-forward-word-end))
   (define-key evil-visual-state-map (kbd "e") 'evil-kakoune-forward-word-end)
   (define-key evil-visual-state-map (kbd "E") (expanding 'evil-kakoune-forward-word-end))
 
   (define-key evil-normal-state-map (kbd "b") 'evil-kakoune-backward-word-begin)
-  (define-key evil-normal-state-map (kbd "B") 'evil-kakoune-backward-word-begin)
+  (define-key evil-normal-state-map (kbd "B") (expanding 'evil-kakoune-backward-word-begin))
   (define-key evil-visual-state-map (kbd "b") 'evil-kakoune-backward-word-begin)
   (define-key evil-visual-state-map (kbd "B") (expanding 'evil-kakoune-backward-word-begin))
 
   (define-key evil-normal-state-map (kbd "x") 'evil-kakoune-line)
-  (define-key evil-normal-state-map (kbd "X") 'evil-kakoune-line)
+  (define-key evil-normal-state-map (kbd "X") (expanding 'evil-kakoune-line))
   (define-key evil-visual-state-map (kbd "x") 'evil-kakoune-line)
   (define-key evil-visual-state-map (kbd "X") (expanding 'evil-kakoune-line))
 
