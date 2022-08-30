@@ -23,7 +23,9 @@ ${HOME}/.emacs.d/private/local/%: .emacs.d/private/local/%
 
 kak:
 	ghq get -p mawww/kakoune
-	ln -sf $(shell ghq root)/github.com/mawww/kakoune/share/kak/autoload ~/.config/kak/autoload
+	mkdir -p ~/.config/kak/plugins
+	git clone git@github.com:andreyorst/plug.kak ~/.config/kak/plugins/plug.kak
+	# ln -sf $(shell ghq root)/github.com/mawww/kakoune/share/kak/autoload ~/.config/kak/autoload
 .PHONY: kak
 	
 iterm:
@@ -37,16 +39,25 @@ linuxbrew:
 	echo "eval \$$($$(brew --prefix)/bin/brew shellenv)" >> ~/.profile
 .PHONY: linuxbrew
 
+
+homebrew:
+	/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"	
+	echo 'eval "$$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+.PHONY: homebrew
+
 brew:
-	brew install tig hub readline lv direnv peco fzf zplug entr tree ripgrep
+	brew install tig hub readline lv direnv fzf zplug entr tree ripgrep ffmpeg
 .PHONY: brew
 
 cask:
-	brew install --cask alfred bettertouchtool google-chrome google-japanese-ime iterm2 karabiner-elements slate
+	brew install --cask alfred bettertouchtool dropbox google-chrome google-japanese-ime iterm2 karabiner-elements slack zoom
 .PHONY: cask
 
-init: dotfiles iterm linuxbrew brew
-.PHONY: init
+init-mac: dotfiles homebrew brew cask
+.PHONY: init-mac
+
+init-linux: dotfiles iterm linuxbrew brew
+.PHONY: init-linux
 
 
 verify-sudo:
