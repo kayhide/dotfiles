@@ -58,26 +58,9 @@ if [[ -n ${ZPLUG_INIT+x} ]]; then
     zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
     zplug "docker/compose", use:contrib/completion/zsh
     zplug "nnao45/zsh-kubectl-completion"
-    zplug "ahmetb/kubectx"
     zplug check --verbose || zplug install
     zplug load
-
-    if [[ ! -e $ZPLUG_HOME/completions ]]; then
-        mkdir -p "$ZPLUG_HOME/completions"
-    fi
-    if [[ ! -f $ZPLUG_HOME/completions/_kubectx.zsh ]]; then
-        cp "$ZPLUG_HOME/repos/ahmetb/kubectx/completion/kubectx.zsh" "$ZPLUG_HOME/completions/_kubectx.zsh"
-    fi
-    if [[ ! -f $ZPLUG_HOME/completions/_kubens.zsh ]]; then
-        cp "$ZPLUG_HOME/repos/ahmetb/kubectx/completion/kubens.zsh" "$ZPLUG_HOME/completions/_kubens.zsh"
-    fi
 fi
-
-
-# completion
-fpath=($ZPLUG_HOME/completions $fpath)
-autoload -U +X compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
 
 
 _prompt_mark() {
@@ -135,48 +118,27 @@ alias d='docker'
 alias dcontainer='docker container'
 alias dsweep='docker rm $(docker ps --filter "status=exited" -q) && docker rmi $(docker images --filter "dangling=true" -aq'
 
-alias dc='docker-compose'
-alias dcup='docker-compose up'
-alias dcrun='docker-compose run'
-alias dcexec='docker-compose exec'
-
-alias vf='vim +VimFiler'
-
 alias -g G='| grep'
 alias -g L='| lv -c'
 alias -g X='| xargs'
 alias -g XG='| xargs grep'
 alias -g CP='| pbcopy'
-alias -g P='| peco'
-
-alias -g r='rails'
-alias -g sr='spring rails'
-alias -g RED='RAILS_ENV=development'
-alias -g RET='RAILS_ENV=test'
-alias -g REP='RAILS_ENV=production'
 
 alias rdmigrate='rake db:migrate'
 alias rdstatus='rake db:migrate:status'
 alias rdrollback='rake db:rollback'
 
-alias -g ST='STAGE=test'
-alias -g SD='STAGE=dev'
-alias -g SP='STAGE=prod'
-alias -g RSD='ON_REMOTE=1 STAGE=dev'
-alias -g RSP='ON_REMOTE=1 STAGE=prod'
-
 if which brew > /dev/null; then
     alias brew="PATH=$(brew --prefix)/bin:/usr/bin:/bin:/usr/sbin:/sbin brew"
+    fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath)
 fi
 
-alias powopen='powder open'
-alias powlink='powder link'
-alias powunlink='powder unlink'
-alias powstop='powder stop'
-alias powstart='powder start'
-alias powrestart='powder stop; powder start'
-
-alias be='bundle exec'
+# completion
+if [[ -d $HOME/.nix-profile/share/zsh/site-functions ]]; then
+    fpath=("$HOME/.nix-profile/share/zsh/site-functions" $fpath)
+fi
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
 
 # env
 export EDITOR='kak'
