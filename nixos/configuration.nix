@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -96,12 +96,15 @@
       keep-derivations = true
       experimental-features = nix-command flakes
     '';
-    binaryCachePublicKeys = [
-      "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
-    ];
-    binaryCaches = [
-      "https://hydra.iohk.io"
-    ];
+    settings = {
+      max-jobs = lib.mkDefault 12;
+      substituters = [
+        "https://hydra.iohk.io"
+      ];
+      trusted-public-keys = [
+        "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
+      ];
+    };
   };
 
   # Select internationalisation properties.
