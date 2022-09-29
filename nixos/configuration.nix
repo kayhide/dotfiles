@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -66,7 +66,7 @@
 
     # Open ports in the firewall.
     firewall = {
-      allowedTCPPorts = [ 22 3000 ];
+      allowedTCPPorts = [ 22 3001 3000 ];
       # allowedUDPPorts = [];
       # Or disable the firewall altogether.
       # enable = false;
@@ -96,12 +96,15 @@
       keep-derivations = true
       experimental-features = nix-command flakes
     '';
-    binaryCachePublicKeys = [
-      "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
-    ];
-    binaryCaches = [
-      "https://hydra.iohk.io"
-    ];
+    settings = {
+      max-jobs = lib.mkDefault 12;
+      substituters = [
+        "https://hydra.iohk.io"
+      ];
+      trusted-public-keys = [
+        "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
+      ];
+    };
   };
 
   # Select internationalisation properties.
@@ -119,7 +122,8 @@
   };
 
   # Set your time zone.
-  time.timeZone = "Asia/Tokyo";
+  # time.timeZone = "Asia/Tokyo";
+  time.timeZone = "Europe/Madrid";
 
   environment.systemPackages = with pkgs; [
     curl

@@ -83,6 +83,7 @@ _prompt_mark() {
 set_style__pure() {
     zstyle :prompt:pure:git:branch color green
     zstyle :prompt:pure:git:action color yellow
+    zstyle :prompt:pure:environment:nix-shell show no
     PROMPT=$(echo $PROMPT | sed -e "1 s/\(.*\)/\$(_prompt_mark)\1/")
 }
 set_style__pure
