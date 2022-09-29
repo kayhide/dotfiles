@@ -46,7 +46,7 @@ homebrew:
 .PHONY: homebrew
 
 brew:
-	brew install tig hub readline lv direnv fzf zplug entr tree ripgrep ffmpeg
+	brew install tig hub ghq readline lv direnv fd fzf zplug entr tree ripgrep ffmpeg
 .PHONY: brew
 
 cask:
