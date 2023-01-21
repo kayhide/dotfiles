@@ -16,7 +16,7 @@
             PartOf = [ "graphical-session.target" ];
           };
           Service = {
-            ExecStart = "${pkgs.picom}/bin/picom --experimental-backends";
+            ExecStart = "${pkgs.picom}/bin/picom";
             Restart = "always";
           };
           Install = {
