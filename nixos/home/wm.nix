@@ -47,7 +47,7 @@ in
       autorandr
       dunst
       feh
-      i3-gaps
+      i3
       i3status
       i3lock-fancy
       keynav
