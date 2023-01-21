@@ -30,24 +30,19 @@ hook global WinCreate ^[^*]+$ %{
     add-highlighter window/ number-lines -hlcursor
 }
 
-map global user f ': fzf-mode<ret>' -docstring 'fzf'
 map global user l ': enter-user-mode<space>lsp<ret>' -docstring 'lsp'
 map global user F ': format<ret>' -docstring 'format'
-
-declare-user-mode space
-map global normal <space> ': enter-user-mode<space>space<ret>'
-map global space <space> <space> -docstring 'remove all sels except main'
-map global space <semicolon> ': comment-line<ret>' -docstring '(un)comment selected lines'
+map global user <semicolon> ': comment-line<ret>' -docstring '(un)comment selected lines'
 
 declare-user-mode space-buffer
-map global space b ': enter-user-mode<space>space-buffer<ret>' -docstring 'buffer'
+map global user b ': enter-user-mode<space>space-buffer<ret>' -docstring 'buffer'
 map global space-buffer b ': fzf-buffer<ret>' -docstring 'open buffer'
 map global space-buffer d ': delete-buffer<ret>' -docstring 'delete current buffer'
 map global space-buffer D ': fzf-delete-buffer<ret>' -docstring 'delete buffer'
 map global space-buffer R ': edit!<ret>' -docstring 'reload buffer'
 
 declare-user-mode space-file
-map global space f ': enter-user-mode<space>space-file<ret>' -docstring 'file'
+map global user f ': enter-user-mode<space>space-file<ret>' -docstring 'file'
 map global space-file f ': fzf-file<ret>' -docstring 'find file'
 map global space-file s ': write<ret>' -docstring 'save file'
 
@@ -56,30 +51,30 @@ map global space-file e ': enter-user-mode<space>space-file-e<ret>' -docstring '
 map global space-file-e d ': edit-kakrc<ret>' -docstring 'edit kakrc'
 
 declare-user-mode space-terminal
-map global space <ret> ': enter-user-mode<space>space-terminal<ret>' -docstring 'terminal'
+map global user <ret> ': enter-user-mode<space>space-terminal<ret>' -docstring 'terminal'
 map global space-terminal t ': $<space>kitty --listen-on "unix:@%sh{date +%s}"<ret>' -docstring 'open kitty'
 map global space-terminal a ': $<space>kitty --listen-on "unix:@%sh{date +%s}" :a<ret>' -docstring 'open new client'
 map global space-terminal r ': $<space>kitty --listen-on "unix:@%sh{date +%s}" ranger --selectfile "%val{buffile}" <ret>' -docstring 'launch ranger'
 map global space-terminal g ': $<space>kitty --listen-on "unix:@%sh{date +%s}" tig<ret>' -docstring 'launch tig'
 
 declare-user-mode space-error
-map global space e ': enter-user-mode<space>space-error<ret>' -docstring 'error'
+map global user e ': enter-user-mode<space>space-error<ret>' -docstring 'error'
 map global space-error n '<esc>: lsp-find-error --include-warnings<ret>' -docstring 'find next error or warning'
 map global space-error p '<esc>: lsp-find-error --include-warnings --previous<ret>' -docstring 'find previous error or warning'
 map global space-error N '<esc>: lsp-find-error<ret>' -docstring 'find next error'
 map global space-error P '<esc>: lsp-find-error --previous<ret>' -docstring 'find previous error'
 
 declare-user-mode space-project
-map global space p ': enter-user-mode<space>space-project<ret>' -docstring 'project'
+map global user p ': enter-user-mode<space>space-project<ret>' -docstring 'project'
 map global space-project a '<esc>: alt<ret>' -docstring 'edit alternative file'
 map global space-project f ': fzf-vcs<ret>' -docstring 'find version controlled file'
 
 declare-user-mode space-toggle
-map global space t ': enter-user-mode<space>space-toggle<ret>' -docstring 'toggle'
+map global user t ': enter-user-mode<space>space-toggle<ret>' -docstring 'toggle'
 map global space-toggle w '<esc>: toggle-highlighter window/ show-whitespaces<ret>' -docstring 'toggle whitespaces'
 
 declare-user-mode space-text
-map global space x ': enter-user-mode<space>space-text<ret>' -docstring 'text'
+map global user x ': enter-user-mode<space>space-text<ret>' -docstring 'text'
 
 declare-user-mode space-text-lines
 map global space-text l ': enter-user-mode<space>space-text-lines<ret>' -docstring 'lines'
