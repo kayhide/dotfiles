@@ -25,3 +25,5 @@
 	defaultBranch = main
 [pull]
 	rebase = false
+[hub]
+	protocol = ssh
