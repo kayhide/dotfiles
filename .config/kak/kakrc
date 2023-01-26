@@ -307,6 +307,7 @@ define-command python-alternative-file -docstring 'Jump to the alternate file (i
 
 hook global WinSetOption filetype=python %{
     alias window alt python-alternative-file
+    set-option window formatcmd 'black -'
 }
 
 # Go
