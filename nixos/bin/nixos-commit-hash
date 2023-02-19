@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -eu
+
+die() {
+    echo >&2 "$@"
+    exit 1
+}
+
+eval $(cat /etc/os-release | grep BUILD_ID)
+
+if [[ -z $BUILD_ID ]]; then
+    die "No BUILD_ID"
+fi
+
+REV="${BUILD_ID##*.}"
+
+if which ghq >/dev/null; then
+    dir="$(ghq root)/github.com/nixos/nixpkgs"
+    cd $dir
+    git rev-parse "$REV"
+else
+    die "No ghq"
+fi

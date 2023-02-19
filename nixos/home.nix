@@ -164,6 +164,16 @@ in
   ];
 
   home.file = {
+    "bin/nix-update" = {
+      source = ./bin/nix-update;
+      executable = true;
+    };
+
+    "bin/nixos-commit-hash" = {
+      source = ./bin/nixos-commit-hash;
+      executable = true;
+    };
+
     "bin/reset-monitors" = {
       source = ./bin/reset-monitors;
       executable = true;
