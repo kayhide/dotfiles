@@ -167,6 +167,10 @@
   # List services that you want to enable:
   services = {
     connman.enable = true;
+    
+    # Required by udiskie.
+    udisks2.enable = true; 
+    gnome.at-spi2-core.enable = true;
 
     # Enable CUPS to print documents.
     # printing.enable = true;
