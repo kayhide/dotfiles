@@ -3,6 +3,8 @@
 let
   hub = pkgs.gitAndTools.hub;
 
+  my-kakoune = pkgs.callPackage ./nix/pkgs/my-kakoune.nix { };
+
 in
 
 {
@@ -113,7 +115,7 @@ in
     hub
     imagemagick
     kak-lsp
-    kakoune
+    my-kakoune
     kitty
     mplayer
     neovim
