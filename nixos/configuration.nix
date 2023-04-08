@@ -37,6 +37,9 @@
   };
 
   systemd = {
+    network = {
+      wait-online.anyInterface = true;
+    };
     extraConfig = ''
       DefaultTimeoutStartSec=15s
       DefaultTimeoutStopSec=15s
@@ -56,7 +59,7 @@
     # replicates the default behaviour.
     useDHCP = false;
     interfaces = {
-      enp58s0u1u3.useDHCP = true;
+      # enp58s0u1u3.useDHCP = true;
       wlp59s0.useDHCP = true;
     };
 
