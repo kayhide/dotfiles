@@ -40,13 +40,29 @@ add-highlighter shared/idris/string       region (?<!'\\)(?<!')"                
 add-highlighter shared/idris/comment      region -recurse \{- \{-                  -\}            fill comment
 add-highlighter shared/idris/line_comment region --(?:[^!#$%&*+./<>?@\\\^|~=]|$) $                fill comment
 
-add-highlighter shared/idris/code/ regex (?<!')\b0x+[A-Fa-f0-9]+ 0:value
-add-highlighter shared/idris/code/ regex (?<!')\b\d+([.]\d+)? 0:value
-add-highlighter shared/idris/code/ regex (?<!')\b(import|hiding|module)(?!')\b 0:keyword
-add-highlighter shared/idris/code/ regex (?<!')\b(import)(?!')\b[^\n]+(?<!')\b(as)(?!')\b 2:keyword
-add-highlighter shared/idris/code/ regex (?<!')\b(interface|data|default|deriving|infix|infixl|infixr|instance|module|newtype|pattern|type|where)(?!')\b 0:keyword
-add-highlighter shared/idris/code/ regex (?<!')\b(case|do|else|if|in|let|mdo|of|proc|rec|then)(?!')\b 0:attribute
+add-highlighter shared/idris/code/ regex (?<!')\b(0[xX][0-9a-fA-F]+|0[oO][0-7]+) 0:value
+add-highlighter shared/idris/code/ regex (?<!')\b[0-9]+(\.[0-9]+)?([eE][-+]?[0-9]+)? 0:value
+add-highlighter shared/idris/code/ regex (?<!')\b(module|namespace)\b 0:keyword
+add-highlighter shared/idris/code/ regex (?<!')\b(import)\b 0:keyword
+add-highlighter shared/idris/code/ regex (?<!')\b(refl)\b 0:keyword
+add-highlighter shared/idris/code/ regex (?<!')\b(class|instance)\b 0:keyword
+add-highlighter shared/idris/code/ regex (?<!')\b(codata|data|record|dsl|interface|implementation)\b 0:keyword
 add-highlighter shared/idris/code/ regex (?<!')\b(type|data)\b\s+(\bfamily\b)?(?!') 0:keyword
+add-highlighter shared/idris/code/ regex (?<!')\b(where)\b 0:keyword
+add-highlighter shared/idris/code/ regex (?<!')\b(public|abstract|private|export)\b 0:keyword
+add-highlighter shared/idris/code/ regex (?<!')\b(parameters|mutual|postulate|using)\b 0:keyword
+add-highlighter shared/idris/code/ regex (?<!')\b(total|partial|covering)\b 0:keyword
+add-highlighter shared/idris/code/ regex (?<!')\b(implicit)\b 0:keyword
+add-highlighter shared/idris/code/ regex (?<!')\b(auto|impossible|static|constructor)\b 0:keyword
+add-highlighter shared/idris/code/ regex (?<!')\b(do|case|of|rewrite|with|proof)\b 0:keyword
+add-highlighter shared/idris/code/ regex (?<!')\b(let|in)\b 0:keyword
+add-highlighter shared/idris/code/ regex (?<!')\b(pattern|term)\b 0:keyword
+add-highlighter shared/idris/code/ regex (?<!')\b(if|then|else)\b 0:keyword
+add-highlighter shared/idris/code/ regex (?<!')\b(intros\?|rewrite|exact|refine|trivial|let|focus|try|compute|solve|attack|reflect|fill|applyTactic)\b 0:keyword
+add-highlighter shared/idris/code/ regex (?<!')\b(prefix|infix|infixl|infixr)\b 0:keyword
+add-highlighter shared/idris/code/ regex (?<!')\b%(lib|link|include)\b 0:keyword
+add-highlighter shared/idris/code/ regex (?<!')\b%(access|assert_total|default|elim|error_reverse|hide|name|reflection|error_handlers|language|flag|dynamic|provide|inline|used|no_implicit|hint|extern|unqualified|error_handler)\b 0:keyword
+add-highlighter shared/idris/code/ regex (?<!')\b(lambda|variable|index_first|index_next)\b 0:keyword
 
 # The complications below is because period has many uses:
 # As function composition operator (possibly without spaces) like "." and "f.g"
