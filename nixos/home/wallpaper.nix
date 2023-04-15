@@ -82,13 +82,26 @@ in
         };
       };
 
+      paths = {
+        wallpaper = {
+          Unit = {
+            Description = "Wallpaper file watcher";
+          };
+          Path = {
+            PathChanged = "%h/.cache/wallpaper/current";
+          };
+          Install = {
+            WantedBy = [ "graphical-session.target" ];
+          };
+        };
+      };
+
       timers = {
         wallpaper = {
           Unit = {
             Description = "Wallpaper timer";
           };
           Timer = {
-            Unit = "wallpaper.service";
             OnCalendar = "*:0/15:0";
             Persistent = true;
             RandomizedDelaySec = "1s";
