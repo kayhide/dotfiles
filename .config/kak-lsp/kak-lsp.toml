@@ -12,6 +12,11 @@ args = ["--log", "/home/kayhide/tmp/kak-lsp-purescript.log", "--stdio"]
 # addSpagoSources = true
 # addNpmPath = true
 
+[language.idris]
+filetypes = ["idris"]
+roots = [".ipkg", ".git"]
+command = "idris2-lsp"
+
 
 [server]
 # exit session if no requests were received during given period in seconds

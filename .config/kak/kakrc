@@ -81,6 +81,8 @@ map global space-text l ': enter-user-mode<space>space-text-lines<ret>' -docstri
 map global space-text-lines s '| sort<ret>' -docstring 'sort'
 map global space-text-lines S '| sort --reverse<ret>' -docstring 'sort reverse'
 map global space-text-lines u '| uniq<ret>' -docstring 'uniq'
+map global space-text-lines . 'xs\.<space><ret>;i<ret><esc>,' -docstring 'split at .'
+map global space-text-lines , 'xs,<space><ret>;i<ret><esc>,' -docstring 'split at ,'
 
 define-command toggle-highlighter -params 2.. %{
     try %{
