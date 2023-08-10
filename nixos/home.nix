@@ -59,6 +59,7 @@ in
     neofetch
     nkf
     openssh
+    patchutils
     peco
     ripgrep
     rlwrap
