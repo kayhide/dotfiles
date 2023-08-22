@@ -27,11 +27,6 @@ bindsym Mod4+6 workspace number 6
 bindsym Mod4+7 workspace number 7
 bindsym Mod4+8 workspace number 8
 bindsym Mod4+9 workspace number 9
-bindsym Mod4+Control+Tab exec rofi -modi drun -show drun
-bindsym Mod4+Down focus down
-bindsym Mod4+Left focus left
-bindsym Mod4+Return exec --no-startup-id "kitty"
-bindsym Mod4+Right focus right
 bindsym Mod4+Shift+0 move container to workspace number 10
 bindsym Mod4+Shift+1 move container to workspace number 1
 bindsym Mod4+Shift+2 move container to workspace number 2
@@ -42,35 +37,40 @@ bindsym Mod4+Shift+6 move container to workspace number 6
 bindsym Mod4+Shift+7 move container to workspace number 7
 bindsym Mod4+Shift+8 move container to workspace number 8
 bindsym Mod4+Shift+9 move container to workspace number 9
-bindsym Mod4+Shift+Return exec --no-startup-id "rm $SAVE_LAST_PWD 2> /dev/null; kitty"
+bindsym Mod4+Up focus up
+bindsym Mod4+Down focus down
+bindsym Mod4+Left focus left
+bindsym Mod4+Right focus right
+bindsym Mod4+h focus left
+bindsym Mod4+j focus down
+bindsym Mod4+k focus up
+bindsym Mod4+l focus right
+bindsym Mod4+a focus parent
+bindsym Mod4+Tab focus next
 bindsym Mod4+Shift+Tab focus prev
-bindsym Mod4+Shift+c reload
+bindsym Mod4+space focus mode_toggle
+bindsym Mod4+Shift+space floating toggle
 bindsym Mod4+Shift+h move left
 bindsym Mod4+Shift+j move down
 bindsym Mod4+Shift+k move up
 bindsym Mod4+Shift+l move right
 bindsym Mod4+Shift+minus move scratchpad
-bindsym Mod4+Shift+q kill
-bindsym Mod4+Shift+r restart
-bindsym Mod4+Shift+space floating toggle
-bindsym Mod4+Shift+z exec i3-msg exit
-bindsym Mod4+Tab focus next
-bindsym Mod4+Up focus up
-bindsym Mod4+a focus parent
-bindsym Mod4+b split h
-bindsym Mod4+d layout toggle split
-bindsym Mod4+f fullscreen toggle
-bindsym Mod4+h focus left
-bindsym Mod4+j focus down
-bindsym Mod4+k focus up
-bindsym Mod4+l focus right
-bindsym Mod4+m mode move
 bindsym Mod4+minus scratchpad show
-bindsym Mod4+r mode resize
-bindsym Mod4+s layout stacking
-bindsym Mod4+space focus mode_toggle
+bindsym Mod4+Shift+c reload
+bindsym Mod4+Shift+r restart
+bindsym Mod4+Shift+q kill
+bindsym Mod4+Shift+z exec i3-msg exit
+bindsym Mod4+Control+Tab exec rofi -modi drun -show drun
+bindsym Mod4+Return exec --no-startup-id "kitty -d \\"$(get-focused-pwd)\\""
+bindsym Mod4+Shift+Return exec --no-startup-id "kitty -d \\"$(get-focused-pwd)\\" --class floating"
+bindsym Mod4+b split h
 bindsym Mod4+v split v
+bindsym Mod4+d layout toggle split
+bindsym Mod4+s layout stacking
 bindsym Mod4+w layout tabbed
+bindsym Mod4+f fullscreen toggle
+bindsym Mod4+m mode move
+bindsym Mod4+r mode resize
 
 mode "resize" {
   bindsym Escape mode default
@@ -98,6 +98,7 @@ mode "move" {
   bindsym l move right
 }
 
+for_window [class="floating"] floating enable
 
 bar {
   font pango:monospace 12

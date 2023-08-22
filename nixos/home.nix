@@ -23,7 +23,6 @@ in
     username = "kayhide";
     homeDirectory = "/home/kayhide";
     sessionVariables = {
-      SAVE_LAST_PWD = "/home/kayhide/.cache/last-pwd";
     };
   };
 

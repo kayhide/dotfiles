@@ -13,6 +13,14 @@ let
     ${autorandr}/bin/autorandr --change --force
   '';
 
+  get-focused-pwd = with pkgs; writeShellScriptBin "get-focused-pwd" ''
+    PATH="${lib.makeBinPath [coreutils procps xorg.xprop xdotool]}:$PATH"
+    X_WINDOW_ID=$(xdotool getwindowfocus)
+    TERM_PID=$(xprop -id $X_WINDOW_ID _NET_WM_PID | cut -d ' ' -f 3)
+    SHELL_PID=$(ps --ppid $TERM_PID -o pid= | tail -n 1)
+    pwdx $SHELL_PID | cut -d ' ' -f 2-
+  '';
+
   mod = "Mod4";
 
 in
@@ -66,6 +74,7 @@ in
       xorg.xev
       xorg.xkill
       xorg.xwininfo
+      get-focused-pwd # required by i3 to open a new terminal
     ];
 
     home.file.".config/i3/config".source = ../dotfiles/i3/config;
