@@ -125,8 +125,8 @@
   };
 
   # Set your time zone.
-  # time.timeZone = "Asia/Tokyo";
-  time.timeZone = "Europe/Madrid";
+  time.timeZone = "Asia/Tokyo";
+  # time.timeZone = "Europe/Madrid";
 
   environment.systemPackages = with pkgs; [
     curl
