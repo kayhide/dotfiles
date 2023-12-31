@@ -221,6 +221,11 @@ hook global WinSetOption filetype=eruby %{
     set-option window lintcmd 'rubocop -l --format emacs'
 }
 
+hook global WinSetOption filetype=eruby %{
+    set-option window tabstop 2
+    set-option window indentwidth 2
+}
+
 # Rust
 hook global WinSetOption filetype=rust %{
     set-option window tabstop 4
