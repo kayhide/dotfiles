@@ -32,6 +32,7 @@ hook global WinCreate ^[^*]+$ %{
 
 map global user l ': enter-user-mode<space>lsp<ret>' -docstring 'lsp'
 map global user F ': format<ret>' -docstring 'format'
+map global user L ': lint<ret>' -docstring 'lint'
 map global user <semicolon> ': comment-line<ret>' -docstring '(un)comment selected lines'
 
 declare-user-mode space-buffer
@@ -209,6 +210,15 @@ hook global WinSetOption filetype=eex %{
 hook global WinSetOption filetype=ruby %{
     set-option window tabstop 2
     set-option window indentwidth 2
+    set-option window formatcmd "rubocop --autocorrect --fix-layout --stderr --stdin - 2>/dev/null"
+    set-option window lintcmd 'rubocop -l --format emacs'
+}
+
+hook global WinSetOption filetype=eruby %{
+    set-option window tabstop 2
+    set-option window indentwidth 2
+    set-option window formatcmd "rubocop --autocorrect --fix-layout --stderr --stdin - 2>/dev/null"
+    set-option window lintcmd 'rubocop -l --format emacs'
 }
 
 # Rust
