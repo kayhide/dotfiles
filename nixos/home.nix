@@ -5,6 +5,14 @@ let
 
   my-kakoune = pkgs.callPackage ./nix/pkgs/my-kakoune.nix { };
 
+  zplug-env = with pkgs; runCommand "zplug-env"
+    {
+      buildInputs = [ zplug ];
+    } ''
+    mkdir -p $out/bin
+    ln -s ${zplug}/share/zplug/bin/zplug-env $out/bin/zplug-env
+  '';
+
 in
 
 {
@@ -19,18 +27,17 @@ in
     ./home/picom.nix
   ];
 
-  home = {
-    username = "kayhide";
-    homeDirectory = "/home/kayhide";
-    sessionVariables = {
-    };
-  };
-
   programs = {
     home-manager.enable = true;
   };
 
   nixpkgs.config.allowUnfree = true;
+
+  home = {
+    username = "kayhide";
+    homeDirectory = "/home/kayhide";
+    sessionVariables = { };
+  };
 
   home.packages = with pkgs; [
     # WM
@@ -72,7 +79,7 @@ in
 
     # Shell
     bash
-    zplug
+    zplug-env
     zsh
 
     # Top
