@@ -158,6 +158,11 @@
     systemWide = true;
   };
 
+  hardware.bluetooth = {
+    enable = true;
+    # powerOnBoot = true;
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -170,9 +175,10 @@
   # List services that you want to enable:
   services = {
     connman.enable = true;
-    
+    blueman.enable = true;
+
     # Required by udiskie.
-    udisks2.enable = true; 
+    udisks2.enable = true;
     gnome.at-spi2-core.enable = true;
 
     # Enable CUPS to print documents.
