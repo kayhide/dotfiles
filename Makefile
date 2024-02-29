@@ -21,6 +21,10 @@ emacs-private: $(addprefix ${HOME}/,$(shell find .emacs.d/private/local -type d)
 ${HOME}/.emacs.d/private/local/%: .emacs.d/private/local/%
 	ln -s $(shell pwd)/$< $@
 
+${HOME}/bin/%: bin/%
+	mkdir -p ${HOME}/bin
+	ln -s $(shell pwd)/$< $@
+
 kak:
 	ghq get -p mawww/kakoune
 	mkdir -p ~/.config/kak/plugins
