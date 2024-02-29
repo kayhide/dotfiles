@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+SRC_DIR="${SRC_DIR:-$HOME/Dropbox/カメラアップロード}"
+DST_DIR="${DST_DIR:-$HOME/Dropbox/Photos}"
+
+relative-path() {
+    echo "${1/$HOME/~}"
+}
+
+say-ok() {
+    echo "✨ $(relative-path "$1")"
+}
+
+say-ng() {
+    echo "❓ $(relative-path "$1")"
+}
+
+move() {
+    local src="$1"
+    local basename="$(basename "$src")"
+    if [[ $basename =~ .*([0-9]{4})-([0-9]{2})-* ]]; then
+        local year="${BASH_REMATCH[1]}"
+        local month="${BASH_REMATCH[2]}"
+        local dst="$DST_DIR/$year/$month/$basename"
+        if [[ -f $dst ]]; then
+            say-ng "$dst"
+        else
+            mkdir -p "$(dirname "$dst")"
+            mv "$src" "$dst"
+            say-ok "$dst"
+        fi
+    fi
+}
+
+find "$SRC_DIR" -type f | sort -V | while read -r f; do
+    move "$f"
+done
+
+echo "🎉 done"

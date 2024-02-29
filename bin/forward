@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+set -eu
+
+die() {
+    echo "$1" >&2
+    exit "${2:-1}"
+}
+
+if ! which mutagen 2>&1 >/dev/null; then
+    die "Command not found: mutagen"
+fi
+
+list() {
+    mutagen forward list
+}
+
+up() {
+    mutagen forward create --name="$NAME" tcp:"$SRC" tcp:"$DST"
+}
+
+down() {
+    mutagen forward terminate "$NAME"
+}
+
+NAME="${NAME:-web-app}"
+COMMAND="${1:-list}"
+SRC="${2:-localhost:3000}"
+DST="${3:-192.168.60.1:3000}"
+
+case "$COMMAND" in
+    list|up|down )
+        "$COMMAND" "$@" ;;
+    * )
+        die "Command missing: $COMMAND"
+esac
+
