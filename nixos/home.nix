@@ -118,6 +118,7 @@ in
     exercism
     ffmpeg
     google-cloud-sdk
+    helix
     heroku
     hub
     imagemagick
