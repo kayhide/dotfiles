@@ -1,0 +1,13 @@
+[editor]
+
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "underline"
+
+[keys.normal.space]
+";" = "toggle_comments"
+
+[keys.normal.space.k]
+"b" = ":buffer-close"
+"w" = "wclose"
