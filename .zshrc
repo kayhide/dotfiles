@@ -186,7 +186,9 @@ source_if_exists "${HOME}/.zsh/cdrepo.zsh"
 source_if_exists "${HOME}/.zsh/select-history.zsh"
 source_if_exists "${HOME}/.zsh/zinputrc"
 
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$CUDA_PATH/bin:$PATH"
-export PATH="$HOME/bin:$PATH"
+PATH="$HOME/.local/bin:$PATH"
+PATH="$HOME/.cargo/bin:$PATH"
+PATH="$HOME/.pack/bin:$PATH"
+PATH="$CUDA_PATH/bin:$PATH"
+PATH="$HOME/bin:$PATH"
+export PATH
