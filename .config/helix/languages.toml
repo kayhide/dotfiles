@@ -14,4 +14,14 @@ language-servers = [
   "rubocop", 
   { name = "solargraph", except-features = ["format", "diagnostics"] }
 ]
+# auto-format = true
+
+[[language]]
+name = "purescript"
+formatter = { command = "purty", args = ["-"] }
+auto-format = true
+
+[[language]]
+name = "javascript"
+formatter = { command = "prettier", args = ["--stdin-filepath", "a.js"]}
 auto-format = true

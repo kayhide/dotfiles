@@ -5,9 +5,12 @@ normal = "block"
 insert = "bar"
 select = "underline"
 
+[editor.file-picker]
+hidden = false
+
 [keys.normal.space]
 ";" = "toggle_comments"
 
-[keys.normal.space.k]
-"b" = ":buffer-close"
-"w" = "wclose"
+[keys.normal.space.space]
+"R" = ":reload-all"
+"C" = ":config-reload"
