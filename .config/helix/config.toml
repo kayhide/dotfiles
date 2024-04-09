@@ -1,4 +1,5 @@
 [editor]
+auto-pairs = false
 
 [editor.cursor-shape]
 normal = "block"
