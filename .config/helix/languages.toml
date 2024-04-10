@@ -25,3 +25,7 @@ auto-format = true
 name = "javascript"
 formatter = { command = "prettier", args = ["--stdin-filepath", "a.js"]}
 auto-format = true
+
+[[language]]
+name = "rust"
+auto-format = true
