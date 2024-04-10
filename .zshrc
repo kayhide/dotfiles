@@ -142,7 +142,7 @@ autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
 # env
-export EDITOR='kak'
+export EDITOR='hx'
 export VISUAL=$EDITOR
 
 
