@@ -49,11 +49,11 @@ homebrew:
 .PHONY: homebrew
 
 brew:
-	brew install tig hub ghq readline lv direnv fd fzf zplug entr tree ripgrep ffmpeg
+	brew install tig hub ghq readline lv direnv fd fzf zplug entr tree ripgrep ffmpeg helix
 .PHONY: brew
 
 cask:
-	brew install --cask alfred bettertouchtool dropbox google-chrome google-japanese-ime iterm2 karabiner-elements slack zoom
+	brew install --cask bettertouchtool dropbox google-chrome google-japanese-ime iterm2 karabiner-elements slack zoom amethyst
 .PHONY: cask
 
 init-mac: dotfiles homebrew brew cask
