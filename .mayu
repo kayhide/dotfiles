@@ -1,6 +1,7 @@
 include "linux109.mayu" 
 keymap Global
 
+mod windows += !!Eisuu
 key *Eisuu = *Escape
 
 mod mod0 = Henkan
