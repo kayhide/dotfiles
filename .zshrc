@@ -189,6 +189,7 @@ source_if_exists "${HOME}/.zsh/zinputrc"
 PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/.cargo/bin:$PATH"
 PATH="$HOME/.pack/bin:$PATH"
+PATH="$HOME/.ghcup/bin:$PATH"
 PATH="$CUDA_PATH/bin:$PATH"
 PATH="$HOME/bin:$PATH"
 export PATH
