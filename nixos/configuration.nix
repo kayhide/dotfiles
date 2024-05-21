@@ -172,7 +172,10 @@
   #   pinentryFlavor = "gnome3";
   # };
 
-  # List services that you want to enable:
+  programs = {
+    zsh.enable = true;
+  };
+
   services = {
     connman.enable = true;
     blueman.enable = true;
@@ -187,32 +190,35 @@
     # Enable the OpenSSH daemon.
     openssh.enable = true;
 
+    # Enable touchpad support.
+    libinput = {
+      enable = true;
+      touchpad = {
+        naturalScrolling = true;
+      };
+    };
+
     # Enable the X11 windowing system.
     xserver = {
       enable = true;
       # autorun = false;
-      layout = "jp";
-      # xkbOptions = "eurosign:e";
 
-      # Enable touchpad support.
-      libinput = {
-        enable = true;
-        touchpad = {
-          naturalScrolling = true;
-        };
+      xkb = {
+        layout = "jp";
       };
 
       desktopManager = {
         xterm.enable = true;
       };
       displayManager = {
-        autoLogin = {
-          enable = true;
-          user = "kayhide";
-        };
-        lightdm = {
-          enable = true;
-        };
+        lightdm.enable = true;
+      };
+    };
+
+    displayManager = {
+      autoLogin = {
+        enable = true;
+        user = "kayhide";
       };
     };
   };
@@ -247,7 +253,7 @@
         </fontconfig>
       '';
     };
-    fonts = with pkgs; [
+    packages = with pkgs; [
       font-awesome
       material-icons
       nerdfonts
