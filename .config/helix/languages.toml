@@ -33,3 +33,8 @@ auto-format = true
 [[language]]
 name = "bash"
 auto-format = true
+
+[[grammar]]
+name = "idris"
+source = { git = "https://github.com/kayhide/tree-sitter-idris", rev = "989042ea2a7b6a2d3a212d89c82c4d9ea93d5278" }
+# source = { path = "/home/kayhide/wrk/tree-sitter/tree-sitter-idris" }
