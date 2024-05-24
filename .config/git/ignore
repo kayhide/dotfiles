@@ -1,3 +1,5 @@
 .envrc
 .direnv
 .helix
+
+.DS_store
