@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+set -eu
+
+BASE_DIR="$(cd "$(dirname "$0")/.." > /dev/null 2>&1 && pwd)"
+cd "$BASE_DIR"
+
+TREE_SITTER_IDRIS_DIR="$HOME/ghq/github.com/kayhide/tree-sitter-idris"
+HELIX_CONFIG_LANGUAGES="$HOME/.config/helix/languages.toml"
+HELIX_CONFIG_QUERIES="$HOME/.config/helix/runtime/queries/idris"
+
+die() {
+  >&2 echo "🪦 $1"
+  exit 1
+}
+
+info() {
+  echo "❕ $1"
+}
+
+if [[ ! -d $TREE_SITTER_IDRIS_DIR ]]; then
+  die "Not found: $TREE_SITTER_IDRIS_DIR"
+fi
+
+cd "$TREE_SITTER_IDRIS_DIR"
+info "In: $TREE_SITTER_IDRIS_DIR"
+
+update_repo() {
+  info "Git pulling..."
+  git pull
+
+  HASH=$(git rev-parse HEAD)
+  echo "Head: $HASH"
+}
+
+update_helix_config() {
+  if [[ ! -f $HELIX_CONFIG_LANGUAGES ]]; then
+    die "Not found: $HELIX_CONFIG_LANGUAGES"
+  fi
+  if ! grep "$TREE_SITTER_IDRIS_DIR" "$HELIX_CONFIG_LANGUAGES" >/dev/null; then
+    die "Language config not found in: $HELIX_CONFIG_LANGUAGES"
+  fi
+
+  if [[ ! -d "$HELIX_CONFIG_QUERIES" ]]; then
+    mkdir -p "$HELIX_CONFIG_QUERIES"
+  fi
+  info "Copying queries..."
+  cp queries/*  "$HELIX_CONFIG_QUERIES/"
+}
+
+update_repo
+update_helix_config
+echo "🎉 Done"

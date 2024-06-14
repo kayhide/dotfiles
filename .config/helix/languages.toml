@@ -36,5 +36,6 @@ auto-format = true
 
 [[grammar]]
 name = "idris"
-source = { git = "https://github.com/kayhide/tree-sitter-idris", rev = "989042ea2a7b6a2d3a212d89c82c4d9ea93d5278" }
-# source = { path = "/home/kayhide/wrk/tree-sitter/tree-sitter-idris" }
+source = { git = "https://github.com/kayhide/tree-sitter-idris", rev = "307d883b6cdf527e5508245a2bb98ef458a02645" }
+# source = { path = "/Users/kayhide/ghq/github.com/kayhide/tree-sitter-idris" }
+# source = { path = "/home/kayhide/ghq/github.com/kayhide/tree-sitter-idris" }

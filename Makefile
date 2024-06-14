@@ -24,6 +24,9 @@ ${HOME}/bin/%: bin/%
 	mkdir -p ${HOME}/bin
 	ln -s $(shell pwd)/$< $@
 
+bin: $(addprefix ${HOME}/, $(shell find bin))
+.PHONY: bin
+
 kak:
 	ghq get -p mawww/kakoune
 	mkdir -p ~/.config/kak/plugins
