@@ -28,7 +28,7 @@ key M0-*F = *Right
 # key M0-*J = *Return
 key M0-*M = *Return
 # key M0-*G = *Esc
-key M0-*D = *Delete
+# key M0-*D = *Delete
 key M0-*H = *BackSpace
 key M0-*I = *PageUp
 key M0-*U = *PageDown
@@ -51,6 +51,7 @@ key M0-*_9 = W-*_9
 key M0-*Atmark = A-*Kanji
 key M0-*Tab = C-*Tab
 
+key M0-D = C-D
 key M0-K = C-K
 key M0-Q = C-Q
 key M0-R = C-R
