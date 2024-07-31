@@ -9,6 +9,20 @@ select = "underline"
 [editor.file-picker]
 hidden = false
 
+[keys.select]
+"p" =	"paste_clipboard_after"
+"P" =	"paste_clipboard_before"
+"y" =	"yank_to_clipboard"
+"Y" =	"yank_main_selection_to_clipboard"
+"R" =	"replace_selections_with_clipboard"
+
+[keys.normal]
+"p" =	"paste_clipboard_after"
+"P" =	"paste_clipboard_before"
+"y" =	"yank_to_clipboard"
+"Y" =	"yank_main_selection_to_clipboard"
+"R" =	"replace_selections_with_clipboard"
+
 [keys.normal.space]
 ";" = "toggle_comments"
 
