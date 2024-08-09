@@ -15,6 +15,8 @@ hidden = false
 "y" =	"yank_to_clipboard"
 "Y" =	"yank_main_selection_to_clipboard"
 "R" =	"replace_selections_with_clipboard"
+"c" = ["yank_to_clipboard", "change_selection_noyank"]
+"d" = ["yank_to_clipboard", "delete_selection_noyank"]
 
 [keys.normal]
 "p" =	"paste_clipboard_after"
@@ -22,6 +24,8 @@ hidden = false
 "y" =	"yank_to_clipboard"
 "Y" =	"yank_main_selection_to_clipboard"
 "R" =	"replace_selections_with_clipboard"
+"c" = ["yank_to_clipboard", "change_selection_noyank"]
+"d" = ["yank_to_clipboard", "delete_selection_noyank"]
 
 [keys.normal.space]
 ";" = "toggle_comments"
