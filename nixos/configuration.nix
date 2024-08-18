@@ -11,7 +11,6 @@
     ./system/power.nix
     # ./system/iris.nix
     ./system/nvidia.nix
-    ./system/opengl.nix
     ./system/brightness.nix
     ./system/audio.nix
     ./system/mayu.nix
@@ -44,7 +43,6 @@
       DefaultTimeoutStartSec=15s
       DefaultTimeoutStopSec=15s
     '';
-    enableUnifiedCgroupHierarchy = false;
   };
 
   networking = {
@@ -112,7 +110,8 @@
   i18n = {
     defaultLocale = "en_US.UTF-8";
     inputMethod = {
-      enabled = "ibus";
+      enable = true;
+      type = "ibus";
       ibus.engines = with pkgs.ibus-engines; [ mozc ];
     };
   };
@@ -141,7 +140,6 @@
   virtualisation = {
     docker = {
       enable = true;
-      enableNvidia = true;
       liveRestore = false;
     };
     virtualbox = {
@@ -149,16 +147,27 @@
     };
   };
 
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio = {
-    enable = true;
-    systemWide = true;
-  };
+  hardware = {
+    pulseaudio = {
+      enable = true;
+      systemWide = true;
+    };
 
-  hardware.bluetooth = {
-    enable = true;
-    # powerOnBoot = true;
+    bluetooth = {
+      enable = true;
+      # powerOnBoot = true;
+    };
+
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+      extraPackages = with pkgs; [
+        vaapiIntel
+        vaapiVdpau
+        libvdpau-va-gl
+        intel-media-driver
+      ];
+    };
   };
 
   # Some programs need SUID wrappers, can be configured further or are

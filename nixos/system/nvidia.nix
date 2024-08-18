@@ -20,4 +20,7 @@ in
     nvidiaBusId = "PCI:1:0:0";
     # sync.enable = true;
   };
+  hardware.nvidia-container-toolkit = {
+    enable = true;
+  };
 }
