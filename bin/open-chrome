@@ -1,0 +1,10 @@
+#!/usr/bin/env osascript
+
+if application "Google Chrome" is not running then
+    activate application "Google Chrome"
+else
+    tell application "Google Chrome"
+        make new window
+        activate
+    end tell
+end if
