@@ -36,7 +36,7 @@ export SAVEHIST=100000
 autoload colors && colors
 
 # zplug
-if which zplug-env > /dev/null && readlink -f "$(which zplug-env)" > /dev/null 2>&1; then
+if which zplug-env > /dev/null 2>&1 && readlink -f "$(which zplug-env)" > /dev/null 2>&1; then
     export ZPLUG_INIT=""$(dirname "$(readlink -f "$(which zplug-env)")")"/../init.zsh"
 elif [[ -f $HOME/.nix-profile/opt/zplug/init.zsh ]]; then
     export ZPLUG_INIT="$HOME/.nix-profile/opt/zplug/init.zsh"
@@ -105,8 +105,8 @@ alias tree='tree -N'
 alias lv='lv -c'
 alias less='less -R'
 
-which xsel > /dev/null && alias pbcopy="xsel --clipboard --input"
-which xdg-open > /dev/null && alias open="xdg-open"
+which xsel > /dev/null 2>&1 && alias pbcopy="xsel --clipboard --input"
+which xdg-open > /dev/null 2>&1 && alias open="xdg-open"
 
 alias g='git'
 alias glgraph='git log --graph --all --decorate --oneline'
@@ -129,7 +129,7 @@ alias rdmigrate='rake db:migrate'
 alias rdstatus='rake db:migrate:status'
 alias rdrollback='rake db:rollback'
 
-if which brew > /dev/null; then
+if which brew > /dev/null 2>&1; then
     alias brew="PATH=$(brew --prefix)/bin:/usr/bin:/bin:/usr/sbin:/sbin brew"
     fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath)
 fi
@@ -159,14 +159,14 @@ export DYLD_LIBRARY_PATH="/usr/local/cuda/lib"
 export GTAGSLABEL=pygments
 
 
-which direnv > /dev/null && eval "$(direnv hook zsh)"
-# which hub > /dev/null && eval "$(hub alias -s zsh)"
-which stack > /dev/null && eval "$(stack --bash-completion-script stack)"
+which direnv > /dev/null 2>&1 && eval "$(direnv hook zsh)"
+# which hub > /dev/null 2>&1 && eval "$(hub alias -s zsh)"
+which stack > /dev/null 2>&1 && eval "$(stack --bash-completion-script stack)"
 
 if [[ -z $IN_NIX_SHELL ]]; then
-    which rbenv > /dev/null && eval "$(rbenv init -)"
-    which pyenv > /dev/null && eval "$(pyenv init -)"
-    which nodenv > /dev/null && eval "$(nodenv init -)"
+    which rbenv > /dev/null 2>&1 && eval "$(rbenv init -)"
+    which pyenv > /dev/null 2>&1 && eval "$(pyenv init -)"
+    which nodenv > /dev/null 2>&1 && eval "$(nodenv init -)"
 fi
 
 
@@ -179,7 +179,7 @@ source_if_exists "${HOME}/.iterm2_shell_integration.zsh"
 source_if_exists "${HOME}/.google-cloud-sdk/path.zsh.inc"
 source_if_exists "${HOME}/.google-cloud-sdk/completion.zsh.inc"
 # source_if_exists "${HOME}/.opam/opam-init/init.sh"
-which minikube > /dev/null && source <(minikube completion zsh)
+which minikube > /dev/null 2>&1 && source <(minikube completion zsh)
 
 source_if_exists "${HOME}/.zsh/cdgem.zsh"
 source_if_exists "${HOME}/.zsh/cdrepo.zsh"
