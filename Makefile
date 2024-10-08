@@ -4,7 +4,6 @@ dotfiles:
 	ln -sf "$$(pwd)/.zsh" "$$HOME/"
 	ln -sf "$$(pwd)/.tmux.conf" "$$HOME/"
 	ln -sf "$$(pwd)/.spacemacs" "$$HOME/"
-	ln -sf "$$(pwd)/.magic" "$$HOME/"
 .PHONY: dotfiles
 
 dotconfig: $(addprefix ${HOME}/,$(shell find .config -type f))
@@ -27,24 +26,10 @@ ${HOME}/bin/%: bin/%
 bin: $(addprefix ${HOME}/, $(shell find bin))
 .PHONY: bin
 
-kak:
-	ghq get -p mawww/kakoune
-	mkdir -p ~/.config/kak/plugins
-	git clone git@github.com:andreyorst/plug.kak ~/.config/kak/plugins/plug.kak
-	# ln -sf $(shell ghq root)/github.com/mawww/kakoune/share/kak/autoload ~/.config/kak/autoload
-.PHONY: kak
-	
 iterm:
 	curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
 	curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
 .PHONY: iterm
-
-linuxbrew:
-	sh -c "$$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-	$(eval PATH+=~/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/bin:$$PATH )
-	echo "eval \$$($$(brew --prefix)/bin/brew shellenv)" >> ~/.profile
-.PHONY: linuxbrew
-
 
 homebrew:
 	/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"	
@@ -62,7 +47,7 @@ cask:
 init-mac: dotfiles homebrew brew cask
 .PHONY: init-mac
 
-init-linux: dotfiles iterm linuxbrew brew
+init-linux: dotfiles linuxbrew brew
 .PHONY: init-linux
 
 
@@ -73,14 +58,8 @@ verify-sudo:
 .PHONY: verify-sudo
 
 xps15: xps15-brightness # For Ubuntu
-# xps15: bin-dell-brightness # For Pop!_OS
 xps15: xps15-mayu
 .PHONY: xps15
-
-bin-dell-brightness:
-	@mkdir -p "$$HOME/bin"
-	ln -s $(pwd)/bin/dell-brightness "$$HOME/bin/"
-.PHONY: bin-dell-brightness
 
 xps15-brightness: verify-sudo
 	cp dell-xps15/dell-brightness/dell-brightness-down /etc/acpi/events/
