@@ -129,6 +129,12 @@ alias rdmigrate='rake db:migrate'
 alias rdstatus='rake db:migrate:status'
 alias rdrollback='rake db:rollback'
 
+if ! which brew > /dev/null 2>&1; then
+    if [[ -f ~/homebrew/bin/brew ]]; then
+        eval "$(~/homebrew/bin/brew shellenv)"
+    fi
+fi
+
 if which brew > /dev/null 2>&1; then
     alias brew="PATH=$(brew --prefix)/bin:/usr/bin:/bin:/usr/sbin:/sbin brew"
     fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath)
