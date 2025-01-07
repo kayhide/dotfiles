@@ -34,6 +34,10 @@ auto-format = true
 name = "bash"
 auto-format = true
 
+[[language]]
+name = "python"
+auto-format = true
+
 [[grammar]]
 name = "idris"
 source = { git = "https://github.com/kayhide/tree-sitter-idris", rev = "307d883b6cdf527e5508245a2bb98ef458a02645" }
