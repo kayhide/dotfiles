@@ -144,6 +144,7 @@ in
     zoom-us
 
     # Languages
+    nodePackages.bash-language-server
     chez
     gnumake
     ruby
