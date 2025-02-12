@@ -46,6 +46,8 @@ bindsym Mod4+j focus down
 bindsym Mod4+k focus up
 bindsym Mod4+l focus right
 bindsym Mod4+a focus parent
+bindsym Mod4+u focus output down
+bindsym Mod4+i focus output up
 bindsym Mod4+Tab focus next
 bindsym Mod4+Shift+Tab focus prev
 bindsym Mod4+space focus mode_toggle
