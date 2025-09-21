@@ -1,7 +1,9 @@
 { ... }:
 
 {
-  services.logind.extraConfig = ''
-    HandlePowerKey=lock
-  '';
+  services.logind.settings = {
+    Login = {
+      HandlePowerKey = "lock";
+    };
+  };
 }

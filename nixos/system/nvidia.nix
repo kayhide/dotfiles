@@ -14,6 +14,7 @@ in
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = [ nvidia-offload ];
   services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.open = true;
   hardware.nvidia.prime = {
     offload.enable = true;
     intelBusId = "PCI:0:2:0";

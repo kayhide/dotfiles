@@ -1,8 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  inherit (pkgs) mplayer;
-  alsa-utils = pkgs.alsaUtils;
+  inherit (pkgs) mplayer alsa-utils;
 
   run-as-pulse = "${pkgs.sudo}/bin/sudo --user pulse";
   sounds = "${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo";

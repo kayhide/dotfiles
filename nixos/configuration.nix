@@ -39,10 +39,12 @@
     network = {
       wait-online.anyInterface = true;
     };
-    extraConfig = ''
-      DefaultTimeoutStartSec=15s
-      DefaultTimeoutStopSec=15s
-    '';
+    settings = {
+      Manager = {
+        DefaultTimeoutStartSec = "15s";
+        DefaultTimeoutStopSec = "15s";
+      };
+    };
   };
 
   networking = {
@@ -132,9 +134,20 @@
     neovim
   ];
 
-  security.sudo = {
-    enable = true;
-    wheelNeedsPassword = false;
+  security = {
+    sudo = {
+      enable = true;
+      wheelNeedsPassword = false;
+    };
+    pam.services."system-local-login" = {
+      enable = true;
+    };
+    pam.services.i3lock = {
+      enable = true;
+    };
+    pam.services."i3lock-fancy" = {
+      enable = true;
+    };
   };
 
   virtualisation = {
@@ -148,10 +161,10 @@
   };
 
   hardware = {
-    pulseaudio = {
-      enable = true;
-      systemWide = true;
-    };
+    # pulseaudio = {
+    #   enable = true;
+    #   systemWide = true;
+    # };
 
     bluetooth = {
       enable = true;
@@ -263,13 +276,12 @@
     packages = with pkgs; [
       font-awesome
       material-icons
-      nerdfonts
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
       symbola
       ttf_bitstream_vera
-    ];
+    ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues nerd-fonts);
   };
 
 

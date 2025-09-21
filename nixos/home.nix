@@ -65,6 +65,7 @@ in
     neofetch
     nkf
     openssh
+    openssl
     patchutils
     peco
     ripgrep
