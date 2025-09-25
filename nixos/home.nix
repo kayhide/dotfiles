@@ -92,6 +92,7 @@ in
     powertop
 
     # Git
+    delta
     ghq
     gibo
     git
@@ -118,7 +119,6 @@ in
     dropbox
     exercism
     ffmpeg
-    google-cloud-sdk
     helix
     heroku
     hub
@@ -129,6 +129,11 @@ in
     mplayer
     neovim
     ranger
+
+    # GCP
+    (google-cloud-sdk.withExtraComponents (with google-cloud-sdk.components; [
+      gke-gcloud-auth-plugin
+    ]))
 
     # Gui Apps
     connman-gtk
