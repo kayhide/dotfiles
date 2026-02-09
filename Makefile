@@ -3,7 +3,6 @@ dotfiles:
 	ln -sf "$$(pwd)/.zshrc" "$$HOME/"
 	ln -sf "$$(pwd)/.zsh" "$$HOME/"
 	ln -sf "$$(pwd)/.tmux.conf" "$$HOME/"
-	ln -sf "$$(pwd)/.spacemacs" "$$HOME/"
 .PHONY: dotfiles
 
 dotconfig: $(addprefix ${HOME}/,$(shell find .config -type f))
@@ -41,7 +40,7 @@ brew:
 .PHONY: brew
 
 cask:
-	brew install --cask bettertouchtool dropbox google-chrome google-japanese-ime iterm2 karabiner-elements slack zoom amethyst
+	brew install --cask dropbox google-chrome google-japanese-ime karabiner-elements slack zoom
 .PHONY: cask
 
 init-mac: dotfiles homebrew brew cask
