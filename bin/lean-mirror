@@ -1,0 +1,102 @@
+#!/usr/bin/env bash
+
+# Usage:
+#   ./lean-mirror <command>
+#
+# Requirements:
+#   git, sed
+
+set -eu
+
+die() {
+    while (( $# > 0 )); do
+        arg=$1
+        shift
+        if (( $# == 0 )) && [[ $arg =~ ^[0-9][0-9]*$ ]]; then
+            exit "$arg"
+        fi
+        if [[ -p "$arg" ]]; then
+            cat "$arg" | sed "s/^/  /" >&2
+        else
+            echo "$arg" >&2
+        fi
+    done
+    exit 1
+}
+
+MIRROR_DIR="$HOME/.cache/lean-mirror"
+
+list() {
+    find "$MIRROR_DIR" -maxdepth 2 -type d -name "*.git" |
+    while IFS= read -r dir; do
+        dir="${dir#"$MIRROR_DIR"/}"
+        echo "${dir%.git}"
+    done
+}
+
+identify() {
+    if [[ -e $MIRROR_DIR/$1.git ]]; then
+        echo "$MIRROR_DIR/$1.git"
+        return
+    fi
+   
+    mapfile -t repos < <(find "$MIRROR_DIR" -type d -name "$1.git")
+    if (( ${#repos[@]} == 0 )); then
+        die "Not found: $1"
+    fi
+    if (( ${#repos[@]} > 1 )); then
+        die "Multiple candidates:" <(
+            for repo in "${repos[@]}"; do
+                echo "${repo#"$MIRROR_DIR"/}"
+            done
+        )
+    fi
+    echo "${repos[0]}"
+}
+
+clone() {
+    local dir
+    dir="$MIRROR_DIR/$(dirname "$1")"
+    mkdir -p "$dir"
+    cd "$dir"
+    git clone --mirror "https://github.com/$1.git"
+}
+    
+update() {
+    if (( $# == 0 )); then
+        list | while read -r name; do
+            update "$name"
+        done
+    else
+        cd "$MIRROR_DIR/$1.git"
+        git remote update
+    fi
+}
+
+refer() {
+    local dst=".lake/packages/$1"
+    local repo
+    local origin
+
+    repo="$(identify "$2")"
+    if [[ -z $repo ]]; then
+        die
+    fi
+    origin="$(cd "$repo"; git remote get-url origin)"
+    if [[ -z $origin ]]; then
+        die "Invalid origin: $repo"
+    fi
+
+    rm -rf "$dst"
+    git clone --reference "$repo" "$origin" "$dst"
+}
+
+COMMAND="${1:-list}"
+shift
+
+case "$COMMAND" in
+    list|identify|clone|update|refer )
+        "$COMMAND" "$@" ;;
+    * )
+        die "Command missing: $COMMAND"
+esac
