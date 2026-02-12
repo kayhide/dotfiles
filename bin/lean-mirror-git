@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+# A `git` wrapper which prerequisites `lean-mirror` setup
+# Make a symlink to this script as `git` and place its path at the head of `PATH`.
+#
+# Requirements:
+#   git, grep
+
+set -eu
+
+die() {
+    while (( $# > 0 )); do
+        arg=$1
+        shift
+        if (( $# == 0 )) && [[ $arg =~ ^[0-9][0-9]*$ ]]; then
+            exit "$arg"
+        fi
+        if [[ -p "$arg" ]]; then
+            cat "$arg" | sed "s/^/  /" >&2
+        else
+            echo "$arg" >&2
+        fi
+    done
+    exit 1
+}
+
+MIRROR_DIR="$HOME/.cache/lean-mirror"
+THIS="$0"
+REAL_GIT="$(which -a git | grep -v "$THIS" | head -n 1)"
+
+if [[ ! -x "$REAL_GIT" ]]; then
+    die "Real git is missing"
+fi
+
+if [[ "${1:-}" == "clone" ]]; then
+    shift
+    for arg in "$@"; do
+        if [[ $arg == https://github.com/* ]]; then
+            repo="${arg#https://github.com/}"
+            repo="${repo%.git}"
+            mirror="$MIRROR_DIR/$repo.git"
+            if [[ -d $mirror ]]; then
+                exec "$REAL_GIT" clone --reference "$mirror" "$@"
+            fi
+        fi
+    done
+    exec "$REAL_GIT" clone "$@"
+fi
+
+exec "$REAL_GIT" "$@"

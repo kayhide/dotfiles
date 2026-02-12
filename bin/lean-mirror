@@ -91,11 +91,52 @@ refer() {
     git clone --reference "$repo" "$origin" "$dst"
 }
 
+_verify-wrapper-path() {
+    local cmd="$1"
+    local path="$2"
+    which "$cmd" | head -n 1 | grep "$path"
+}
+
+wrap-git() {
+    local here
+    local there=".lean-mirror"
+    here="$(cd "$(dirname "$0")" > /dev/null 2>&1 && pwd)"
+    local src="$here/lean-mirror-git"
+    local dst="$there/bin/git"
+    if [[ ! -L $dst ]]; then
+        mkdir -p "$(dirname "$dst")"
+        ln -s "$src" "$dst"
+        echo "Create: $dst"
+    fi
+    if _verify-wrapper-path git "$dst" > /dev/null; then
+        true
+    else
+        echo "Wrapped command is inaccessible."
+        echo "Make sure that PATH includes:"
+        dirname "$dst" | sed "s/^/  /" >&2
+    fi
+}
+
+unwrap-git() {
+    local here
+    local there=".lean-mirror"
+    here="$(cd "$(dirname "$0")" > /dev/null 2>&1 && pwd)"
+    local src="$here/lean-mirror-git"
+    local dst="$there/bin/git"
+    if [[ -L $dst ]]; then
+        target="$(readlink "$dst")"
+        if [[ "$target" == "$src" ]]; then
+            echo "Remove: $dst"
+            rm "$dst"
+        fi
+    fi
+}
+
 COMMAND="${1:-list}"
 shift
 
 case "$COMMAND" in
-    list|identify|clone|update|refer )
+    list|identify|clone|update|refer|wrap-git|unwrap-git )
         "$COMMAND" "$@" ;;
     * )
         die "Command missing: $COMMAND"
