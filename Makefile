@@ -22,7 +22,7 @@ ${HOME}/bin/%: bin/%
 	mkdir -p ${HOME}/bin
 	ln -s $(shell pwd)/$< $@
 
-bin: $(addprefix ${HOME}/, $(shell find bin))
+bin: $(addprefix ${HOME}/, $(shell find bin -type f))
 .PHONY: bin
 
 iterm:
