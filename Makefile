@@ -43,6 +43,10 @@ cask:
 	brew install --cask dropbox google-chrome google-japanese-ime karabiner-elements slack zoom
 .PHONY: cask
 
+claude:
+	curl -fsSL https://claude.ai/install.sh | bash
+.PHONY: claude
+
 init-mac: dotfiles homebrew brew cask
 .PHONY: init-mac
 
