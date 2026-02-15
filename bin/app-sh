@@ -1,0 +1,191 @@
+#!/usr/bin/env bash
+
+# app-sh — Minimal macOS .app bundle manager
+#
+# Create and manage lightweight macOS .app launchers without GUI tools.
+#
+# Commands:
+#   app-sh list
+#       List installed apps under ~/Applications.
+#
+#   app-sh new <APP_NAME>
+#       Create a new .app bundle in the current directory.
+#       The launcher template must be edited before installation.
+#
+#   app-sh install
+#       Search upward from the current directory for *.app and
+#       install the first match into ~/Applications.
+#
+#   app-sh reinstall
+#       Same as install, but overwrite existing app if present.
+#
+#   app-sh uninstall <APP_NAME>
+#       Remove ~/Applications/<APP_NAME>.app.
+#
+# Notes:
+#   - Spotlight indexing may require a short delay after installation.
+#   - Launcher scripts should prefer absolute paths or `open -a` for GUI safety.
+#
+
+set -euo pipefail
+
+APP_DIR="$HOME/Applications"
+
+_die() {
+  while (( $# > 0 )); do
+    arg="$1"
+    shift
+    if (( $# == 0 )) && [[ $arg =~ ^[0-9][0-9]*$ ]]; then
+      exit "$arg"
+    fi
+    if [[ -p "$arg" ]]; then
+      sed "s/^/  /" "$arg" >&2
+    else
+      echo "$arg" >&2
+    fi
+  done
+  exit 1
+}
+
+usage() {
+  echo "Usage:"
+  echo "  app-sh list"
+  echo "  app-sh new <APP_NAME>"
+  echo "  app-sh install"
+  echo "  app-sh reinstall"
+  echo "  app-sh uninstall <APP_NAME>"
+}
+
+_require-arg() {
+  if [ -z "${1:-}" ]; then
+    usage
+    _die
+  fi
+}
+
+list() {
+  ls "$APP_DIR"
+}
+
+new() {
+  _require-arg "$@"
+  local name="$1"
+  local bundle="./${name}.app"
+  local exec_path="$bundle/Contents/MacOS"
+  local plist_path="$bundle/Contents"
+
+  mkdir -p "$exec_path"
+
+  cat > "$exec_path/launcher" <<EOF
+#!/usr/bin/env bash
+echo ok
+EOF
+
+  chmod +x "$exec_path/launcher"
+
+  cat > "$plist_path/Info.plist" <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleName</key>
+    <string>${name}</string>
+    <key>CFBundleDisplayName</key>
+    <string>${name}</string>
+    <key>CFBundleExecutable</key>
+    <string>launcher</string>
+    <key>CFBundleIdentifier</key>
+    <string>local.appsh.${name}</string>
+    <key>CFBundleVersion</key>
+    <string>1.0</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+</dict>
+</plist>
+EOF
+
+  echo "Created ${bundle}"
+  echo "Edit Contents/MacOS/launcher before install."
+}
+
+_find-current-app() {
+  local dir="$PWD"
+
+  while [ "$dir" != "/" ]; do
+    if [[ $dir == *.app ]]; then
+      echo "$dir"
+      exit 0
+    fi
+    dir="$(dirname "$dir")"
+  done
+
+  _die "No .app found in parent directories."
+}
+
+install() {
+  local app
+  local basename
+  app="$(_find-current-app)"
+  basename="$(basename "$app")"
+
+  if [[ -d $APP_DIR/$basename ]]; then
+    _die \
+      "App is already existing: $basename" \
+      "Use \`reinstall\` to overwrite."
+  fi
+
+  mkdir -p "$APP_DIR"
+  cp -R "$app" "$APP_DIR/"
+  echo "Installed $basename to $APP_DIR"
+}
+
+reinstall() {
+  local app
+  local basename
+  app="$(_find-current-app)"
+  basename="$(basename "$app")"
+
+  if [[ -d $APP_DIR/$basename ]]; then
+    rm -rf "${APP_DIR:?}/$basename"
+  fi
+
+  mkdir -p "$APP_DIR"
+  cp -R "$app" "$APP_DIR/"
+  echo "Reinstalled $basename to $APP_DIR"
+}
+
+uninstall() {
+  _require-arg "$@"
+  local name="$1"
+  local target="$APP_DIR/${name}.app"
+
+  if [ -d "$target" ]; then
+    rm -rf "$target"
+    echo "Uninstalled $target"
+  else
+    _die "App not found: $target"
+  fi
+}
+
+if (( $# > 0 )); then
+  cmd="$1"
+  shift
+else
+  cmd=""
+fi
+
+case "$cmd" in
+  list|new|install|reinstall|uninstall )
+    "$cmd" "$@" 
+    ;;
+  '')
+    echo "Command missing"
+    usage
+    _die
+    ;;
+  *)
+    echo "Unknown command: $cmd"
+    usage
+    _die
+esac
