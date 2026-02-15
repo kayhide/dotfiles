@@ -3,10 +3,13 @@
 # app-sh — Minimal macOS .app bundle manager
 #
 # Create and manage lightweight macOS .app launchers without GUI tools.
+# 
+# Requirements:
+#   defaults
 #
 # Commands:
 #   app-sh list
-#       List installed apps under ~/Applications.
+#       List installed apps under ~/Applications managed by this tool.
 #
 #   app-sh new <APP_NAME>
 #       Create a new .app bundle in the current directory.
@@ -63,8 +66,21 @@ _require-arg() {
   fi
 }
 
+_is-app-sh-managed() {
+  local app="$1"
+  if value=$(defaults read "$app/Contents/Info" AppShManaged 2>/dev/null); then
+    [ "$value" = "1" ]
+  else
+    false
+  fi
+}
+
 list() {
-  ls "$APP_DIR"
+  for app in "$APP_DIR"/*.app; do
+    if [[ -d $app ]] && _is-app-sh-managed "$app"; then
+      basename "$app"
+    fi
+  done
 }
 
 new() {
@@ -101,6 +117,8 @@ EOF
     <string>1.0</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
+    <key>AppShManaged</key>
+    <string>1</string>
 </dict>
 </plist>
 EOF
@@ -125,34 +143,39 @@ _find-current-app() {
 
 install() {
   local app
-  local basename
+  local name
   app="$(_find-current-app)"
-  basename="$(basename "$app")"
+  name="$(basename "$app")"
 
-  if [[ -d $APP_DIR/$basename ]]; then
+  if [[ -d $APP_DIR/$name ]]; then
     _die \
-      "App is already existing: $basename" \
+      "App is already existing: $name" \
       "Use \`reinstall\` to overwrite."
   fi
 
   mkdir -p "$APP_DIR"
   cp -R "$app" "$APP_DIR/"
-  echo "Installed $basename to $APP_DIR"
+  echo "Installed $name to $APP_DIR"
 }
 
 reinstall() {
   local app
-  local basename
+  local name
   app="$(_find-current-app)"
-  basename="$(basename "$app")"
+  name="$(basename "$app")"
+  local target="$APP_DIR/$name"
 
-  if [[ -d $APP_DIR/$basename ]]; then
-    rm -rf "${APP_DIR:?}/$basename"
+  if [[ -d $target ]]; then
+    if _is-app-sh-managed "$target"; then
+      rm -rf "$target"
+    else
+      _die "Cannot overwrite non app-sh managed app: $name"
+    fi
   fi
 
   mkdir -p "$APP_DIR"
   cp -R "$app" "$APP_DIR/"
-  echo "Reinstalled $basename to $APP_DIR"
+  echo "Reinstalled $name to $APP_DIR"
 }
 
 uninstall() {
@@ -160,9 +183,13 @@ uninstall() {
   local name="$1"
   local target="$APP_DIR/${name}.app"
 
-  if [ -d "$target" ]; then
-    rm -rf "$target"
-    echo "Uninstalled $target"
+  if [[ -d $target ]]; then
+    if _is-app-sh-managed "$target"; then
+      rm -rf "$target"
+      echo "Uninstalled $target"
+    else
+      _die "Cannot uninstall non app-sh managed app: $name"
+    fi
   else
     _die "App not found: $target"
   fi
