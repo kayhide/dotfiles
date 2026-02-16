@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+VSCODE_APP="/Applications/Visual Studio Code.app"
+CODE_BIN="$VSCODE_APP/Contents/Resources/app/bin/code"
+
+if [ ! -x "$CODE_BIN" ]; then
+  echo "VS Code CLI not found" >&2
+  exit 1
+fi
+
+HOST="$1"
+REMOTE_PATH="$2"
+
+exec "$CODE_BIN" --folder-uri "vscode-remote://ssh-remote+${HOST}/${REMOTE_PATH}"
