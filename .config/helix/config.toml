@@ -33,3 +33,4 @@ hidden = false
 [keys.normal.space.space]
 "R" = ":reload-all"
 "C" = ":config-reload"
+"w" = ":toggle whitespace.render all none"

@@ -43,3 +43,7 @@ name = "idris"
 source = { git = "https://github.com/kayhide/tree-sitter-idris", rev = "c3ab3a95415d9807038f6ed026617cb44328f1c3" }
 # source = { path = "/Users/kayhide/ghq/github.com/kayhide/tree-sitter-idris" }
 # source = { path = "/home/kayhide/ghq/github.com/kayhide/tree-sitter-idris" }
+
+[[language]]
+name = "latex"
+indent = { tab-width = 4, unit = "    " }
