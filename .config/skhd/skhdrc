@@ -100,5 +100,5 @@ cmd + ctrl + alt - d : yabai -m window --toggle split
 # alt - p : yabai -m window --toggle sticky --toggle pip
 
 # open terminal/browser, ~/bin/open-xxx
-cmd + ctrl + alt - return : open-kitty
+cmd + ctrl + alt - return : open-iterm
 shift + cmd + ctrl + alt - return : open-chrome
