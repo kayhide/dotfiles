@@ -36,7 +36,7 @@ homebrew:
 .PHONY: homebrew
 
 brew:
-	brew install tig hub ghq readline lv direnv fd fzf zplug entr tree ripgrep ffmpeg helix
+	brew install tig delta hub ghq readline lv direnv fd fzf zplug entr tree ripgrep ffmpeg helix
 .PHONY: brew
 
 cask:
