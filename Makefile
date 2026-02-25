@@ -47,6 +47,11 @@ claude:
 	curl -fsSL https://claude.ai/install.sh | bash
 .PHONY: claude
 
+stub-ollama:
+	plutil -insert EnvironmentVariables.OLLAMA_HOST -string '0.0.0.0' /opt/homebrew/opt/ollama/homebrew.mxcl.ollama.plist 2>/dev/null || \
+	plutil -replace EnvironmentVariables.OLLAMA_HOST -string '0.0.0.0' /opt/homebrew/opt/ollama/homebrew.mxcl.ollama.plist
+.PHONY: stub-ollama
+
 init-mac: dotfiles homebrew brew cask
 .PHONY: init-mac
 
