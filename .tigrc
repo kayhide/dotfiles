@@ -1,4 +1,5 @@
 set main-view = id date author commit-title:graph=yes,refs=yes
+set wrap-lines = true
 
 bind generic <Ctrl-J> next
 bind generic <Ctrl-K> previous
