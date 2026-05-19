@@ -2,6 +2,10 @@ tmp
 
 .lean-mirror
 
+.terraform/
+*.tfstate
+*.tfstate.*
+
 .envrc
 .direnv
 .helix
