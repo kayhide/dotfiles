@@ -1,6 +1,7 @@
 dotfiles:
 	ln -sf "$$(pwd)/.tigrc" "$$HOME/"
 	ln -sf "$$(pwd)/.zshrc" "$$HOME/"
+	ln -sf "$$(pwd)/.zshenv" "$$HOME/"
 	ln -sf "$$(pwd)/.zsh" "$$HOME/"
 	ln -sf "$$(pwd)/.tmux.conf" "$$HOME/"
 .PHONY: dotfiles
