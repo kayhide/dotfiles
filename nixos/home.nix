@@ -116,7 +116,6 @@ in
     alacritty
     awscli
     cmatrix
-    dropbox
     exercism
     ffmpeg
     helix
