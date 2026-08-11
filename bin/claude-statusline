@@ -1,0 +1,145 @@
+#!/usr/bin/env bash
+# Generic status line for Claude Code. Works in any project.
+# Reads JSON from stdin (provided by Claude Code on each update).
+# Outputs [<focus>] when the current project defines one, plus quota usage percentages.
+#
+# --- Focus protocol ---
+# If the project root contains an executable `.claude/bin/focus`, it is run
+# (cwd = project root, 2s timeout) and its trimmed stdout is shown as `[...]`.
+# This lets any project surface "what am I focused on right now" without this
+# script knowing anything project-specific — the project owns that logic.
+# Print nothing (or exit non-zero) to hide the badge. Output over 64 chars is
+# truncated with an ellipsis so a misbehaving focus script can't blow out the
+# statusline.
+#
+# Example `.claude/bin/focus` for a project tracking an active sub-project:
+#   #!/usr/bin/env bash
+#   cat data/state/.active-project 2>/dev/null
+#
+# --- Quota meters ---
+# 5-hour and 7-day usage bars, fetched from api.anthropic.com/api/oauth/usage
+# (OAuth Bearer token, cached for 5 minutes in ~/.claude/statusline-usage-cache.json).
+# Token is read from macOS Keychain (Claude Code >= ~2.1), falling back to
+# ~/.claude/.credentials.json (pre-2.1 location).
+
+input=$(cat)
+project_dir=$(echo "$input" | jq -r '.workspace.project_dir // .workspace.current_dir // empty')
+
+# --- Focus badge ---
+focus=""
+if [ -n "$project_dir" ]; then
+    focus_script="$project_dir/.claude/bin/focus"
+    if [ -x "$focus_script" ]; then
+        if command -v timeout >/dev/null 2>&1; then
+            focus=$(cd "$project_dir" && timeout 2 "$focus_script" 2>/dev/null | tr -d '[:space:]' || true)
+        else
+            focus=$(cd "$project_dir" && "$focus_script" 2>/dev/null | tr -d '[:space:]' || true)
+        fi
+    fi
+fi
+
+# Cap runaway output so a misbehaving focus script can't blow out the line
+focus_max=64
+if [ "${#focus}" -gt "$focus_max" ]; then
+    focus="${focus:0:$focus_max}…"
+fi
+
+# --- Quota usage (cached) ---
+usage_color() {
+    local pct=$1
+    if   [ "$pct" -ge 81 ] 2>/dev/null; then echo 31
+    elif [ "$pct" -ge 50 ] 2>/dev/null; then echo 33
+    else                                      echo 32
+    fi
+}
+
+usage_bg() {
+    local code=$1
+    case "$code" in
+        31) echo "52"  ;;  # dark red
+        33) echo "58"  ;;  # dark yellow/olive
+        32) echo "22"  ;;  # dark green
+    esac
+}
+
+meter_bar() {
+    local pct=$1 code=$2
+    local bg=$(usage_bg "$code")
+    local width=10
+    local eighths=$(( pct * width * 8 / 100 ))
+    local filled=$(( eighths / 8 ))
+    local partial=$(( eighths % 8 ))
+    local empty=$(( width - filled ))
+    local partials=(' ' '▏' '▎' '▍' '▌' '▋' '▊' '▉')
+    local bar="" i
+    for ((i=0; i<filled; i++)); do bar="${bar}█"; done
+    if [ "$partial" -gt 0 ]; then
+        bar="${bar}${partials[$partial]}"
+        empty=$(( empty - 1 ))
+    fi
+    for ((i=0; i<empty; i++)); do bar="${bar} "; done
+    printf '%b' "\033[${code}m\033[48;5;${bg}m${bar}\033[0m"
+}
+
+five_h=""
+seven_d=""
+
+cache_file="$HOME/.claude/statusline-usage-cache.json"
+credentials="$HOME/.claude/.credentials.json"
+cache_ttl=300
+now=$(date +%s)
+
+# Decide whether cache is fresh
+use_cache=0
+if [ -f "$cache_file" ]; then
+    fetched_at=$(jq -r '.fetched_at // 0' "$cache_file" 2>/dev/null)
+    age=$(( now - fetched_at ))
+    [ "$age" -lt "$cache_ttl" ] && use_cache=1
+fi
+
+if [ "$use_cache" -eq 0 ]; then
+    # Attempt a fresh fetch
+    # Try keychain first (Claude Code >= ~2.1), fall back to credentials file
+    token=$(security find-generic-password -s "Claude Code-credentials" -w 2>/dev/null \
+        | jq -r '.claudeAiOauth.accessToken // empty' 2>/dev/null)
+    if [ -z "$token" ] && [ -f "$credentials" ]; then
+        token=$(jq -r '.claudeAiOauth.accessToken // empty' "$credentials" 2>/dev/null)
+    fi
+    if [ -n "$token" ]; then
+        response=$(curl -sf --max-time 5 \
+            -H "Authorization: Bearer $token" \
+            -H "anthropic-beta: oauth-2025-04-20" \
+            "https://api.anthropic.com/api/oauth/usage" 2>/dev/null)
+        if [ -n "$response" ]; then
+            echo "$response" | jq --argjson ts "$now" '. + {fetched_at: $ts}' \
+                > "$cache_file" 2>/dev/null
+            use_cache=1
+        fi
+    fi
+fi
+
+if [ "$use_cache" -eq 1 ] && [ -f "$cache_file" ]; then
+    five_h=$(jq -r '.five_hour.utilization // empty' "$cache_file" 2>/dev/null)
+    seven_d=$(jq -r '.seven_day.utilization // empty' "$cache_file" 2>/dev/null)
+    # Round to nearest integer
+    [ -n "$five_h" ] && five_h=$(printf '%.0f' "$five_h")
+    [ -n "$seven_d" ] && seven_d=$(printf '%.0f' "$seven_d")
+fi
+
+# --- Assemble output ---
+output=""
+
+if [ -n "$focus" ]; then
+    output="${output}\033[36m[${focus}]\033[0m"
+fi
+
+if [ -n "$five_h" ] && [ -n "$seven_d" ]; then
+    c5=$(usage_color "$five_h")
+    c7=$(usage_color "$seven_d")
+    b5=$(meter_bar "$five_h" "$c5")
+    b7=$(meter_bar "$seven_d" "$c7")
+    usage_str=" \033[${c5}m5h:\033[0m${b5} \033[${c7}m7d:\033[0m${b7}"
+    output="${output}${usage_str}"
+fi
+
+[ -n "$output" ] && printf '%b' "$output"
