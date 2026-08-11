@@ -48,6 +48,17 @@ claude:
 	curl -fsSL https://claude.ai/install.sh | bash
 .PHONY: claude
 
+dotclaude:$(addprefix ${HOME}/,$(shell find .claude -type f))
+.PHONY: dotclaude
+
+${HOME}/.claude/settings.json: .claude/settings.json
+	mkdir -p $(@D)
+	envsubst < $< > $@
+
+${HOME}/.claude/%: .claude/%
+	mkdir -p $(@D)
+	ln -sf $(shell pwd)/$< $@
+
 stub-ollama:
 	plutil -insert EnvironmentVariables.OLLAMA_HOST -string '0.0.0.0' /opt/homebrew/opt/ollama/homebrew.mxcl.ollama.plist 2>/dev/null || \
 	plutil -replace EnvironmentVariables.OLLAMA_HOST -string '0.0.0.0' /opt/homebrew/opt/ollama/homebrew.mxcl.ollama.plist
