@@ -59,6 +59,15 @@ ${HOME}/.claude/%: .claude/%
 	mkdir -p $(@D)
 	ln -sf $(shell pwd)/$< $@
 
+# (Re)install the passwordless sudoers entry yabai needs to load its
+# scripting addition. The entry pins a hash of the yabai binary, so it must
+# be regenerated after every `brew upgrade yabai`.
+yabai-sa:
+	echo "$$(whoami) ALL=(root) NOPASSWD: sha256:$$(shasum -a 256 $$(which yabai) | cut -d ' ' -f 1) $$(which yabai) --load-sa" \
+		| sudo tee /private/etc/sudoers.d/yabai
+	sudo yabai --load-sa
+.PHONY: yabai-sa
+
 stub-ollama:
 	plutil -insert EnvironmentVariables.OLLAMA_HOST -string '0.0.0.0' /opt/homebrew/opt/ollama/homebrew.mxcl.ollama.plist 2>/dev/null || \
 	plutil -replace EnvironmentVariables.OLLAMA_HOST -string '0.0.0.0' /opt/homebrew/opt/ollama/homebrew.mxcl.ollama.plist

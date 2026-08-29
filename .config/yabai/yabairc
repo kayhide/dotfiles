@@ -8,3 +8,11 @@ yabai -m config bottom_padding 4
 yabai -m config left_padding   4
 yabai -m config right_padding  4
 yabai -m config window_gap     4
+
+# Keep spaces s1..s10 pinned to displays across monitor (un)plugging.
+yabai -m signal --add label=arrange_on_display_added \
+  event=display_added action="$HOME/.config/yabai/arrange-spaces.sh"
+yabai -m signal --add label=arrange_on_display_removed \
+  event=display_removed action="$HOME/.config/yabai/arrange-spaces.sh"
+
+"$HOME/.config/yabai/arrange-spaces.sh" &
