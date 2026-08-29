@@ -1,11 +1,11 @@
 # A list of all built-in modifier and literal keywords can
 # be found at https://github.com/koekeishiya/skhd/issues/1
 
-# focus window
-cmd + ctrl + alt - h : yabai -m window --focus west
-cmd + ctrl + alt - j : yabai -m window --focus south
-cmd + ctrl + alt - k : yabai -m window --focus north
-cmd + ctrl + alt - l : yabai -m window --focus east
+# focus window (via a wrapper that recovers focus when no window is active)
+cmd + ctrl + alt - h : "$HOME/.config/yabai/focus.sh" west
+cmd + ctrl + alt - j : "$HOME/.config/yabai/focus.sh" south
+cmd + ctrl + alt - k : "$HOME/.config/yabai/focus.sh" north
+cmd + ctrl + alt - l : "$HOME/.config/yabai/focus.sh" east
 
 # swap window
 # shift + alt - h : yabai -m window --swap north

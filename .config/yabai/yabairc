@@ -15,4 +15,11 @@ yabai -m signal --add label=arrange_on_display_added \
 yabai -m signal --add label=arrange_on_display_removed \
   event=display_removed action="$HOME/.config/yabai/arrange-spaces.sh"
 
+# Make sure a window is focused after switching space / display, so that
+# directional focus (yabai -m window --focus west/...) always has a reference.
+yabai -m signal --add label=focus_recover_on_space_changed \
+  event=space_changed action="$HOME/.config/yabai/focus.sh"
+yabai -m signal --add label=focus_recover_on_display_changed \
+  event=display_changed action="$HOME/.config/yabai/focus.sh"
+
 "$HOME/.config/yabai/arrange-spaces.sh" &
