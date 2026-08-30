@@ -61,11 +61,12 @@ ${HOME}/.claude/%: .claude/%
 
 # (Re)install the passwordless sudoers entry yabai needs to load its
 # scripting addition. The entry pins a hash of the yabai binary, so it must
-# be regenerated after every `brew upgrade yabai`.
+# be regenerated after every `brew upgrade yabai` (or a --HEAD rebuild).
+# env -u TERMINFO: kitty exports TERMINFO, which sudo refuses to accept.
 yabai-sa:
 	echo "$$(whoami) ALL=(root) NOPASSWD: sha256:$$(shasum -a 256 $$(which yabai) | cut -d ' ' -f 1) $$(which yabai) --load-sa" \
-		| sudo tee /private/etc/sudoers.d/yabai
-	sudo yabai --load-sa
+		| env -u TERMINFO sudo tee /private/etc/sudoers.d/yabai
+	env -u TERMINFO sudo yabai --load-sa
 .PHONY: yabai-sa
 
 stub-ollama:
