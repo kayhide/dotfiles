@@ -61,6 +61,7 @@ in
     lsof
     lv
     moreutils
+    mosh
     ncdu
     neofetch
     nkf
