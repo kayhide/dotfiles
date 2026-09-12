@@ -70,7 +70,8 @@
     # Open ports in the firewall.
     firewall = {
       allowedTCPPorts = [ 22 3001 3000 ];
-      # allowedUDPPorts = [];
+      # mosh
+      allowedUDPPortRanges = [ { from = 60000; to = 61000; } ];
       # Or disable the firewall altogether.
       # enable = false;
 
