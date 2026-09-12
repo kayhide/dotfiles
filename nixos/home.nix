@@ -71,6 +71,7 @@ in
     ripgrep
     rlwrap
     rsync
+    tmux
     tree
     unar
     watch
